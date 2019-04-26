@@ -31,7 +31,11 @@ namespace IPCViewer.Api.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Camera>> GetCamera(int id)
         {
-            var camera = await _context.Cameras.FindAsync(id);
+            var camera = await _context.Cameras
+                .Where(c => c.Id == id)
+                .Include(c => c.User)
+                .Include(c => c.City)
+                .FirstOrDefaultAsync();
 
             if (camera == null)
             {

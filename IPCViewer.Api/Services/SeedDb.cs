@@ -46,9 +46,9 @@ namespace IPCViewer.Api.Services
             // Si no hay ningun registro (false) creará 3 nuevas cámaras
             if (!context.Cameras.Any())
             {
-                AddProduct("Camara 1", user);
-                AddProduct("Camara 2", user);
-                AddProduct("Camara 3", user);
+                AddProduct("A-2 Montañana", user, null);
+                AddProduct("Puente Santiago", user, null);
+                AddProduct("Plaza del Pilar", user, null);
 
                 // Guardamos los cambios
                 await context.SaveChangesAsync();
@@ -106,7 +106,7 @@ namespace IPCViewer.Api.Services
             };
 
             // Creamos en la base de datos
-            var result = await this.userHelper.AddUserAsync(user, "123456");
+            var result = await userHelper.AddUserAsync(user, "123456");
             if (result != IdentityResult.Success)
             {
                 throw new InvalidOperationException("Could not create the user in seeder");
@@ -120,14 +120,15 @@ namespace IPCViewer.Api.Services
         }
 
 
-        private void AddProduct(string name, User user) => context.Cameras.Add(new Camera
+        private void AddProduct(string name, User user, string imgUrl) => context.Cameras.Add(new Camera
         {
             Name = name,
             Latitude = 41.647601,
             Longitude = -0.875804,
             CreatedDate = DateTime.Now,
             User = user,
-            City = context.City.FirstOrDefault()
+            City = context.City.FirstOrDefault(),
+            ImageUrl = imgUrl
         });
     
     }
