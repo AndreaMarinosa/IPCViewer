@@ -8,7 +8,7 @@ namespace IPCViewer.Common.Services
     using Newtonsoft.Json;
     using System.Threading.Tasks;
 
-    class ApiService
+    public class ApiService
     {
         public async Task<Response> GetListAsync<T>(string urlBase, string servicePrefix, string controller)
         {

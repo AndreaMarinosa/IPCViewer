@@ -3,7 +3,12 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="IPCViewer.Forms.Views.RegisterPage"
              xmlns:vm="clr-namespace:IPCViewer.Forms.ViewModels"
+             BindingContext="{Binding Main, Source={StaticResource Locator}}"
              Title="{Binding Title}">
+
+    <ContentPage.BindingContext>
+        <vm:RegisterViewModel />
+    </ContentPage.BindingContext>
     
     <ContentPage.Content>
         <ScrollView

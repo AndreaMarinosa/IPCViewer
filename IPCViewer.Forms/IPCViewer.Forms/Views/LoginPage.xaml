@@ -3,8 +3,13 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="IPCViewer.Forms.Views.LoginPage"
              xmlns:vm="clr-namespace:IPCViewer.Forms.ViewModels"
+             BindingContext="{Binding Main, Source={StaticResource Locator}}"
              Title="{Binding Title}">
 
+    <!--<ContentPage.BindingContext>
+        <vm:LoginViewModel />
+    </ContentPage.BindingContext>-->
+    
     <ContentPage.Content>
         <ScrollView
             BindingContext="{Binding Login}">
@@ -32,9 +37,14 @@
                 <Button
                     Text="Login"
                     Command="{Binding LoginCommand}"
-                    IsEnabled="{Binding IsEnabled}"/>
+                    IsEnabled="{Binding IsEnabled}"
+                    BackgroundColor="Purple"
+    	            BorderRadius="23"
+                    HeightRequest="46"
+    	            HorizontalOptions="FillAndExpand"
+                    TextColor="White"/>
 
-                <Button
+                <!--<Button
     	            BackgroundColor="Purple"
     	            BorderRadius="23"
     	            Command="{Binding RegisterCommand}"
@@ -43,7 +53,7 @@
     	            IsEnabled="{Binding IsEnabled}"
     	            Text="Register NewUser"
     	            TextColor="White">
-                </Button>
+                </Button>-->
 
             </StackLayout>
         </ScrollView>
