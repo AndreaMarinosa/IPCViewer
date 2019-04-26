@@ -24,7 +24,7 @@ namespace IPCViewer.Api.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Camera>>> GetCameras()
         {
-            return await _context.Cameras.ToListAsync();
+            return await _context.Cameras.Include(c => c.User).Include(c => c.City).ToListAsync();
         }
 
         // GET: api/Cameras/5
