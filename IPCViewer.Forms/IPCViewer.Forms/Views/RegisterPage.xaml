@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="IPCViewer.Forms.Views.RegisterPage"
+             xmlns:vm="clr-namespace:IPCViewer.Forms.ViewModels"
+             Title="{Binding Title}">
+    
+    <ContentPage.Content>
+        <ScrollView
+            BindingContext="{Binding Register}">
+            <StackLayout>
+                <StackLayout
+            	Padding="8">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="2*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <!-- Nombre -->
+                        <Label
+                    	Grid.Column="0"
+                    	Grid.Row="0"
+                    	Text="First name"
+                    	VerticalOptions="Center">
+                        </Label>
+                        <Entry
+                    	Grid.Column="1"
+                    	Grid.Row="0"
+                    	Placeholder="Enter your first name..."
+                    	Text="{Binding FirstName}">
+                        </Entry>
+
+                        <!-- Apellido -->
+                        <Label
+                    	Grid.Column="0"
+                    	Grid.Row="1"
+                    	Text="Last name"
+                    	VerticalOptions="Center">
+                        </Label>
+                        <Entry
+                    	Grid.Column="1"
+                    	Grid.Row="1"
+                    	Placeholder="Enter your last name..."
+                    	Text="{Binding LastName}">
+                        </Entry>
+
+                        <!-- Email -->
+                        <Label
+                    	Grid.Column="0"
+                    	Grid.Row="2"
+                    	Text="Email"
+                    	VerticalOptions="Center">
+                        </Label>
+                        <Entry
+                    	Grid.Column="1"
+                    	Grid.Row="2"
+                    	Keyboard="Email"
+                    	Placeholder="Enter your email..."
+                    	Text="{Binding Email}">
+                        </Entry>
+
+                        <!-- Pass -->
+                        <Label
+                    	Grid.Column="0"
+                    	Grid.Row="3"
+                    	Text="Password"
+                    	VerticalOptions="Center">
+                        </Label>
+                        <Entry
+                    	Grid.Column="1"
+                    	Grid.Row="3"
+                    	IsPassword="True"
+                    	Placeholder="Enter your password..."
+                    	Text="{Binding Password}">
+                        </Entry>
+
+                        <!-- Confirm pass-->
+                        <Label
+                    	Grid.Column="0"
+                    	Grid.Row="4"
+                    	Text="Password confirm"
+                    	VerticalOptions="Center">
+                        </Label>
+                        <Entry
+                    	Grid.Column="1"
+                    	Grid.Row="4"
+                    	IsPassword="True"
+                    	Placeholder="Enter your password confirm..."
+                    	Text="{Binding Confirm}">
+                        </Entry>
+                    </Grid>
+                    <ActivityIndicator
+                	IsRunning="{Binding IsRunning}"
+                	VerticalOptions="CenterAndExpand">
+                    </ActivityIndicator>
+                    <Button
+                	BackgroundColor="Navy"
+                	BorderRadius="23"
+                	Command="{Binding RegisterCommand}"
+                	HeightRequest="46"
+                	HorizontalOptions="FillAndExpand"
+                	IsEnabled="{Binding IsEnabled}"
+                	Text="Register New User"
+                	TextColor="White">
+                    </Button>
+                </StackLayout>
+
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

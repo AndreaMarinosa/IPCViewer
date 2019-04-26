@@ -14,7 +14,7 @@ namespace IPCViewer.Forms
             InitializeComponent();
 
             DependencyService.Register<MockDataStore>();
-            MainPage = new MainPage();
+            MainPage = new ControlUsersPage();
         }
 
         protected override void OnStart()
