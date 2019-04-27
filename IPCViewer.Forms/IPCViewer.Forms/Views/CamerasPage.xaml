@@ -29,7 +29,7 @@
                                 </Grid.ColumnDefinitions>
                                 <Image
                                 	Grid.Column="0"
-                                	Source="{Binding ImageFullPath}"
+                                	Source="{Binding ImageUrl}"
                                 	WidthRequest="100">
                                 </Image>
                                 <StackLayout

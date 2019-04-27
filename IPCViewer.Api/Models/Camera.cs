@@ -27,18 +27,18 @@ namespace IPCViewer.Api.Models
 
         public City City { get; set; }
 
-        public string ImageFullPath
-        {
-            get
-            {
-                if (string.IsNullOrEmpty(this.ImageUrl))
-                {
-                    return null;
-                }
+        //public string ImageFullPath
+        //{
+        //    get
+        //    {
+        //        if (string.IsNullOrEmpty(this.ImageUrl))
+        //        {
+        //            return null;
+        //        }
 
-                return $"https://ipcviewer.azurewebsites.net{ImageUrl.Substring(1)}";
-            }
-        }
+        //        return $"https://ipcviewer2.azurewebsites.net{ImageUrl}";
+        //    }
+        //}
 
     }
 }

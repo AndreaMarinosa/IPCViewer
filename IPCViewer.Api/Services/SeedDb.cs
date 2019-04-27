@@ -46,9 +46,9 @@ namespace IPCViewer.Api.Services
             // Si no hay ningun registro (false) creará 3 nuevas cámaras
             if (!context.Cameras.Any())
             {
-                AddCamera("A-2 Montañana", user, null);
-                AddCamera("Puente Santiago", user, null);
-                AddCamera("Plaza del Pilar", user, null);
+                //AddCamera("A-2 Montañana", user, "http://infocar.dgt.es/etraffic/data/camaras/70.jpg", 41.655801, -0.878352);
+                AddCamera("Puente Santiago", user, "http://webcam.abaco-digital.es/zuda/image2.jpg", 41.655801, -0.878352);
+                AddCamera("Plaza del Pilar", user, "http://webcam.abaco-digital.es/pilar/image2.jpg", 41.657552, -0.881588);
 
                 // Guardamos los cambios
                 await context.SaveChangesAsync();
@@ -102,7 +102,6 @@ namespace IPCViewer.Api.Services
                 Email = userName,
                 UserName = userName,
                 City = context.City.FirstOrDefault(),
-                CityId = context.City.FirstOrDefault().Id
             };
 
             // Creamos en la base de datos
@@ -120,11 +119,11 @@ namespace IPCViewer.Api.Services
         }
 
 
-        private void AddCamera(string name, User user, string imgUrl) => context.Cameras.Add(new Camera
+        private void AddCamera(string name, User user, string imgUrl, double latitude, double longitude) => context.Cameras.Add(new Camera
         {
             Name = name,
-            Latitude = 41.647601,
-            Longitude = -0.875804,
+            Latitude = latitude,
+            Longitude = longitude,
             CreatedDate = DateTime.Now,
             User = user,
             City = context.City.FirstOrDefault(),

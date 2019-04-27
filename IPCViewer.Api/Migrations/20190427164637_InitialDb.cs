@@ -77,7 +77,7 @@ namespace IPCViewer.Api.Migrations
                     FirstName = table.Column<string>(nullable: true),
                     LastName = table.Column<string>(nullable: true),
                     EmailConfirmed = table.Column<bool>(nullable: false),
-                    CityId = table.Column<int>(nullable: false)
+                    CityId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -87,7 +87,7 @@ namespace IPCViewer.Api.Migrations
                         column: x => x.CityId,
                         principalTable: "City",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -179,7 +179,7 @@ namespace IPCViewer.Api.Migrations
                 name: "Cameras",
                 columns: table => new
                 {
-                    Id = table.Column<long>(nullable: false)
+                    Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Name = table.Column<string>(nullable: true),
                     Latitude = table.Column<double>(nullable: false),
@@ -187,11 +187,18 @@ namespace IPCViewer.Api.Migrations
                     Comments = table.Column<string>(nullable: true),
                     ImageUrl = table.Column<string>(nullable: true),
                     CreatedDate = table.Column<DateTime>(nullable: false),
-                    UserId = table.Column<string>(nullable: true)
+                    UserId = table.Column<string>(nullable: true),
+                    CityId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Cameras", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Cameras_City_CityId",
+                        column: x => x.CityId,
+                        principalTable: "City",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Cameras_AspNetUsers_UserId",
                         column: x => x.UserId,
@@ -243,6 +250,11 @@ namespace IPCViewer.Api.Migrations
                 column: "NormalizedUserName",
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Cameras_CityId",
+                table: "Cameras",
+                column: "CityId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Cameras_UserId",

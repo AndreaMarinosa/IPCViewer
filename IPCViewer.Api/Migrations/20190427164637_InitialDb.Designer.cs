@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace IPCViewer.Api.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20190426144555_InitialDb")]
+    [Migration("20190427164637_InitialDb")]
     partial class InitialDb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -23,9 +23,11 @@ namespace IPCViewer.Api.Migrations
 
             modelBuilder.Entity("IPCViewer.Api.Models.Camera", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("CityId");
 
                     b.Property<string>("Comments");
 
@@ -42,6 +44,8 @@ namespace IPCViewer.Api.Migrations
                     b.Property<string>("UserId");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CityId");
 
                     b.HasIndex("UserId");
 
@@ -68,7 +72,7 @@ namespace IPCViewer.Api.Migrations
 
                     b.Property<int>("AccessFailedCount");
 
-                    b.Property<int>("CityId");
+                    b.Property<int?>("CityId");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken();
@@ -232,6 +236,10 @@ namespace IPCViewer.Api.Migrations
 
             modelBuilder.Entity("IPCViewer.Api.Models.Camera", b =>
                 {
+                    b.HasOne("IPCViewer.Api.Models.City", "City")
+                        .WithMany()
+                        .HasForeignKey("CityId");
+
                     b.HasOne("IPCViewer.Api.Models.User", "User")
                         .WithMany()
                         .HasForeignKey("UserId");
@@ -241,8 +249,7 @@ namespace IPCViewer.Api.Migrations
                 {
                     b.HasOne("IPCViewer.Api.Models.City", "City")
                         .WithMany()
-                        .HasForeignKey("CityId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("CityId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

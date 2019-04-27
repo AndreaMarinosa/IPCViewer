@@ -38,7 +38,7 @@
         private async void LoadCamerasAsync()
         {
             var response = await this.apiService.GetListAsync<Camera>(
-                "https://ipcviewer.azurewebsites.net",
+                "https://ipcviewerapi2.azurewebsites.net",
                 "/api",
                 "/Cameras");
 

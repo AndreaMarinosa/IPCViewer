@@ -47,7 +47,7 @@ namespace IPCViewer.Api.Controllers
 
         // PUT: api/Cameras/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutCamera(long id, Camera camera)
+        public async Task<IActionResult> PutCamera(int id, Camera camera)
         {
             if (id != camera.Id)
             {
@@ -87,7 +87,7 @@ namespace IPCViewer.Api.Controllers
 
         // DELETE: api/Cameras/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult<Camera>> DeleteCamera(long id)
+        public async Task<ActionResult<Camera>> DeleteCamera(int id)
         {
             var camera = await _context.Cameras.FindAsync(id);
             if (camera == null)
@@ -101,7 +101,7 @@ namespace IPCViewer.Api.Controllers
             return camera;
         }
 
-        private bool CameraExists(long id)
+        private bool CameraExists(int id)
         {
             return _context.Cameras.Any(e => e.Id == id);
         }

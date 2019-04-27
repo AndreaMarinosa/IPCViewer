@@ -21,7 +21,7 @@
         public string Comments { get; set; }
 
         [JsonProperty("imageUrl")]
-        public string ImageUrl { get; set; }
+        public Uri ImageUrl { get; set; }
 
         [JsonProperty("createdDate")]
         public DateTime CreatedDate { get; set; }
@@ -29,8 +29,8 @@
         [JsonProperty("user")]
         public User User { get; set; }
 
-        [JsonProperty("imageFullPath")]
-        public Uri ImageFullPath { get; set; }
+        //[JsonProperty("imageFullPath")]
+        //public Uri ImageFullPath { get; set; }
 
         [JsonProperty("cityId")]
         public int CityId { get; set; }
