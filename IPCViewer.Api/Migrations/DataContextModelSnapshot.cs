@@ -56,28 +56,11 @@ namespace IPCViewer.Api.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("CountryId");
-
                     b.Property<string>("Name");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CountryId");
-
-                    b.ToTable("Cities");
-                });
-
-            modelBuilder.Entity("IPCViewer.Api.Models.Country", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Name");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Countries");
+                    b.ToTable("City");
                 });
 
             modelBuilder.Entity("IPCViewer.Api.Models.User", b =>
@@ -260,19 +243,12 @@ namespace IPCViewer.Api.Migrations
                         .HasForeignKey("UserId");
                 });
 
-            modelBuilder.Entity("IPCViewer.Api.Models.City", b =>
-                {
-                    b.HasOne("IPCViewer.Api.Models.Country")
-                        .WithMany("Cities")
-                        .HasForeignKey("CountryId");
-                });
-
             modelBuilder.Entity("IPCViewer.Api.Models.User", b =>
                 {
                     b.HasOne("IPCViewer.Api.Models.City", "City")
                         .WithMany()
                         .HasForeignKey("CityId")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

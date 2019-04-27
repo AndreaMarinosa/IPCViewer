@@ -34,7 +34,7 @@ namespace IPCViewer.Api.Services
             // Comprueba si existen los roles creados
             await CheckRoles();
 
-            if (!context.Cities.Any())
+            if (!context.City.Any())
             {
                 await AddCitiesAsync();
             }
@@ -64,7 +64,7 @@ namespace IPCViewer.Api.Services
 
         private async Task AddCitiesAsync()
         {
-            context.Cities.Add(new City
+            context.City.Add(new City
             {
                 Name = "Zaragoza"
             });
@@ -101,8 +101,8 @@ namespace IPCViewer.Api.Services
                 LastName = lastName,
                 Email = userName,
                 UserName = userName,
-                City = context.Cities.FirstOrDefault(),
-                CityId = context.Cities.FirstOrDefault().Id
+                City = context.City.FirstOrDefault(),
+                CityId = context.City.FirstOrDefault().Id
             };
 
             // Creamos en la base de datos
@@ -127,7 +127,7 @@ namespace IPCViewer.Api.Services
             Longitude = -0.875804,
             CreatedDate = DateTime.Now,
             User = user,
-            City = context.Cities.FirstOrDefault(),
+            City = context.City.FirstOrDefault(),
             ImageUrl = imgUrl
         });
     
