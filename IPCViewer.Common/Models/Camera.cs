@@ -32,8 +32,8 @@
         [JsonProperty("imageFullPath")]
         public Uri ImageFullPath { get; set; }
 
-        [JsonProperty("cityId")]
-        public int CityId { get; set; }
+        [JsonProperty("city")]
+        public City City{ get; set; }
 
         public override string ToString()
         {
