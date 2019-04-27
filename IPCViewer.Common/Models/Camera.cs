@@ -37,7 +37,7 @@
 
         public override string ToString()
         {
-            return $"{this.Name} {this.Latitude:C6} {this.Longitude:C6}";
+            return $"{this.Name} {this.Latitude} {this.Longitude}";
         }
     }
 }
