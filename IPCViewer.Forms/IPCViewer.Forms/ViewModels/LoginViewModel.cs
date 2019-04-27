@@ -5,6 +5,7 @@ namespace IPCViewer.Forms.ViewModels
 
     using GalaSoft.MvvmLight.Command;
     using IPCViewer.Common.Services;
+    using IPCViewer.Forms.Views;
     using System.Windows.Input;
     using Xamarin.Forms;
 
@@ -41,7 +42,6 @@ namespace IPCViewer.Forms.ViewModels
 
         public LoginViewModel()
         {
-            Title = "Login";
             apiService = new ApiService();
             IsEnabled = true;
             Email = "andreamarinosalopez@gmail.com";
@@ -62,13 +62,14 @@ namespace IPCViewer.Forms.ViewModels
                 return;
             }
 
-            if (!this.Email.Equals("andreamarinoaslopez@gmail.com") || !this.Password.Equals("123456"))
+            if (!this.Email.Equals("andreamarinosalopez@gmail.com") || !this.Password.Equals("123456"))
             {
                 await Application.Current.MainPage.DisplayAlert("Error", "Incorrect user or password", "Accept");
                 return;
             }
 
-            await Application.Current.MainPage.DisplayAlert("Ok", "Fuck yeah!!!", "Accept");
+            MainViewModel.GetInstance().Cameras = new CamerasViewModel();
+            await Application.Current.MainPage.Navigation.PushAsync(new CamerasPage());
 
         }
     }

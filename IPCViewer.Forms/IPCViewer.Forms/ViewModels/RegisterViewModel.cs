@@ -5,7 +5,6 @@
 
         public RegisterViewModel()
         {
-            Title = "Register";
         }
     }
 }

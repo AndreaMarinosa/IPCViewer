@@ -3,6 +3,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using IPCViewer.Forms.Services;
 using IPCViewer.Forms.Views;
+using IPCViewer.Forms.ViewModels;
 
 namespace IPCViewer.Forms
 {
@@ -14,7 +15,8 @@ namespace IPCViewer.Forms
             InitializeComponent();
 
             DependencyService.Register<MockDataStore>();
-            MainPage = new ControlUsersPage();
+            MainViewModel.GetInstance().ControlUsersPage = new ControlUsersPage();
+            MainPage = new NavigationPage(new ControlUsersPage());
         }
 
         protected override void OnStart()

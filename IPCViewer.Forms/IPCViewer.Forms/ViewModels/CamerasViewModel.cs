@@ -3,14 +3,17 @@
     using System;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
+    using System.Windows.Input;
     using Common.Models;
     using Common.Services;
+    using GalaSoft.MvvmLight.Command;
     using Xamarin.Forms;
 
     public class CamerasViewModel : BaseViewModel
     {
-        private ApiService apiService;
+        private readonly ApiService apiService;
         private ObservableCollection<Camera> cameras;
+        private bool isRefreshing;
 
         public ObservableCollection<Camera> Cameras
         {
@@ -18,9 +21,16 @@
             set => this.SetProperty(ref cameras, value);
         }
 
+        public bool IsRefreshing
+        {
+            get => this.isRefreshing;
+            set => this.SetProperty(ref this.isRefreshing, value);
+        }
+
+        public ICommand RefreshCommand => new RelayCommand(this.LoadCamerasAsync);
+
         public CamerasViewModel()
         {
-            Title = "";
             this.apiService = new ApiService();
             LoadCamerasAsync();
         }
@@ -42,8 +52,8 @@
                 return;
             }
 
-            var cameras= (List<Camera>)response.Result;
-            this.Cameras = new ObservableCollection<Camera>(cameras);
+            var myCameras= (List<Camera>)response.Result;
+            this.Cameras = new ObservableCollection<Camera>(myCameras);
 
         }
     }

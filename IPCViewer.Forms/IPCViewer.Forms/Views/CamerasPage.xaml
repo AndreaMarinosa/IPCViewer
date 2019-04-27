@@ -2,8 +2,8 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="IPCViewer.Forms.Views.CamerasPage"
-             xmlns:vm="clr-namespace:IPCViewer.Forms.ViewModels"
-         	Title="{Binding Title}">
+             BindingContext="{Binding Main, Source={StaticResource Locator}}"
+         	Title="Cameras">
 
     <!--<ContentPage.BindingContext>
         <vm:CamerasViewModel />
@@ -11,11 +11,14 @@
 
     <ContentPage.Content>
         <StackLayout
-        	BindingContext="{Binding Products}"
+        	BindingContext="{Binding Cameras}"
         	Padding="5">
             <ListView
+                IsPullToRefreshEnabled="True"
+            	IsRefreshing="{Binding IsRefreshing}"
             	HasUnevenRows="True"
-            	ItemsSource="{Binding Products}">
+            	ItemsSource="{Binding Cameras}"
+                RefreshCommand="{Binding RefreshCommand}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>

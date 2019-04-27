@@ -1,4 +1,5 @@
-﻿using IPCViewer.Forms.Models;
+﻿using IPCViewer.Common.Services;
+using IPCViewer.Forms.Models;
 using IPCViewer.Forms.Services;
 using System;
 using System.Collections.Generic;
@@ -10,6 +11,7 @@ namespace IPCViewer.Forms.ViewModels
 {
     public class BaseViewModel : INotifyPropertyChanged
     {
+
         public IDataStore<Item> DataStore => DependencyService.Get<IDataStore<Item>>() ?? new MockDataStore();
 
 

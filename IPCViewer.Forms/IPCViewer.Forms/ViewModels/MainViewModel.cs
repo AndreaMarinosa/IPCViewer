@@ -1,4 +1,5 @@
-﻿using System;
+﻿using IPCViewer.Forms.Views;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -6,11 +7,28 @@ namespace IPCViewer.Forms.ViewModels
 {
     class MainViewModel
     {
+        private static MainViewModel _instance;
+
         public LoginViewModel Login { get; set; }
+
+        public ControlUsersPage ControlUsersPage { get; set; }
+
+        public CamerasViewModel Cameras{ get; set; }
 
         public MainViewModel()
         {
+            _instance = this;
             this.Login = new LoginViewModel();
+        }
+
+        public static MainViewModel GetInstance()
+        {
+            if (_instance == null)
+            {
+                return new MainViewModel();
+            }
+
+            return _instance;
         }
 
     }
