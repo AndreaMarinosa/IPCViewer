@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using IPCViewer.Api.Models;
 using IPCViewer.Api.Helpers;
+using IPCViewer.Api.Data;
 
 namespace IPCViewer.Api.Controllers
 {
@@ -14,70 +15,30 @@ namespace IPCViewer.Api.Controllers
     [ApiController]
     public class CamerasController : ControllerBase
     {
-        private readonly DataContext _context;
+        private readonly ICameraRepository cameraRepository;
         private readonly IUserHelper userHelper;
 
-        public CamerasController(DataContext context, IUserHelper userHelper)
+        public CamerasController(ICameraRepository cameraRepository, IUserHelper userHelper)
         {
-            _context = context;
+            this.cameraRepository = cameraRepository;
             this.userHelper = userHelper;
         }
 
         // GET: api/Cameras
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Camera>>> GetCameras()
+        public IActionResult GetCameras()
         {
-            return await _context.Cameras.Include(c => c.User).Include(c => c.City).ToListAsync();
+            return Ok(cameraRepository.GetAllWithUsers());
         }
 
         // GET: api/Cameras/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Camera>> GetCamera(int id)
+        public IActionResult GetCamera(int id)
         {
-            var camera = await _context.Cameras
-                .Where(c => c.Id == id)
-                .Include(c => c.User)
-                .Include(c => c.City)
-                .FirstOrDefaultAsync();
-
-            if (camera == null)
-            {
-                return NotFound();
-            }
-
-            return camera;
+            return Ok(cameraRepository.GetCamera(id));
         }
 
-        // PUT: api/Cameras/5
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutCamera(int id, Camera camera)
-        {
-            if (id != camera.Id)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(camera).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!CameraExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
-        }
-
+        //PUT 
         [HttpPut("{id}")]
         public async Task<IActionResult> PutCamera([FromRoute] int id, [FromBody] Common.Models.Camera camera)
         {
@@ -91,34 +52,21 @@ namespace IPCViewer.Api.Controllers
                 return BadRequest();
             }
 
-            //var oldCamera = await this.cameraRepository.GetByIdAsync(id);
-            //if (oldCamera == null)
-            //{
-            //    return this.BadRequest("Camera Id don't exists.");
-            //}
+            var oldCamera = await this.cameraRepository.GetByIdAsync(id);
+            if (oldCamera == null)
+            {
+                return this.BadRequest("Camera Id don't exists.");
+            }
 
-            ////TODO: Upload images
-            //oldCamera.IsAvailabe = camera.IsAvailabe;
-            //oldCamera.LastPurchase = camera.LastPurchase;
-            //oldCamera.LastSale = camera.LastSale;
-            //oldCamera.Name = camera.Name;
-            //oldCamera.Price = camera.Price;
-            //oldCamera.Stock = camera.Stock;
+            //TODO: Upload images
+            oldCamera.Comments = camera.Comments;
+            oldCamera.Name = camera.Name;
+            oldCamera.Latitude = camera.Latitude;
+            oldCamera.Longitude = camera.Longitude;
+            oldCamera.CreatedDate = DateTime.Now;
 
-            //var updatedCamera = await this.cameraRepository.UpdateAsync(oldCamera);
-            //return Ok(updatedCamera);
-            return Ok();
-        }
-
-
-        // POST: api/Cameras
-        [HttpPost]
-        public async Task<ActionResult<Camera>> PostCamera(Camera camera)
-        {
-            _context.Cameras.Add(camera);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetCamera", new { id = camera.Id }, camera);
+            var updatedCamera = await this.cameraRepository.UpdateAsync(oldCamera);
+            return Ok(updatedCamera);
         }
 
         // POST Camera
@@ -161,34 +109,32 @@ namespace IPCViewer.Api.Controllers
                 CreatedDate = DateTime.Now,
                 Latitude = camera.Latitude,
                 Longitude = camera.Longitude,
-                User = user
+                User = user,
+                ImageUrl = null,
+                City = null
             };
 
-            //var newCamera = await this.CreateAsync(entityCamera);
-            //return Ok(newCamera);
-            return Ok();
+            var newCamera = await cameraRepository.CreateAsync(entityCamera);
+            return Ok(newCamera);
         }
 
 
-        // DELETE: api/Cameras/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult<Camera>> DeleteCamera(int id)
+        public async Task<IActionResult> DeleteProduct([FromRoute] int id)
         {
-            var camera = await _context.Cameras.FindAsync(id);
-            if (camera == null)
+            if (!ModelState.IsValid)
             {
-                return NotFound();
+                return this.BadRequest(ModelState);
             }
 
-            _context.Cameras.Remove(camera);
-            await _context.SaveChangesAsync();
+            var product = await this.cameraRepository.GetByIdAsync(id);
+            if (product == null)
+            {
+                return this.NotFound();
+            }
 
-            return camera;
-        }
-
-        private bool CameraExists(int id)
-        {
-            return _context.Cameras.Any(e => e.Id == id);
+            await this.cameraRepository.DeleteAsync(product);
+            return Ok(product);
         }
     }
 }
