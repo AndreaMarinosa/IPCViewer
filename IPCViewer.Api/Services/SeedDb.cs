@@ -102,6 +102,7 @@ namespace IPCViewer.Api.Services
                 Email = userName,
                 UserName = userName,
                 City = context.City.FirstOrDefault(),
+                CityId = context.City.FirstOrDefault().Id
             };
 
             // Creamos en la base de datos

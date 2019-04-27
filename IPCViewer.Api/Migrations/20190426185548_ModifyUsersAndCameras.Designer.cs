@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace IPCViewer.Api.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20190427102822_nose2")]
-    partial class nose2
+    [Migration("20190426185548_ModifyUsersAndCameras")]
+    partial class ModifyUsersAndCameras
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

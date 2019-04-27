@@ -16,6 +16,7 @@ namespace IPCViewer.Api.Models
 
         public City City { get; set; }
 
+        public int CityId { get; set; }
     }
 }
 

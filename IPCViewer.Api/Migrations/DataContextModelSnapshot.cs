@@ -70,7 +70,7 @@ namespace IPCViewer.Api.Migrations
 
                     b.Property<int>("AccessFailedCount");
 
-                    b.Property<int?>("CityId");
+                    b.Property<int>("CityId");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken();
@@ -247,7 +247,8 @@ namespace IPCViewer.Api.Migrations
                 {
                     b.HasOne("IPCViewer.Api.Models.City", "City")
                         .WithMany()
-                        .HasForeignKey("CityId");
+                        .HasForeignKey("CityId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

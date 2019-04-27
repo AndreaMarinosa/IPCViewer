@@ -57,7 +57,7 @@ namespace IPCViewer.Common.Models
         [JsonProperty("accessFailedCount")]
         public long AccessFailedCount { get; set; }
 
-        [JsonProperty("city")]
-        public int City { get; set; }
+        [JsonProperty("cityId")]
+        public int CityId { get; set; }
     }
 }
