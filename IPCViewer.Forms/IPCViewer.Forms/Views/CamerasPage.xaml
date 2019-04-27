@@ -42,8 +42,16 @@
                                     	TextColor="Black">
                                     </Label>
                                     <Label
-                                    	Text="{Binding Price, StringFormat='[0:N6]'}"
+                                    	FontAttributes="Bold"
+                                    	FontSize="Small"
+                                    	Text="{Binding Latitude}"
                                     	TextColor="Black">
+                                    </Label>
+                                    <Label
+                                    	FontAttributes="Bold"
+                                    	FontSize="Small"
+                                    	Text="{Binding Longitude}"
+                                    	TextColor="Navy">
                                     </Label>
                                 </StackLayout>
                             </Grid>

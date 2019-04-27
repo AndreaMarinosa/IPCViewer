@@ -46,9 +46,9 @@ namespace IPCViewer.Api.Services
             // Si no hay ningun registro (false) creará 3 nuevas cámaras
             if (!context.Cameras.Any())
             {
-                AddProduct("A-2 Montañana", user, null);
-                AddProduct("Puente Santiago", user, null);
-                AddProduct("Plaza del Pilar", user, null);
+                AddCamera("A-2 Montañana", user, null);
+                AddCamera("Puente Santiago", user, null);
+                AddCamera("Plaza del Pilar", user, null);
 
                 // Guardamos los cambios
                 await context.SaveChangesAsync();
@@ -120,7 +120,7 @@ namespace IPCViewer.Api.Services
         }
 
 
-        private void AddProduct(string name, User user, string imgUrl) => context.Cameras.Add(new Camera
+        private void AddCamera(string name, User user, string imgUrl) => context.Cameras.Add(new Camera
         {
             Name = name,
             Latitude = 41.647601,
