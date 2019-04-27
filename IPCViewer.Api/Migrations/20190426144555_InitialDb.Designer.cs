@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace IPCViewer.Api.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20190427114439_InitialDb")]
+    [Migration("20190426144555_InitialDb")]
     partial class InitialDb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -23,7 +23,7 @@ namespace IPCViewer.Api.Migrations
 
             modelBuilder.Entity("IPCViewer.Api.Models.Camera", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
