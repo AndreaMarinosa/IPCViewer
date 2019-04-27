@@ -10,6 +10,9 @@
             <!-- Locator -->
             <infra:InstanceLocator x:Key="Locator"/>
 
+            <!-- Parameters -->
+            <x:String x:Key="UrlAPI">https://ipcviewerapi2.azurewebsites.net</x:String>
+
             <!--Global Styles-->
             <Color x:Key="NavigationPrimary">#2196F3</Color>
             <Style TargetType="NavigationPage">

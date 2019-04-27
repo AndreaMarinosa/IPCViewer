@@ -4,6 +4,7 @@ namespace IPCViewer.Forms.ViewModels
 {
 
     using GalaSoft.MvvmLight.Command;
+    using IPCViewer.Common.Models;
     using IPCViewer.Common.Services;
     using IPCViewer.Forms.Views;
     using System.Windows.Input;
@@ -11,6 +12,8 @@ namespace IPCViewer.Forms.ViewModels
 
     class LoginViewModel : BaseViewModel
     {
+
+        
 
         private bool _isRunning;
         private bool _isEnabled;
@@ -62,13 +65,39 @@ namespace IPCViewer.Forms.ViewModels
                 return;
             }
 
-            if (!this.Email.Equals("andreamarinosalopez@gmail.com") || !this.Password.Equals("123456"))
+            this.IsRunning = true;
+            this.IsEnabled = false;
+
+            var request = new TokenRequest
             {
-                await Application.Current.MainPage.DisplayAlert("Error", "Incorrect user or password", "Accept");
+                Password = this.Password,
+                Username = this.Email
+            };
+
+
+            var url = Application.Current.Resources["UrlAPI"].ToString();
+            var response = await this.apiService.GetTokenAsync(
+                url,
+                "/Account",
+                "/CreateToken",
+                request);
+
+            this.IsRunning = false;
+            this.IsEnabled = true;
+
+
+            if (!response.IsSuccess)
+            {
+                await Application.Current.MainPage.DisplayAlert("Error", "Email or password incorrect.", "Accept");
                 return;
             }
 
-            MainViewModel.GetInstance().Cameras = new CamerasViewModel();
+
+
+            var token = (TokenResponse)response.Result;
+            var mainViewModel = MainViewModel.GetInstance();
+            mainViewModel.Token = token;
+            mainViewModel.Cameras = new CamerasViewModel();
             await Application.Current.MainPage.Navigation.PushAsync(new CamerasPage());
 
         }

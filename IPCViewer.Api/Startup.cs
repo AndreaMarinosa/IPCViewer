@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using IPCViewer.Api.Data;
 using IPCViewer.Api.Helpers;
 using IPCViewer.Api.Models;
 using IPCViewer.Api.Services;
@@ -50,6 +51,8 @@ namespace IPCViewer.Api
             });
 
             services.AddTransient<SeedDb>();
+            services.AddScoped<ICameraRepository, CameraRepository>();
+            services.AddScoped<ICityRepository, CityRepository>();
             services.AddScoped<IUserHelper, UserHelper>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }

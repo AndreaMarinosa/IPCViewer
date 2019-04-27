@@ -37,11 +37,14 @@
 
         private async void LoadCamerasAsync()
         {
-            var response = await this.apiService.GetListAsync<Camera>(
-                "https://ipcviewerapi2.azurewebsites.net",
-                "/api",
-                "/Cameras");
+            var url = Application.Current.Resources["UrlAPI"].ToString();
 
+            var response = await this.apiService.GetListAsync<Camera>(
+                url,
+                "/api",
+                "/Cameras",
+                "bearer",
+                MainViewModel.GetInstance().Token.Token);
 
             if (!response.IsSuccess)
             {
@@ -53,7 +56,9 @@
             }
 
             var myCameras= (List<Camera>)response.Result;
-            this.Cameras = new ObservableCollection<Camera>(myCameras);
+            Cameras = new ObservableCollection<Camera>(myCameras);
+
+            IsRefreshing = false;
 
         }
     }

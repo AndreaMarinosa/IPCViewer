@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace IPCViewer.Api.Models
 {
-    public class Camera
+    public class Camera : IEntity
     {
 
         public int Id { get; set; }

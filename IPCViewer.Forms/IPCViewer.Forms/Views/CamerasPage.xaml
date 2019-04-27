@@ -9,6 +9,11 @@
         <vm:CamerasViewModel />
     </ContentPage.BindingContext>-->
 
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Icon="ic_action_add_circle" Command="{Binding AddCameraCommand}"/>
+    </ContentPage.ToolbarItems>
+
+
     <ContentPage.Content>
         <StackLayout
         	BindingContext="{Binding Cameras}"

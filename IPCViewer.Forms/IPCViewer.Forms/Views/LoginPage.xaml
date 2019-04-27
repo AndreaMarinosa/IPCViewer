@@ -31,7 +31,9 @@
                     Text="{Binding Password}"/>
 
                 <ActivityIndicator
-                    IsRunning="{Binding IsRunning}"/>
+                    IsRunning="{Binding IsRunning}"
+                    VerticalOptions="CenterAndExpand"/>
+                
                 <!-- Button Login Command-->
                 <Button
                     Text="Login"
