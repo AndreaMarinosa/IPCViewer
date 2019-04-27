@@ -25,8 +25,6 @@ namespace IPCViewer.Api.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("CityId");
-
                     b.Property<string>("Comments");
 
                     b.Property<DateTime>("CreatedDate");
@@ -42,8 +40,6 @@ namespace IPCViewer.Api.Migrations
                     b.Property<string>("UserId");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("CityId");
 
                     b.HasIndex("UserId");
 
@@ -234,10 +230,6 @@ namespace IPCViewer.Api.Migrations
 
             modelBuilder.Entity("IPCViewer.Api.Models.Camera", b =>
                 {
-                    b.HasOne("IPCViewer.Api.Models.City", "City")
-                        .WithMany()
-                        .HasForeignKey("CityId");
-
                     b.HasOne("IPCViewer.Api.Models.User", "User")
                         .WithMany()
                         .HasForeignKey("UserId");

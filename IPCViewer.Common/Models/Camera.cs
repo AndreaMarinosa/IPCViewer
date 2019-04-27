@@ -32,9 +32,6 @@
         [JsonProperty("imageFullPath")]
         public Uri ImageFullPath { get; set; }
 
-        [JsonProperty("cityId")]
-        public int CityId { get; set; }
-
         public override string ToString()
         {
             return $"{this.Name} {this.Latitude:C6} {this.Longitude:C6}";

@@ -25,9 +25,6 @@ namespace IPCViewer.Api.Models
 
         public User User { get; set; }
 
-        public City City { get; set; }
-
-
         public string ImageFullPath
         {
             get

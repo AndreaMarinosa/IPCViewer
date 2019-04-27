@@ -127,7 +127,6 @@ namespace IPCViewer.Api.Services
             Longitude = -0.875804,
             CreatedDate = DateTime.Now,
             User = user,
-            City = context.City.FirstOrDefault(),
             ImageUrl = imgUrl
         });
     
