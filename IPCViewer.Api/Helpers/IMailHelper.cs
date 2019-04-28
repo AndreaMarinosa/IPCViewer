@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace IPCViewer.Common.Helpers
+namespace IPCViewer.Api.Helpers
 {
     public interface IMailHelper
     {

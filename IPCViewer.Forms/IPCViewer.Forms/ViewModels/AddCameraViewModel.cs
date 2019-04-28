@@ -86,7 +86,7 @@ namespace IPCViewer.Forms.ViewModels
 
             //var url = Application.Current.Resources["UrlAPI"].ToString();
             var response = await this.apiService.PostAsync(
-                "https://ipcviewerapi2.azurewebsites.net",
+                "https://ipcviewerapi.azurewebsites.net",
                 "/api",
                 "/Cameras",
                 camera,

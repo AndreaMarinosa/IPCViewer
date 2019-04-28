@@ -1,27 +1,31 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using IPCViewer.Api.Models;
-using IPCViewer.Api.Helpers;
-using IPCViewer.Api.Data;
-
-namespace IPCViewer.Api.Controllers
+﻿namespace IPCViewer.Api.Controllers
 {
+    using IPCViewer.Api.Data;
+    using IPCViewer.Api.Helpers;
+    using IPCViewer.Api.Models;
+    using Microsoft.AspNetCore.Authentication.JwtBearer;
+    using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Mvc;
+    using System;
+    using System.Threading.Tasks;
+
     [Route("api/[controller]")]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     [ApiController]
     public class CamerasController : ControllerBase
     {
         private readonly ICameraRepository cameraRepository;
+        private readonly ICityRepository cityRespository;
         private readonly IUserHelper userHelper;
 
-        public CamerasController(ICameraRepository cameraRepository, IUserHelper userHelper)
+        public CamerasController(
+            ICameraRepository cameraRepository, 
+            IUserHelper userHelper,
+            ICityRepository cityRespository)
         {
             this.cameraRepository = cameraRepository;
             this.userHelper = userHelper;
+            this.cityRespository = cityRespository;
         }
 
         // GET: api/Cameras
@@ -84,6 +88,11 @@ namespace IPCViewer.Api.Controllers
                 return this.BadRequest("Invalid user");
             }
 
+            var city = await this.cityRespository.GetByIdAsync(camera.City.Id);
+            if (city == null)
+            {
+                return this.BadRequest("Invalid city");
+            }
             // Image
 
             //var imageUrl = string.Empty;
@@ -104,6 +113,7 @@ namespace IPCViewer.Api.Controllers
 
             var entityCamera = new Camera
             {
+                Id = camera.Id,
                 Name = camera.Name,
                 Comments = camera.Comments,
                 CreatedDate = DateTime.Now,
@@ -111,7 +121,7 @@ namespace IPCViewer.Api.Controllers
                 Longitude = camera.Longitude,
                 User = user,
                 ImageUrl = null,
-                City = null
+                City = city
             };
 
             var newCamera = await cameraRepository.CreateAsync(entityCamera);

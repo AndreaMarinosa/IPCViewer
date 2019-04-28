@@ -61,6 +61,15 @@ namespace IPCViewer.Api.Helpers
             return await this.userManager.IsInRoleAsync(user, roleName);
         }
 
+        public async Task<SignInResult> LoginAsync(LoginViewModel model)
+        {
+            return await this.signInManager.PasswordSignInAsync(
+                model.Username,
+                model.Password,
+                model.RememberMe,
+                false);
+        }
+
         public async Task LogoutAsync()
         {
             await this.signInManager.SignOutAsync();

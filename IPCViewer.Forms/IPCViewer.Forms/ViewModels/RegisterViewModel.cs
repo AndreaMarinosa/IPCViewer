@@ -61,14 +61,14 @@
 
             //var url = Application.Current.Resources["UrlAPI"].ToString();
             var response = await this.apiService.GetListAsync<City>(
-                "https://ipcviewerapi2.azurewebsites.net",
+                "https://ipcviewerapi.azurewebsites.net",
                 "/api",
                 "/Cities");
 
             this.IsRunning = false;
             this.IsEnabled = true;
 
-            if (!response.IsSuccess)
+            if (!response.IsSuccess || response == null)
             {
                 await Application.Current.MainPage.DisplayAlert(
                     "Error",
@@ -195,9 +195,9 @@
 
             //var url = Application.Current.Resources["UrlAPI"].ToString();
             var response = await this.apiService.RegisterUserAsync(
-                "https://ipcviewerapi2.azurewebsites.net",
+                "https://ipcviewerapi.azurewebsites.net",
                 "/api",
-                "/Account",
+                "/Account/PostUser",
                 request);
 
             this.IsRunning = false;

@@ -10,7 +10,6 @@
     using Common.Models;
     using Helpers;
     using IPCViewer.Api.Models;
-    using IPCViewer.Common.Helpers;
     using Microsoft.AspNetCore.Authentication.JwtBearer;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Identity;
@@ -39,6 +38,7 @@
         }
 
         [HttpPost]
+        [Route("PostCreateToken")]
         public async Task<IActionResult> PostCreateToken([FromBody] LoginViewModel model)
         {
             if (this.ModelState.IsValid)
@@ -87,6 +87,7 @@
         }
 
         [HttpPost]
+        [Route("PostUser")]
         public async Task<IActionResult> PostUser([FromBody] NewUserRequest request)
         {
             if (!ModelState.IsValid)

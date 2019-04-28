@@ -1,5 +1,5 @@
 ﻿
-namespace IPCViewer.Common.Helpers
+namespace IPCViewer.Api.Helpers
 {
     using MailKit.Net.Smtp;
     using Microsoft.Extensions.Configuration;

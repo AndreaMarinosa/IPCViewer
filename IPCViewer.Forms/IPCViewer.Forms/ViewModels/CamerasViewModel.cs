@@ -40,7 +40,7 @@
             //var url = Application.Current.Resources["UrlAPI"].ToString();
 
             var response = await this.apiService.GetListAsync<Camera>(
-                "https://ipcviewerapi2.azurewebsites.net",
+                "https://ipcviewerapi.azurewebsites.net",
                 "/api",
                 "/Cameras",
                 "bearer",
