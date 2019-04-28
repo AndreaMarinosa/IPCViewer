@@ -13,8 +13,6 @@ namespace IPCViewer.Forms.ViewModels
     class LoginViewModel : BaseViewModel
     {
 
-        
-
         private bool _isRunning;
         private bool _isEnabled;
         private readonly ApiService apiService;
@@ -75,11 +73,11 @@ namespace IPCViewer.Forms.ViewModels
             };
 
 
-            var url = Application.Current.Resources["UrlAPI"].ToString();
+            //var url = Application.Current.Resources["UrlAPI"].ToString();
             var response = await this.apiService.GetTokenAsync(
-                url,
+                "https://ipcviewerapi2.azurewebsites.net",
+                "/api",
                 "/Account",
-                "/CreateToken",
                 request);
 
             this.IsRunning = false;
@@ -88,7 +86,7 @@ namespace IPCViewer.Forms.ViewModels
 
             if (!response.IsSuccess)
             {
-                await Application.Current.MainPage.DisplayAlert("Error", "Email or password incorrect.", "Accept");
+                await Application.Current.MainPage.DisplayAlert("Error", response.Message, "Accept");
                 return;
             }
 
@@ -98,6 +96,8 @@ namespace IPCViewer.Forms.ViewModels
             var mainViewModel = MainViewModel.GetInstance();
             mainViewModel.Token = token;
             mainViewModel.Cameras = new CamerasViewModel();
+            mainViewModel.UserEmail = this.Email;
+            mainViewModel.UserPassword = this.Password;
             await Application.Current.MainPage.Navigation.PushAsync(new CamerasPage());
 
         }

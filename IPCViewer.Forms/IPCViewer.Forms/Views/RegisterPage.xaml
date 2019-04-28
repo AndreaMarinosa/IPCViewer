@@ -48,17 +48,34 @@
                     	Placeholder="Enter your last name..."
                     	Text="{Binding LastName}">
                         </Entry>
+                        
+                        <!-- City -->
+                        <Label
+                    	Grid.Column="0"
+                    	Grid.Row="2"
+                    	Text="City"
+                    	VerticalOptions="Center">
+                        </Label>
+                        <Picker
+                    	Grid.Column="1"
+                    	Grid.Row="2"
+                    	ItemDisplayBinding="{Binding Name}"
+                    	ItemsSource="{Binding Cities}"
+                    	SelectedItem="{Binding City}"
+                    	Title="Select a city...">
+                        </Picker>
+
 
                         <!-- Email -->
                         <Label
                     	Grid.Column="0"
-                    	Grid.Row="2"
+                    	Grid.Row="3"
                     	Text="Email"
                     	VerticalOptions="Center">
                         </Label>
                         <Entry
                     	Grid.Column="1"
-                    	Grid.Row="2"
+                    	Grid.Row="3"
                     	Keyboard="Email"
                     	Placeholder="Enter your email..."
                     	Text="{Binding Email}">
@@ -67,13 +84,13 @@
                         <!-- Pass -->
                         <Label
                     	Grid.Column="0"
-                    	Grid.Row="3"
+                    	Grid.Row="4"
                     	Text="Password"
                     	VerticalOptions="Center">
                         </Label>
                         <Entry
                     	Grid.Column="1"
-                    	Grid.Row="3"
+                    	Grid.Row="4"
                     	IsPassword="True"
                     	Placeholder="Enter your password..."
                     	Text="{Binding Password}">
@@ -82,22 +99,24 @@
                         <!-- Confirm pass-->
                         <Label
                     	Grid.Column="0"
-                    	Grid.Row="4"
+                    	Grid.Row="5"
                     	Text="Password confirm"
                     	VerticalOptions="Center">
                         </Label>
                         <Entry
                     	Grid.Column="1"
-                    	Grid.Row="4"
+                    	Grid.Row="5"
                     	IsPassword="True"
                     	Placeholder="Enter your password confirm..."
                     	Text="{Binding Confirm}">
                         </Entry>
                     </Grid>
+                    
                     <ActivityIndicator
                 	IsRunning="{Binding IsRunning}"
                 	VerticalOptions="CenterAndExpand">
                     </ActivityIndicator>
+                    
                     <Button
                 	BackgroundColor="Navy"
                 	BorderRadius="23"

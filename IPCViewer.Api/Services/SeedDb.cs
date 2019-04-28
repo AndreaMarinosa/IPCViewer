@@ -111,9 +111,9 @@ namespace IPCViewer.Api.Services
                 throw new InvalidOperationException("Could not create the user in seeder");
             }
 
-            //await this.userManager.GenerateEmailConfirmationTokenAsync(user);
-            //var token = await this.userHelper.GenerateEmailConfirmationTokenAsync(user);
-            //await this.userHelper.ConfirmEmailAsync(user, token);
+            await this.userHelper.GenerateEmailConfirmationTokenAsync(user);
+            var token = await this.userHelper.GenerateEmailConfirmationTokenAsync(user);
+            await this.userHelper.ConfirmEmailAsync(user, token);
 
             return user;
         }

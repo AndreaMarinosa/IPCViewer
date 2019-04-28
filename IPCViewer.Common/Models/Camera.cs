@@ -21,7 +21,7 @@
         public string Comments { get; set; }
 
         [JsonProperty("imageUrl")]
-        public Uri ImageUrl { get; set; }
+        public string ImageUrl { get; set; }
 
         [JsonProperty("createdDate")]
         public DateTime CreatedDate { get; set; }

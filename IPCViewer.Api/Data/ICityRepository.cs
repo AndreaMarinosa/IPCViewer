@@ -6,6 +6,5 @@ namespace IPCViewer.Api.Models
 {
     public interface ICityRepository : IGenericRepository<City>
     {
-       
     }
 }

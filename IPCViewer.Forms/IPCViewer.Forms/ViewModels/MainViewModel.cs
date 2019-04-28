@@ -10,6 +10,8 @@ namespace IPCViewer.Forms.ViewModels
     {
         private static MainViewModel _instance;
 
+        public RegisterViewModel Register { get; set; }
+
         public string UserEmail { get; set; }
 
         public string UserPassword { get; set; }
@@ -26,6 +28,7 @@ namespace IPCViewer.Forms.ViewModels
         {
             _instance = this;
             this.Login = new LoginViewModel();
+            this.Register = new RegisterViewModel();
         }
 
         public static MainViewModel GetInstance()

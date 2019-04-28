@@ -74,7 +74,6 @@
                     <Entry
                     	Grid.Column="1"
                     	Grid.Row="3"
-                    	Keyboard="Longitude"
                     	Placeholder="Comments..."
                     	Text="{Binding Comments}"/>
                 </Grid>
