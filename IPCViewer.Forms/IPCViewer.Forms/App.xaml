@@ -14,10 +14,17 @@
             <x:String x:Key="UrlAPI">https://ipcviewerapi2.azurewebsites.net</x:String>
 
             <!--Global Styles-->
-            <Color x:Key="NavigationPrimary">#2196F3</Color>
+            <Color x:Key="NavigationPrimary">#4E827A</Color>
             <Style TargetType="NavigationPage">
                 <Setter Property="BarBackgroundColor" Value="{StaticResource NavigationPrimary}" />
                 <Setter Property="BarTextColor" Value="White" />
+            </Style>
+            <Style TargetType="ContentPage">
+                <Setter Property="BackgroundColor" Value="White"/>
+            </Style>
+            <Style TargetType="TabbedPage">
+                <Setter Property="BarBackgroundColor" Value="{StaticResource NavigationPrimary}"/>
+                <Setter Property="BackgroundColor" Value="White"/>
             </Style>
             
         </ResourceDictionary>

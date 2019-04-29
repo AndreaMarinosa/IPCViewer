@@ -27,8 +27,8 @@ namespace IPCViewer.Forms.ViewModels
                     await App.Navigator.PushAsync(new SetupPage());
                     break;
                 default:
-                    MainViewModel.GetInstance().Login = new LoginViewModel();
-                    Application.Current.MainPage = new NavigationPage(new LoginPage());
+                    MainViewModel.GetInstance().ControlUsersPage = new ControlUsersPage();
+                    Application.Current.MainPage = new NavigationPage(new ControlUsersPage());
                     break;
             }
         }
