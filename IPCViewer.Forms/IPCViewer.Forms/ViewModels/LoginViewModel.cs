@@ -90,15 +90,13 @@ namespace IPCViewer.Forms.ViewModels
                 return;
             }
 
-
-
             var token = (TokenResponse)response.Result;
             var mainViewModel = MainViewModel.GetInstance();
             mainViewModel.Token = token;
             mainViewModel.Cameras = new CamerasViewModel();
             mainViewModel.UserEmail = this.Email;
             mainViewModel.UserPassword = this.Password;
-            await Application.Current.MainPage.Navigation.PushAsync(new CamerasPage());
+            Application.Current.MainPage = new MasterPage();
 
         }
     }

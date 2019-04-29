@@ -1,13 +1,21 @@
-﻿using IPCViewer.Common.Models;
+﻿using GalaSoft.MvvmLight.Command;
+using IPCViewer.Common.Models;
 using IPCViewer.Forms.Views;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
 using System.Text;
+using System.Windows.Input;
+using Xamarin.Forms;
+using Menu = IPCViewer.Common.Models.Menu;
 
 namespace IPCViewer.Forms.ViewModels
 {
     class MainViewModel
     {
+        public ObservableCollection<MenuItemViewModel> Menus { get; set; }
+
         private static MainViewModel _instance;
 
         public RegisterViewModel Register { get; set; }
@@ -22,24 +30,69 @@ namespace IPCViewer.Forms.ViewModels
 
         public ControlUsersPage ControlUsersPage { get; set; }
 
-        public CamerasViewModel Cameras{ get; set; }
+        public CamerasViewModel Cameras { get; set; }
+
+        public AddCameraViewModel AddCamera { get; set; }
+
+        public ICommand AddCameraCommand { get { return new RelayCommand(this.GoAddCamera); } }
+
+        private void GoAddCamera()
+        {
+            this.AddCamera = new AddCameraViewModel();
+            Application.Current.MainPage.Navigation.PushAsync(new AddCameraPage());
+        }
 
         public MainViewModel()
         {
             _instance = this;
             this.Login = new LoginViewModel();
             this.Register = new RegisterViewModel();
+            LoadMenus();
         }
 
-        public static MainViewModel GetInstance()
+        private void LoadMenus()
         {
-            if (_instance == null)
+            var menus = new List<Menu>
             {
-                return new MainViewModel();
-            }
+                new Menu
+                {
+                    Icon = "about",
+                    PageName = "AboutPage",
+                    Title = "About"
+                },
 
-            return _instance;
+                new Menu
+                {
+                    Icon = "setup",
+                    PageName = "SetupPage",
+                    Title = "Setup"
+                },
+
+                new Menu
+                {
+                    Icon = "exit",
+                    PageName = "LoginPage",
+                    Title = "Close session"
+                }
+            };
+
+            this.Menus = new ObservableCollection<MenuItemViewModel>(menus.Select(m => new MenuItemViewModel
+            {
+                Icon = m.Icon,
+                PageName = m.PageName,
+                Title = m.Title
+            }).ToList());
         }
 
+    public static MainViewModel GetInstance()
+    {
+        if (_instance == null)
+        {
+            return new MainViewModel();
+        }
+
+        return _instance;
     }
+
+}
 }

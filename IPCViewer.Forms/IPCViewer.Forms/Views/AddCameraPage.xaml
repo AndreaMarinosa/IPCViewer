@@ -47,7 +47,6 @@
                     <Entry
                     	Grid.Column="1"
                     	Grid.Row="1"
-                    	Keyboard="Numeric"
                     	Placeholder="Latitude..."
                     	Text="{Binding Latitude}"/>
 
@@ -61,7 +60,6 @@
                     <Entry
                     	Grid.Column="1"
                     	Grid.Row="2"
-                    	Keyboard="Longitude"
                     	Placeholder="Longitude..."
                     	Text="{Binding Longitude}"/>
 

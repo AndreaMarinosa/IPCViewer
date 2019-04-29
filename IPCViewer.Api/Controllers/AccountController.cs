@@ -1,7 +1,6 @@
 ﻿namespace IPCViewer.Api.Controllers
 {
     using System;
-    using System.Collections.Generic;
     using System.IdentityModel.Tokens.Jwt;
     using System.Linq;
     using System.Security.Claims;
@@ -24,6 +23,7 @@
         private readonly ICityRepository cityRepository;
         private readonly IMailHelper mailHelper;
         private readonly IConfiguration configuration;
+        private readonly string role = "Customer";
 
         public AccountController(
             IUserHelper userHelper,
@@ -79,13 +79,6 @@
             return this.BadRequest();
         }
 
-
-        [HttpGet]
-        public async Task<List<Models.User>> GetUser()
-        {
-            return await userHelper.GetAllUsersAsync();
-        }
-
         [HttpPost]
         [Route("PostUser")]
         public async Task<IActionResult> PostUser([FromBody] NewUserRequest request)
@@ -99,7 +92,7 @@
                 });
             }
 
-            var user = await this.userHelper.GetUserByEmailAsync(request.Email);
+             var user = await this.userHelper.GetUserByEmailAsync(request.Email);
             if (user != null)
             {
                 return this.BadRequest(new Response
@@ -108,6 +101,7 @@
                     Message = "This email is already registered."
                 });
             }
+
 
             var city = await cityRepository.GetByIdAsync(request.City.Id);
             if (city == null)
@@ -126,8 +120,9 @@
                 Email = request.Email,
                 UserName = request.Email,
                 City = city
-            };
 
+            };
+            
             var result = await this.userHelper.AddUserAsync(user, request.Password);
             if (result != IdentityResult.Success)
             {

@@ -14,6 +14,10 @@
             BindingContext="{Binding Login}">
             <StackLayout
                 Padding="8">
+                <Image
+                	HeightRequest="150"
+                	Source="fondoMenu">
+                </Image>
                 <!-- Email -->
                 <Label
                     Text="Email"/>
@@ -44,18 +48,6 @@
                     HeightRequest="46"
     	            HorizontalOptions="FillAndExpand"
                     TextColor="White"/>
-
-                <!--<Button
-    	            BackgroundColor="Purple"
-    	            BorderRadius="23"
-    	            Command="{Binding RegisterCommand}"
-    	            HeightRequest="46"
-    	            HorizontalOptions="FillAndExpand"
-    	            IsEnabled="{Binding IsEnabled}"
-    	            Text="Register NewUser"
-    	            TextColor="White">
-                </Button>-->
-
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

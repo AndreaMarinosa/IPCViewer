@@ -34,6 +34,5 @@ namespace IPCViewer.Api.Models
             base.OnModelCreating(modelBuilder);
         }
 
-        public DbSet<IPCViewer.Common.Models.City> City_1 { get; set; }
     }
 }

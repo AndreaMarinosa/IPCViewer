@@ -1,6 +1,7 @@
 ﻿using IPCViewer.Api.Helpers;
 using IPCViewer.Api.Models;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,17 +14,19 @@ namespace IPCViewer.Api.Services
      * la base de datos
      * 
      */
-    public class SeedDb
+    public class SeedDb 
     {
         // DataContext privado que hemos recibido por parámetro
         private readonly DataContext context;
-
+        private readonly IMailHelper mailHelper;
         private readonly IUserHelper userHelper;
 
-        public SeedDb(DataContext context, IUserHelper userHelper)
+        public SeedDb(DataContext context, IMailHelper mailHelper, IUserHelper userHelper)
         {
             this.context = context;
             this.userHelper = userHelper;
+            this.mailHelper = mailHelper;
+
         }
 
         public async Task SeedAsync()
@@ -75,12 +78,12 @@ namespace IPCViewer.Api.Services
         private async Task<User> CheckUserAsync(string userName, string firstName, string lastName, string role)
         {
             // Busca si existe el email Administrador
-            var user = await userHelper.GetUserByEmailAsync("andreamarinosalopez@gmail.com");
+            var user = await userHelper.GetUserByEmailAsync(userName);
 
             // Si no existe, lo crea
             if (user == null)
             {
-                user = await AddUser(userName, firstName, lastName);
+                user = await AddUser(userName, firstName, lastName, role);
 
                 var isInRole = await this.userHelper.IsUserInRoleAsync(user, role);
                 if (!isInRole)
@@ -93,7 +96,7 @@ namespace IPCViewer.Api.Services
 
         }
 
-        private async Task<User> AddUser(string userName, string firstName, string lastName)
+        private async Task<User> AddUser(string userName, string firstName, string lastName, string role)
         {
             var user = new User
             {
@@ -105,16 +108,15 @@ namespace IPCViewer.Api.Services
             };
 
             // Creamos en la base de datos
-            var result = await userHelper.AddUserAsync(user, "123456");
+            var result = await this.userHelper.AddUserAsync(user, "123456");
             if (result != IdentityResult.Success)
             {
                 throw new InvalidOperationException("Could not create the user in seeder");
             }
 
-            await this.userHelper.GenerateEmailConfirmationTokenAsync(user);
+            await this.userHelper.AddUserToRoleAsync(user, role);
             var token = await this.userHelper.GenerateEmailConfirmationTokenAsync(user);
             await this.userHelper.ConfirmEmailAsync(user, token);
-
             return user;
         }
 

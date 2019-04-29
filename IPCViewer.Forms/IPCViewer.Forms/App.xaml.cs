@@ -1,14 +1,16 @@
-﻿using System;
-using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
-using IPCViewer.Forms.Services;
-using IPCViewer.Forms.Views;
-using IPCViewer.Forms.ViewModels;
-
-namespace IPCViewer.Forms
+﻿namespace IPCViewer.Forms
 {
+    using System;
+    using Xamarin.Forms;
+    using Xamarin.Forms.Xaml;
+    using IPCViewer.Forms.Services;
+    using IPCViewer.Forms.Views;
+    using IPCViewer.Forms.ViewModels;
+
     public partial class App : Application
     {
+        public static NavigationPage Navigator { get; internal set; }
+        public static MasterPage Master { get; internal set; }
 
         public App()
         {

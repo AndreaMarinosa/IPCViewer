@@ -10,7 +10,7 @@ namespace IPCViewer.Forms.ViewModels
     using GalaSoft.MvvmLight.Command;
     using Xamarin.Forms;
 
-    public class AddProductViewModel : BaseViewModel
+    public class AddCameraViewModel : BaseViewModel
     {
         private bool isRunning;
         private bool isEnabled;
@@ -40,7 +40,7 @@ namespace IPCViewer.Forms.ViewModels
 
         public ICommand SaveCommand => new RelayCommand(this.Save);
 
-        public AddProductViewModel()
+        public AddCameraViewModel()
         {
             this.apiService = new ApiService();
             this.Image = "noImage";

@@ -8,6 +8,14 @@ using Microsoft.EntityFrameworkCore;
 
 namespace IPCViewer.Api.Helpers
 {
+
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using Microsoft.AspNetCore.Identity;
+    using Microsoft.EntityFrameworkCore;
+    using Api.Models;
+
     public class UserHelper : IUserHelper
     {
         private readonly UserManager<User> userManager;
