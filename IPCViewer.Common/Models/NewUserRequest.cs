@@ -24,7 +24,7 @@ namespace IPCViewer.Common.Models
         public string Password { get; set; }
 
         [Required]
-        public City City { get; set; }
+        public int? CityId { get; set; }
     }
 
 }

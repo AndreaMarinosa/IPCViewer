@@ -103,7 +103,7 @@
             }
 
 
-            var city = await cityRepository.GetByIdAsync(request.City.Id);
+            var city = await cityRepository.GetByIdAsync(request.CityId.Value);
             if (city == null)
             {
                 return this.BadRequest(new Response
@@ -119,7 +119,7 @@
                 LastName = request.LastName,
                 Email = request.Email,
                 UserName = request.Email,
-                City = city
+                CityId = request.CityId.Value
 
             };
             

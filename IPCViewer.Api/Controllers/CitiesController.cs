@@ -24,7 +24,8 @@ namespace IPCViewer.Api.Controllers
         [HttpGet]
         public IActionResult GetCities()
         {
-            return Ok(this.cityRepository.GetAll());
+            var cities = this.cityRepository.GetAll().ToList();
+            return Ok(cities);
         }
 
 

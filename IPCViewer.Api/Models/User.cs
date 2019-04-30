@@ -14,6 +14,8 @@ namespace IPCViewer.Api.Models
         [NotMapped]
         public bool IsAdmin { get; set; }
 
+        public int? CityId { get; set; }
+        [ForeignKey("CityId")]
         public City City { get; set; }
 
     }

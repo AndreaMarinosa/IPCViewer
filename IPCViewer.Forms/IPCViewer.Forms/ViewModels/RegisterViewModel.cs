@@ -5,7 +5,7 @@
     using System.Windows.Input;
     using Common.Models;
     using GalaSoft.MvvmLight.Command;
-    using IPCViewer.Common.Helpers;
+    using Common.Helpers;
     using IPCViewer.Common.Services;
     using Xamarin.Forms;
 
@@ -185,7 +185,7 @@
 
             var request = new NewUserRequest
             {
-                City = this.City,
+                CityId = this.City.Id,
                 Email = this.Email,
                 FirstName = this.FirstName,
                 LastName = this.LastName,
