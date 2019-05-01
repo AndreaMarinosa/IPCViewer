@@ -25,6 +25,9 @@ namespace IPCViewer.Common.Models
 
         [Required]
         public City City { get; set; }
+
+        [Required]
+        public int CityId { get; set; }
     }
 
 }

@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace IPCViewer.Api.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20190429151355_Db")]
-    partial class Db
+    [Migration("20190501160939_Test")]
+    partial class Test
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -27,7 +27,7 @@ namespace IPCViewer.Api.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("CityId");
+                    b.Property<int>("CityId");
 
                     b.Property<string>("Comments");
 
@@ -72,7 +72,7 @@ namespace IPCViewer.Api.Migrations
 
                     b.Property<int>("AccessFailedCount");
 
-                    b.Property<int?>("CityId");
+                    b.Property<int>("CityId");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken();
@@ -238,7 +238,8 @@ namespace IPCViewer.Api.Migrations
                 {
                     b.HasOne("IPCViewer.Api.Models.City", "City")
                         .WithMany()
-                        .HasForeignKey("CityId");
+                        .HasForeignKey("CityId")
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("IPCViewer.Api.Models.User", "User")
                         .WithMany()
@@ -249,7 +250,8 @@ namespace IPCViewer.Api.Migrations
                 {
                     b.HasOne("IPCViewer.Api.Models.City", "City")
                         .WithMany()
-                        .HasForeignKey("CityId");
+                        .HasForeignKey("CityId")
+                        .OnDelete(DeleteBehavior.Restrict);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

@@ -4,6 +4,7 @@ using System.Text;
 
 namespace IPCViewer.Forms.ViewModels
 {
+    using System.Collections.ObjectModel;
     using System.Windows.Input;
     using Common.Models;
     using Common.Services;
@@ -15,8 +16,24 @@ namespace IPCViewer.Forms.ViewModels
         private bool isRunning;
         private bool isEnabled;
         private readonly ApiService apiService;
+        private ObservableCollection<City> cities;
+        private City city;
 
         public string Image { get; set; }
+
+        public string Name { get; set; }
+
+        public string Latitude { get; set; }
+
+        public string Longitude { get; set; }
+
+        public string Comments { get; set; }
+
+        public string ImageUrl { get; set; }
+
+        public string CityId { get; set; }
+
+        public ICommand SaveCommand => new RelayCommand(this.Save);
 
         public bool IsRunning
         {
@@ -30,19 +47,51 @@ namespace IPCViewer.Forms.ViewModels
             set => this.SetProperty(ref this.isEnabled, value);
         }
 
-        public string Name { get; set; }
+        public City City
+        {
+            get => this.city;
+            set => this.SetProperty(ref this.city, value);
+        }
 
-        public string Latitude { get; set; }
+        public ObservableCollection<City> Cities
+        {
+            get => this.cities;
+            set => this.SetProperty(ref this.cities, value);
+        }
 
-        public string Longitude { get; set; }
+        public async void LoadCities()
+        {
 
-        public string Comments { get; set; }
+            IsRunning = true;
+            IsEnabled = false;
 
-        public ICommand SaveCommand => new RelayCommand(this.Save);
+            //var url = Application.Current.Resources["UrlAPI"].ToString();
+            var response = await this.apiService.GetListAsync<City>(
+                "https://ipcviewerapi.azurewebsites.net",
+                "/api",
+                "/Cities");
+
+            IsRunning = false;
+            IsEnabled = true;
+
+            if (!response.IsSuccess || response == null)
+            {
+                await Application.Current.MainPage.DisplayAlert(
+                    "Error",
+                    response.Message,
+                    "Accept");
+                return;
+            }
+
+            var myCities = (List<City>)response.Result;
+            this.Cities = new ObservableCollection<City>(myCities);
+
+        }
 
         public AddCameraViewModel()
         {
             this.apiService = new ApiService();
+            LoadCities();
             this.Image = "noImage";
             this.IsEnabled = true;
         }
@@ -58,28 +107,21 @@ namespace IPCViewer.Forms.ViewModels
             var latitude = double.Parse(this.Latitude);
             var longitude = double.Parse(this.Longitude);
 
-            if(latitude <= 0.00)
-            {
-                await Application.Current.MainPage.DisplayAlert("Error", "The latitude must be a number greather than zero.", "Accept");
-            }
-            if(longitude <= 0.00)
-            {
-                await Application.Current.MainPage.DisplayAlert("Error", "The longitude must be a number greather than zero.", "Accept");
-            }
-
             this.IsRunning = true;
             this.IsEnabled = false;
 
             var camera = new Camera
             {
                 Name = this.Name,
+                ImageUrl = ImageUrl,
                 Comments = this.Comments,
-                City = new City { Name = "Zaragoza" },
+                CityId = City.Id,
+                City = City,
                 Latitude = latitude,
                 Longitude = longitude,
                 User = new User
                 {
-                    UserName = MainViewModel.GetInstance().UserEmail
+                    Email = MainViewModel.GetInstance().UserEmail
                 },
                 CreatedDate = DateTime.Now,
             };
@@ -96,6 +138,9 @@ namespace IPCViewer.Forms.ViewModels
             if (!response.IsSuccess)
             {
                 await Application.Current.MainPage.DisplayAlert("Error", response.Message, "Accept");
+
+                this.IsRunning = false;
+                this.IsEnabled = true;
                 return;
             }
 
@@ -104,7 +149,7 @@ namespace IPCViewer.Forms.ViewModels
 
             this.IsRunning = false;
             this.IsEnabled = true;
-            await Application.Current.MainPage.Navigation.PopAsync();
+            await App.Navigator.PopAsync();
         }
 
     }

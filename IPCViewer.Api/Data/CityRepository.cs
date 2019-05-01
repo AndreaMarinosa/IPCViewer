@@ -1,4 +1,5 @@
 ﻿using IPCViewer.Api.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +15,24 @@ namespace IPCViewer.Api.Data
 
         {
             this.context = context;
+        }
+
+        public async Task<City> GetCityByIdAsync(int id)
+        {
+            return await this.context.City.FindAsync(id);
+        }
+
+        public async Task<int> DeleteCityAsync(City city)
+        {
+            var City = this.context.City.Where(c => c.Id == city.Id).FirstOrDefault();
+            if (City == null)
+            {
+                return 0;
+            }
+
+            this.context.City.Remove(City);
+            await this.context.SaveChangesAsync();
+            return City.Id;
         }
     }
 }

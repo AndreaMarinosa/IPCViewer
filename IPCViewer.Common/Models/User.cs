@@ -59,5 +59,8 @@ namespace IPCViewer.Common.Models
 
         [JsonProperty("city")]
         public City City { get; set; }
+
+        [JsonProperty("cityId")]
+        public int CityId { get; set; }
     }
 }

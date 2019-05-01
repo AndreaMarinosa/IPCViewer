@@ -6,5 +6,8 @@ namespace IPCViewer.Api.Models
 {
     public interface ICityRepository : IGenericRepository<City>
     {
+        Task<City> GetCityByIdAsync(int id);
+
+        Task<int> DeleteCityAsync(City city);
     }
 }

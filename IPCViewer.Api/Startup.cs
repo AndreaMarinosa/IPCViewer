@@ -41,6 +41,10 @@ namespace IPCViewer.Api
             .AddDefaultTokenProviders()
             .AddEntityFrameworkStores<DataContext>();
 
+            services.AddMvc().AddJsonOptions(
+                options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+            );
+
             services.AddAuthentication()
                 .AddCookie()
                 .AddJwtBearer(cfg =>

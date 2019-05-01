@@ -9,6 +9,11 @@
     using System.Net.Http.Headers;
     using System.Text;
 
+    /**
+     * 
+     * Clase generica para consumir servicios Web RESTFUL
+     * 
+     */
     public class ApiService
     {
 

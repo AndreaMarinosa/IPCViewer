@@ -91,7 +91,7 @@
             LoadCities();
             FirstName = "Andrea2";
             LastName = "lopez";
-            Email = "101_andrea@hotmail.es";
+            Email = "q@shitmail.me";
             Password = "123456";
             Confirm = "123456";
         }
@@ -185,12 +185,13 @@
 
             var request = new NewUserRequest
             {
+                CityId = this.City.Id,
                 City = this.City,
                 Email = this.Email,
                 FirstName = this.FirstName,
                 LastName = this.LastName,
                 Password = this.Password,
-                UserName = this.FirstName
+                UserName = this.Email
             };
 
             //var url = Application.Current.Resources["UrlAPI"].ToString();
@@ -202,15 +203,6 @@
 
             this.IsRunning = false;
             this.IsEnabled = true;
-
-            if (string.IsNullOrEmpty(response.Message))
-            {
-                await Application.Current.MainPage.DisplayAlert(
-                    "Error",
-                    "se raya y está vacío",
-                    "Accept");
-                return;
-            }
 
             if (!response.IsSuccess)
             {

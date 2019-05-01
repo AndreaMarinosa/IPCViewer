@@ -23,7 +23,6 @@
         private readonly ICityRepository cityRepository;
         private readonly IMailHelper mailHelper;
         private readonly IConfiguration configuration;
-        private readonly string role = "Customer";
 
         public AccountController(
             IUserHelper userHelper,
@@ -35,6 +34,13 @@
             this.cityRepository = cityRepository;
             this.mailHelper = mailHelper;
             this.configuration = configuration;
+        }
+
+        // GET: api/Cameras
+        [HttpGet]
+        public IActionResult GetCameras()
+        {
+            return Ok(userHelper.GetAllUsersAsync());
         }
 
         [HttpPost]
@@ -103,7 +109,11 @@
             }
 
 
-            var city = await cityRepository.GetByIdAsync(request.City.Id);
+<<<<<<< HEAD
+            var city = await cityRepository.GetCityByIdAsync(request.CityId);
+=======
+            var city = await cityRepository.GetByIdAsync(request.CityId.Value);
+>>>>>>> bc370cd2bf93eab22ac247acd5a6f919d387709c
             if (city == null)
             {
                 return this.BadRequest(new Response
@@ -118,9 +128,15 @@
                 FirstName = request.FirstName,
                 LastName = request.LastName,
                 Email = request.Email,
-                UserName = request.Email,
+<<<<<<< HEAD
+                UserName = request.UserName,
+                CityId = request.CityId,
                 City = city
+=======
+                UserName = request.Email,
+                CityId = request.CityId.Value
 
+>>>>>>> bc370cd2bf93eab22ac247acd5a6f919d387709c
             };
             
             var result = await this.userHelper.AddUserAsync(user, request.Password);

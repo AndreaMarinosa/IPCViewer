@@ -12,7 +12,7 @@
     [Route("api/[controller]")]
     [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     [ApiController]
-    public class CamerasController : ControllerBase
+    public class CamerasController : Controller
     {
         private readonly ICameraRepository cameraRepository;
         private readonly ICityRepository cityRespository;
@@ -88,7 +88,7 @@
                 return this.BadRequest("Invalid user");
             }
 
-            var city = await this.cityRespository.GetByIdAsync(camera.City.Id);
+            var city = await this.cityRespository.GetCityByIdAsync(camera.CityId);
             if (city == null)
             {
                 return this.BadRequest("Invalid city");
@@ -113,14 +113,14 @@
 
             var entityCamera = new Camera
             {
-                Id = camera.Id,
                 Name = camera.Name,
                 Comments = camera.Comments,
                 CreatedDate = DateTime.Now,
                 Latitude = camera.Latitude,
                 Longitude = camera.Longitude,
                 User = user,
-                ImageUrl = null,
+                ImageUrl = camera.ImageUrl,
+                CityId = camera.CityId,
                 City = city
             };
 

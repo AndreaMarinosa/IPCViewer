@@ -10,7 +10,7 @@
     </ContentPage.BindingContext>-->
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Icon="ic_launcher" Command="{Binding AddCameraCommand}"/>
+        <ToolbarItem Icon="add" Command="{Binding AddCameraCommand}"/>
     </ContentPage.ToolbarItems>
 
 

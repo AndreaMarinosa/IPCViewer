@@ -11,7 +11,7 @@ namespace IPCViewer.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CitiesController : ControllerBase
+    public class CitiesController : Controller
     {
         private readonly ICityRepository cityRepository;
 
@@ -24,7 +24,8 @@ namespace IPCViewer.Api.Controllers
         [HttpGet]
         public IActionResult GetCities()
         {
-            return Ok(this.cityRepository.GetAll());
+            var cities = this.cityRepository.GetAll().ToList();
+            return Ok(cities);
         }
 
 

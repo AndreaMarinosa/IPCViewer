@@ -8,6 +8,16 @@
   <ItemGroup>
     <Compile Remove="Migrations\20190427163146_noCityId.cs" />
     <Compile Remove="Migrations\20190427163146_noCityId.Designer.cs" />
+    <Compile Remove="Migrations\20190429151355_Db.cs" />
+    <Compile Remove="Migrations\20190429151355_Db.Designer.cs" />
+    <Compile Remove="Migrations\20190430135229_InitialDb.cs" />
+    <Compile Remove="Migrations\20190430135229_InitialDb.Designer.cs" />
+    <Compile Remove="Migrations\20190430142749_initDb.cs" />
+    <Compile Remove="Migrations\20190430142749_initDb.Designer.cs" />
+    <Compile Remove="Migrations\20190430151908_pruebas.cs" />
+    <Compile Remove="Migrations\20190430151908_pruebas.Designer.cs" />
+    <Compile Remove="Migrations\20190501075728_someChanges.cs" />
+    <Compile Remove="Migrations\20190501075728_someChanges.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace IPCViewer.Api.Migrations
 {
-    public partial class Db : Migration
+    public partial class InitDb : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -77,7 +77,7 @@ namespace IPCViewer.Api.Migrations
                     FirstName = table.Column<string>(nullable: true),
                     LastName = table.Column<string>(nullable: true),
                     EmailConfirmed = table.Column<bool>(nullable: false),
-                    CityId = table.Column<int>(nullable: true)
+                    CityId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {

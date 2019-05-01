@@ -39,7 +39,7 @@ namespace IPCViewer.Forms.ViewModels
         private void GoAddCamera()
         {
             this.AddCamera = new AddCameraViewModel();
-            Application.Current.MainPage.Navigation.PushAsync(new AddCameraPage());
+            App.Navigator.PushAsync(new AddCameraPage());
         }
 
         public MainViewModel()
