@@ -3,20 +3,16 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="IPCViewer.Forms.Views.LoginPage"
              BindingContext="{Binding Main, Source={StaticResource Locator}}"
-             Title="Login">
+             Title="Welcome to IPCViewer">
 
-    <!--<ContentPage.BindingContext>
-        <vm:LoginViewModel />
-    </ContentPage.BindingContext>-->
-    
     <ContentPage.Content>
         <ScrollView
             BindingContext="{Binding Login}">
             <StackLayout
                 Padding="8">
                 <Image
-                	HeightRequest="150"
-                	Source="fondoMenu">
+                	HeightRequest="120"
+                	Source="logoIPCViewer">
                 </Image>
                 <!-- Email -->
                 <Label
@@ -43,11 +39,8 @@
                     Text="Login"
                     Command="{Binding LoginCommand}"
                     IsEnabled="{Binding IsEnabled}"
-                    BackgroundColor="#103E37"
-    	            BorderRadius="23"
                     HeightRequest="46"
-    	            HorizontalOptions="FillAndExpand"
-                    TextColor="White"/>
+    	            HorizontalOptions="FillAndExpand"/>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

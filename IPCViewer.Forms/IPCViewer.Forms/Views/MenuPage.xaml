@@ -2,14 +2,13 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="IPCViewer.Forms.Views.MenuPage"
-             BackgroundColor="#E65100"
              BindingContext="{Binding Main, Source={StaticResource Locator}}"
              Title="Menu">
     <ContentPage.Content>
         <StackLayout
         	Padding="10">
             <Image
-            	Source="fondoMenu">
+            	Source="logoIPCViewer">
             </Image>
             <ListView
             	ItemsSource="{Binding Menus}"
@@ -27,23 +26,39 @@
                                     <ColumnDefinition Width="Auto"></ColumnDefinition>
                                     <ColumnDefinition Width="*"></ColumnDefinition>
                                 </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"></RowDefinition>
+                                    <RowDefinition Height="Auto"></RowDefinition>
+                                </Grid.RowDefinitions>
+
+                                <BoxView
+                                    Grid.ColumnSpan="2"
+                                    Grid.Row="1"
+                                    HeightRequest="2"
+                                    VerticalOptions="CenterAndExpand"
+                                    />
                                 <Image
                                 	Grid.Column="0"
                                 	HeightRequest="50"
                                 	Source="{Binding Icon}"
-                                	WidthRequest="50">
+                                	WidthRequest="50"
+                                    VerticalOptions="Center"
+                                    HorizontalOptions="Center">
                                 </Image>
                                 <Label
                                 	Grid.Column="1"
                                 	FontAttributes="Bold"
                                 	VerticalOptions="Center"
-                                	TextColor="White"
                                 	Text="{Binding Title}">
                                 </Label>
+                                
                             </Grid>
                         </ViewCell>
+                        
                     </DataTemplate>
+                    
                 </ListView.ItemTemplate>
+            
             </ListView>
         </StackLayout>
     </ContentPage.Content>

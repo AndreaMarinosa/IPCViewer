@@ -5,10 +5,6 @@
              BindingContext="{Binding Main, Source={StaticResource Locator}}"
              Title="Register">
 
-    <!--<ContentPage.BindingContext>
-        <vm:RegisterViewModel />
-    </ContentPage.BindingContext>-->
-    
     <ContentPage.Content>
         <ScrollView
             BindingContext="{Binding Register}">
@@ -118,14 +114,11 @@
                     </ActivityIndicator>
                     
                     <Button
-                	BackgroundColor="Navy"
-                	BorderRadius="23"
-                	Command="{Binding RegisterCommand}"
-                	HeightRequest="46"
-                	HorizontalOptions="FillAndExpand"
-                	IsEnabled="{Binding IsEnabled}"
-                	Text="Register New User"
-                	TextColor="White">
+                	    Command="{Binding RegisterCommand}"
+                	    HeightRequest="46"
+                	    HorizontalOptions="FillAndExpand"
+                	    IsEnabled="{Binding IsEnabled}"
+                	    Text="Register New User">
                     </Button>
                 </StackLayout>
 

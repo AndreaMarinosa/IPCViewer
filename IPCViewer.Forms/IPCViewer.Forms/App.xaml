@@ -14,17 +14,85 @@
             <x:String x:Key="UrlAPI">https://ipcviewerapi2.azurewebsites.net</x:String>
 
             <!--Global Styles-->
-            <Color x:Key="NavigationPrimary">#4E827A</Color>
+
+            <OnPlatform x:TypeArguments="x:String" x:Key="BoldFont">
+                <On Platform="Android" Value="fonts/Montserrat-SemiBold.ttf" />
+                <!--<On Platform="iOS" Value="Montserrat-Bold" />-->
+            </OnPlatform>
+            <OnPlatform x:TypeArguments="x:String" x:Key="RegularlFont">
+                <On Platform="Android" Value="fonts/Montserrat-Regular.ttf" />
+                <!--<On Platform="iOS" Value="Montserrat-Regular" />-->
+            </OnPlatform>
+            <OnPlatform x:TypeArguments="x:String" x:Key="MediumFont">
+                <On Platform="Android" Value="fonts/Montserrat-Medium.ttf#Open Montserrat" />
+                <!--<On Platform="iOS" Value="Montserrat-Medium" />-->
+            </OnPlatform>
+            <OnPlatform x:TypeArguments="x:String" x:Key="LightFont">
+                <On Platform="Android" Value="fonts/Montserrat-Light.ttf" />
+                <!--<On Platform="iOS" Value="Montserrat-Light"/>-->
+            </OnPlatform>
+            
+            <!-- Primary colors -->
+            <Color x:Key="Primary">#212121</Color>
+            <Color x:Key="PrimaryDark">#000000</Color>
+            <Color x:Key="PrimaryLight">#484848</Color>
+
+            <!-- Secondary colors -->
+            <Color x:Key="Secondary">#e81e62</Color>
+            <Color x:Key="SecondaryDark">#af0039</Color>
+            <Color x:Key="SecondaryLight">#ff608f</Color>
+            
+            <!-- Font Color -->
+            <Color x:Key="PrimaryFontColor">#ffffff</Color>
+            <Color x:Key="SecondaryFontColor">#000000</Color>
+
+            <!-- Navigation Page styles -->
             <Style TargetType="NavigationPage">
-                <Setter Property="BarBackgroundColor" Value="{StaticResource NavigationPrimary}" />
-                <Setter Property="BarTextColor" Value="White" />
+                <Setter Property="BarBackgroundColor" Value="{StaticResource PrimaryDark}" />
+
             </Style>
+            
+            <!-- Content page styles-->
             <Style TargetType="ContentPage">
-                <Setter Property="BackgroundColor" Value="White"/>
+                <!--<Setter Property="" Value="White"/>-->
             </Style>
+            
+            <!-- Tabbed Page styles-->
             <Style TargetType="TabbedPage">
-                <Setter Property="BarBackgroundColor" Value="{StaticResource NavigationPrimary}"/>
-                <Setter Property="BackgroundColor" Value="White"/>
+                <Setter Property="BarBackgroundColor" Value="{StaticResource PrimaryLight}"/>
+                <Setter Property="BackgroundColor" Value="{StaticResource Secondary}"/>
+            </Style>
+
+            <!-- Selectable items view Styles -->
+            <Style TargetType="SelectableItemsView">
+                <Setter Property="BackgroundColor" Value="{StaticResource Secondary}"/>
+            </Style>
+
+            <!-- Button Styles -->
+            <Style TargetType="Button">
+                <Setter Property="BorderColor" Value="{StaticResource Secondary}"/>
+                <Setter Property="BorderWidth" Value="2"/>
+                <Setter Property="BackgroundColor" Value="WhiteSmoke"/>
+                <Setter Property="TextColor" Value="{StaticResource Secondary}"/>
+                <Setter Property="CornerRadius" Value="23"/>
+                <Setter Property="HeightRequest" Value="46"/>
+                <Setter Property="FontFamily" Value="{StaticResource MediumFont}"/>
+                <Setter Property="FontSize" Value="15"/>
+            </Style>
+            
+           <!-- Label styles -->
+            <Style TargetType="Label">
+                <Setter Property="FontFamily" Value="{StaticResource MediumFont}"/>
+            </Style>
+
+            <!-- Entry styles -->
+            <Style TargetType="Entry">
+                <Setter Property="FontFamily" Value="{StaticResource MediumFont}"/>
+            </Style>
+            
+            <!-- Box View Styles-->
+            <Style TargetType="BoxView">
+                <Setter Property="Color" Value="{StaticResource Secondary}"/>
             </Style>
             
         </ResourceDictionary>

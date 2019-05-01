@@ -113,13 +113,10 @@
                 </ActivityIndicator>
                     
                 <Button
-                	BackgroundColor="Navy"
-                	BorderRadius="23"
                 	Command="{Binding SaveCommand}"
-                	HeightRequest="46"
+                	
                 	IsEnabled="{Binding IsEnabled}"
-                	Text="Save"
-                	TextColor="White">
+                	Text="Save">
                 </Button>
             </StackLayout>
         </ScrollView>
