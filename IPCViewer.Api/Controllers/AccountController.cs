@@ -127,6 +127,7 @@
                 UserName = request.UserName,
                 CityId = request.CityId,
                 City = city
+
             };
             
             var result = await this.userHelper.AddUserAsync(user, request.Password);

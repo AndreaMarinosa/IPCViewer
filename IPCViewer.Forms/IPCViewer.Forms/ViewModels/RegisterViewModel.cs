@@ -5,7 +5,7 @@
     using System.Windows.Input;
     using Common.Models;
     using GalaSoft.MvvmLight.Command;
-    using Common.Helpers;
+    using IPCViewer.Common.Helpers;
     using IPCViewer.Common.Services;
     using Xamarin.Forms;
 
