@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace IPCViewer.Api.Models
+﻿namespace IPCViewer.Api.Models
 {
-    using System.ComponentModel.DataAnnotations;
-
+    /**
+     * ViewModel que conecta el login del app movi con la API
+     * Se pasara un objeto LoginViewModel cuando se quiera logear en la aplicacion
+     */
     public class LoginViewModel
     {
         public string Username { get; set; }

@@ -10,33 +10,40 @@ using System.Threading.Tasks;
 namespace IPCViewer.Api.Services
 {
     /**
-     * Datos genéricos que se activa cuando borramos
-     * la base de datos
-     * 
+     * Clase que implementa datos genericos cuando la base
+     * de datos esta vacia
      */
     public class SeedDb 
     {
-        // DataContext privado que hemos recibido por parámetro
+        #region Private Properties
+
         private readonly DataContext context;
-        private readonly IMailHelper mailHelper;
         private readonly IUserHelper userHelper;
 
-        public SeedDb(DataContext context, IMailHelper mailHelper, IUserHelper userHelper)
+        #endregion
+
+
+        #region Constructor
+
+        public SeedDb(DataContext context, IUserHelper userHelper)
         {
             this.context = context;
             this.userHelper = userHelper;
-            this.mailHelper = mailHelper;
 
         }
 
+        #endregion
+
+
         public async Task SeedAsync()
         {
-            // Espera a que la base de datos esté creada antes de asignar datos
+            // Espera y comprueba que la base de datos esté creada antes de asignar nuevos
             await context.Database.EnsureCreatedAsync();
 
             // Comprueba si existen los roles creados
             await CheckRoles();
 
+            // Si la base de datos no contiene ciudades, las crea
             if (!context.City.Any())
             {
                 await AddCitiesAsync();
@@ -58,6 +65,10 @@ namespace IPCViewer.Api.Services
             }
         }
 
+        /**
+         * Comprueba que existe los roles "admin" y "customer".
+         * De no existir los crea
+         */
         private async Task CheckRoles()
         {
             await this.userHelper.CheckRoleAsync("Admin");
@@ -65,19 +76,27 @@ namespace IPCViewer.Api.Services
 
         }
 
+        /**
+         * Aniade la ciudad "Zaragoza" si no hay ciudades creadas
+         */
         private async Task AddCitiesAsync()
         {
+            // aniade la ciudad
             context.City.Add(new City
             {
                 Name = "Zaragoza"
             });
 
+            // Guarda los cambios en bbdd
             await context.SaveChangesAsync();
         }
 
+        /**
+         * Comprueba que existe este usuario
+         */
         private async Task<User> CheckUserAsync(string userName, string firstName, string lastName, string role)
         {
-            // Busca si existe el email Administrador
+            // Busca el usuario mediante su email
             var user = await userHelper.GetUserByEmailAsync(userName);
 
             // Si no existe, lo crea
@@ -85,7 +104,12 @@ namespace IPCViewer.Api.Services
             {
                 user = await AddUser(userName, firstName, lastName, role);
 
+                /*
+                 * Comprueba si el usuario pasado por parametro tiene rol
+                 * Devuelve true/false
+                 */
                 var isInRole = await this.userHelper.IsUserInRoleAsync(user, role);
+                // si no tiene role, se le asigna
                 if (!isInRole)
                 {
                     await userHelper.AddUserToRoleAsync(user, role);
@@ -96,9 +120,13 @@ namespace IPCViewer.Api.Services
 
         }
 
+        /**
+         * Metodo que agrega un nuevo usuario a la base de datos
+         */
         private async Task<User> AddUser(string userName, string firstName, string lastName, string role)
         {
-            var user = new User
+            // El nombre de usuario y el email siempre serán los mismos
+            var user = new User // Model.User
             {
                 FirstName = firstName,
                 LastName = lastName,
@@ -107,20 +135,25 @@ namespace IPCViewer.Api.Services
                 City = context.City.FirstOrDefault(),
             };
 
-            // Creamos en la base de datos
+            // Creamos el usuario en la base de datos
             var result = await this.userHelper.AddUserAsync(user, "123456");
             if (result != IdentityResult.Success)
             {
                 throw new InvalidOperationException("Could not create the user in seeder");
             }
 
+            // Aniadimos el rol al usuario y guardamos en bbdd
             await this.userHelper.AddUserToRoleAsync(user, role);
+            // Generamos el email de confirmacion
             var token = await this.userHelper.GenerateEmailConfirmationTokenAsync(user);
+            // Confirmamos el email
             await this.userHelper.ConfirmEmailAsync(user, token);
             return user;
         }
 
-
+        /**
+         * Metodo que añade 2 nuevas camaras a la bbdd
+         */
         private void AddCamera(string name, User user, string imgUrl, double latitude, double longitude) => context.Cameras.Add(new Camera
         {
             Name = name,

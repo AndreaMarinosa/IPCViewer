@@ -20,7 +20,7 @@ namespace IPCViewer.Api
         public static void Main(string[] args)
         {
             var host = CreateWebHostBuilder(args).Build();
-            RunSeeding(host);
+            RunSeeding(host); // Llama a la clase 'seedDb' y llena la base de datos si esta vacia
             host.Run();
         }
 

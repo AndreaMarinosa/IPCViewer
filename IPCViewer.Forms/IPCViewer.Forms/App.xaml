@@ -11,15 +11,15 @@
             <infra:InstanceLocator x:Key="Locator"/>
 
             <!-- Parameters -->
-            <x:String x:Key="UrlAPI">https://ipcviewerapi2.azurewebsites.net</x:String>
+            <x:String x:Key="UrlAPI">https://ipcviewerapi.azurewebsites.net</x:String>
 
             <!--Global Styles-->
 
             <OnPlatform x:TypeArguments="x:String" x:Key="BoldFont">
-                <On Platform="Android" Value="fonts/Montserrat-SemiBold.ttf" />
+                <On Platform="Android" Value="fonts/Montserrat-SemiBold.ttf#Open Montserrat" />
                 <!--<On Platform="iOS" Value="Montserrat-Bold" />-->
             </OnPlatform>
-            <OnPlatform x:TypeArguments="x:String" x:Key="RegularlFont">
+            <OnPlatform x:TypeArguments="x:String" x:Key="RegularFont#Open Montserrat">
                 <On Platform="Android" Value="fonts/Montserrat-Regular.ttf" />
                 <!--<On Platform="iOS" Value="Montserrat-Regular" />-->
             </OnPlatform>
@@ -28,7 +28,7 @@
                 <!--<On Platform="iOS" Value="Montserrat-Medium" />-->
             </OnPlatform>
             <OnPlatform x:TypeArguments="x:String" x:Key="LightFont">
-                <On Platform="Android" Value="fonts/Montserrat-Light.ttf" />
+                <On Platform="Android" Value="fonts/Montserrat-Light.ttf#Open Montserrat" />
                 <!--<On Platform="iOS" Value="Montserrat-Light"/>-->
             </OnPlatform>
             
@@ -87,12 +87,18 @@
 
             <!-- Entry styles -->
             <Style TargetType="Entry">
-                <Setter Property="FontFamily" Value="{StaticResource MediumFont}"/>
+                <Setter Property="FontFamily" Value="{StaticResource LightFont}"/>
+                <Setter Property="FontSize" Value="15"/>
             </Style>
             
             <!-- Box View Styles-->
             <Style TargetType="BoxView">
                 <Setter Property="Color" Value="{StaticResource Secondary}"/>
+            </Style>
+
+            <!-- Picker Styles -->
+            <Style TargetType="Picker">
+                <Setter Property="FontFamily" Value="{StaticResource LightFont}"></Setter>
             </Style>
             
         </ResourceDictionary>

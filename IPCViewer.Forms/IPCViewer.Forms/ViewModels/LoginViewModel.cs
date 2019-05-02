@@ -73,9 +73,9 @@ namespace IPCViewer.Forms.ViewModels
             };
 
 
-            //var url = Application.Current.Resources["UrlAPI"].ToString();
+            var url = Application.Current.Resources["UrlAPI"].ToString();
             var response = await this.apiService.GetTokenAsync(
-                "https://ipcviewerapi.azurewebsites.net",
+                url,
                 "/api",
                 "/Account/PostCreateToken",
                 request);
@@ -96,7 +96,7 @@ namespace IPCViewer.Forms.ViewModels
             mainViewModel.Cameras = new CamerasViewModel();
             mainViewModel.UserEmail = this.Email;
             mainViewModel.UserPassword = this.Password;
-            Application.Current.MainPage = new MasterPage();
+            Application.Current.MainPage = new NavigationPage(new MasterPage());
 
         }
     }

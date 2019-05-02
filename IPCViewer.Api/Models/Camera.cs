@@ -1,11 +1,10 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace IPCViewer.Api.Models
+﻿namespace IPCViewer.Api.Models
 {
+    using System;
+
+    /**
+     * Objeto con el que se almacenaran todas las caramas de la aplicacion
+     */
     public class Camera : IEntity
     {
 
@@ -29,18 +28,6 @@ namespace IPCViewer.Api.Models
 
         public int CityId { get; set; }
 
-        //public string ImageFullPath
-        //{
-        //    get
-        //    {
-        //        if (string.IsNullOrEmpty(this.ImageUrl))
-        //        {
-        //            return null;
-        //        }
-
-        //        return $"https://ipcviewer2.azurewebsites.net{ImageUrl}";
-        //    }
-        //}
 
     }
 }

@@ -1,5 +1,4 @@
-﻿
-namespace IPCViewer.Common.Models
+﻿namespace IPCViewer.Common.Models
 {
     using System;
     using Newtonsoft.Json;

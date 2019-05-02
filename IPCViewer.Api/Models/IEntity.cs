@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace IPCViewer.Api.Models
+﻿namespace IPCViewer.Api.Models
 {
+    /**
+     * Clase generica de la que heredan las demas clases
+     * donde comparten el mismo Id 
+     */
     public interface IEntity
     {
         int Id { get; set; }

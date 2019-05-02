@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace IPCViewer.Common.Helpers
+﻿namespace IPCViewer.Common.Helpers
 {
-
     using System;
     using System.Net.Mail;
 

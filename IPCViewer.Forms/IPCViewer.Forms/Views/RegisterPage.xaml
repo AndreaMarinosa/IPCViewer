@@ -13,99 +13,97 @@
             	Padding="8">
                     <Grid>
                         <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="2*"/>
                         </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <Image
+                            HeightRequest="50"
+                            Grid.RowSpan="2"
+                            Grid.Row="0"
+                            Source="mainlyData"/>
 
                         <!-- Nombre -->
-                        <Label
-                    	Grid.Column="0"
-                    	Grid.Row="0"
-                    	Text="First name"
-                    	VerticalOptions="Center">
-                        </Label>
                         <Entry
                     	Grid.Column="1"
                     	Grid.Row="0"
-                    	Placeholder="Enter your first name..."
-                    	Text="{Binding FirstName}">
-                        </Entry>
+                    	Placeholder="Firstname..."
+                    	Text="{Binding FirstName}"/>
 
                         <!-- Apellido -->
-                        <Label
-                    	Grid.Column="0"
-                    	Grid.Row="1"
-                    	Text="Last name"
-                    	VerticalOptions="Center">
-                        </Label>
                         <Entry
                     	Grid.Column="1"
                     	Grid.Row="1"
-                    	Placeholder="Enter your last name..."
-                    	Text="{Binding LastName}">
-                        </Entry>
+                    	Placeholder="Lastname..."
+                    	Text="{Binding LastName}"/>
                         
                         <!-- City -->
-                        <Label
-                    	Grid.Column="0"
-                    	Grid.Row="2"
-                    	Text="City"
-                    	VerticalOptions="Center">
-                        </Label>
+                        <Image
+                            Grid.Row="3" 
+                            Grid.Column="0"
+                            Source="city"
+                            VerticalOptions="CenterAndExpand"/>
+
                         <Picker
-                    	Grid.Column="1"
-                    	Grid.Row="2"
-                    	ItemDisplayBinding="{Binding Name}"
-                    	ItemsSource="{Binding Cities}"
-                    	SelectedItem="{Binding City}"
-                    	Title="Select a city...">
+                    	    Grid.Column="1"
+                    	    Grid.Row="3"
+                    	    ItemDisplayBinding="{Binding Name}"
+                    	    ItemsSource="{Binding Cities}"
+                    	    SelectedItem="{Binding City}"
+                    	    Title="Select a city...">
                         </Picker>
 
-
                         <!-- Email -->
-                        <Label
-                    	Grid.Column="0"
-                    	Grid.Row="3"
-                    	Text="Email"
-                    	VerticalOptions="Center">
-                        </Label>
+                        <Image
+                            VerticalOptions="CenterAndExpand"
+                            WidthRequest="40"
+                            Grid.Row="4" 
+                            Grid.Column="0"
+                            Source="emailIcon"/>
+
                         <Entry
-                    	Grid.Column="1"
-                    	Grid.Row="3"
-                    	Keyboard="Email"
-                    	Placeholder="Enter your email..."
-                    	Text="{Binding Email}">
-                        </Entry>
+                    	    Grid.Column="1"
+                    	    Grid.Row="4"
+                    	    Keyboard="Email"
+                    	    Placeholder="Email..."
+                    	    Text="{Binding Email}"/>
 
                         <!-- Pass -->
-                        <Label
-                    	Grid.Column="0"
-                    	Grid.Row="4"
-                    	Text="Password"
-                    	VerticalOptions="Center">
-                        </Label>
+                        <Image
+                            HeightRequest="40"
+                            Grid.Row="5" 
+                            Grid.Column="0"
+                            Source="passIcon"/>
+
                         <Entry
-                    	Grid.Column="1"
-                    	Grid.Row="4"
-                    	IsPassword="True"
-                    	Placeholder="Enter your password..."
-                    	Text="{Binding Password}">
-                        </Entry>
+                    	    Grid.Column="1"
+                    	    Grid.Row="5"
+                    	    IsPassword="True"
+                    	    Placeholder="Password..."
+                    	    Text="{Binding Password}"/>
 
                         <!-- Confirm pass-->
-                        <Label
-                    	Grid.Column="0"
-                    	Grid.Row="5"
-                    	Text="Password confirm"
-                    	VerticalOptions="Center">
-                        </Label>
+                        <Image
+                            HeightRequest="40"
+                            Grid.Row="6" 
+                            Grid.Column="0"
+                            Source="passIcon"/>
+
                         <Entry
-                    	Grid.Column="1"
-                    	Grid.Row="5"
-                    	IsPassword="True"
-                    	Placeholder="Enter your password confirm..."
-                    	Text="{Binding Confirm}">
-                        </Entry>
+                    	    Grid.Column="1"
+                    	    Grid.Row="6"
+                    	    IsPassword="True"
+                    	    Placeholder="Confirm password..."
+                    	    Text="{Binding Confirm}"/>
                     </Grid>
                     
                     <ActivityIndicator

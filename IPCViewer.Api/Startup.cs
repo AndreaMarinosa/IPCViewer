@@ -27,6 +27,7 @@ namespace IPCViewer.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            /* INJECTIONS */
             services.AddIdentity<User, IdentityRole>(cfg =>
             {
                 cfg.Tokens.AuthenticatorTokenProvider = TokenOptions.DefaultAuthenticatorProvider;
@@ -64,8 +65,8 @@ namespace IPCViewer.Api
                 cfg.UseSqlServer(this.Configuration.GetConnectionString("DefaultConnection"));
             });
 
-            services.AddScoped<IMailHelper, MailHelper>();
             services.AddTransient<SeedDb>();
+            services.AddScoped<IMailHelper, MailHelper>();
             services.AddScoped<ICameraRepository, CameraRepository>();
             services.AddScoped<ICityRepository, CityRepository>();
             services.AddScoped<IUserHelper, UserHelper>();

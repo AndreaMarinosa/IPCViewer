@@ -5,6 +5,9 @@
     using Microsoft.AspNetCore.Identity;
     using Models;
 
+    /**
+     * Interfaz 
+     */
     public interface IUserHelper
     {
         Task<User> GetUserByEmailAsync(string email);

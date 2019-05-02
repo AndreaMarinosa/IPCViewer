@@ -1,20 +1,20 @@
-﻿namespace IPCViewer.Api.Controllers
+﻿using IPCViewer.Api.Data;
+
+namespace IPCViewer.Api.Controllers
 {
+    using Common.Models;
+    using Helpers;
+    using Models;
+    using Microsoft.AspNetCore.Identity;
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.Extensions.Configuration;
+    using Microsoft.IdentityModel.Tokens;
     using System;
     using System.IdentityModel.Tokens.Jwt;
     using System.Linq;
     using System.Security.Claims;
     using System.Text;
     using System.Threading.Tasks;
-    using Common.Models;
-    using Helpers;
-    using IPCViewer.Api.Models;
-    using Microsoft.AspNetCore.Authentication.JwtBearer;
-    using Microsoft.AspNetCore.Authorization;
-    using Microsoft.AspNetCore.Identity;
-    using Microsoft.AspNetCore.Mvc;
-    using Microsoft.Extensions.Configuration;
-    using Microsoft.IdentityModel.Tokens;
 
     [Route("api/[Controller]")]
     public class AccountController : Controller
@@ -98,7 +98,7 @@
                 });
             }
 
-             var user = await this.userHelper.GetUserByEmailAsync(request.Email);
+            var user = await this.userHelper.GetUserByEmailAsync(request.Email);
             if (user != null)
             {
                 return this.BadRequest(new Response
@@ -124,16 +124,16 @@
                 FirstName = request.FirstName,
                 LastName = request.LastName,
                 Email = request.Email,
-                UserName = request.UserName,
+                UserName = request.Email,
                 CityId = request.CityId,
                 City = city
 
             };
-            
+
             var result = await this.userHelper.AddUserAsync(user, request.Password);
             if (result != IdentityResult.Success)
             {
-                return this.BadRequest(result.Errors.FirstOrDefault().Description);
+                return this.BadRequest(result.Errors.FirstOrDefault()?.Description);
             }
 
             var myToken = await this.userHelper.GenerateEmailConfirmationTokenAsync(user);
@@ -145,12 +145,12 @@
 
             this.mailHelper.SendMail(request.Email, "Email confirmation", $"<h1>Email Confirmation</h1>" +
                 $"To allow the user, " +
-                $"plase click in this link:</br></br><a href = \"{tokenLink}\">Confirm Email</a>");
+                $"please click in this link:</br></br><a href = \"{tokenLink}\">Confirm Email</a>");
 
             return Ok(new Response
             {
                 IsSuccess = true,
-                Message = "A Confirmation email was sent. Plese confirm your account and log into the App."
+                Message = "A Confirmation email was sent. Please confirm your account and log into the App."
             });
         }
 

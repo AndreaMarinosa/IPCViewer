@@ -11,35 +11,76 @@
             <StackLayout
                 Padding="8">
                 <Image
-                	HeightRequest="120"
-                	Source="logoIPCViewer">
+                	HeightRequest="160"
+                	Source="logoIPCViewer"
+                    Margin="0,0,0,30">
                 </Image>
-                <!-- Email -->
-                <Label
-                    Text="Email"/>
-                <Entry
-                    Keyboard="Email"
-                    Placeholder="Enter your email"
-                    Text="{Binding Email}"/>
 
-                <!-- Password -->
-                <Label
-                    Text="Password"/>
-                <Entry
-                    IsPassword="True"
-                    Placeholder="Enter your password"
-                    Text="{Binding Password}"/>
+                <Grid
+                    ColumnSpacing="10"
+                    RowSpacing="10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
 
+                    <!-- Email -->
+                    <Image
+                        HeightRequest="30"
+                        VerticalOptions="CenterAndExpand"
+                        Grid.Row="0" 
+                        Grid.Column="0"
+                        Source="emailIcon"/>
+                    <Entry
+                        Grid.ColumnSpan="2"
+                        Grid.Row="0" 
+                        Grid.Column="1"
+                        Keyboard="Email"
+                        Placeholder="Email"
+                        Text="{Binding Email}"/>
+
+                    <!-- Password -->
+                    <Image
+                        HeightRequest="40"
+                        Grid.Row="1" 
+                        Grid.Column="0"
+                        Source="passIcon"/>
+                    <Entry
+                        Grid.ColumnSpan="2"
+                        VerticalOptions="CenterAndExpand"
+                        Grid.Row="1" 
+                        Grid.Column="1"
+                        IsPassword="True"
+                        Placeholder="Password"
+                        Text="{Binding Password}"/>
+
+                    <Label
+                        Grid.Row="2"
+                        Grid.Column="1"
+                        Text="Remember me?"
+                        VerticalOptions="CenterAndExpand"
+                        HorizontalOptions="EndAndExpand"/>
+
+                    <Switch
+                        IsToggled="True"
+                        Grid.Row="2"
+                        Grid.Column="2"/>
+                </Grid>
                 <ActivityIndicator
                     IsRunning="{Binding IsRunning}"
                     VerticalOptions="CenterAndExpand"/>
-                
+
                 <!-- Button Login Command-->
                 <Button
                     Text="Login"
                     Command="{Binding LoginCommand}"
                     IsEnabled="{Binding IsEnabled}"
-                    HeightRequest="46"
     	            HorizontalOptions="FillAndExpand"/>
             </StackLayout>
         </ScrollView>

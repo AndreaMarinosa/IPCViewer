@@ -17,6 +17,9 @@
     public class ApiService
     {
 
+        /**
+         * Devulve una lista generica sin seguridad (Para recibir las ciudades)
+         */
         public async Task<Response> GetListAsync<T>(
             string urlBase,
             string servicePrefix,
@@ -24,13 +27,14 @@
         {
             try
             {
+                // HttpCliente -> Proporciona una clase base para enviar solicitudes HTTP y recibir respuestas HTTP de un recurso identificado por un URI.
                 var client = new HttpClient
                 {
                     BaseAddress = new Uri(urlBase)
                 };
 
-                var url = $"{servicePrefix}{controller}";
-                var response = await client.GetAsync(url);
+                var url = $"{servicePrefix}{controller}"; // api/[controller]
+                var response = await client.GetAsync(url); // Devuelve la respuesta del cliente a la url
                 var result = await response.Content.ReadAsStringAsync();
 
                 if (!response.IsSuccessStatusCode)
@@ -59,7 +63,10 @@
             }
         }
 
-
+        /**
+         * Devuelve una lista generica comprobando los token del usuario
+         * Para recibir listas de camaras / usuarios
+         */
         public async Task<Response> GetListAsync<T>(
              string urlBase,
              string servicePrefix,
@@ -85,7 +92,7 @@
                             return new Response
                             {
                                 IsSuccess = false,
-                                Message = result,
+                                Message = result
                             };
                         }
 
@@ -106,6 +113,9 @@
                     }
                 }
 
+        /**
+         * Recibir un token cuando te estas logeando para tener permisos en la aplicacion
+         */
         public async Task<Response> GetTokenAsync(
             string urlBase,
             string servicePrefix,
@@ -151,6 +161,9 @@
             }
         }
 
+        /**
+         * Insertar una camara desde la aplicacion movil
+         */
         public async Task<Response> PostAsync<T>(
             string urlBase,
             string servicePrefix,
@@ -198,6 +211,9 @@
             }
         }
 
+        /**
+         * Registrar un usuario
+         */
         public async Task<Response> RegisterUserAsync(
             string urlBase,
             string servicePrefix,

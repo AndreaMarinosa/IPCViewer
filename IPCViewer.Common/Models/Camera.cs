@@ -29,9 +29,6 @@
         [JsonProperty("user")]
         public User User { get; set; }
 
-        //[JsonProperty("imageFullPath")]
-        //public Uri ImageFullPath { get; set; }
-
         [JsonProperty("city")]
         public City City { get; set; }
 

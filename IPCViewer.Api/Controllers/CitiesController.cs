@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using IPCViewer.Api.Models;
-
-namespace IPCViewer.Api.Controllers
+﻿namespace IPCViewer.Api.Controllers
 {
+    using IPCViewer.Api.Data;
+    using Microsoft.AspNetCore.Mvc;
+
     [Route("api/[controller]")]
     [ApiController]
     public class CitiesController : Controller
@@ -29,6 +23,6 @@ namespace IPCViewer.Api.Controllers
 
 
         // GET: api/Cities/5
-        
+
     }
 }

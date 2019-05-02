@@ -18,7 +18,7 @@ namespace IPCViewer.Forms.ViewModels
             var mainViewModel = MainViewModel.GetInstance();
             App.Master.IsPresented = false;
 
-            switch (this.PageName)
+            switch (PageName)
             {
                 case "AboutPage":
                     await App.Navigator.PushAsync(new AboutPage());

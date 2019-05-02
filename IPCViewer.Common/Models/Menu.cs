@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace IPCViewer.Common.Models
+﻿namespace IPCViewer.Common.Models
 {
     public class Menu
     {

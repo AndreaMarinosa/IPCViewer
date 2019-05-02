@@ -37,10 +37,9 @@
 
         private async void LoadCamerasAsync()
         {
-            //var url = Application.Current.Resources["UrlAPI"].ToString();
-
+            var url = Application.Current.Resources["UrlAPI"].ToString();
             var response = await this.apiService.GetListAsync<Camera>(
-                "https://ipcviewerapi.azurewebsites.net",
+                url,
                 "/api",
                 "/Cameras",
                 "bearer",

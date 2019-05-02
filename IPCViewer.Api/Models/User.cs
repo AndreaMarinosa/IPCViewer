@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Identity;
-using Newtonsoft.Json;
-using System;
-using System.ComponentModel.DataAnnotations.Schema;
-
-namespace IPCViewer.Api.Models
+﻿namespace IPCViewer.Api.Models
 {
+    using Microsoft.AspNetCore.Identity;
+    using System.ComponentModel.DataAnnotations.Schema;
+
+    /**
+     * Clase Usuario que hereda de IdentityUsers (Usuarios de asp net core)
+     * Le anado unas nuevas propiedades
+     */
     public class User : IdentityUser
     {
         public string FirstName { get; set; }

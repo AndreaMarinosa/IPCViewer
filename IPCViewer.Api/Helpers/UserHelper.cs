@@ -1,20 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using IPCViewer.Api.Models;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-
-namespace IPCViewer.Api.Helpers
+﻿namespace IPCViewer.Api.Helpers
 {
-
+    using Models;
+    using Microsoft.AspNetCore.Identity;
+    using Microsoft.EntityFrameworkCore;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
-    using Microsoft.AspNetCore.Identity;
-    using Microsoft.EntityFrameworkCore;
-    using Api.Models;
 
     public class UserHelper : IUserHelper
     {
@@ -34,25 +25,25 @@ namespace IPCViewer.Api.Helpers
 
         public async Task<IdentityResult> AddUserAsync(User user, string password)
         {
-            return await this.userManager.CreateAsync(user, password);
+            return await userManager.CreateAsync(user, password);
         }
 
         public async Task AddUserToRoleAsync(User user, string roleName)
         {
-            await this.userManager.AddToRoleAsync(user, roleName);
+            await userManager.AddToRoleAsync(user, roleName);
         }
 
         public async Task<IdentityResult> ChangePasswordAsync(User user, string oldPassword, string newPassword)
         {
-            return await this.userManager.ChangePasswordAsync(user, oldPassword, newPassword);
+            return await userManager.ChangePasswordAsync(user, oldPassword, newPassword);
         }
 
         public async Task CheckRoleAsync(string roleName)
         {
-            var roleExists = await this.roleManager.RoleExistsAsync(roleName);
+            var roleExists = await roleManager.RoleExistsAsync(roleName);
             if (!roleExists)
             {
-                await this.roleManager.CreateAsync(new IdentityRole
+                await roleManager.CreateAsync(new IdentityRole
                 {
                     Name = roleName
                 });
@@ -61,17 +52,17 @@ namespace IPCViewer.Api.Helpers
 
         public async Task<User> GetUserByEmailAsync(string email)
         {
-            return await this.userManager.FindByEmailAsync(email);
+            return await userManager.FindByEmailAsync(email);
         }
 
         public async Task<bool> IsUserInRoleAsync(User user, string roleName)
         {
-            return await this.userManager.IsInRoleAsync(user, roleName);
+            return await userManager.IsInRoleAsync(user, roleName);
         }
 
         public async Task<SignInResult> LoginAsync(LoginViewModel model)
         {
-            return await this.signInManager.PasswordSignInAsync(
+            return await signInManager.PasswordSignInAsync(
                 model.Username,
                 model.Password,
                 model.RememberMe,
@@ -80,17 +71,17 @@ namespace IPCViewer.Api.Helpers
 
         public async Task LogoutAsync()
         {
-            await this.signInManager.SignOutAsync();
+            await signInManager.SignOutAsync();
         }
 
         public async Task<IdentityResult> UpdateUserAsync(User user)
         {
-            return await this.userManager.UpdateAsync(user);
+            return await userManager.UpdateAsync(user);
         }
 
         public async Task<SignInResult> ValidatePasswordAsync(User user, string password)
         {
-            return await this.signInManager.CheckPasswordSignInAsync(
+            return await signInManager.CheckPasswordSignInAsync(
                 user,
                 password,
                 false);
@@ -98,32 +89,32 @@ namespace IPCViewer.Api.Helpers
 
         public async Task<IdentityResult> ConfirmEmailAsync(User user, string token)
         {
-            return await this.userManager.ConfirmEmailAsync(user, token);
+            return await userManager.ConfirmEmailAsync(user, token);
         }
 
         public async Task<string> GenerateEmailConfirmationTokenAsync(User user)
         {
-            return await this.userManager.GenerateEmailConfirmationTokenAsync(user);
+            return await userManager.GenerateEmailConfirmationTokenAsync(user);
         }
 
         public async Task<User> GetUserByIdAsync(string userId)
         {
-            return await this.userManager.FindByIdAsync(userId);
+            return await userManager.FindByIdAsync(userId);
         }
 
         public async Task<string> GeneratePasswordResetTokenAsync(User user)
         {
-            return await this.userManager.GeneratePasswordResetTokenAsync(user);
+            return await userManager.GeneratePasswordResetTokenAsync(user);
         }
 
         public async Task<IdentityResult> ResetPasswordAsync(User user, string token, string password)
         {
-            return await this.userManager.ResetPasswordAsync(user, token, password);
+            return await userManager.ResetPasswordAsync(user, token, password);
         }
 
         public async Task<List<User>> GetAllUsersAsync()
         {
-            return await this.userManager.Users
+            return await userManager.Users
                 .Include(u => u.City)
                 .OrderBy(u => u.FirstName)
                 .ThenBy(u => u.LastName)
@@ -132,12 +123,12 @@ namespace IPCViewer.Api.Helpers
 
         public async Task RemoveUserFromRoleAsync(User user, string roleName)
         {
-            await this.userManager.RemoveFromRoleAsync(user, roleName);
+            await userManager.RemoveFromRoleAsync(user, roleName);
         }
 
         public async Task DeleteUserAsync(User user)
         {
-            await this.userManager.DeleteAsync(user);
+            await userManager.DeleteAsync(user);
         }
     }
 }

@@ -38,18 +38,20 @@
                                     VerticalOptions="CenterAndExpand"
                                     />
                                 <Image
-                                	Grid.Column="0"
-                                	HeightRequest="50"
-                                	Source="{Binding Icon}"
-                                	WidthRequest="50"
+                                    Grid.Row="0" 
+                                    Grid.Column="0"
+                                	  HeightRequest="50"
+                                	  Source="{Binding Icon}"
+                                	  WidthRequest="50"
                                     VerticalOptions="Center"
-                                    HorizontalOptions="Center">
-                                </Image>
+                                    HorizontalOptions="Center"/>
+
                                 <Label
-                                	Grid.Column="1"
-                                	FontAttributes="Bold"
-                                	VerticalOptions="Center"
-                                	Text="{Binding Title}">
+                                    Grid.Row="0" 
+                                    Grid.Column="1"
+                                	    FontAttributes="Bold"
+                                	    VerticalOptions="Center"
+                                	    Text="{Binding Title}">
                                 </Label>
                                 
                             </Grid>
