@@ -59,9 +59,9 @@
             this.IsRunning = true;
             this.IsEnabled = false;
 
-            var url = Application.Current.Resources["UrlAPI"].ToString();
+            //var url = Application.Current.Resources["UrlAPI"].ToString();
             var response = await this.apiService.GetListAsync<City>(
-                url,
+                "https://ipcviewerapi.azurewebsites.net",
                 "/api",
                 "/Cities");
 
@@ -194,9 +194,9 @@
                 UserName = this.Email
             };
 
-            var url = Application.Current.Resources["UrlAPI"].ToString();
+            //var url = Application.Current.Resources["UrlAPI"].ToString();
             var response = await this.apiService.RegisterUserAsync(
-                url,
+                "https://ipcviewerapi.azurewebsites.net",
                 "/api",
                 "/Account/PostUser",
                 request);

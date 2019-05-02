@@ -46,10 +46,10 @@
             <Color x:Key="PrimaryFontColor">#ffffff</Color>
             <Color x:Key="SecondaryFontColor">#000000</Color>
 
+
             <!-- Navigation Page styles -->
             <Style TargetType="NavigationPage">
                 <Setter Property="BarBackgroundColor" Value="{StaticResource PrimaryDark}" />
-
             </Style>
             
             <!-- Content page styles-->

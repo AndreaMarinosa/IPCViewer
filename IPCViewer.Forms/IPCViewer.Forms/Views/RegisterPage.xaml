@@ -10,44 +10,73 @@
             BindingContext="{Binding Register}">
             <StackLayout>
                 <StackLayout
-            	Padding="8">
+            	Padding="20">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
                             <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
 
+                        <!-- Email -->
                         <Image
-                            HeightRequest="50"
-                            Grid.RowSpan="2"
-                            Grid.Row="0"
+                            VerticalOptions="CenterAndExpand"
+                            WidthRequest="30"
+                            Grid.Row="0" 
+                            Grid.Column="0"
+                            Source="emailIcon"/>
+
+                        <Entry
+                    	    Grid.Column="1"
+                    	    Grid.Row="0"
+                    	    Keyboard="Email"
+                    	    Placeholder="Email..."
+                    	    Text="{Binding Email}"/>
+
+                        <!-- Pass -->
+                        <Image
+                            HeightRequest="40"
+                            Grid.Row="1" 
+                            Grid.Column="0"
+                            Source="passIcon"/>
+
+                        <Entry
+                    	    Grid.Column="1"
+                    	    Grid.Row="1"
+                    	    IsPassword="True"
+                    	    Placeholder="Password..."
+                    	    Text="{Binding Password}"/>
+
+                        <Image
+                            HeightRequest="30"
+                            Grid.Row="2"
                             Source="mainlyData"/>
 
                         <!-- Nombre -->
                         <Entry
                     	Grid.Column="1"
-                    	Grid.Row="0"
+                    	Grid.Row="2"
                     	Placeholder="Firstname..."
                     	Text="{Binding FirstName}"/>
 
-                        <!-- Apellido -->
+                        <!-- Apellido --><!--
                         <Entry
                     	Grid.Column="1"
                     	Grid.Row="1"
                     	Placeholder="Lastname..."
-                    	Text="{Binding LastName}"/>
+                    	Text="{Binding LastName}"/>-->
                         
                         <!-- City -->
                         <Image
+                            HeightRequest="37"
                             Grid.Row="3" 
                             Grid.Column="0"
                             Source="city"
@@ -62,36 +91,9 @@
                     	    Title="Select a city...">
                         </Picker>
 
-                        <!-- Email -->
-                        <Image
-                            VerticalOptions="CenterAndExpand"
-                            WidthRequest="40"
-                            Grid.Row="4" 
-                            Grid.Column="0"
-                            Source="emailIcon"/>
+                        
 
-                        <Entry
-                    	    Grid.Column="1"
-                    	    Grid.Row="4"
-                    	    Keyboard="Email"
-                    	    Placeholder="Email..."
-                    	    Text="{Binding Email}"/>
-
-                        <!-- Pass -->
-                        <Image
-                            HeightRequest="40"
-                            Grid.Row="5" 
-                            Grid.Column="0"
-                            Source="passIcon"/>
-
-                        <Entry
-                    	    Grid.Column="1"
-                    	    Grid.Row="5"
-                    	    IsPassword="True"
-                    	    Placeholder="Password..."
-                    	    Text="{Binding Password}"/>
-
-                        <!-- Confirm pass-->
+                        <!-- Confirm pass--><!--
                         <Image
                             HeightRequest="40"
                             Grid.Row="6" 
@@ -103,7 +105,7 @@
                     	    Grid.Row="6"
                     	    IsPassword="True"
                     	    Placeholder="Confirm password..."
-                    	    Text="{Binding Confirm}"/>
+                    	    Text="{Binding Confirm}"/>-->
                     </Grid>
                     
                     <ActivityIndicator

@@ -5,10 +5,6 @@
              BindingContext="{Binding Main, Source={StaticResource Locator}}"
          	Title="Cameras">
 
-    <!--<ContentPage.BindingContext>
-        <vm:CamerasViewModel />
-    </ContentPage.BindingContext>-->
-
     <ContentPage.ToolbarItems>
         <ToolbarItem Icon="add" Command="{Binding AddCameraCommand}"/>
     </ContentPage.ToolbarItems>

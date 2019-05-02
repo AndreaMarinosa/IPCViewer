@@ -65,9 +65,9 @@ namespace IPCViewer.Forms.ViewModels
             IsRunning = true;
             IsEnabled = false;
 
-            var url = Application.Current.Resources["UrlAPI"].ToString();
+            //var url = Application.Current.Resources["UrlAPI"].ToString();
             var response = await this.apiService.GetListAsync<City>(
-                url,
+                "https://ipcviewerapi.azurewebsites.net",
                 "/api",
                 "/Cities");
 
@@ -126,9 +126,9 @@ namespace IPCViewer.Forms.ViewModels
                 CreatedDate = DateTime.Now,
             };
 
-            var url = Application.Current.Resources["UrlAPI"].ToString();
+            //var url = Application.Current.Resources["UrlAPI"].ToString();
             var response = await this.apiService.PostAsync(
-                url,
+                "https://ipcviewerapi.azurewebsites.net",
                 "/api",
                 "/Cameras",
                 camera,

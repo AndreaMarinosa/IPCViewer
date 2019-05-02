@@ -28,7 +28,7 @@ namespace IPCViewer.Forms.ViewModels
                     break;
                 default:
                     MainViewModel.GetInstance().ControlUsersPage = new ControlUsersPage();
-                    Application.Current.MainPage = new NavigationPage(new ControlUsersPage());
+                    Application.Current.MainPage = new /*NavigationPage(new */ControlUsersPage(/*)*/);
                     break;
             }
         }
