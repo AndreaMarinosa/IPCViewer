@@ -93,23 +93,6 @@
             {
                 return this.BadRequest("Invalid city");
             }
-            // Image
-
-            //var imageUrl = string.Empty;
-            //if (camera.ImageArray != null && camera.ImageArray.Length > 0)
-            //{
-            //    var stream = new MemoryStream(camera.ImageArray);
-            //    var guid = Guid.NewGuid().ToString();
-            //    var file = $"{guid}.jpg";
-            //    var folder = "wwwroot\\images\\Cameras";
-            //    var fullPath = $"~/images/Cameras/{file}";
-            //    var response = FilesHelper.UploadPhoto(stream, folder, file);
-
-            //    if (response)
-            //    {
-            //        imageUrl = fullPath;
-            //    }
-            //}
 
             var entityCamera = new Camera
             {

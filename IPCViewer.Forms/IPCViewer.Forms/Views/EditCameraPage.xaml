@@ -1,0 +1,151 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="IPCViewer.Forms.Views.EditCameraPage"
+             BindingContext="{Binding Main, Source={StaticResource Locator}}"
+             Title="Edit camera">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout
+                Padding="10">
+                <Image
+                    HeightRequest="150"
+                    Source="{Binding ImageUrl}"/>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <!-- Name -->
+                    <Label
+                        Grid.Column="0"
+                        Grid.Row="0"
+                        Text="Name"/>
+
+                    <Entry
+                        Grid.Column="1"
+                        Grid.Row="0"
+                        Placeholder="Camera name"
+                        Text="{Binding Camera.Name}"/>
+
+                    <!-- Latitude -->
+                    <Label
+                        Grid.Column="0"
+                        Grid.Row="1"
+                        Text="Latitude"/>
+
+                    <Entry
+                        Grid.Column="1"
+                        Grid.Row="1"
+                        Placeholder="Latitude"
+                        Text="{Binding Camera.Latitude}"
+                        Keyboard="Numeric"/>
+
+                    <!-- Longitude -->
+                    <Label
+                        Grid.Column="0"
+                        Grid.Row="2"
+                        Text="Longitude"/>
+
+                    <Entry
+                        Grid.Column="1"
+                        Grid.Row="2"
+                        Placeholder="Longitude"
+                        Text="{Binding Camera.Longitude}"
+                        Keyboard="Numeric"/>
+
+                    <!-- City -->
+                    <!--
+                    <Label
+                        Grid.Column="0"
+                        Grid.Row="3"
+                        Text="City"/>-->
+
+
+                    <!-- Image Url -->
+                    <Label
+                        Grid.Column="0"
+                        Grid.Row="3"
+                        Text="Url"/>
+
+                    <Entry
+                        Grid.Column="1"
+                        Grid.Row="3"
+                        Placeholder="ImageUrl"
+                        Text="{Binding Camera.ImageUrl}"/>
+
+                    <!-- Created Date -->
+                    <Label
+                        Grid.Column="0"
+                        Grid.Row="4"
+                        Text="Created Date"/>
+
+                    <Entry
+                        Grid.Column="1"
+                        Grid.Row="4"
+                        Text="{Binding Camera.CreatedDate}"
+                        IsReadOnly="True"/>
+
+                    <!-- User -->
+                    <Label
+                        Grid.Column="0"
+                        Grid.Row="5"
+                        Text="User"/>
+
+                    <Entry
+                        Grid.Column="1"
+                        Grid.Row="5"
+                        Text="{Binding Camera.User}"
+                        IsReadOnly="True"/>
+
+                    <!-- Comments -->
+                    <Label
+                        Grid.Column="0"
+                        Grid.Row="6"
+                        Text="Comments"/>
+
+                    <Entry
+                        Grid.Column="1"
+                        Grid.Row="6"
+                        Placeholder="Comments"
+                        Text="{Binding Camera.Comments}"
+                        />
+                </Grid>
+                
+                <ActivityIndicator
+                	IsRunning="{Binding IsRunning}"
+                	VerticalOptions="CenterAndExpand"/>
+
+                <StackLayout
+                	Orientation="Horizontal">
+                    <Button
+                    	Command="{Binding SaveCommand}"
+                    	HorizontalOptions="FillAndExpand"
+                    	IsEnabled="{Binding IsEnabled}"
+                    	Text="Save">
+                    </Button>
+                    <Button
+                        BorderColor="Red"
+                    	Command="{Binding DeleteCommand}"
+                    	HorizontalOptions="FillAndExpand"
+                    	IsEnabled="{Binding IsEnabled}"
+                    	Text="Delete"
+                    	TextColor="Red">
+                    </Button>
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

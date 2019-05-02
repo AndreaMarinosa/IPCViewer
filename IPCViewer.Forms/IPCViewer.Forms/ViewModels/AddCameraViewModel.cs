@@ -126,9 +126,9 @@ namespace IPCViewer.Forms.ViewModels
                 CreatedDate = DateTime.Now,
             };
 
-            //var url = Application.Current.Resources["UrlAPI"].ToString();
+            var url = Application.Current.Resources["UrlAPI"].ToString();
             var response = await this.apiService.PostAsync(
-                "https://ipcviewerapi.azurewebsites.net",
+                url,
                 "/api",
                 "/Cameras",
                 camera,
@@ -145,7 +145,7 @@ namespace IPCViewer.Forms.ViewModels
             }
 
             var newCamera = (Camera)response.Result;
-            MainViewModel.GetInstance().Cameras.Cameras.Add(newCamera);
+            MainViewModel.GetInstance().Cameras.AddCamera(newCamera);
 
             this.IsRunning = false;
             this.IsEnabled = true;

@@ -26,8 +26,11 @@
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto"/>
-                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/>
                                 </Grid.ColumnDefinitions>
+                                <Grid.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding SelectCameraCommand}"/>
+                                </Grid.GestureRecognizers>
                                 <Image
                                 	Grid.Column="0"
                                 	Source="{Binding ImageUrl}"

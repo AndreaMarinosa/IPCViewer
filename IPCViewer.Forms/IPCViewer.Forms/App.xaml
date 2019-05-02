@@ -83,6 +83,7 @@
            <!-- Label styles -->
             <Style TargetType="Label">
                 <Setter Property="FontFamily" Value="{StaticResource MediumFont}"/>
+                <Setter Property="VerticalOptions" Value="CenterAndExpand"/>
             </Style>
 
             <!-- Entry styles -->

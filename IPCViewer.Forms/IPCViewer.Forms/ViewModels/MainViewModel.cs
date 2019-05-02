@@ -36,6 +36,8 @@ namespace IPCViewer.Forms.ViewModels
 
         public ICommand AddCameraCommand { get { return new RelayCommand(this.GoAddCamera); } }
 
+        public EditCameraViewModel EditCamera { get; set; }
+
         private void GoAddCamera()
         {
             this.AddCamera = new AddCameraViewModel();
