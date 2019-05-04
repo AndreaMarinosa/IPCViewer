@@ -28,6 +28,9 @@
     <item name="windowActionModeOverlay">true</item>
     
     <item name="android:datePickerDialogTheme">@style/AppCompatDialogStyle</item>
+
+    <!-- Action bar height -->
+    <!--<item name="android:actionBarSize">250dp</item>-->
   </style>
 
   <style name="AppCompatDialogStyle" parent="Theme.AppCompat.Light.Dialog">

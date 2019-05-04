@@ -15,6 +15,7 @@ namespace IPCViewer.Forms.Views
         public LoginPage()
         {
             InitializeComponent();
+
         }
     }
 }

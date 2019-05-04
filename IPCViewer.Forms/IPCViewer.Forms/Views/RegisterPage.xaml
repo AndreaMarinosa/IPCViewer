@@ -3,97 +3,156 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="IPCViewer.Forms.Views.RegisterPage"
              BindingContext="{Binding Main, Source={StaticResource Locator}}"
-             Title="Register">
+             NavigationPage.HasNavigationBar="False">
 
     <ContentPage.Content>
-        <ScrollView
-            BindingContext="{Binding Register}">
-            <StackLayout>
-                <StackLayout
-            	Padding="20">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
-                        </Grid.RowDefinitions>
+        <StackLayout
+                Spacing="10">
 
-                        <!-- Email -->
-                        <Image
+            <Grid 
+                  Grid.ColumnSpan="3"  
+                  ColumnSpacing="0" 
+                  RowSpacing="0" 
+                  Padding="0" 
+                  Margin="0" >
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <BoxView   
+                    VerticalOptions="FillAndExpand"
+                    HorizontalOptions="FillAndExpand"
+                    BackgroundColor="{StaticResource Primary}"
+                    Grid.Row="0"
+                    Grid.RowSpan="3"
+                    Grid.ColumnSpan="2"/>
+
+                <Label
+                    FontSize="Medium"
+                    TextColor="{StaticResource PrimaryFontColor}"
+                    Grid.Column="1"
+                    Grid.Row="1" 
+                    Text="Welcome to"
+                    VerticalOptions="EndAndExpand"
+                    Margin="0, 0, 0, 5"/>
+
+                <Label
+                    Margin="0, 0, 0, 30"
+                    FontSize="40"
+                    TextColor="{StaticResource PrimaryFontColor}"
+                    Grid.Column="1"
+                    Grid.Row="2" 
+                    Text="IPCViewer"
+                    VerticalOptions="StartAndExpand"/>
+
+                <Image
+                    VerticalOptions="EndAndExpand"
+                    Margin="30"
+                    Grid.Column="0"
+                    Grid.Row="1"
+                	Grid.RowSpan="2"
+                    HeightRequest="100"
+                	Source="logoIPCViewerLigthLarge"/>
+            </Grid>
+
+            <ScrollView
+            BindingContext="{Binding Register}">
+                <StackLayout>
+                    <StackLayout
+            	Padding="20">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+
+                            <!-- Email -->
+                            <Image
                             VerticalOptions="CenterAndExpand"
                             WidthRequest="30"
                             Grid.Row="0" 
                             Grid.Column="0"
                             Source="emailIcon"/>
 
-                        <Entry
+                            <Entry
                     	    Grid.Column="1"
                     	    Grid.Row="0"
                     	    Keyboard="Email"
                     	    Placeholder="Email..."
                     	    Text="{Binding Email}"/>
 
-                        <!-- Pass -->
-                        <Image
+                            <!-- Pass -->
+                            <Image
                             HeightRequest="40"
                             Grid.Row="1" 
                             Grid.Column="0"
-                            Source="passIcon"/>
+                            Source="iconPass"/>
 
-                        <Entry
+                            <Entry
                     	    Grid.Column="1"
                     	    Grid.Row="1"
                     	    IsPassword="True"
                     	    Placeholder="Password..."
                     	    Text="{Binding Password}"/>
 
-                        <Image
+                            <Image
                             HeightRequest="30"
                             Grid.Row="2"
                             Source="mainlyData"/>
 
-                        <!-- Nombre -->
-                        <Entry
+                            <!-- Nombre -->
+                            <Entry
                     	Grid.Column="1"
                     	Grid.Row="2"
                     	Placeholder="Firstname..."
                     	Text="{Binding FirstName}"/>
 
-                        <!-- Apellido --><!--
+                            <!-- Apellido -->
+                            <!--
                         <Entry
                     	Grid.Column="1"
                     	Grid.Row="1"
                     	Placeholder="Lastname..."
                     	Text="{Binding LastName}"/>-->
-                        
-                        <!-- City -->
-                        <Image
+
+                            <!-- City -->
+                            <Image
                             HeightRequest="37"
                             Grid.Row="3" 
                             Grid.Column="0"
                             Source="city"
                             VerticalOptions="CenterAndExpand"/>
 
-                        <Picker
+                            <Picker
                     	    Grid.Column="1"
                     	    Grid.Row="3"
                     	    ItemDisplayBinding="{Binding Name}"
                     	    ItemsSource="{Binding Cities}"
                     	    SelectedItem="{Binding City}"
                     	    Title="Select a city...">
-                        </Picker>
+                            </Picker>
 
-                        
 
-                        <!-- Confirm pass--><!--
+
+                            <!-- Confirm pass-->
+                            <!--
                         <Image
                             HeightRequest="40"
                             Grid.Row="6" 
@@ -106,23 +165,27 @@
                     	    IsPassword="True"
                     	    Placeholder="Confirm password..."
                     	    Text="{Binding Confirm}"/>-->
-                    </Grid>
-                    
-                    <ActivityIndicator
+                        </Grid>
+
+                        <ActivityIndicator
                 	IsRunning="{Binding IsRunning}"
                 	VerticalOptions="CenterAndExpand">
-                    </ActivityIndicator>
-                    
-                    <Button
+                        </ActivityIndicator>
+
+                        <Button
                 	    Command="{Binding RegisterCommand}"
                 	    HeightRequest="46"
                 	    HorizontalOptions="FillAndExpand"
                 	    IsEnabled="{Binding IsEnabled}"
                 	    Text="Register New User">
-                    </Button>
+                        </Button>
+                    </StackLayout>
+
                 </StackLayout>
 
-            </StackLayout>
-        </ScrollView>
+            </ScrollView>
+        </StackLayout>
+
     </ContentPage.Content>
+
 </ContentPage>

@@ -60,12 +60,12 @@
             <!-- Tabbed Page styles-->
             <Style TargetType="TabbedPage">
                 <Setter Property="BarBackgroundColor" Value="{StaticResource PrimaryLight}"/>
-                <Setter Property="BackgroundColor" Value="{StaticResource Secondary}"/>
+                <!--<Setter Property="BackgroundColor" Value="{StaticResource Secondary}"/>-->
             </Style>
 
             <!-- Selectable items view Styles -->
             <Style TargetType="SelectableItemsView">
-                <Setter Property="BackgroundColor" Value="{StaticResource Secondary}"/>
+                <!--<Setter Property="BackgroundColor" Value="{StaticResource Secondary}"/>-->
             </Style>
 
             <!-- Button Styles -->
@@ -94,7 +94,7 @@
             
             <!-- Box View Styles-->
             <Style TargetType="BoxView">
-                <Setter Property="Color" Value="{StaticResource SecondaryDark}"/>
+                <!--<Setter Property="Color" Value="{StaticResource SecondaryDark}"/>-->
             </Style>
 
             <!-- Picker Styles -->
