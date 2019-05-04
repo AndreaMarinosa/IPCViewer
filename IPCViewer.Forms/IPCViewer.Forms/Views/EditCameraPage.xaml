@@ -5,12 +5,13 @@
              BindingContext="{Binding Main, Source={StaticResource Locator}}"
              Title="Edit camera">
     <ContentPage.Content>
-        <ScrollView>
+        <ScrollView
+            BindingContext="{Binding EditCamera}">
             <StackLayout
                 Padding="10">
                 <Image
-                    HeightRequest="150"
-                    Source="{Binding ImageUrl}"/>
+                    HeightRequest="130"
+                    Source="{Binding Camera.ImageUrl}"/>
 
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -87,7 +88,7 @@
                         Text="{Binding Camera.ImageUrl}"/>
 
                     <!-- Created Date -->
-                    <Label
+                    <!--<Label
                         Grid.Column="0"
                         Grid.Row="4"
                         Text="Created Date"/>
@@ -96,10 +97,10 @@
                         Grid.Column="1"
                         Grid.Row="4"
                         Text="{Binding Camera.CreatedDate}"
-                        IsReadOnly="True"/>
+                        IsReadOnly="True"/>-->
 
                     <!-- User -->
-                    <Label
+                    <!--<Label
                         Grid.Column="0"
                         Grid.Row="5"
                         Text="User"/>
@@ -108,7 +109,7 @@
                         Grid.Column="1"
                         Grid.Row="5"
                         Text="{Binding Camera.User}"
-                        IsReadOnly="True"/>
+                        IsReadOnly="True"/>-->
 
                     <!-- Comments -->
                     <Label
@@ -131,19 +132,21 @@
                 <StackLayout
                 	Orientation="Horizontal">
                     <Button
+                        BorderColor="{StaticResource PrimaryLight}"
+                        TextColor="{StaticResource PrimaryLight}"
                     	Command="{Binding SaveCommand}"
                     	HorizontalOptions="FillAndExpand"
                     	IsEnabled="{Binding IsEnabled}"
-                    	Text="Save">
-                    </Button>
+                    	Text="Save"/>
+
                     <Button
                         BorderColor="Red"
                     	Command="{Binding DeleteCommand}"
                     	HorizontalOptions="FillAndExpand"
                     	IsEnabled="{Binding IsEnabled}"
                     	Text="Delete"
-                    	TextColor="Red">
-                    </Button>
+                    	TextColor="Red"/>
+
                 </StackLayout>
             </StackLayout>
         </ScrollView>

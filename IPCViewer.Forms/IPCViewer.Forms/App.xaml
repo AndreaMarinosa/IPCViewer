@@ -94,7 +94,7 @@
             
             <!-- Box View Styles-->
             <Style TargetType="BoxView">
-                <Setter Property="Color" Value="{StaticResource Secondary}"/>
+                <Setter Property="Color" Value="{StaticResource SecondaryDark}"/>
             </Style>
 
             <!-- Picker Styles -->

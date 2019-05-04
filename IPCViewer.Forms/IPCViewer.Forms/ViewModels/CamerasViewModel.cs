@@ -59,6 +59,8 @@
 
             this.myCameras= (List<Camera>)response.Result;
             RefreshCamerasList();
+            IsRefreshing = false;
+
         }
 
         public void AddCamera(Camera camera)
