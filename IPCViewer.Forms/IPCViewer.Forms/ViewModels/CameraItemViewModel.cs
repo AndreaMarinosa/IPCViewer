@@ -1,5 +1,4 @@
-﻿
-namespace IPCViewer.Forms.ViewModels
+﻿namespace IPCViewer.Forms.ViewModels
 {
     using GalaSoft.MvvmLight.Command;
     using IPCViewer.Common.Models;
@@ -13,9 +12,9 @@ namespace IPCViewer.Forms.ViewModels
      */
     public class CameraItemViewModel : Camera
     {
-        public ICommand SelectCommand => new RelayCommand(this.SelectProduct);
+        public ICommand SelectCameraCommand => new RelayCommand(this.SelectCamera);
 
-        private async void SelectProduct()
+        private async void SelectCamera()
         {
             MainViewModel.GetInstance().EditCamera = new EditCameraViewModel((Camera)this);
             await App.Navigator.PushAsync(new EditCameraPage());

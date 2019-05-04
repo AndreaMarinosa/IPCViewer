@@ -113,21 +113,21 @@
 
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteProduct([FromRoute] int id)
+        public async Task<IActionResult> DeleteCamera([FromRoute] int id)
         {
             if (!ModelState.IsValid)
             {
                 return this.BadRequest(ModelState);
             }
 
-            var product = await this.cameraRepository.GetByIdAsync(id);
-            if (product == null)
+            var camera= await this.cameraRepository.GetByIdAsync(id);
+            if (camera == null)
             {
                 return this.NotFound();
             }
 
-            await this.cameraRepository.DeleteAsync(product);
-            return Ok(product);
+            await this.cameraRepository.DeleteAsync(camera);
+            return Ok(camera);
         }
     }
 }

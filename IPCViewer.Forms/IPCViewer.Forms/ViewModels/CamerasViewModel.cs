@@ -57,13 +57,13 @@
                 return;
             }
 
-            myCameras= (List<Camera>)response.Result;
+            this.myCameras= (List<Camera>)response.Result;
             RefreshCamerasList();
         }
 
         public void AddCamera(Camera camera)
         {
-            myCameras.Add(camera);
+            this.myCameras.Add(camera);
             RefreshCamerasList();
         }
 
@@ -76,13 +76,13 @@
                 .Where(c => c.Id == camera.Id)
                 .FirstOrDefault();
 
-            // Eliminamos el antiguo producto
+            // Eliminamos la antigua camara
             if(oldCamera != null)
             {
                 myCameras.Remove(oldCamera);
             }
 
-            // Aniadimos el nuevo
+            // Aniadimos la nueva
             myCameras.Add(camera);
             RefreshCamerasList();
         }
@@ -91,9 +91,10 @@
          * Elimina la camara cuyo id es pasado
          * por parametro
          */
-        private void DeleteCamera(int id)
+        public void DeleteCamera(int id)
         {
-            var oldCamera = myCameras.Where(c => c.Id == id).FirstOrDefault();
+            var oldCamera = myCameras
+                .Where(c => c.Id == id).FirstOrDefault();
             if (oldCamera != null)
             {
                 myCameras.Remove(oldCamera);
@@ -106,7 +107,7 @@
         {
             // ObservableCollection de la Clase CameraItemViewModel -> (Camera + Comando)
             Cameras = new ObservableCollection<CameraItemViewModel>(
-                myCameras.Select(c => new CameraItemViewModel // Por cada camera se creara una nueva instancia de CameraItemViewModel
+                this.myCameras.Select(c => new CameraItemViewModel // Por cada camera se creara una nueva instancia de CameraItemViewModel
             {
                 Id = c.Id,
                 ImageUrl = c.ImageUrl,
