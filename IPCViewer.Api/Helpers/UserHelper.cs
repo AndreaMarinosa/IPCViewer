@@ -117,7 +117,6 @@
             return await userManager.Users
                 .Include(u => u.City)
                 .OrderBy(u => u.FirstName)
-                .ThenBy(u => u.LastName)
                 .ToListAsync();
         }
 

@@ -122,7 +122,6 @@ namespace IPCViewer.Api.Controllers
             user = new Models.User // Api/Models
             {
                 FirstName = request.FirstName,
-                LastName = request.LastName,
                 Email = request.Email,
                 UserName = request.Email,
                 CityId = request.CityId,
@@ -238,7 +237,6 @@ namespace IPCViewer.Api.Controllers
         //        }
 
         //        userEntity.FirstName = user.FirstName;
-        //        userEntity.LastName = user.LastName;
         //        userEntity.CityId = user.CityId;
         //        userEntity.Address = user.Address;
         //        userEntity.PhoneNumber = user.PhoneNumber;

@@ -129,7 +129,6 @@ namespace IPCViewer.Api.Services
             var user = new User // Model.User
             {
                 FirstName = firstName,
-                LastName = lastName,
                 Email = userName,
                 UserName = userName,
                 City = context.City.FirstOrDefault(),

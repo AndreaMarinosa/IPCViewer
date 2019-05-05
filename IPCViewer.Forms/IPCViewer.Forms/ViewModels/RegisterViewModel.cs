@@ -18,13 +18,9 @@
 
         public string FirstName { get; set; }
 
-        public string LastName { get; set; }
-
         public string Email { get; set; }
 
         public string Password { get; set; }
-
-        public string Confirm { get; set; }
 
         private readonly ApiService apiService;
 
@@ -90,10 +86,8 @@
             this.IsEnabled = true;
             LoadCities();
             FirstName = "Andrea2";
-            LastName = "lopez";
             Email = "q@shitmail.me";
             Password = "123456";
-            Confirm = "123456";
         }
 
 
@@ -108,15 +102,7 @@
                 return;
             }
 
-            if (string.IsNullOrEmpty(this.LastName))
-            {
-                await Application.Current.MainPage.DisplayAlert(
-                    "Error",
-                    "You must enter the last name.",
-                    "Accept");
-                return;
-            }
-
+            
             if (string.IsNullOrEmpty(this.Email))
             {
                 await Application.Current.MainPage.DisplayAlert(
@@ -162,24 +148,7 @@
                 return;
             }
 
-            if (string.IsNullOrEmpty(this.Confirm))
-            {
-                await Application.Current.MainPage.DisplayAlert(
-                    "Error",
-                    "You must enter a password confirm.",
-                    "Accept");
-                return;
-            }
-
-            if (!this.Password.Equals(this.Confirm))
-            {
-                await Application.Current.MainPage.DisplayAlert(
-                    "Error",
-                    "The password and the confirm do not match.",
-                    "Accept");
-                return;
-            }
-
+            // TODO: More alerts
             this.IsRunning = true;
             this.IsEnabled = false;
 
@@ -189,7 +158,6 @@
                 City = this.City,
                 Email = this.Email,
                 FirstName = this.FirstName,
-                LastName = this.LastName,
                 Password = this.Password,
                 UserName = this.Email
             };

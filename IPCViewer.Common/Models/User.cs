@@ -8,9 +8,6 @@
         [JsonProperty("firstName")]
         public string FirstName { get; set; }
 
-        [JsonProperty("lastName")]
-        public string LastName { get; set; }
-
         [JsonProperty("id")]
         public Guid Id { get; set; }
 

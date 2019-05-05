@@ -124,14 +124,6 @@
                     	    Placeholder="Firstname..."
                     	    Text="{Binding FirstName}"/>
 
-                            <!-- Apellido -->
-                            <!--
-                        <Entry
-                    	Grid.Column="1"
-                    	Grid.Row="1"
-                    	Placeholder="Lastname..."
-                    	Text="{Binding LastName}"/>-->
-
                             <!-- City -->
                             <Image
                             HeightRequest="37"
@@ -148,23 +140,6 @@
                     	    SelectedItem="{Binding City}"
                     	    Title="Select a city...">
                             </Picker>
-
-
-
-                            <!-- Confirm pass-->
-                            <!--
-                        <Image
-                            HeightRequest="40"
-                            Grid.Row="6" 
-                            Grid.Column="0"
-                            Source="passIcon"/>
-
-                        <Entry
-                    	    Grid.Column="1"
-                    	    Grid.Row="6"
-                    	    IsPassword="True"
-                    	    Placeholder="Confirm password..."
-                    	    Text="{Binding Confirm}"/>-->
                         </Grid>
 
                         <ActivityIndicator

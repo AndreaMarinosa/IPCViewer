@@ -11,8 +11,6 @@
     {
         public string FirstName { get; set; }
 
-        public string LastName { get; set; }
-
         public override bool EmailConfirmed { get => base.EmailConfirmed; set => base.EmailConfirmed = value; }
 
         [NotMapped]
