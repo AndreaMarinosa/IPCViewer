@@ -4,9 +4,11 @@ namespace IPCViewer.Forms.ViewModels
 {
 
     using GalaSoft.MvvmLight.Command;
+    using IPCViewer.Common.Helpers;
     using IPCViewer.Common.Models;
     using IPCViewer.Common.Services;
     using IPCViewer.Forms.Views;
+    using Newtonsoft.Json;
     using System.Windows.Input;
     using Xamarin.Forms;
 
@@ -18,6 +20,9 @@ namespace IPCViewer.Forms.ViewModels
         private readonly ApiService apiService;
 
         #region Properties
+
+        public bool IsRemember { get; set; }
+
         public bool IsRunning
         {
             get => this._isRunning;
@@ -47,6 +52,8 @@ namespace IPCViewer.Forms.ViewModels
             IsEnabled = true;
             Email = "andreamarinosalopez@gmail.com";
             Password = "123456";
+            IsRemember = true;
+
         }
 
 
@@ -96,6 +103,14 @@ namespace IPCViewer.Forms.ViewModels
             mainViewModel.Cameras = new CamerasViewModel();
             mainViewModel.UserEmail = this.Email;
             mainViewModel.UserPassword = this.Password;
+
+
+            // Guardamos los datos en persistencia (El email, la password, y el remember)
+            Settings.IsRemember = IsRemember;
+            Settings.UserEmail = Email;
+            Settings.UserPassword = Password;
+            Settings.Token = JsonConvert.SerializeObject(token); // coge el token y lo guarda en un string
+
             Application.Current.MainPage = new /*NavigationPage(new */MasterPage()/*)*/;
 
         }

@@ -114,7 +114,6 @@
                     
                 <Button
                 	Command="{Binding SaveCommand}"
-                	
                 	IsEnabled="{Binding IsEnabled}"
                 	Text="Save">
                 </Button>

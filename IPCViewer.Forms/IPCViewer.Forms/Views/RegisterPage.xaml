@@ -3,11 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="IPCViewer.Forms.Views.RegisterPage"
              BindingContext="{Binding Main, Source={StaticResource Locator}}"
-             NavigationPage.HasNavigationBar="False">
+            >
 
     <ContentPage.Content>
-        <StackLayout
-                Spacing="10">
+        <StackLayout 
+             Spacing="10">
 
             <Grid 
                   Grid.ColumnSpan="3"  
@@ -65,18 +65,18 @@
 
             <ScrollView
             BindingContext="{Binding Register}">
-                <StackLayout>
-                    <StackLayout
-            	Padding="20">
-                        <Grid>
+                <StackLayout
+            	    Padding="8">
+                        <Grid
+                            Padding="12"
+                            ColumnSpacing="10"
+                            RowSpacing="10">
+
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="*"/>
-                                <RowDefinition Height="*"/>
-                                <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="*"/>
                                 <RowDefinition Height="*"/>
                                 <RowDefinition Height="*"/>
@@ -100,7 +100,7 @@
 
                             <!-- Pass -->
                             <Image
-                            HeightRequest="40"
+                            HeightRequest="45"
                             Grid.Row="1" 
                             Grid.Column="0"
                             Source="iconPass"/>
@@ -112,17 +112,17 @@
                     	    Placeholder="Password..."
                     	    Text="{Binding Password}"/>
 
-                            <Image
-                            HeightRequest="30"
-                            Grid.Row="2"
-                            Source="mainlyData"/>
-
                             <!-- Nombre -->
+                            <Image
+                            HeightRequest="10"
+                            Grid.Row="2"
+                            Source="userIcon"/>
+
                             <Entry
-                    	Grid.Column="1"
-                    	Grid.Row="2"
-                    	Placeholder="Firstname..."
-                    	Text="{Binding FirstName}"/>
+                    	    Grid.Column="1"
+                    	    Grid.Row="2"
+                    	    Placeholder="Firstname..."
+                    	    Text="{Binding FirstName}"/>
 
                             <!-- Apellido -->
                             <!--
@@ -168,8 +168,8 @@
                         </Grid>
 
                         <ActivityIndicator
-                	IsRunning="{Binding IsRunning}"
-                	VerticalOptions="CenterAndExpand">
+                    	IsRunning="{Binding IsRunning}"
+                	    VerticalOptions="CenterAndExpand">
                         </ActivityIndicator>
 
                         <Button
@@ -179,13 +179,8 @@
                 	    IsEnabled="{Binding IsEnabled}"
                 	    Text="Register New User">
                         </Button>
-                    </StackLayout>
-
                 </StackLayout>
-
             </ScrollView>
         </StackLayout>
-
     </ContentPage.Content>
-
 </ContentPage>

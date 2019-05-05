@@ -59,7 +59,7 @@
             
             <!-- Tabbed Page styles-->
             <Style TargetType="TabbedPage">
-                <Setter Property="BarBackgroundColor" Value="{StaticResource PrimaryLight}"/>
+                <Setter Property="BarBackgroundColor" Value="{StaticResource PrimaryDark}"/>
                 <!--<Setter Property="BackgroundColor" Value="{StaticResource Secondary}"/>-->
             </Style>
 

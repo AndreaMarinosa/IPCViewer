@@ -6,6 +6,7 @@ namespace IPCViewer.Forms.ViewModels
 {
     using System.Windows.Input;
     using GalaSoft.MvvmLight.Command;
+    using IPCViewer.Common.Helpers;
     using Views;
     using Xamarin.Forms;
 
@@ -26,7 +27,18 @@ namespace IPCViewer.Forms.ViewModels
                 case "SetupPage":
                     await App.Navigator.PushAsync(new SetupPage());
                     break;
+
+                case "MapsPage":
+                    await App.Navigator.PushAsync(new MapsPage());
+                    break;
+
                 default:
+                    // Cuando cierre sesion el usuario, que se quiten los valores de persistencia
+                    Settings.IsRemember = false;
+                    Settings.Token = string.Empty;
+                    Settings.UserEmail = string.Empty;
+                    Settings.UserPassword = string.Empty;
+
                     MainViewModel.GetInstance().ControlUsersPage = new ControlUsersPage();
                     Application.Current.MainPage = new /*NavigationPage(new */ControlUsersPage(/*)*/);
                     break;

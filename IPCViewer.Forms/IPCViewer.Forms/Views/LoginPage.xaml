@@ -3,25 +3,25 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="IPCViewer.Forms.Views.LoginPage"
              BindingContext="{Binding Main, Source={StaticResource Locator}}"
-             NavigationPage.HasNavigationBar="False">
+             >
 
     <ContentPage.Content>
         <StackLayout 
              Spacing="10">
-            
+
             <Grid 
                   Grid.ColumnSpan="3"  
                   ColumnSpacing="0" 
                   RowSpacing="0" 
                   Padding="0" 
                   Margin="0" >
-                
+
                 <Grid.RowDefinitions>
                     <RowDefinition Height="50"/>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                
+
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="*"/>
@@ -34,7 +34,7 @@
                     Grid.Row="0"
                     Grid.RowSpan="3"
                     Grid.ColumnSpan="2"/>
-                
+
                 <Label
                     FontSize="Medium"
                     TextColor="{StaticResource PrimaryFontColor}"
@@ -52,7 +52,7 @@
                     Grid.Row="2" 
                     Text="IPCViewer"
                     VerticalOptions="StartAndExpand"/>
-                
+
                 <Image
                     VerticalOptions="EndAndExpand"
                     Margin="30"
@@ -112,6 +112,7 @@
                         Placeholder="Password"
                         Text="{Binding Password}"/>
 
+                        <!-- Remember me -->
                         <Label
                         Grid.Row="2"
                         Grid.Column="1"
@@ -121,7 +122,9 @@
 
                         <Switch
                         Grid.Row="2"
-                        Grid.Column="2"/>
+                        Grid.Column="2"
+                        IsToggled="{Binding IsRemember}"/>
+                    
                     </Grid>
                     <ActivityIndicator
                     IsRunning="{Binding IsRunning}"

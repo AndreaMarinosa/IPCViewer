@@ -16,6 +16,7 @@ namespace IPCViewer.Forms.ViewModels
     {
         public ObservableCollection<MenuItemViewModel> Menus { get; set; }
 
+
         private static MainViewModel _instance;
 
         public RegisterViewModel Register { get; set; }
@@ -68,6 +69,13 @@ namespace IPCViewer.Forms.ViewModels
                     Icon = "setup",
                     PageName = "SetupPage",
                     Title = "Setup"
+                },
+
+                new Menu
+                {
+                    Icon = null,
+                    PageName = "MapsPage",
+                    Title= "Map"
                 },
 
                 new Menu

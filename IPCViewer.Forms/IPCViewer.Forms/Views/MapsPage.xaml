@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:Maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
+             BindingContext="{Binding Main, Source={StaticResource Locator}}"
+             x:Class="IPCViewer.Forms.Views.MapsPage"
+             Title="Map">
+    
+    <StackLayout>
+        <Maps:Map 
+            HorizontalOptions="FillAndExpand" 
+            VerticalOptions="FillAndExpand" />
+
+        <StackLayout 
+            Spacing="15" 
+            Padding="20" 
+            Orientation="Horizontal" 
+            VerticalOptions="End" 
+            HorizontalOptions="FillAndExpand">
+            <Button 
+                HorizontalOptions="EndAndExpand" 
+                VerticalOptions="Center" 
+                Text="Street" 
+                Command="{Binding StreetCommand}"
+            	IsEnabled="{Binding IsEnabled}" />
+            <Button 
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                Text="Hybrid"
+                Command="{Binding HybridCommand}"
+            	IsEnabled="{Binding IsEnabled}" />
+            <Button
+                HorizontalOptions="StartAndExpand" 
+                VerticalOptions="Center" 
+                Text="Satellite"
+                Command="{Binding SatelliteCommand}"
+            	IsEnabled="{Binding IsEnabled}" />
+        </StackLayout>
+    </StackLayout>
+</ContentPage>
