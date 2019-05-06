@@ -1,13 +1,10 @@
-﻿
-
-namespace IPCViewer.Forms.ViewModels
+﻿namespace IPCViewer.Forms.ViewModels
 {
-
     using GalaSoft.MvvmLight.Command;
-    using IPCViewer.Common.Helpers;
-    using IPCViewer.Common.Models;
-    using IPCViewer.Common.Services;
-    using IPCViewer.Forms.Views;
+    using Common.Helpers;
+    using Common.Models;
+    using Common.Services;
+    using Views;
     using Newtonsoft.Json;
     using System.Windows.Input;
     using Xamarin.Forms;
@@ -70,8 +67,8 @@ namespace IPCViewer.Forms.ViewModels
                 return;
             }
 
-            this.IsRunning = true;
-            this.IsEnabled = false;
+            IsRunning = true;
+            IsEnabled = false;
 
             var request = new TokenRequest
             {
@@ -87,8 +84,8 @@ namespace IPCViewer.Forms.ViewModels
                 "/Account/PostCreateToken",
                 request);
 
-            this.IsRunning = false;
-            this.IsEnabled = true;
+            IsRunning = false;
+            IsEnabled = true;
 
 
             if (!response.IsSuccess)

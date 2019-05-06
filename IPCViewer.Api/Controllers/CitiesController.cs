@@ -1,6 +1,6 @@
 ﻿namespace IPCViewer.Api.Controllers
 {
-    using IPCViewer.Api.Data;
+    using Data;
     using Microsoft.AspNetCore.Mvc;
 
     [Route("api/[controller]")]
@@ -20,7 +20,6 @@
         {
             return Ok(this.cityRepository.GetAll());
         }
-
 
         // GET: api/Cities/5
         [HttpGet]

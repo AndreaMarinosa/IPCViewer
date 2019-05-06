@@ -10,11 +10,10 @@
              Spacing="10">
 
             <Grid 
-                  Grid.ColumnSpan="3"  
-                  ColumnSpacing="0" 
-                  RowSpacing="0" 
-                  Padding="0" 
-                  Margin="0" >
+              ColumnSpacing="0" 
+              RowSpacing="0" 
+              Padding="0" 
+              Margin="0" >
 
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>

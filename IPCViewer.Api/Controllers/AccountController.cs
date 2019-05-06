@@ -143,8 +143,8 @@ namespace IPCViewer.Api.Controllers
             }, protocol: HttpContext.Request.Scheme);
 
             this.mailHelper.SendMail(request.Email, "Email confirmation", $"<h1>Email Confirmation</h1>" +
-                $"To allow the user, " +
-                $"please click in this link:</br></br><a href = \"{tokenLink}\">Confirm Email</a>");
+                "To allow the user, " +
+                "please click in this link:</br></br><a href = \"+tokenLink+\">Confirm Email</a>");
 
             return Ok(new Response
             {
@@ -160,7 +160,7 @@ namespace IPCViewer.Api.Controllers
             return Ok(userHelper.GetUserByIdAsync(id));
         }
 
-        [HttpDelete("{id}")]
+        [HttpDelete("{id}")] // todo:email llega null
         public async Task<IActionResult> DeleteUser([FromRoute] string email)
         {
             if (!ModelState.IsValid)

@@ -1,8 +1,8 @@
 ﻿namespace IPCViewer.Forms.ViewModels
 {
     using GalaSoft.MvvmLight.Command;
-    using IPCViewer.Common.Models;
-    using IPCViewer.Common.Services;
+    using Common.Models;
+    using Common.Services;
     using System.Windows.Input;
     using Xamarin.Forms;
 
