@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="IPCViewer.Forms.Views.RegisterPage"
              BindingContext="{Binding Main, Source={StaticResource Locator}}"
-            >
+             NavigationPage.HasNavigationBar="false">
 
     <ContentPage.Content>
         <StackLayout 
@@ -17,7 +17,7 @@
                   Margin="0" >
 
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
@@ -67,93 +67,99 @@
             BindingContext="{Binding Register}">
                 <StackLayout
             	    Padding="8">
-                        <Grid
-                            Padding="12"
-                            ColumnSpacing="10"
-                            RowSpacing="10">
+                    <Grid
+                    Padding="12"
+                    ColumnSpacing="10"
+                    RowSpacing="10">
 
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="*"/>
-                                <RowDefinition Height="*"/>
-                                <RowDefinition Height="*"/>
-                                <RowDefinition Height="*"/>
-                            </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
 
-                            <!-- Email -->
-                            <Image
+                        <!-- Email -->
+                        <Image
                             VerticalOptions="CenterAndExpand"
                             WidthRequest="30"
                             Grid.Row="0" 
                             Grid.Column="0"
                             Source="emailIcon"/>
 
-                            <Entry
+                        <Entry
                     	    Grid.Column="1"
                     	    Grid.Row="0"
                     	    Keyboard="Email"
                     	    Placeholder="Email..."
                     	    Text="{Binding Email}"/>
 
-                            <!-- Pass -->
-                            <Image
+                        <!-- Pass -->
+                        <Image
                             HeightRequest="45"
                             Grid.Row="1" 
                             Grid.Column="0"
                             Source="iconPass"/>
 
-                            <Entry
+                        <Entry
                     	    Grid.Column="1"
                     	    Grid.Row="1"
                     	    IsPassword="True"
                     	    Placeholder="Password..."
                     	    Text="{Binding Password}"/>
 
-                            <!-- Nombre -->
-                            <Image
+                        <!-- Nombre -->
+                        <Image
                             HeightRequest="10"
-                            Grid.Row="2"
+                            Grid.Row="2" 
+                            Grid.Column="0"
                             Source="userIcon"/>
 
-                            <Entry
+                        <Entry
                     	    Grid.Column="1"
                     	    Grid.Row="2"
                     	    Placeholder="Firstname..."
                     	    Text="{Binding FirstName}"/>
 
-                            <!-- City -->
-                            <Image
-                            HeightRequest="37"
+                        <!-- City -->
+                        <Image
+                            HeightRequest="40"
                             Grid.Row="3" 
                             Grid.Column="0"
                             Source="city"
                             VerticalOptions="CenterAndExpand"/>
 
-                            <Picker
+                        <Picker
                     	    Grid.Column="1"
                     	    Grid.Row="3"
                     	    ItemDisplayBinding="{Binding Name}"
-                    	    ItemsSource="{Binding Cities}"
+                            ItemsSource="{Binding Cities}"
                     	    SelectedItem="{Binding City}"
                     	    Title="Select a city...">
-                            </Picker>
-                        </Grid>
+                        </Picker>
 
                         <ActivityIndicator
-                    	IsRunning="{Binding IsRunning}"
-                	    VerticalOptions="CenterAndExpand">
+                            Grid.ColumnSpan="2" 
+                            Grid.Column="0"
+                            Grid.Row="4"
+                            IsRunning="{Binding IsRunning}"
+                            VerticalOptions="CenterAndExpand">
                         </ActivityIndicator>
+                    </Grid>
 
-                        <Button
+
+                    <Button
                 	    Command="{Binding RegisterCommand}"
                 	    HeightRequest="46"
                 	    HorizontalOptions="FillAndExpand"
                 	    IsEnabled="{Binding IsEnabled}"
                 	    Text="Register New User">
-                        </Button>
+                    </Button>
                 </StackLayout>
             </ScrollView>
         </StackLayout>

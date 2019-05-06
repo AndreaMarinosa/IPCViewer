@@ -153,6 +153,31 @@ namespace IPCViewer.Api.Controllers
             });
         }
 
+        // GET: api/User/5
+        [HttpGet("{id}")]
+        public IActionResult GetUser(string id)
+        {
+            return Ok(userHelper.GetUserByIdAsync(id));
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteUser([FromRoute] string email)
+        {
+            if (!ModelState.IsValid)
+            {
+                return this.BadRequest(ModelState);
+            }
+
+            var user = await this.userHelper.GetUserByEmailAsync(email);
+            if (user == null)
+            {
+                return this.NotFound();
+            }
+
+            await this.userHelper.DeleteUserAsync(user);
+            return Ok(user);
+        }
+
         //    [HttpPost]
         //    [Route("RecoverPassword")]
         //    public async Task<IActionResult> RecoverPassword([FromBody] RecoverPasswordRequest request)

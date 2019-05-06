@@ -16,7 +16,6 @@ namespace IPCViewer.Forms.ViewModels
     {
         public ObservableCollection<MenuItemViewModel> Menus { get; set; }
 
-
         private static MainViewModel _instance;
 
         public RegisterViewModel Register { get; set; }
@@ -35,9 +34,13 @@ namespace IPCViewer.Forms.ViewModels
 
         public AddCameraViewModel AddCamera { get; set; }
 
-        public ICommand AddCameraCommand { get { return new RelayCommand(this.GoAddCamera); } }
+        public ICommand AddCameraCommand => new RelayCommand(this.GoAddCamera);
 
         public EditCameraViewModel EditCamera { get; set; }
+
+        public UsersViewModel Users { get; set; }
+
+        public EditUserViewModel EditUser { get; set; }
 
         private void GoAddCamera()
         {

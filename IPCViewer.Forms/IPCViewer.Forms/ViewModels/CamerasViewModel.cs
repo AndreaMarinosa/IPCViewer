@@ -18,6 +18,7 @@
         private ObservableCollection<CameraItemViewModel> cameras;
         private bool isRefreshing;
 
+
         public ObservableCollection<CameraItemViewModel> Cameras
         {
             get => cameras;
@@ -74,9 +75,7 @@
          */
         public void UpdateCamera(Camera camera)
         {
-            var oldCamera = myCameras
-                .Where(c => c.Id == camera.Id)
-                .FirstOrDefault();
+            var oldCamera = myCameras.FirstOrDefault(c => c.Id == camera.Id);
 
             // Eliminamos la antigua camara
             if(oldCamera != null)
@@ -95,8 +94,7 @@
          */
         public void DeleteCamera(int id)
         {
-            var oldCamera = myCameras
-                .Where(c => c.Id == id).FirstOrDefault();
+            var oldCamera = myCameras.FirstOrDefault(c => c.Id == id);
             if (oldCamera != null)
             {
                 myCameras.Remove(oldCamera);
@@ -109,7 +107,7 @@
         {
             // ObservableCollection de la Clase CameraItemViewModel -> (Camera + Comando)
             Cameras = new ObservableCollection<CameraItemViewModel>(
-                this.myCameras.Select(c => new CameraItemViewModel // Por cada camera se creara una nueva instancia de CameraItemViewModel
+                myCameras.Select(c => new CameraItemViewModel // Por cada camera se creara una nueva instancia de CameraItemViewModel
             {
                 Id = c.Id,
                 ImageUrl = c.ImageUrl,

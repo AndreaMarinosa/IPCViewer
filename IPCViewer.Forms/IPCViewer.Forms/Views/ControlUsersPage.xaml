@@ -3,8 +3,8 @@
             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
             xmlns:views="clr-namespace:IPCViewer.Forms.Views"
             x:Class="IPCViewer.Forms.Views.ControlUsersPage">
-
     <TabbedPage.Children>
+
         <NavigationPage 
             Title="Login">
             <NavigationPage.Icon>
@@ -18,16 +18,18 @@
             </x:Arguments>
         </NavigationPage>
 
-        <NavigationPage Title="Register">
+        <NavigationPage 
+            Title="Register">
             <NavigationPage.Icon>
                 <OnPlatform x:TypeArguments="FileImageSource">
                     <On Platform="iOS" Value="tab_about.png"/>
                 </OnPlatform>
             </NavigationPage.Icon>
+
             <x:Arguments>
                 <views:RegisterPage />
             </x:Arguments>
         </NavigationPage>
-    </TabbedPage.Children>
 
+    </TabbedPage.Children>
 </TabbedPage>

@@ -62,12 +62,11 @@
                 return this.BadRequest("Camera Id don't exists.");
             }
 
-            //TODO: Upload images
+            oldCamera.ImageUrl = camera.ImageUrl;
             oldCamera.Comments = camera.Comments;
             oldCamera.Name = camera.Name;
             oldCamera.Latitude = camera.Latitude;
             oldCamera.Longitude = camera.Longitude;
-            oldCamera.CreatedDate = DateTime.Now;
 
             var updatedCamera = await this.cameraRepository.UpdateAsync(oldCamera);
             return Ok(updatedCamera);

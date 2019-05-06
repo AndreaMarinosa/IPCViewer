@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="IPCViewer.Forms.Views.CamerasPage"
              BindingContext="{Binding Main, Source={StaticResource Locator}}"
-         	Title="Cameras">
+         	 Title="Cameras">
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Icon="add" Command="{Binding AddCameraCommand}"/>
@@ -50,15 +50,15 @@
                                     <Label
                                     	FontAttributes="Bold"
                                     	FontSize="Small"
-                                    	Text="{Binding Latitude}"
-                                    	TextColor="Black">
+                                    	Text="{Binding LatitudeAndLongitude}"
+                                    	TextColor="{StaticResource SecondaryDark}">
                                     </Label>
-                                    <Label
+                                    <!--<Label
                                     	FontAttributes="Bold"
                                     	FontSize="Small"
                                     	Text="{Binding Longitude}"
                                     	TextColor="Navy">
-                                    </Label>
+                                    </Label>-->
                                 </StackLayout>
                             </Grid>
                         </ViewCell>

@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="IPCViewer.Forms.Views.EditUserPage"
+             BindingContext="{Binding Main, Source={StaticResource Locator}}">
+    <ContentPage.Content>
+        <ScrollView
+            BindingContext="{Binding EditUser}">
+            <StackLayout
+                Padding="10">
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <!-- Email -->
+                    <Label
+                        Grid.Column="0"
+                        Grid.Row="0"
+                        Text="Email"/>
+
+                    <Entry
+                        Grid.Column="1"
+                        Grid.Row="0"
+                        Placeholder="Email"
+                        Text="{Binding User.Email}"/>
+
+                    <!-- Username -->
+                    <Label
+                        Grid.Column="0"
+                        Grid.Row="1"
+                        Text="Username"/>
+
+                    <Entry
+                        Grid.Column="1"
+                        Grid.Row="1"
+                        Placeholder="Latitude"
+                        Keyboard="Numeric"
+                        Text="{Binding User.UserName}"/>
+
+                    <!-- Firstname -->
+                    <Label
+                        Grid.Column="0"
+                        Grid.Row="2"
+                        Text="Firstname"/>
+
+                    <Entry
+                        Grid.Column="1"
+                        Grid.Row="2"
+                        Placeholder="Longitude"
+                        Keyboard="Numeric"
+                        Text="{Binding User.FirstName}"/>
+
+                </Grid>
+
+                <ActivityIndicator
+                	IsRunning="{Binding IsRunning}"
+                	VerticalOptions="CenterAndExpand"/>
+
+                <StackLayout
+                	Orientation="Horizontal">
+                    <Button
+                        BorderColor="DarkGreen"
+                        TextColor="DarkGreen"
+                    	Command="{Binding SaveCommand}"
+                    	HorizontalOptions="FillAndExpand"
+                    	IsEnabled="{Binding IsEnabled}"
+                    	Text="Save"/>
+
+                    <Button
+                        BorderColor="Red"
+                    	Command="{Binding DeleteCommand}"
+                    	HorizontalOptions="FillAndExpand"
+                    	IsEnabled="{Binding IsEnabled}"
+                    	Text="Delete"
+                    	TextColor="Red"/>
+
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

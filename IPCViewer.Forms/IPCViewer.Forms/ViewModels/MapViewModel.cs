@@ -9,6 +9,7 @@ using Xamarin.Forms.Maps;
 
 namespace IPCViewer.Forms.ViewModels
 {
+    //TODO: mostrar la lista mediante pines personalizados
     public class MapViewModel : BaseViewModel
     {
         private bool isEnabled;

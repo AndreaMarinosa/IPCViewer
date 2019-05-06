@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace IPCViewer.Forms.ViewModels
+﻿namespace IPCViewer.Forms.ViewModels
 {
     using System.Windows.Input;
     using GalaSoft.MvvmLight.Command;
@@ -12,7 +8,7 @@ namespace IPCViewer.Forms.ViewModels
 
     public class MenuItemViewModel : Common.Models.Menu
     {
-        public ICommand SelectMenuCommand => new RelayCommand(this.SelectMenu);
+        public ICommand SelectMenuCommand => new RelayCommand(SelectMenu);
 
         private async void SelectMenu()
         {

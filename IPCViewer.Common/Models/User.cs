@@ -58,5 +58,6 @@
 
         [JsonProperty("cityId")]
         public int CityId { get; set; }
+
     }
 }

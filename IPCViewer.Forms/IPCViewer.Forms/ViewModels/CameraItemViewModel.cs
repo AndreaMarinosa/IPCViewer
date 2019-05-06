@@ -1,8 +1,8 @@
 ﻿namespace IPCViewer.Forms.ViewModels
 {
     using GalaSoft.MvvmLight.Command;
-    using IPCViewer.Common.Models;
-    using IPCViewer.Forms.Views;
+    using Common.Models;
+    using Views;
     using System.Windows.Input;
 
     /**
@@ -12,11 +12,18 @@
      */
     public class CameraItemViewModel : Camera
     {
-        public ICommand SelectCameraCommand => new RelayCommand(this.SelectCamera);
+        public ICommand SelectCameraCommand => new RelayCommand(SelectCamera);
 
+        public string LatitudeAndLongitude { get; set; }
+
+        public CameraItemViewModel()
+        {
+            LatitudeAndLongitude = Latitude + ", " + Longitude;
+
+        }
         private async void SelectCamera()
         {
-            MainViewModel.GetInstance().EditCamera = new EditCameraViewModel((Camera)this);
+            MainViewModel.GetInstance().EditCamera = new EditCameraViewModel(this);
             await App.Navigator.PushAsync(new EditCameraPage());
         }
 
