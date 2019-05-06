@@ -23,6 +23,10 @@
 
 
         // GET: api/Cities/5
-
+        [HttpGet]
+        public IActionResult GetCities(int id)
+        {
+            return Ok(this.cityRepository.GetCityByIdAsync(id));
+        }
     }
 }
