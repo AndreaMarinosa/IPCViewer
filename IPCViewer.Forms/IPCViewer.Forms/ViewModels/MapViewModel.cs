@@ -9,6 +9,12 @@ using Xamarin.Forms.Maps;
 
 namespace IPCViewer.Forms.ViewModels
 {
+    /*
+     * Using custom markers and Latitude Longitude bounds in Google Maps on Xamarin Forms
+     *
+     * https://javiersuarezruiz.wordpress.com/2019/04/13/novedades-en-xamarin-forms-3-6/
+     */
+
     //TODO: mostrar la lista mediante pines personalizados
     public class MapViewModel : BaseViewModel
     {
