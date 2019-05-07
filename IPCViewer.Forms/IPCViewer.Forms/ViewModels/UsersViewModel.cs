@@ -10,7 +10,7 @@ namespace IPCViewer.Forms.ViewModels
     using System.Linq;
     using System.Windows.Input;
     using Xamarin.Forms;
-    // todo: 
+
     public class UsersViewModel : BaseViewModel
     {
         private readonly ApiService apiService;

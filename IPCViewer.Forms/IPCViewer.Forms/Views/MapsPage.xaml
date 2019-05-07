@@ -1,13 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:Maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
              BindingContext="{Binding Main, Source={StaticResource Locator}}"
+             xmlns:gmaps="clr-namespace:Xamarin.Forms.GoogleMaps;assembly=Xamarin.Forms.GoogleMaps"
              x:Class="IPCViewer.Forms.Views.MapsPage"
              Title="Map">
     
     <StackLayout>
-        <Maps:Map 
+        <ContentView
+            Content="{Binding Map}"/>
+        <gmaps:Map
+            
+            x:Name="mapView"
             HorizontalOptions="FillAndExpand" 
             VerticalOptions="FillAndExpand" />
 

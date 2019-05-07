@@ -184,7 +184,7 @@
                 "Ok",
                 response.Message,
                 "Accept");
-            await Application.Current.MainPage.Navigation.PopAsync();
+            await App.Navigator.PopAsync();
         }
 
     }

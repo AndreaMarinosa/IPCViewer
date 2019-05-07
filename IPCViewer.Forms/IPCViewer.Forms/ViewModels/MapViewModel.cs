@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Windows.Input;
 using Xamarin.Forms;
-using Xamarin.Forms.Maps;
+using Xamarin.Forms.GoogleMaps;
 
 namespace IPCViewer.Forms.ViewModels
 {
@@ -39,11 +39,17 @@ namespace IPCViewer.Forms.ViewModels
 
         public MapViewModel()
         {
+            Map = new Map();
             this.apiService = new ApiService();
             LoadCamerasAsync();
             Map.MoveToRegion(
                MapSpan.FromCenterAndRadius(
                    new Position(37, -122), Distance.FromMiles(1)));
+
+            //Map.Pins.Add(new Pin
+            //{
+
+            //});
         }
         private void Street()
         {
