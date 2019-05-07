@@ -11,7 +11,7 @@
     {
         public string FirstName { get; set; }
 
-        public override bool EmailConfirmed { get => base.EmailConfirmed; set => base.EmailConfirmed = value; }
+        //public override bool EmailConfirmed { get => base.EmailConfirmed; set => base.EmailConfirmed = value; }
 
         [NotMapped]
         public bool IsAdmin { get; set; }

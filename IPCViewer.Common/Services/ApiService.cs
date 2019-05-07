@@ -379,6 +379,49 @@
             }
         }
 
+        public async Task<Response> GetUserListAsync<User>(
+            string urlBase,
+            string servicePrefix,
+            string controller)
+        {
+            try
+            {
+                // HttpCliente -> Proporciona una clase base para enviar solicitudes HTTP y recibir respuestas HTTP de un recurso identificado por un URI.
+                var client = new HttpClient
+                {
+                    BaseAddress = new Uri(urlBase)
+                };
+
+                var url = $"{servicePrefix}{controller}"; // api/[controller]
+                var response = await client.GetAsync(url); // Devuelve la respuesta del cliente a la url
+                var result = await response.Content.ReadAsStringAsync();
+
+                if (!response.IsSuccessStatusCode)
+                {
+                    return new Response
+                    {
+                        IsSuccess = false,
+                        Message = result,
+                    };
+                }
+
+                var list = JsonConvert.DeserializeObject<List<User>>(result);
+                return new Response
+                {
+                    IsSuccess = true,
+                    Result = list
+                };
+            }
+            catch (Exception ex)
+            {
+                return new Response
+                {
+                    IsSuccess = false,
+                    Message = ex.Message
+                };
+            }
+        }
+
         //public async Task<Response> PutUserAsync<T>(
         //    string urlBase,
         //    string servicePrefix,

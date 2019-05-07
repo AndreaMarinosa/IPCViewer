@@ -25,7 +25,13 @@
                     break;
 
                 case "MapsPage":
+                    MainViewModel.GetInstance().Map = new MapViewModel();
                     await App.Navigator.PushAsync(new MapsPage());
+                    break;
+
+                case "UsersPage":
+                    MainViewModel.GetInstance().Users = new UsersViewModel();
+                    await App.Navigator.PushAsync(new UsersPage());
                     break;
 
                 default:

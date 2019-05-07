@@ -42,6 +42,8 @@ namespace IPCViewer.Forms.ViewModels
 
         public EditUserViewModel EditUser { get; set; }
 
+        public MapViewModel Map { get; set; }
+
         private void GoAddCamera()
         {
             this.AddCamera = new AddCameraViewModel();
@@ -79,6 +81,13 @@ namespace IPCViewer.Forms.ViewModels
                     Icon = null,
                     PageName = "MapsPage",
                     Title= "Map"
+                },
+
+                new Menu
+                {
+                    Icon = null,
+                    PageName = "UsersPage",
+                    Title= "Users"
                 },
 
                 new Menu

@@ -28,11 +28,11 @@
                                     <ColumnDefinition Width="Auto"/>
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
-                                
+
                                 <Grid.GestureRecognizers>
                                     <TapGestureRecognizer Command="{Binding SelectCameraCommand}"/>
                                 </Grid.GestureRecognizers>
-                                
+
                                 <Image
                                 	Grid.Column="0"
                                 	Source="{Binding ImageUrl}"
@@ -50,15 +50,15 @@
                                     <Label
                                     	FontAttributes="Bold"
                                     	FontSize="Small"
-                                    	Text="{Binding LatitudeAndLongitude}"
+                                    	Text="{Binding Latitude}"
                                     	TextColor="{StaticResource SecondaryDark}">
                                     </Label>
-                                    <!--<Label
+                                    <Label
                                     	FontAttributes="Bold"
                                     	FontSize="Small"
                                     	Text="{Binding Longitude}"
                                     	TextColor="Navy">
-                                    </Label>-->
+                                    </Label>
                                 </StackLayout>
                             </Grid>
                         </ViewCell>

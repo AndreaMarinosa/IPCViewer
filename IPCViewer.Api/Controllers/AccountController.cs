@@ -38,9 +38,10 @@ namespace IPCViewer.Api.Controllers
 
         // GET: api/Cameras
         [HttpGet]
-        public IActionResult GetCameras()
+        public IActionResult GetUsers()
         {
-            return Ok(userHelper.GetAllUsersAsync());
+            var users = userHelper.GetAllUsersAsync().Result;
+            return Ok(users);
         }
 
         [HttpPost]
@@ -135,21 +136,29 @@ namespace IPCViewer.Api.Controllers
                 return this.BadRequest(result.Errors.FirstOrDefault()?.Description);
             }
 
-            var myToken = await this.userHelper.GenerateEmailConfirmationTokenAsync(user);
-            var tokenLink = this.Url.Action("ConfirmEmail", "Account", new
-            {
-                userid = user.Id,
-                token = myToken
-            }, protocol: HttpContext.Request.Scheme);
+            // Aniadimos el rol al usuario y guardamos en bbdd
+            await this.userHelper.AddUserToRoleAsync(user, "Customer");
 
-            this.mailHelper.SendMail(request.Email, "Email confirmation", $"<h1>Email Confirmation</h1>" +
-                "To allow the user, " +
-                "please click in this link:</br></br><a href = \"+tokenLink+\">Confirm Email</a>");
+            // Generamos el email de confirmacion
+            //var myToken = await this.userHelper.GenerateEmailConfirmationTokenAsync(user);
+            //var tokenLink = this.Url.Action("ConfirmEmail", "Account", new
+            //{
+            //    userid = user.Id,
+            //    token = myToken
+            //}, protocol: HttpContext.Request.Scheme);
+
+            //this.mailHelper.SendMail(request.Email, "Email confirmation", $"<h1>Email Confirmation</h1>" +
+            //    "To allow the user, " +
+            //    "please click in this link:</br></br><a href = " + tokenLink + ">Confirm Email</a>");
+
+            //// Confirmamos el email
+            //await userHelper.ConfirmEmailAsync(user, myToken);
 
             return Ok(new Response
             {
                 IsSuccess = true,
-                Message = "A Confirmation email was sent. Please confirm your account and log into the App."
+                //Message = "A Confirmation email was sent. Please confirm your account and log into the App."
+                Message = "Usuario creado correctamente."
             });
         }
 

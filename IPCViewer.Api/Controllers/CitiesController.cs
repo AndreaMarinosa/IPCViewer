@@ -5,7 +5,7 @@
 
     [Route("api/[controller]")]
     [ApiController]
-    public class CitiesController : Controller
+    public class CitiesController : ControllerBase
     {
         private readonly ICityRepository cityRepository;
 
@@ -21,11 +21,11 @@
             return Ok(this.cityRepository.GetAll());
         }
 
-        // GET: api/Cities/5
-        [HttpGet]
-        public IActionResult GetCities(int id)
-        {
-            return Ok(this.cityRepository.GetCityByIdAsync(id));
-        }
+        //// GET: api/Cities/5
+        //[HttpGet]
+        //public IActionResult GetCitie([FromRoute] int id)
+        //{
+        //    return Ok(this.cityRepository.GetCityByIdAsync(id));
+        //}
     }
 }

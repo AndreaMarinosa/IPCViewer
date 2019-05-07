@@ -1,9 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             BindingContext="{Binding Main, Source={StaticResource Locator}}"
              x:Class="IPCViewer.Forms.Views.UsersPage"
-             Title="Users">
+             Title="Users"
+             BindingContext="{Binding Main, Source={StaticResource Locator}}"
+             >
 
     <ContentPage.Content>
         <StackLayout
@@ -24,9 +25,9 @@
                                     <ColumnDefinition Width="Auto"/>
                                 </Grid.ColumnDefinitions>
 
-                                <!--<Grid.GestureRecognizers>
+                                <Grid.GestureRecognizers>
                                     <TapGestureRecognizer Command="{Binding SelectUserCommand}"/>
-                                </Grid.GestureRecognizers>-->
+                                </Grid.GestureRecognizers>
 
                                 <StackLayout
                                 	Grid.Column="0"

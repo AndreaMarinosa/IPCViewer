@@ -155,7 +155,6 @@
             var request = new NewUserRequest
             {
                 CityId = this.City.Id,
-                City = this.City,
                 Email = this.Email,
                 FirstName = this.FirstName,
                 Password = this.Password,

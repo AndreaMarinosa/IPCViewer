@@ -16,8 +16,8 @@
         [Required]
         public string Password { get; set; }
 
-        [Required]
-        public City City { get; set; }
+        //[Required]
+        //public City City { get; set; }
 
         [Required]
         public int CityId { get; set; }

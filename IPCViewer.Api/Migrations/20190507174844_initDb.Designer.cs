@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace IPCViewer.Api.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20190501160939_Test")]
-    partial class Test
+    [Migration("20190507174844_initDb")]
+    partial class initDb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -83,8 +83,6 @@ namespace IPCViewer.Api.Migrations
                     b.Property<bool>("EmailConfirmed");
 
                     b.Property<string>("FirstName");
-
-                    b.Property<string>("LastName");
 
                     b.Property<bool>("LockoutEnabled");
 

@@ -14,7 +14,7 @@ namespace IPCViewer.Forms.ViewModels
     public class UsersViewModel : BaseViewModel
     {
         private readonly ApiService apiService;
-        private List<UserItemViewModel> myUsers; // La lista original del API
+        private List<User> myUsers; // La lista original del API
 
         private ObservableCollection<UserItemViewModel> users;
         private bool isRefreshing;
@@ -43,7 +43,7 @@ namespace IPCViewer.Forms.ViewModels
         private async void LoadUsersAsync()
         {
             //var url = Application.Current.Resources["UrlAPI"].ToString();
-            var response = await this.apiService.GetListAsync<User>(
+            var response = await this.apiService.GetUserListAsync<User>(
                 "https://ipcviewerapi.azurewebsites.net",
                 "/api",
                 "/Account");
@@ -57,7 +57,7 @@ namespace IPCViewer.Forms.ViewModels
                 return;
             }
 
-            this.myUsers = (List<UserItemViewModel>)response.Result;
+            this.myUsers = (List<User>)response.Result;
             RefreshUsersList();
             IsRefreshing = false;
 
@@ -107,7 +107,7 @@ namespace IPCViewer.Forms.ViewModels
                     FirstName = c.FirstName,
                     UserName = c.UserName,
                     CityId = c.CityId,
-                    City = c.City,
+                    City = c.City
                 }).ToList());
         }
     }

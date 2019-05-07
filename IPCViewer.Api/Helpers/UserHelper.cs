@@ -4,7 +4,6 @@
     using Microsoft.AspNetCore.Identity;
     using Microsoft.EntityFrameworkCore;
     using System.Collections.Generic;
-    using System.Linq;
     using System.Threading.Tasks;
 
     public class UserHelper : IUserHelper
@@ -87,15 +86,15 @@
                 false);
         }
 
-        public async Task<IdentityResult> ConfirmEmailAsync(User user, string token)
-        {
-            return await userManager.ConfirmEmailAsync(user, token);
-        }
+        //public async Task<IdentityResult> ConfirmEmailAsync(User user, string token)
+        //{
+        //    return await userManager.ConfirmEmailAsync(user, token);
+        //}
 
-        public async Task<string> GenerateEmailConfirmationTokenAsync(User user)
-        {
-            return await userManager.GenerateEmailConfirmationTokenAsync(user);
-        }
+        //public async Task<string> GenerateEmailConfirmationTokenAsync(User user)
+        //{
+        //    return await userManager.GenerateEmailConfirmationTokenAsync(user);
+        //}
 
         public async Task<User> GetUserByIdAsync(string userId)
         {
@@ -114,10 +113,8 @@
 
         public async Task<List<User>> GetAllUsersAsync()
         {
-            return await userManager.Users
-                .Include(u => u.City)
-                .OrderBy(u => u.FirstName)
-                .ToListAsync();
+            var users = await userManager.Users.Include(u => u.City).ToListAsync();
+            return users;
         }
 
         public async Task RemoveUserFromRoleAsync(User user, string roleName)

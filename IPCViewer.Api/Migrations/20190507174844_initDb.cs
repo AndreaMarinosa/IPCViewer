@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace IPCViewer.Api.Migrations
 {
-    public partial class InitDb : Migration
+    public partial class initDb : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -65,6 +65,7 @@ namespace IPCViewer.Api.Migrations
                     NormalizedUserName = table.Column<string>(maxLength: 256, nullable: true),
                     Email = table.Column<string>(maxLength: 256, nullable: true),
                     NormalizedEmail = table.Column<string>(maxLength: 256, nullable: true),
+                    EmailConfirmed = table.Column<bool>(nullable: false),
                     PasswordHash = table.Column<string>(nullable: true),
                     SecurityStamp = table.Column<string>(nullable: true),
                     ConcurrencyStamp = table.Column<string>(nullable: true),
@@ -75,8 +76,6 @@ namespace IPCViewer.Api.Migrations
                     LockoutEnabled = table.Column<bool>(nullable: false),
                     AccessFailedCount = table.Column<int>(nullable: false),
                     FirstName = table.Column<string>(nullable: true),
-                    LastName = table.Column<string>(nullable: true),
-                    EmailConfirmed = table.Column<bool>(nullable: false),
                     CityId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
@@ -188,7 +187,7 @@ namespace IPCViewer.Api.Migrations
                     ImageUrl = table.Column<string>(nullable: true),
                     CreatedDate = table.Column<DateTime>(nullable: false),
                     UserId = table.Column<string>(nullable: true),
-                    CityId = table.Column<int>(nullable: true)
+                    CityId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {

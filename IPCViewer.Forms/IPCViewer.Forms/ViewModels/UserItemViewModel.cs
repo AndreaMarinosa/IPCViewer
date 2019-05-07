@@ -8,11 +8,11 @@
     /**
      * Clase para meter un comando en el modelo 'User'
      * Se utiliza esta nueva clase para no meter codigo interno
-     * al modelo de camara, de esta manera se conserva el modelo limpio
+     * al modelo de user, de esta manera se conserva el modelo limpio
      */
     public class UserItemViewModel : User
     {
-        public ICommand SelectCameraCommand => new RelayCommand(SelectUser);
+        public ICommand SelectUserCommand => new RelayCommand(SelectUser);
 
 
         private async void SelectUser()

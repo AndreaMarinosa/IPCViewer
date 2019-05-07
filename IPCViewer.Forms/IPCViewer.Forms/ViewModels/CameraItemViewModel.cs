@@ -14,13 +14,6 @@
     {
         public ICommand SelectCameraCommand => new RelayCommand(SelectCamera);
 
-        public string LatitudeAndLongitude { get; set; }
-
-        public CameraItemViewModel()
-        {
-            LatitudeAndLongitude = Latitude + ", " + Longitude;
-
-        }
         private async void SelectCamera()
         {
             MainViewModel.GetInstance().EditCamera = new EditCameraViewModel(this);

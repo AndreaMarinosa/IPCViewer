@@ -50,8 +50,8 @@ namespace IPCViewer.Api.Services
             }
 
             // Comprueba si el usuario administrador esta creado
-            await CheckUserAsync("Juan@gmail.com", "Juan", "Perez", "Customer");
-            var user = await CheckUserAsync("andreamarinosalopez@gmail.com", "Andrea", "Mariñosa", "Admin");
+            //await CheckUserAsync("Juan@gmail.com", "Juan", "Customer");
+            var user = await CheckUserAsync("andreamarinosalopez@gmail.com", "Andrea", "Admin");
 
             // Si no hay ningun registro (false) creará 3 nuevas cámaras
             if (!context.Cameras.Any())
@@ -94,7 +94,7 @@ namespace IPCViewer.Api.Services
         /**
          * Comprueba que existe este usuario
          */
-        private async Task<User> CheckUserAsync(string userName, string firstName, string lastName, string role)
+        private async Task<User> CheckUserAsync(string userName, string firstName, string role)
         {
             // Busca el usuario mediante su email
             var user = await userHelper.GetUserByEmailAsync(userName);
@@ -102,7 +102,7 @@ namespace IPCViewer.Api.Services
             // Si no existe, lo crea
             if (user == null)
             {
-                user = await AddUser(userName, firstName, lastName, role);
+                user = await AddUser(userName, firstName, role);
 
                 /*
                  * Comprueba si el usuario pasado por parametro tiene rol
@@ -123,7 +123,7 @@ namespace IPCViewer.Api.Services
         /**
          * Metodo que agrega un nuevo usuario a la base de datos
          */
-        private async Task<User> AddUser(string userName, string firstName, string lastName, string role)
+        private async Task<User> AddUser(string userName, string firstName, string role)
         {
             // El nombre de usuario y el email siempre serán los mismos
             var user = new User // Model.User
@@ -144,9 +144,9 @@ namespace IPCViewer.Api.Services
             // Aniadimos el rol al usuario y guardamos en bbdd
             await this.userHelper.AddUserToRoleAsync(user, role);
             // Generamos el email de confirmacion
-            var token = await this.userHelper.GenerateEmailConfirmationTokenAsync(user);
-            // Confirmamos el email
-            await this.userHelper.ConfirmEmailAsync(user, token);
+            //var token = await this.userHelper.GenerateEmailConfirmationTokenAsync(user);
+            //// Confirmamos el email
+            //await this.userHelper.ConfirmEmailAsync(user, token);
             return user;
         }
 
