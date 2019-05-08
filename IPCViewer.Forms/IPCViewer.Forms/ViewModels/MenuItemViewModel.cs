@@ -25,7 +25,7 @@
                     break;
 
                 case "MapsPage":
-                    MainViewModel.GetInstance().Map = new MapViewModel();
+                    //MainViewModel.GetInstance().Map = new MapViewModel();
                     await App.Navigator.PushAsync(new MapsPage());
                     break;
 

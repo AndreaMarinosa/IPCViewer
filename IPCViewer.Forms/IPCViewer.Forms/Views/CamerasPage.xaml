@@ -14,6 +14,7 @@
         <StackLayout
         	BindingContext="{Binding Cameras}"
         	Padding="5">
+            
             <ListView
                 IsPullToRefreshEnabled="True"
             	IsRefreshing="{Binding IsRefreshing}"

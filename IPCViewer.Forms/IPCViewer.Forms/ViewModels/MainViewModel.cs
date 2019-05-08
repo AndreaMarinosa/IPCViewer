@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
+using Xamarin.Forms.GoogleMaps;
 using Menu = IPCViewer.Common.Models.Menu;
 
 namespace IPCViewer.Forms.ViewModels
@@ -44,13 +45,13 @@ namespace IPCViewer.Forms.ViewModels
 
         public MapViewModel Map { get; set; }
 
-        private void GoAddCamera()
+        private void GoAddCamera ()
         {
             this.AddCamera = new AddCameraViewModel();
             App.Navigator.PushAsync(new AddCameraPage());
         }
 
-        public MainViewModel()
+        public MainViewModel ()
         {
             _instance = this;
             this.Login = new LoginViewModel();
@@ -58,7 +59,7 @@ namespace IPCViewer.Forms.ViewModels
             LoadMenus();
         }
 
-        private void LoadMenus()
+        private void LoadMenus ()
         {
             var menus = new List<Menu>
             {
@@ -106,15 +107,8 @@ namespace IPCViewer.Forms.ViewModels
             }).ToList());
         }
 
-    public static MainViewModel GetInstance()
-    {
-        if (_instance == null)
-        {
-            return new MainViewModel();
-        }
+        // Singleton
+        public static MainViewModel GetInstance () => _instance ?? new MainViewModel();
 
-        return _instance;
     }
-
-}
 }
