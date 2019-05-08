@@ -12,18 +12,30 @@
             	Padding="10">
                 <Image
                 	HeightRequest="150"
-                	Source="{Binding Image}">
+                	Source="{Binding ImageUrl}">
                 </Image>
-                <Label
-                	FontSize="Micro"
-                	HorizontalOptions="Center"
-                	Text="Tap the image to change it...">
-                </Label>
+                <Button
+                    
+                    Width="20"
+                    VerticalOptions="Center"
+                    FontSize="Micro"
+                    WidthRequest="2"
+                    Text="Click to check the url"/>
+               
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
 
                     <!-- Name -->
                     <Label

@@ -10,7 +10,7 @@
             <StackLayout
                 Padding="10">
                 <Image
-                    HeightRequest="130"
+                    HeightRequest="250"
                     Source="{Binding Camera.ImageUrl}"/>
 
                 <Grid>
@@ -65,14 +65,6 @@
                         Text="{Binding Camera.Longitude}"
                         Keyboard="Numeric"/>
 
-                    <!-- City -->
-                    <!--
-                    <Label
-                        Grid.Column="0"
-                        Grid.Row="3"
-                        Text="City"/>-->
-
-
                     <!-- Image Url -->
                     <Label
                         Grid.Column="0"
@@ -85,29 +77,18 @@
                         Placeholder="ImageUrl"
                         Text="{Binding Camera.ImageUrl}"/>
 
-                    <!-- Created Date -->
-                    <!--<Label
-                        Grid.Column="0"
-                        Grid.Row="4"
-                        Text="Created Date"/>
-
-                    <Entry
-                        Grid.Column="1"
-                        Grid.Row="4"
-                        Text="{Binding Camera.CreatedDate}"
-                        IsReadOnly="True"/>-->
 
                     <!-- User -->
-                    <!--<Label
+                    <Label
                         Grid.Column="0"
                         Grid.Row="5"
-                        Text="User"/>
+                        Text="Creación: "/>
 
                     <Entry
                         Grid.Column="1"
                         Grid.Row="5"
-                        Text="{Binding Camera.User}"
-                        IsReadOnly="True"/>-->
+                        Text="{Binding Camera.User.FirstName}"
+                        IsReadOnly="True"/>
 
                     <!-- Comments -->
                     <Label
@@ -121,14 +102,16 @@
                         Placeholder="Comments"
                         Text="{Binding Camera.Comments}"
                         />
+
+
                 </Grid>
-                
                 <ActivityIndicator
-                	IsRunning="{Binding IsRunning}"
-                	VerticalOptions="CenterAndExpand"/>
+                    IsRunning="{Binding IsRunning}"
+                    VerticalOptions="CenterAndExpand"/>
 
                 <StackLayout
-                	Orientation="Horizontal">
+                    Orientation="Horizontal">
+
                     <Button
                         BorderColor="DarkGreen"
                         TextColor="DarkGreen"

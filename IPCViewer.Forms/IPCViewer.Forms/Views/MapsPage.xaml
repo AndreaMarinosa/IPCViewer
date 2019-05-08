@@ -3,12 +3,17 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              BindingContext="{Binding Main, Source={StaticResource Locator}}"
              xmlns:gmaps="clr-namespace:Xamarin.Forms.GoogleMaps;assembly=Xamarin.Forms.GoogleMaps"
+             xmlns:customRenders="clr-namespace:IPCViewer.Forms.CustomRenders"
+             xmlns:customRenderers="clr-namespace:IPCViewer.Forms.CustomRenderers;assembly=IPCViewer.Forms"
              x:Class="IPCViewer.Forms.Views.MapsPage"
              Title="Map">
     
     <StackLayout>
         <ContentView
             Content="{Binding Map}"/>
+
+        <customRenderers:CustomMap/>
+
         <gmaps:Map
             
             x:Name="mapView"

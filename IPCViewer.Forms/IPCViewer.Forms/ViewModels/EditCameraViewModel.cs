@@ -34,6 +34,8 @@
         /**
          * La camara ligada a la MainViewModel es la que se pasa por parametro
          */
+        // todo: hilo actualizando la imagen 
+        // todo: boton que te lleve al mapa donde se muestre el pin de esta camara en concreto
         public EditCameraViewModel(Camera camera)
         {
             this.Camera = camera;

@@ -49,6 +49,8 @@
             set => this.SetProperty(ref this.isEnabled, value);
         }
 
+        public ICommand RegisterCommand => new RelayCommand(this.Register);
+
         public async void LoadCities()
         {
 
@@ -75,10 +77,7 @@
 
             var myCities = (List<City>)response.Result;
             this.Cities = new ObservableCollection<City>(myCities);
-
         }
-
-        public ICommand RegisterCommand => new RelayCommand(this.Register);
 
         public RegisterViewModel()
         {

@@ -39,9 +39,9 @@ namespace IPCViewer.Forms.Views
 
             };
 
-            mapView.Pins.Add(marker1);
-            mapView.Pins.Add(marker2);
-            mapView.MoveToRegion(MapSpan.FromCenterAndRadius(marker1.Position, Distance.FromMeters(1000)));
+            //mapView.Pins.Add(marker1);
+            //mapView.Pins.Add(marker2);
+            //mapView.MoveToRegion(MapSpan.FromCenterAndRadius(marker1.Position, Distance.FromMeters(1000)));
         }
     }
 }
