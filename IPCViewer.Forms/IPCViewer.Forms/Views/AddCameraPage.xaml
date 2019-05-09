@@ -15,12 +15,10 @@
                 	Source="{Binding ImageUrl}">
                 </Image>
                 <Button
-                    
-                    Width="20"
                     VerticalOptions="Center"
                     FontSize="Micro"
-                    WidthRequest="2"
-                    Text="Click to check the url"/>
+                    Text="Click to check the url"
+                    Command="{Binding ChangeUrlCommand}"/>
                
                 <Grid>
                     <Grid.ColumnDefinitions>

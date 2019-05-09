@@ -10,8 +10,15 @@
             <StackLayout
                 Padding="10">
                 <Image
-                    HeightRequest="250"
-                    Source="{Binding Camera.ImageUrl}"/>
+                    HeightRequest="250">
+                    <Image.Source>
+
+                        <UriImageSource
+                            Uri="{Binding Camera.ImageUrl}"
+                            CachingEnabled="false"/>
+
+                    </Image.Source>
+                </Image>
 
                 <Grid>
                     <Grid.ColumnDefinitions>

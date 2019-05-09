@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:i18n="clr-namespace:IPCViewer.Forms.Helpers"
              x:Class="IPCViewer.Forms.Views.LoginPage"
              BindingContext="{Binding Main, Source={StaticResource Locator}}"
              NavigationPage.HasNavigationBar="false">
@@ -39,7 +40,7 @@
                     TextColor="{StaticResource PrimaryFontColor}"
                     Grid.Column="1"
                     Grid.Row="1" 
-                    Text="Welcome to"
+                    Text="{i18n:Translate Welcome}"
                     VerticalOptions="EndAndExpand"
                     Margin="0, 0, 0, 5"/>
 
@@ -108,14 +109,14 @@
                         Grid.Row="1" 
                         Grid.Column="1"
                         IsPassword="True"
-                        Placeholder="Password"
+                        Placeholder="{i18n:Translate PasswordPlaceHolder}"
                         Text="{Binding Password}"/>
 
                         <!-- Remember me -->
                         <Label
                         Grid.Row="2"
                         Grid.Column="1"
-                        Text="Remember me?"
+                        Text="{i18n:Translate RememberMe}"
                         VerticalOptions="CenterAndExpand"
                         HorizontalOptions="EndAndExpand"/>
 
@@ -131,7 +132,7 @@
 
                     <!-- Button Login Command-->
                     <Button
-                    Text="Login"
+                    Text="{i18n:Translate Login}"
                     Command="{Binding LoginCommand}"
                     IsEnabled="{Binding IsEnabled}"
     	            HorizontalOptions="FillAndExpand"/>

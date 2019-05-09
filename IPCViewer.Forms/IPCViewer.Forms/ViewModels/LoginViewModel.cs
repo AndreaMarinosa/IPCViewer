@@ -8,6 +8,7 @@
     using Newtonsoft.Json;
     using System.Windows.Input;
     using Xamarin.Forms;
+    using IPCViewer.Forms.Helpers;
 
     class LoginViewModel : BaseViewModel
     {
@@ -58,12 +59,18 @@
         {
             if (string.IsNullOrEmpty(this.Email))
             {
-                await Application.Current.MainPage.DisplayAlert("Error", "You must enter an email", "Accept");
+                await Application.Current.MainPage.DisplayAlert(
+                    Languages.Error, 
+                    Languages.EmailError, 
+                    Languages.Accept);
                 return;
             }
             if (string.IsNullOrEmpty(this.Password))
             {
-                await Application.Current.MainPage.DisplayAlert("Error", "You must enter a password", "Accept");
+                await Application.Current.MainPage.DisplayAlert(
+                    Languages.Error,
+                    Languages.PasswordError,
+                    Languages.Accept);
                 return;
             }
 
@@ -90,7 +97,10 @@
 
             if (!response.IsSuccess)
             {
-                await Application.Current.MainPage.DisplayAlert("Error", response.Message, "Accept");
+                await Application.Current.MainPage.DisplayAlert(
+                    Languages.Error,
+                    Languages.LoginError,
+                    Languages.Accept);
                 return;
             }
 

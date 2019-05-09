@@ -14,7 +14,7 @@
         <StackLayout
         	BindingContext="{Binding Cameras}"
         	Padding="5">
-            
+
             <ListView
                 IsPullToRefreshEnabled="True"
             	IsRefreshing="{Binding IsRefreshing}"
@@ -36,9 +36,16 @@
 
                                 <Image
                                 	Grid.Column="0"
-                                	Source="{Binding ImageUrl}"
                                 	WidthRequest="100">
+                                    <Image.Source>
+
+                                        <UriImageSource
+                                        Uri="{Binding ImageUrl}"
+                                        CachingEnabled="false"/>
+
+                                    </Image.Source>
                                 </Image>
+
                                 <StackLayout
                                 	Grid.Column="1"
                                 	VerticalOptions="Center">

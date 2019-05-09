@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            xmlns:i18n="clr-namespace:IPCViewer.Forms.Helpers"
             xmlns:views="clr-namespace:IPCViewer.Forms.Views"
             x:Class="IPCViewer.Forms.Views.ControlUsersPage">
     <TabbedPage.Children>
@@ -19,7 +20,7 @@
         </NavigationPage>
 
         <NavigationPage 
-            Title="Register">
+            Title="{i18n:Translate RegisterTitle}">
             <NavigationPage.Icon>
                 <OnPlatform x:TypeArguments="FileImageSource">
                     <On Platform="iOS" Value="tab_about.png"/>

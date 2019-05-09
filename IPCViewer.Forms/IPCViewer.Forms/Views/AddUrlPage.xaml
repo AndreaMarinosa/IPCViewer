@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage
+            xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup" xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            x:Class="IPCViewer.Forms.Views.AddUrlPage"
+            BindingContext="{Binding Main, Source={StaticResource Locator}}">
+
+    <StackLayout 
+        BackgroundColor="White"
+        VerticalOptions="Center" 
+        HorizontalOptions="Center" 
+        Padding="20"
+        WidthRequest="280"
+        Opacity="0.8"
+        BindingContext="{Binding AddCamera}">
+        
+        <Label
+            FontSize="20"
+            Text="Url"
+            FontFamily="{StaticResource MediumFont}"/>
+        <Entry
+            Text="{Binding UrlCamera}"
+            Placeholder="Camera url..."/>
+        <Button
+            Text="Accept"
+            HorizontalOptions="End"
+            Command="{Binding AddUrl}"/>
+        
+    </StackLayout>
+</pages:PopupPage>

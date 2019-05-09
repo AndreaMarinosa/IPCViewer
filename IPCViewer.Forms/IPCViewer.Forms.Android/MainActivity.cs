@@ -27,10 +27,27 @@ namespace IPCViewer.Forms.Droid
             //    BitmapDescriptorFactory = new AccessNativeBitmapConfig()
             //};
 
+            // Initialize plugin
+            Rg.Plugins.Popup.Popup.Init(this, savedInstanceState);
+
+            //Initialize maps
             Xamarin.FormsGoogleMaps.Init(this, savedInstanceState);
             Xamarin.FormsGoogleMapsBindings.Init();
             LoadApplication(new App());
         }
+
+        public override void OnBackPressed ()
+        {
+            if ( Rg.Plugins.Popup.Popup.SendBackPressed(base.OnBackPressed) )
+            {
+
+            }
+            else
+            {
+
+            }
+        }
+
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {
             Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);

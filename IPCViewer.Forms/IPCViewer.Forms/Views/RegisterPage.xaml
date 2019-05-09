@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:i18n="clr-namespace:IPCViewer.Forms.Helpers"
              x:Class="IPCViewer.Forms.Views.RegisterPage"
              BindingContext="{Binding Main, Source={StaticResource Locator}}"
              NavigationPage.HasNavigationBar="false">
@@ -10,7 +11,6 @@
              Spacing="10">
 
             <Grid 
-                  Grid.ColumnSpan="3"  
                   ColumnSpacing="0" 
                   RowSpacing="0" 
                   Padding="0" 
@@ -40,7 +40,7 @@
                     TextColor="{StaticResource PrimaryFontColor}"
                     Grid.Column="1"
                     Grid.Row="1" 
-                    Text="Welcome to"
+                    Text="{i18n:Translate Welcome}"
                     VerticalOptions="EndAndExpand"
                     Margin="0, 0, 0, 5"/>
 
@@ -77,11 +77,11 @@
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto*"/>
                             <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
 
                         <!-- Email -->
@@ -110,7 +110,7 @@
                     	    Grid.Column="1"
                     	    Grid.Row="1"
                     	    IsPassword="True"
-                    	    Placeholder="Password..."
+                    	    Placeholder="{i18n:Translate PasswordPlaceHolder}"
                     	    Text="{Binding Password}"/>
 
                         <!-- Nombre -->
@@ -123,7 +123,7 @@
                         <Entry
                     	    Grid.Column="1"
                     	    Grid.Row="2"
-                    	    Placeholder="Firstname..."
+                    	    Placeholder="{i18n:Translate FirstnamePlaceHolder}"
                     	    Text="{Binding FirstName}"/>
 
                         <!-- City -->
@@ -140,7 +140,7 @@
                     	    ItemDisplayBinding="{Binding Name}"
                             ItemsSource="{Binding Cities}"
                     	    SelectedItem="{Binding City}"
-                    	    Title="Select a city...">
+                    	    Title="{i18n:Translate CitySelect}">
                         </Picker>
 
                         <ActivityIndicator
@@ -158,7 +158,7 @@
                 	    HeightRequest="46"
                 	    HorizontalOptions="FillAndExpand"
                 	    IsEnabled="{Binding IsEnabled}"
-                	    Text="Register New User">
+                	    Text="{i18n:Translate Register}">
                     </Button>
                 </StackLayout>
             </ScrollView>
