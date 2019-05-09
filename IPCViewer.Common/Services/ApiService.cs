@@ -68,50 +68,50 @@
          * Para recibir listas de camaras / usuarios
          */
         public async Task<Response> GetListAsync<T>(
-             string urlBase,
-             string servicePrefix,
-             string controller,
-             string tokenType,
-             string accessToken)
+            string urlBase,
+            string servicePrefix,
+            string controller,
+            string tokenType,
+            string accessToken)
+        {
+            try
+            {
+                var client = new HttpClient
                 {
-                    try
+                    BaseAddress = new Uri(urlBase),
+                };
+
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(tokenType, accessToken);
+
+                var url = $"{servicePrefix}{controller}";
+                var response = await client.GetAsync(url);
+                var result = await response.Content.ReadAsStringAsync();
+
+                if (!response.IsSuccessStatusCode)
+                {
+                    return new Response
                     {
-                        var client = new HttpClient
-                        {
-                            BaseAddress = new Uri(urlBase),
-                        };
-
-                        client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(tokenType, accessToken);
-
-                        var url = $"{servicePrefix}{controller}";
-                        var response = await client.GetAsync(url);
-                        var result = await response.Content.ReadAsStringAsync();
-
-                        if (!response.IsSuccessStatusCode)
-                        {
-                            return new Response
-                            {
-                                IsSuccess = false,
-                                Message = result
-                            };
-                        }
-
-                        var list = JsonConvert.DeserializeObject<List<T>>(result);
-                        return new Response
-                        {
-                            IsSuccess = true,
-                            Result = list
-                        };
-                    }
-                    catch (Exception ex)
-                    {
-                        return new Response
-                        {
-                            IsSuccess = false,
-                            Message = ex.Message
-                        };
-                    }
+                        IsSuccess = false,
+                        Message = result
+                    };
                 }
+
+                var list = JsonConvert.DeserializeObject<List<T>>(result);
+                return new Response
+                {
+                    IsSuccess = true,
+                    Result = list
+                };
+            }
+            catch (Exception ex)
+            {
+                return new Response
+                {
+                    IsSuccess = false,
+                    Message = ex.Message
+                };
+            }
+        }
 
         /**
          * Recibir un token cuando te estas logeando para tener permisos en la aplicacion
@@ -278,19 +278,16 @@
                 var url = $"{servicePrefix}{controller}/{id}";
                 var response = await client.DeleteAsync(url);
                 var answer = await response.Content.ReadAsStringAsync();
-                if (!response.IsSuccessStatusCode)
-                {
-                    return new Response
+                return !response.IsSuccessStatusCode
+                    ? new Response
                     {
                         IsSuccess = false,
                         Message = answer,
+                    }
+                    : new Response
+                    {
+                        IsSuccess = true
                     };
-                }
-
-                return new Response
-                {
-                    IsSuccess = true
-                };
             }
             catch (Exception ex)
             {
@@ -355,19 +352,17 @@
                 var url = $"{servicePrefix}{controller}/{id}";
                 var response = await client.DeleteAsync(url);
                 var answer = await response.Content.ReadAsStringAsync();
-                if (!response.IsSuccessStatusCode)
-                {
-                    return new Response
+
+                return !response.IsSuccessStatusCode
+                    ? new Response
                     {
                         IsSuccess = false,
                         Message = answer,
+                    }
+                    : new Response
+                    {
+                        IsSuccess = true
                     };
-                }
-
-                return new Response
-                {
-                    IsSuccess = true
-                };
             }
             catch (Exception ex)
             {

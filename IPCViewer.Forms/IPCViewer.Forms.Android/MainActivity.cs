@@ -6,6 +6,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
+using FFImageLoading.Forms.Platform;
 using Xamarin.Forms.GoogleMaps.Android;
 
 namespace IPCViewer.Forms.Droid
@@ -26,6 +27,10 @@ namespace IPCViewer.Forms.Droid
             //{
             //    BitmapDescriptorFactory = new AccessNativeBitmapConfig()
             //};
+
+            // Image Cache
+            FFImageLoading.Forms.Platform.CachedImageRenderer.Init(enableFastRenderer:true);
+            CachedImageRenderer.InitImageViewHandler();
 
             Xamarin.FormsGoogleMaps.Init(this, savedInstanceState);
             Xamarin.FormsGoogleMapsBindings.Init();

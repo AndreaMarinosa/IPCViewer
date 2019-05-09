@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              x:Class="IPCViewer.Forms.Views.EditCameraPage"
              BindingContext="{Binding Main, Source={StaticResource Locator}}"
              Title="Edit camera">
@@ -9,9 +10,11 @@
             BindingContext="{Binding EditCamera}">
             <StackLayout
                 Padding="10">
-                <Image
+                <forms:CachedImage
+                    DownsampleToViewSize="true"
                     HeightRequest="250"
-                    Source="{Binding Camera.ImageUrl}"/>
+                    Source="{Binding Camera.ImageUrl}"
+                    ></forms:CachedImage>
 
                 <Grid>
                     <Grid.ColumnDefinitions>
