@@ -1,7 +1,4 @@
-﻿using FFImageLoading.Cache;
-using static FFImageLoading.Forms.CachedImage;
-
-namespace IPCViewer.Forms.ViewModels
+﻿namespace IPCViewer.Forms.ViewModels
 {
     using GalaSoft.MvvmLight.Command;
     using Common.Models;
@@ -44,7 +41,6 @@ namespace IPCViewer.Forms.ViewModels
             this.Camera = camera;
             this.apiService = new ApiService();
             this.IsEnabled = true;
-            InvalidateCache((ImageSource) camera.ImageUrl, CacheType.All, true);
         }
 
         private async void Save()

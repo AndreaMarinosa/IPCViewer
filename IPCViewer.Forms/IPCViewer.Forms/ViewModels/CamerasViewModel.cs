@@ -1,6 +1,4 @@
-﻿using FFImageLoading.Forms;
-
-namespace IPCViewer.Forms.ViewModels
+﻿namespace IPCViewer.Forms.ViewModels
 {
     using System;
     using System.Collections.Generic;
@@ -104,22 +102,24 @@ namespace IPCViewer.Forms.ViewModels
 
             RefreshCamerasList();
         }
-        
-        // ObservableCollection de la Clase CameraItemViewModel -> (Camera + Comando)
-        private void RefreshCamerasList() =>
+
+        private void RefreshCamerasList()
+        {
+            // ObservableCollection de la Clase CameraItemViewModel -> (Camera + Comando)
             Cameras = new ObservableCollection<CameraItemViewModel>(
                 myCameras.Select(c => new CameraItemViewModel // Por cada camera se creara una nueva instancia de CameraItemViewModel
-                {
-                    Id = c.Id,
-                    ImageUrl = c.ImageUrl,
-                    CityId = c.CityId,
-                    City = c.City,
-                    CreatedDate = c.CreatedDate,
-                    Latitude = c.Latitude,
-                    Longitude = c.Longitude,
-                    Comments = c.Comments,
-                    Name = c.Name,
-                    User = c.User
-                }).ToList());
+            {
+                Id = c.Id,
+                ImageUrl = c.ImageUrl,
+                CityId = c.CityId,
+                City = c.City,
+                CreatedDate = c.CreatedDate,
+                Latitude = c.Latitude,
+                Longitude = c.Longitude,
+                Comments = c.Comments,
+                Name = c.Name,
+                User = c.User
+            }).ToList());
+        }
     }
 }

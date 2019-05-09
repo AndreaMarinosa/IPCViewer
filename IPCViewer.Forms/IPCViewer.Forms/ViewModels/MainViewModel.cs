@@ -1,15 +1,19 @@
 ﻿using GalaSoft.MvvmLight.Command;
 using IPCViewer.Common.Models;
 using IPCViewer.Forms.Views;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Text;
 using System.Windows.Input;
+using Xamarin.Forms;
+using Xamarin.Forms.GoogleMaps;
 using Menu = IPCViewer.Common.Models.Menu;
 
 namespace IPCViewer.Forms.ViewModels
 {
-    internal class MainViewModel
+    class MainViewModel
     {
         public ObservableCollection<MenuItemViewModel> Menus { get; set; }
 
@@ -31,7 +35,7 @@ namespace IPCViewer.Forms.ViewModels
 
         public AddCameraViewModel AddCamera { get; set; }
 
-        public ICommand AddCameraCommand => new RelayCommand(GoAddCamera);
+        public ICommand AddCameraCommand => new RelayCommand(this.GoAddCamera);
 
         public EditCameraViewModel EditCamera { get; set; }
 
@@ -42,15 +46,15 @@ namespace IPCViewer.Forms.ViewModels
 
         private void GoAddCamera ()
         {
-            AddCamera = new AddCameraViewModel();
+            this.AddCamera = new AddCameraViewModel();
             App.Navigator.PushAsync(new AddCameraPage());
         }
 
         public MainViewModel ()
         {
             _instance = this;
-            Login = new LoginViewModel();
-            Register = new RegisterViewModel();
+            this.Login = new LoginViewModel();
+            this.Register = new RegisterViewModel();
             LoadMenus();
         }
 
@@ -94,7 +98,7 @@ namespace IPCViewer.Forms.ViewModels
                 }
             };
 
-            Menus = new ObservableCollection<MenuItemViewModel>(menus.Select(m => new MenuItemViewModel
+            this.Menus = new ObservableCollection<MenuItemViewModel>(menus.Select(m => new MenuItemViewModel
             {
                 Icon = m.Icon,
                 PageName = m.PageName,

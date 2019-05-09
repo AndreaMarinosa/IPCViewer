@@ -160,7 +160,6 @@ namespace IPCViewer.Forms.ViewModels
             {
                 SelectedPinChangedCount++;
                 Pin = args.SelectedPin;
-                //Eliminar el pin
             });
 
         public Command<InfoWindowClickedEventArgs> InfoWindowClickedCommand => new Command<InfoWindowClickedEventArgs>(
@@ -202,12 +201,9 @@ namespace IPCViewer.Forms.ViewModels
         {
             // Creamos un nuevo api service para recoger las camaras
             this.apiService = new ApiService();
-
             //Cargamos las camaras y las guardamos
             LoadCamerasAsync();
-
             // Aniadimos los markers de las camaras
-            AddMarkers();
         }
 
         /**
