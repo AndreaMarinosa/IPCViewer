@@ -199,11 +199,8 @@ namespace IPCViewer.Forms.ViewModels
 
         public MapViewModel ()
         {
-            // Creamos un nuevo api service para recoger las camaras
             this.apiService = new ApiService();
-            //Cargamos las camaras y las guardamos
             LoadCamerasAsync();
-            // Aniadimos los markers de las camaras
         }
 
         /**
@@ -229,18 +226,19 @@ namespace IPCViewer.Forms.ViewModels
             }
 
             this.myCameras = (List<Camera>) response.Result;
+            AddMarkers();
 
         }
 
         private void AddMarkers ()
         {
-            foreach ( var camera in myCameras )
+            foreach ( var Camera in myCameras )
             {
                 var pin = new Pin
                 {
                     IsVisible = true,
-                    Label = camera.Name,
-                    Position = new Position(camera.Latitude, camera.Longitude),
+                    Label = Camera.Name,
+                    Position = new Position(Camera.Latitude, Camera.Longitude),
                     Type = PinType.Place
                 };
 
