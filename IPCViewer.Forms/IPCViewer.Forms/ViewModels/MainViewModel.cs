@@ -43,7 +43,6 @@ namespace IPCViewer.Forms.ViewModels
 
         public EditUserViewModel EditUser { get; set; }
 
-        public MapViewModel Map { get; set; }
 
         private void GoAddCamera ()
         {

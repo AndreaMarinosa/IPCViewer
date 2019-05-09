@@ -1,14 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace IPCViewer.Forms.ViewModels
+﻿namespace IPCViewer.Forms.ViewModels
 {
-    using System.Collections.ObjectModel;
-    using System.Windows.Input;
+
+    using System;
+    using System.Collections.Generic;
     using Common.Models;
     using Common.Services;
     using GalaSoft.MvvmLight.Command;
+    using System.Collections.ObjectModel;
+    using System.Windows.Input;
     using Xamarin.Forms;
 
     public class AddCameraViewModel : BaseViewModel
@@ -31,42 +30,40 @@ namespace IPCViewer.Forms.ViewModels
 
         public string ImageUrl { get; set; }
 
-        public string CityId { get; set; }
-
-        public ICommand SaveCommand => new RelayCommand(this.Save);
+        public ICommand SaveCommand => new RelayCommand(Save);
 
         public bool IsRunning
         {
-            get => this.isRunning;
-            set => this.SetProperty(ref this.isRunning, value);
+            get => isRunning;
+            set => SetProperty(ref isRunning, value);
         }
 
         public bool IsEnabled
         {
-            get => this.isEnabled;
-            set => this.SetProperty(ref this.isEnabled, value);
+            get => isEnabled;
+            set => SetProperty(ref isEnabled, value);
         }
 
         public City City
         {
-            get => this.city;
-            set => this.SetProperty(ref this.city, value);
+            get => city;
+            set => SetProperty(ref city, value);
         }
 
         public ObservableCollection<City> Cities
         {
-            get => this.cities;
-            set => this.SetProperty(ref this.cities, value);
+            get => cities;
+            set => SetProperty(ref cities, value);
         }
 
-        public async void LoadCities()
+        public async void LoadCities ()
         {
 
             IsRunning = true;
             IsEnabled = false;
 
             //var url = Application.Current.Resources["UrlAPI"].ToString();
-            var response = await this.apiService.GetListAsync<City>(
+            var response = await apiService.GetListAsync<City>(
                 "https://ipcviewerapi.azurewebsites.net",
                 "/api",
                 "/Cities");
@@ -74,7 +71,7 @@ namespace IPCViewer.Forms.ViewModels
             IsRunning = false;
             IsEnabled = true;
 
-            if (!response.IsSuccess)
+            if ( !response.IsSuccess )
             {
                 await Application.Current.MainPage.DisplayAlert(
                     "Error",
@@ -83,38 +80,38 @@ namespace IPCViewer.Forms.ViewModels
                 return;
             }
 
-            var myCities = (List<City>)response.Result;
-            this.Cities = new ObservableCollection<City>(myCities);
+            var myCities = (List<City>) response.Result;
+            Cities = new ObservableCollection<City>(myCities);
 
         }
 
-        public AddCameraViewModel()
+        public AddCameraViewModel ()
         {
-            this.apiService = new ApiService();
+            apiService = new ApiService();
             LoadCities();
-            this.Image = "noImage";
-            this.IsEnabled = true;
+            Image = "noImage";
+            IsEnabled = true;
         }
 
-        private async void Save()
+        private async void Save ()
         {
-            if (string.IsNullOrEmpty(Name))
+            if ( string.IsNullOrEmpty(Name) )
             {
                 await Application.Current.MainPage.DisplayAlert("Error", "You must enter a camera name.", "Accept");
                 return;
             }
 
-            var latitude = double.Parse(this.Latitude);
-            var longitude = double.Parse(this.Longitude);
+            var latitude = double.Parse(Latitude);
+            var longitude = double.Parse(Longitude);
 
-            this.IsRunning = true;
-            this.IsEnabled = false;
+            IsRunning = true;
+            IsEnabled = false;
 
             var camera = new Camera
             {
-                Name = this.Name,
+                Name = Name,
                 ImageUrl = ImageUrl,
-                Comments = this.Comments,
+                Comments = Comments,
                 CityId = City.Id,
                 City = City,
                 Latitude = latitude,
@@ -127,7 +124,7 @@ namespace IPCViewer.Forms.ViewModels
             };
 
             var url = Application.Current.Resources["UrlAPI"].ToString();
-            var response = await this.apiService.PostAsync(
+            var response = await apiService.PostAsync(
                 url,
                 "/api",
                 "/Cameras",
@@ -135,20 +132,20 @@ namespace IPCViewer.Forms.ViewModels
                 "bearer",
                 MainViewModel.GetInstance().Token.Token);
 
-            if (!response.IsSuccess)
+            if ( !response.IsSuccess )
             {
                 await Application.Current.MainPage.DisplayAlert("Error", response.Message, "Accept");
 
-                this.IsRunning = false;
-                this.IsEnabled = true;
+                IsRunning = false;
+                IsEnabled = true;
                 return;
             }
 
-            var newCamera = (Camera)response.Result;
+            var newCamera = (Camera) response.Result;
             MainViewModel.GetInstance().Cameras.AddCamera(newCamera);
 
-            this.IsRunning = false;
-            this.IsEnabled = true;
+            IsRunning = false;
+            IsEnabled = true;
             await App.Navigator.PopAsync();
         }
 
