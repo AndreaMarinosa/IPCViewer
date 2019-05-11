@@ -6,6 +6,7 @@ namespace IPCViewer.Forms.ViewModels
     using Common.Models;
     using Common.Services;
     using GalaSoft.MvvmLight.Command;
+    using IPCViewer.Common.Helpers;
     using Plugin.Media;
     using Plugin.Media.Abstractions;
     using System.Collections.ObjectModel;
@@ -102,6 +103,9 @@ namespace IPCViewer.Forms.ViewModels
             this.IsRunning = true;
             this.IsEnabled = false;
 
+
+           
+
             var camera = new Camera
             {
                 Name = this.Name,
@@ -117,6 +121,22 @@ namespace IPCViewer.Forms.ViewModels
                 },
                 CreatedDate = DateTime.Now,
             };
+
+            byte[] imageArray = null;
+            // si es file no es null, que cargue la imagen
+            if ( this.file != null )
+            {
+                imageArray = FilesHelper.ReadFully(this.file.GetStream());
+                camera.ImageArray = imageArray;
+
+            }
+            // si el file image array es null, que compruebe si existe la url
+            else
+            {
+                // image url
+            }
+
+            // si no tiene ninguna, poner un alert y que cancele la operacion
 
 
             var response = await apiService.PostAsync(
@@ -184,7 +204,7 @@ namespace IPCViewer.Forms.ViewModels
             // desde url
             else
             {
-                // todo: aniadir popup
+                // todo: aniadir popup, crear propertie image url y comprobar si es null
             }
 
             if ( this.file != null )

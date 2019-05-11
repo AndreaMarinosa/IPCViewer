@@ -114,6 +114,58 @@
                 }
 
         /**
+         * Devuelve una camara comprobando los token del usuario
+         * Para recibir listas de camaras / usuarios
+         */
+        public async Task<Response> GetCameraAsync<T> (
+             string urlBase,
+             string servicePrefix,
+             string controller,
+             int id,
+             string tokenType,
+             string accessToken)
+        {
+            try
+            {
+          
+                var client = new HttpClient
+                {
+                    BaseAddress = new Uri(urlBase)
+                };
+
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(tokenType, accessToken);
+
+                var url = $"{servicePrefix}{controller}/{id}";
+                var response = await client.GetAsync(url);
+                var result = await response.Content.ReadAsStringAsync();
+
+                if ( !response.IsSuccessStatusCode )
+                {
+                    return new Response
+                    {
+                        IsSuccess = false,
+                        Message = result
+                    };
+                }
+
+                var camera = JsonConvert.DeserializeObject<T>(result);
+                return new Response
+                {
+                    IsSuccess = true,
+                    Result = camera
+                };
+            }
+            catch ( Exception ex )
+            {
+                return new Response
+                {
+                    IsSuccess = false,
+                    Message = ex.Message
+                };
+            }
+        }
+
+        /**
          * Recibir un token cuando te estas logeando para tener permisos en la aplicacion
          */
         public async Task<Response> GetTokenAsync(

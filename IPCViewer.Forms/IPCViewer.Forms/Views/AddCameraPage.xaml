@@ -37,7 +37,6 @@
                         <RowDefinition Height="*"></RowDefinition>
                         <RowDefinition Height="*"></RowDefinition>
                         <RowDefinition Height="*"></RowDefinition>
-                        <RowDefinition Height="*"></RowDefinition>
                     </Grid.RowDefinitions>
 
                     <!-- Name -->
@@ -94,7 +93,7 @@
                     	Placeholder="Comments..."
                     	Text="{Binding Comments}"/>
 
-                    <Label
+                    <!--<Label
                     	Grid.Column="0"
                     	Grid.Row="4"
                     	Text="ImageUrl"
@@ -104,18 +103,18 @@
                     	Grid.Column="1"
                     	Grid.Row="4"
                     	Placeholder="ImageUrl..."
-                    	Text="{Binding ImageUrl}"/>
+                    	Text="{Binding ImageUrl}"/>-->
 
                     <!-- City -->
                     <Label
                     	Grid.Column="0"
-                    	Grid.Row="5"
+                    	Grid.Row="4"
                     	Text="Localización"
                     	VerticalOptions="Center">
                     </Label>
                     <Picker
                     	Grid.Column="1"
-                    	Grid.Row="5"
+                    	Grid.Row="4"
                     	Title="Select a city..."
                     	ItemDisplayBinding="{Binding Name}"
                     	ItemsSource="{Binding Cities}"

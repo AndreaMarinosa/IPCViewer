@@ -4,6 +4,7 @@
     using Common.Models;
     using Views;
     using System.Windows.Input;
+    using System;
 
     /**
      * Clase para meter un comando en el modelo 'Camera'
@@ -13,6 +14,14 @@
     public class CameraItemViewModel : Camera
     {
         public ICommand SelectCameraCommand => new RelayCommand(SelectCamera);
+
+        public ICommand SelectCameraImageCommand => new RelayCommand(SelectCameraImage);
+
+        private async void SelectCameraImage ()
+        {
+            MainViewModel.GetInstance().DisplayCamera = new DisplayViewModel(this);
+            await App.Navigator.PushAsync(new DisplayCameraPage());
+        }
 
         private async void SelectCamera()
         {

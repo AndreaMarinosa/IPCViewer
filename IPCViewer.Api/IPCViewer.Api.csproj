@@ -33,7 +33,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\images\Cameras\" />
+    <Folder Include="wwwroot\images\cameras\" />
   </ItemGroup>
 
 </Project>

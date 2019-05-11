@@ -35,6 +35,9 @@
         [JsonProperty("cityId")]
         public int CityId { get; set; }
 
+        [JsonProperty("imageFullPath")]
+        public string ImageFullPath { get; set; }
+
         public byte[] ImageArray { get; set; }
 
     }

@@ -5,10 +5,29 @@
              BindingContext="{Binding Main, Source={StaticResource Locator}}">
     
     <ContentPage.Content>
-        <StackLayout>
-            <Image>
-                
+        <StackLayout
+            Padding="30"
+            BindingContext="{Binding DisplayCamera}">
+
+            <Label
+                Text="Camera name:"/>
+
+            <Label Text="{Binding Camera.Name}"/>
+            
+            <Image
+                Aspect="AspectFill"
+                VerticalOptions="FillAndExpand">
+
+                <Image.Source>
+                    <UriImageSource 
+                        Uri="{Binding Camera.ImageFullPath}"
+                        CachingEnabled="false"/>
+                </Image.Source>
             </Image>
+
+            <Button 
+                Text="Cargar"
+                Command="{Binding LoadCommand}"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

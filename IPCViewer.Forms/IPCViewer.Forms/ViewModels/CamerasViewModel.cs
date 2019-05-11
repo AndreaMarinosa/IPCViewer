@@ -41,7 +41,6 @@
 
         private async void LoadCamerasAsync()
         {
-            //var url = Application.Current.Resources["UrlAPI"].ToString();
             var response = await this.apiService.GetListAsync<Camera>(
                 "https://ipcviewerapi.azurewebsites.net",
                 "/api",
@@ -118,7 +117,8 @@
                 Longitude = c.Longitude,
                 Comments = c.Comments,
                 Name = c.Name,
-                User = c.User
+                User = c.User,
+                ImageFullPath = c.ImageFullPath
             }).ToList());
         }
     }

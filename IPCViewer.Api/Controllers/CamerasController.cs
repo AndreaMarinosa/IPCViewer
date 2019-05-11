@@ -11,7 +11,7 @@
     using System.Threading.Tasks;
 
     [Route("api/[controller]")]
-    //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     [ApiController]
     public class CamerasController : Controller
     {
@@ -40,7 +40,7 @@
         [HttpGet("{id}")]
         public IActionResult GetCamera(int id)
         {
-            return Ok(cameraRepository.GetCamera(id));
+            return Ok(cameraRepository.GetCamera(id).Result);
         }
 
         //PUT 
@@ -105,16 +105,12 @@
                 var fullPath = $"~/images/cameras/{file}";
                 var response = FilesHelper.UploadPhoto(stream, folder, file);
 
+                // si puede subir la imagen
                 if ( response )
                 {
                     imageUrl = fullPath;
                 }
             }
-            else
-            {
-                imageUrl = camera.ImageUrl; 
-            }
-
 
             var entityCamera = new Camera
             {

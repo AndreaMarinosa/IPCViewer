@@ -18,9 +18,7 @@
                     <Image.Source>
 
                         <UriImageSource
-                            Uri="{Binding Camera.ImageUrl}"
-                            CachingEnabled="false"
-                            />
+                            Uri="{Binding Camera.ImageFullPath}"/>
 
                     </Image.Source>
                 </Image>
@@ -87,7 +85,7 @@
                         Grid.Column="1"
                         Grid.Row="3"
                         Placeholder="ImageUrl"
-                        Text="{Binding Camera.ImageUrl}"/>
+                        Text="{Binding Camera.ImageFullPath}"/>
 
 
                     <!-- User -->

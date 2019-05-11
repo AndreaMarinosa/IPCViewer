@@ -36,11 +36,14 @@
 
                                 <Image
                                 	Grid.Column="0"
-                                	WidthRequest="100">
-                                    <Image.Source>
-                                        <UriImageSource
-                                            Uri="{Binding ImageUrl}"/>
-                                    </Image.Source>
+                                	WidthRequest="100"
+                                  Source="{Binding ImageFullPath}">
+
+                                  <Image.GestureRecognizers>
+                                    <TapGestureRecognizer
+                                        Command="{Binding SelectCameraImageCommand}"/>
+                                  </Image.GestureRecognizers>
+                                  
                                 </Image>
 
                                 <StackLayout

@@ -29,15 +29,17 @@
 
         public int CityId { get; set; }
 
-        //public IFormFile ImageFile { get; set; }
-
         public string ImageFullPath
         {
             get
             {
-                if ( string.IsNullOrEmpty(this.ImageUrl) )
+                if ( string.IsNullOrEmpty(this.ImageUrl)  )
                 {
                     return null;
+                }
+                else if ( ImageUrl.StartsWith("http") )
+                {
+                    return this.ImageUrl;
                 }
 
                 return $"https://ipcviewerapi.azurewebsites.net{this.ImageUrl.Substring(1)}";
