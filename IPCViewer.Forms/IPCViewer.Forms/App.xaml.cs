@@ -16,6 +16,10 @@
 
         public App()
         {
+            
+            //Register Syncfusion license
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("@31372e312e30Yq+maR8+yovkjCxAUy9Of06jRxlGClixfzVZKnNjTrE=");
+
             InitializeComponent();
 
             // Cargamos primero los settings del usuario

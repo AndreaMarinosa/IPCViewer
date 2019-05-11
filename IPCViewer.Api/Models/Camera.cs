@@ -1,5 +1,6 @@
 ﻿namespace IPCViewer.Api.Models
 {
+    using Microsoft.AspNetCore.Http;
     using System;
 
     /**
@@ -28,6 +29,19 @@
 
         public int CityId { get; set; }
 
+        //public IFormFile ImageFile { get; set; }
 
+        public string ImageFullPath
+        {
+            get
+            {
+                if ( string.IsNullOrEmpty(this.ImageUrl) )
+                {
+                    return null;
+                }
+
+                return $"https://ipcviewerapi.azurewebsites.net{this.ImageUrl.Substring(1)}";
+            }
+        }
     }
 }

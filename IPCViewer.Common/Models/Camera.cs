@@ -34,5 +34,8 @@
 
         [JsonProperty("cityId")]
         public int CityId { get; set; }
+
+        public byte[] ImageArray { get; set; }
+
     }
 }

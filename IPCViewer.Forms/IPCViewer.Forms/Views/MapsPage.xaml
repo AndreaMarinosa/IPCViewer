@@ -5,6 +5,7 @@
              xmlns:maps="clr-namespace:Xamarin.Forms.GoogleMaps;assembly=Xamarin.Forms.GoogleMaps"
              xmlns:bindings="clr-namespace:Xamarin.Forms.GoogleMaps.Bindings;assembly=Xamarin.Forms.GoogleMaps.Bindings"
              xmlns:viewModels="clr-namespace:IPCViewer.Forms.ViewModels"
+             xmlns:sfPopup="clr-namespace:Syncfusion.XForms.PopupLayout;assembly=Syncfusion.SfPopupLayout.XForms"
              x:Class="IPCViewer.Forms.Views.MapsPage"
              Title="Map">
 
@@ -17,6 +18,7 @@
 
         <Grid>
             <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
@@ -27,35 +29,51 @@
                 <RowDefinition Height="20"/>
                 <RowDefinition Height="20"/>
                 <RowDefinition Height="20"/>
-                <RowDefinition Height="20"/>
             </Grid.RowDefinitions>
 
-            <StackLayout Grid.Column="0" Grid.Row="0" Orientation="Horizontal">
+            <Image 
+                HeightRequest="100"
+                Grid.Column="0" 
+                Grid.Row="0" 
+                Grid.RowSpan="4" 
+                Source="{Binding ImageUrl}"/>
+
+            <StackLayout Grid.Column="1" Grid.Row="0" Orientation="Horizontal">
                 <Label Text="Label:"/>
                 <Label Text="{Binding Pin.Label}"/>
             </StackLayout>
 
-            <StackLayout Grid.Column="0" Grid.Row="1" Orientation="Horizontal">
+            <StackLayout Grid.Column="1" Grid.Row="1" Orientation="Horizontal">
                 <Label Text="Latitude:"/>
                 <Label Text="{Binding Pin.Position.Latitude}"/>
             </StackLayout>
 
-            <StackLayout Grid.Column="0" Grid.Row="2" Orientation="Horizontal">
+            <StackLayout Grid.Column="1" Grid.Row="2" Orientation="Horizontal">
                 <Label Text="Longitude:"/>
                 <Label Text="{Binding Pin.Position.Longitude}"/>
             </StackLayout>
-            
-            <StackLayout Grid.Column="0" Grid.Row="3" Orientation="Horizontal">
-                <Button 
-                Text="{i18n:Translate LeadMeTo}"
-                Command="{Binding LeadMeToCommand}"/>
+
+            <StackLayout Grid.Column="1" Grid.Row="3" Orientation="Horizontal">
+                <Label
+                    	Grid.Column="0"
+                    	Grid.Row="5"
+                    	Text="Localización"
+                    	VerticalOptions="Center">
+                </Label>
+                <Picker
+                    	Grid.Column="1"
+                    	Grid.Row="5"
+                    	Title="Select a city..."
+                    	ItemDisplayBinding="{Binding Name}"
+                    	ItemsSource="{Binding Cities}"
+                    	SelectedItem="{Binding City}"/>
             </StackLayout>
-            
+
             <Image 
                 HeightRequest="100"
-                Grid.Column="1" 
+                Grid.Column="2" 
                 Grid.Row="0" 
-                Grid.RowSpan="3" 
+                Grid.RowSpan="4" 
                 Source="{Binding ImageSource}"/>
 
         </Grid>

@@ -18,6 +18,8 @@
     <Compile Remove="Migrations\20190430151908_pruebas.Designer.cs" />
     <Compile Remove="Migrations\20190501075728_someChanges.cs" />
     <Compile Remove="Migrations\20190501075728_someChanges.Designer.cs" />
+    <Compile Remove="Migrations\20190511104338_AddingImages.cs" />
+    <Compile Remove="Migrations\20190511104338_AddingImages.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -28,6 +30,10 @@
 
   <ItemGroup>
     <ProjectReference Include="..\IPCViewer.Forms\IPCViewer.Forms\IPCViewer.Forms.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\images\Cameras\" />
   </ItemGroup>
 
 </Project>

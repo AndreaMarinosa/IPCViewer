@@ -38,11 +38,8 @@
                                 	Grid.Column="0"
                                 	WidthRequest="100">
                                     <Image.Source>
-
                                         <UriImageSource
-                                        Uri="{Binding ImageUrl}"
-                                        CachingEnabled="false"/>
-
+                                            Uri="{Binding ImageUrl}"/>
                                     </Image.Source>
                                 </Image>
 

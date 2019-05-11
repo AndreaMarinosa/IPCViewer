@@ -11,11 +11,16 @@
                 Padding="10">
                 <Image
                     HeightRequest="250">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Command="{Binding TapCommand}"/>
+                    </Image.GestureRecognizers>
                     <Image.Source>
 
                         <UriImageSource
                             Uri="{Binding Camera.ImageUrl}"
-                            CachingEnabled="false"/>
+                            CachingEnabled="false"
+                            />
 
                     </Image.Source>
                 </Image>

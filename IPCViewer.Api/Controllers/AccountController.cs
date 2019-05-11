@@ -21,18 +21,15 @@ namespace IPCViewer.Api.Controllers
     {
         private readonly IUserHelper userHelper;
         private readonly ICityRepository cityRepository;
-        private readonly IMailHelper mailHelper;
         private readonly IConfiguration configuration;
 
         public AccountController(
             IUserHelper userHelper,
             ICityRepository cityRepository,
-            IMailHelper mailHelper,
             IConfiguration configuration)
         {
             this.userHelper = userHelper;
             this.cityRepository = cityRepository;
-            this.mailHelper = mailHelper;
             this.configuration = configuration;
         }
 

@@ -7,10 +7,11 @@
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
     using System;
+    using System.IO;
     using System.Threading.Tasks;
 
     [Route("api/[controller]")]
-    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+    //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     [ApiController]
     public class CamerasController : Controller
     {
@@ -93,6 +94,28 @@
                 return this.BadRequest("Invalid city");
             }
 
+            // Image part
+            var imageUrl = string.Empty;
+            if ( camera.ImageArray != null && camera.ImageArray.Length > 0 )
+            {
+                var stream = new MemoryStream(camera.ImageArray);
+                var guid = Guid.NewGuid().ToString();
+                var file = $"{guid}.jpg";
+                var folder = "wwwroot\\images\\cameras";
+                var fullPath = $"~/images/cameras/{file}";
+                var response = FilesHelper.UploadPhoto(stream, folder, file);
+
+                if ( response )
+                {
+                    imageUrl = fullPath;
+                }
+            }
+            else
+            {
+                imageUrl = camera.ImageUrl; 
+            }
+
+
             var entityCamera = new Camera
             {
                 Name = camera.Name,
@@ -101,9 +124,9 @@
                 Latitude = camera.Latitude,
                 Longitude = camera.Longitude,
                 User = user,
-                ImageUrl = camera.ImageUrl,
                 CityId = camera.CityId,
-                City = city
+                City = city,
+                ImageUrl = imageUrl
             };
 
             var newCamera = await cameraRepository.CreateAsync(entityCamera);

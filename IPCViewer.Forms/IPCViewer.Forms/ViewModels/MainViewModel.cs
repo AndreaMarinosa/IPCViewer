@@ -45,6 +45,8 @@ namespace IPCViewer.Forms.ViewModels
 
         public AddUrlViewModel AddUrl { get; set; }
 
+        public DisplayViewModel DisplayCamera { get; set; }
+
         private void GoAddCamera ()
         {
             this.AddCamera = new AddCameraViewModel();

@@ -1,25 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace IPCViewer.Forms.ViewModels
 {
-    using System.Collections.ObjectModel;
-    using System.Windows.Input;
     using Common.Models;
     using Common.Services;
     using GalaSoft.MvvmLight.Command;
+    using Plugin.Media;
+    using Plugin.Media.Abstractions;
+    using System.Collections.ObjectModel;
+    using System.Windows.Input;
     using Xamarin.Forms;
 
     public class AddCameraViewModel : BaseViewModel
     {
         private bool isRunning;
         private bool isEnabled;
-        private readonly ApiService apiService;
+        private ApiService apiService;
         private ObservableCollection<City> cities;
         private City city;
+        private MediaFile file;
+        private ImageSource imageSource;
 
-        public string Image { get; set; }
 
         public string Name { get; set; }
 
@@ -29,43 +31,40 @@ namespace IPCViewer.Forms.ViewModels
 
         public string Comments { get; set; }
 
-        public string ImageUrl { get; set; }
+        public ImageSource ImageSource
+        {
+            get => this.imageSource;
+            set => this.SetProperty(ref this.imageSource, value);
+        }
 
-        public string CityId { get; set; }
+        public string UrlCamera { get; set; }
 
         public ICommand SaveCommand => new RelayCommand(this.Save);
 
-        public bool IsRunning
+        public ICommand ChangeImageCommand => new RelayCommand(this.ChangeImage);
+
+        public bool IsRunning { get => this.isRunning; set => this.SetProperty(ref this.isRunning, value); }
+
+        public bool IsEnabled { get => this.isEnabled; set => this.SetProperty(ref this.isEnabled, value); }
+
+        public City City { get => this.city; set => this.SetProperty(ref this.city, value); }
+
+        public ObservableCollection<City> Cities { get => this.cities; set => this.SetProperty(ref this.cities, value); }
+
+        public AddCameraViewModel ()
         {
-            get => this.isRunning;
-            set => this.SetProperty(ref this.isRunning, value);
+            this.apiService = new ApiService();
+            this.ImageSource = "noImage";
+            LoadCities();
+            this.IsEnabled = true;
         }
 
-        public bool IsEnabled
-        {
-            get => this.isEnabled;
-            set => this.SetProperty(ref this.isEnabled, value);
-        }
-
-        public City City
-        {
-            get => this.city;
-            set => this.SetProperty(ref this.city, value);
-        }
-
-        public ObservableCollection<City> Cities
-        {
-            get => this.cities;
-            set => this.SetProperty(ref this.cities, value);
-        }
-
-        public async void LoadCities()
+        public async void LoadCities ()
         {
 
             IsRunning = true;
             IsEnabled = false;
 
-            //var url = Application.Current.Resources["UrlAPI"].ToString();
             var response = await this.apiService.GetListAsync<City>(
                 "https://ipcviewerapi.azurewebsites.net",
                 "/api",
@@ -74,7 +73,7 @@ namespace IPCViewer.Forms.ViewModels
             IsRunning = false;
             IsEnabled = true;
 
-            if (!response.IsSuccess)
+            if ( !response.IsSuccess )
             {
                 await Application.Current.MainPage.DisplayAlert(
                     "Error",
@@ -83,22 +82,15 @@ namespace IPCViewer.Forms.ViewModels
                 return;
             }
 
-            var myCities = (List<City>)response.Result;
+            var myCities = (List<City>) response.Result;
             this.Cities = new ObservableCollection<City>(myCities);
 
         }
 
-        public AddCameraViewModel()
+        private async void Save ()
         {
-            this.apiService = new ApiService();
-            LoadCities();
-            this.Image = "noImage";
-            this.IsEnabled = true;
-        }
-
-        private async void Save()
-        {
-            if (string.IsNullOrEmpty(Name))
+            // todo: more alerts
+            if ( string.IsNullOrEmpty(Name) )
             {
                 await Application.Current.MainPage.DisplayAlert("Error", "You must enter a camera name.", "Accept");
                 return;
@@ -113,7 +105,7 @@ namespace IPCViewer.Forms.ViewModels
             var camera = new Camera
             {
                 Name = this.Name,
-                ImageUrl = ImageUrl,
+                //ImageArray = ImageSource,
                 Comments = this.Comments,
                 CityId = City.Id,
                 City = City,
@@ -126,6 +118,7 @@ namespace IPCViewer.Forms.ViewModels
                 CreatedDate = DateTime.Now,
             };
 
+
             var response = await apiService.PostAsync(
                 "https://ipcviewerapi.azurewebsites.net",
                 "/api",
@@ -134,7 +127,7 @@ namespace IPCViewer.Forms.ViewModels
                 "bearer",
                 MainViewModel.GetInstance().Token.Token);
 
-            if (!response.IsSuccess)
+            if ( !response.IsSuccess )
             {
                 await Application.Current.MainPage.DisplayAlert("Error", response.Message, "Accept");
 
@@ -143,12 +136,65 @@ namespace IPCViewer.Forms.ViewModels
                 return;
             }
 
-            var newCamera = (Camera)response.Result;
+            var newCamera = (Camera) response.Result;
             MainViewModel.GetInstance().Cameras.AddCamera(newCamera);
 
             this.IsRunning = false;
             this.IsEnabled = true;
             await App.Navigator.PopAsync();
+        }
+
+        private async void ChangeImage ()
+        {
+            // Inicializamos la camara
+            await CrossMedia.Current.Initialize();
+
+            // Dialogo para varias opciones
+            var source = await Application.Current.MainPage.DisplayActionSheet(
+                "Where do you take the picture?",
+                "Cancel",
+                null,
+                "From Gallery",
+                "From Camera",
+                "From Url");
+
+            if ( source == "Cancel" )
+            {
+                this.file = null;
+                return;
+            }
+
+            if ( source == "From Camera" )
+            {
+                // le decimos que coja la foto de la camara
+                this.file = await CrossMedia.Current.TakePhotoAsync(
+                    new StoreCameraMediaOptions
+                    {
+                        Directory = "Pictures",
+                        Name = "test.jpg",
+                        PhotoSize = PhotoSize.Small,
+                    }
+                );
+            }
+            // desde la galeria
+            else if ( source == "From Gallery" )
+            {
+                this.file = await CrossMedia.Current.PickPhotoAsync();
+            }
+            // desde url
+            else
+            {
+                // todo: aniadir popup
+            }
+
+            if ( this.file != null )
+            {
+                this.ImageSource = ImageSource.FromStream(() =>
+                {
+                    var stream = file.GetStream();
+                    return stream;
+                });
+            }
         }
 
     }

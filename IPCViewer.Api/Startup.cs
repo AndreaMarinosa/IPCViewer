@@ -66,7 +66,6 @@ namespace IPCViewer.Api
             });
 
             services.AddTransient<SeedDb>();
-            services.AddScoped<IMailHelper, MailHelper>();
             services.AddScoped<ICameraRepository, CameraRepository>();
             services.AddScoped<ICityRepository, CityRepository>();
             services.AddScoped<IUserHelper, UserHelper>();

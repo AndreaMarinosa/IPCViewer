@@ -5,6 +5,8 @@
     using Common.Services;
     using System.Windows.Input;
     using Xamarin.Forms;
+    using System;
+    using IPCViewer.Forms.Views;
 
     public class EditCameraViewModel : BaseViewModel
     {
@@ -24,6 +26,13 @@
 
         public ICommand DeleteCommand => new RelayCommand(this.Delete);
 
+        public ICommand TapCommand => new RelayCommand(this.DisplayCameraAsync);
+
+        private async void DisplayCameraAsync ()
+        {
+            MainViewModel.GetInstance().DisplayCamera = new DisplayViewModel(Camera);
+            await App.Navigator.PushAsync(new DisplayCameraPage());
+        }
 
         public bool IsEnabled
         {
