@@ -72,7 +72,7 @@
                 <Setter Property="BorderColor" Value="{StaticResource Secondary}"/>
                 <Setter Property="BorderWidth" Value="2"/>
                 <Setter Property="BackgroundColor" Value="WhiteSmoke"/>
-                <Setter Property="TextColor" Value="{StaticResource SecondaryFontColor}"/>
+                <Setter Property="TextColor" Value="{StaticResource Secondary}"/>
                 <Setter Property="CornerRadius" Value="23"/>
                 <Setter Property="HeightRequest" Value="46"/>
                 <Setter Property="FontFamily" Value="{StaticResource MediumFont}"/>

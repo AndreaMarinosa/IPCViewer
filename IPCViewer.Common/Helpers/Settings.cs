@@ -11,9 +11,10 @@
         private const string userEmail = "userEmail";
         private const string userPassword = "userPassword";
         private const string isRemember = "isRemember";
+        private const string user = "user";
+
         private static readonly string stringDefault = string.Empty; // Defino los valores por defecto. Por defecto esta vacio
         private static readonly bool boolDefault = false;
-
         private static ISettings AppSettings => CrossSettings.Current;
 
         // Por cada constante, se define una propiedad publica y estatica
@@ -40,6 +41,13 @@
             get => AppSettings.GetValueOrDefault(isRemember, boolDefault);
             set => AppSettings.AddOrUpdateValue(isRemember, value);
         }
-    }
 
+        // Guardamos el usuario serializado como un string
+        public static string User
+        {
+            get => AppSettings.GetValueOrDefault(user, stringDefault);
+            set => AppSettings.AddOrUpdateValue(user, value);
+        }
+
+    }
 }

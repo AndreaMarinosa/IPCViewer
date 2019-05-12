@@ -134,17 +134,6 @@
                     IsEnabled="{Binding IsEnabled}"
     	            HorizontalOptions="FillAndExpand"/>
                     
-                    <Label
-                        Margin="5"
-	                    HorizontalOptions="Center"
-	                    Text="{i18n:Translate Login}"
-	                    TextColor="{StaticResource SecondaryLight}">
-                        
-                        <Label.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding RememberPasswordCommand }"/>
-                        </Label.GestureRecognizers>
-                    </Label>
-
                 </StackLayout>
             </ScrollView>
         </StackLayout>

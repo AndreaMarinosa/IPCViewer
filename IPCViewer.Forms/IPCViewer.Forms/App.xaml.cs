@@ -27,11 +27,16 @@
             {
                 // Como esta guardado como un string, lo deserilizamos como un objeto
                 var token = JsonConvert.DeserializeObject<TokenResponse>(Settings.Token);
+
+                // Si el usuario esta recordado, lo deserializamos para volverlo objeto
+                var user = JsonConvert.DeserializeObject<User>(Settings.User);
+
                 // Si el token no es valido (Porque ha pasado el tiempo), lo devolvemos al login
-                if (token.Expiration > DateTime.Now)
+                if ( token.Expiration > DateTime.Now)
                 {
                     var mainViewModel = MainViewModel.GetInstance();
                     mainViewModel.Token = token;
+                    mainViewModel.User = user;
                     mainViewModel.UserEmail = Settings.UserEmail;
                     mainViewModel.UserPassword = Settings.UserPassword;
                     mainViewModel.Cameras = new CamerasViewModel();

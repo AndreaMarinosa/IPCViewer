@@ -19,6 +19,8 @@ namespace IPCViewer.Forms.ViewModels
 
         private static MainViewModel _instance;
 
+        public User User { get; set; }
+
         public RegisterViewModel Register { get; set; }
 
         public string UserEmail { get; set; }
@@ -49,7 +51,7 @@ namespace IPCViewer.Forms.ViewModels
 
         public AddLocationViewModel AddLocation{ get; set; }
 
-        public RememberPasswordViewModel RememberPassword { get; set; }
+        public ProfileViewModel Profile { get; set; }
 
         private void GoAddCamera ()
         {
@@ -71,9 +73,9 @@ namespace IPCViewer.Forms.ViewModels
             {
                 new Menu
                 {
-                    Icon = "about",
-                    PageName = "AboutPage",
-                    Title = "About"
+                    Icon = null,
+                    PageName = "MapsPage",
+                    Title= "Map"
                 },
 
                 new Menu
@@ -83,11 +85,11 @@ namespace IPCViewer.Forms.ViewModels
                     Title = "Setup"
                 },
 
-                new Menu
+                 new Menu
                 {
                     Icon = null,
-                    PageName = "MapsPage",
-                    Title= "Map"
+                    PageName = "ProfilePage",
+                    Title = "Modify User"
                 },
 
                 new Menu
@@ -95,6 +97,13 @@ namespace IPCViewer.Forms.ViewModels
                     Icon = null,
                     PageName = "UsersPage",
                     Title= "Users"
+                },
+
+                new Menu
+                {
+                    Icon = "about",
+                    PageName = "AboutPage",
+                    Title = "About"
                 },
 
                 new Menu

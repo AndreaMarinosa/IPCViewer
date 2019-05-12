@@ -44,8 +44,6 @@
 
         public ICommand LoginCommand => new RelayCommand(this.Login);
 
-        public ICommand RememberPasswordCommand => new RelayCommand(this.RememberPassword);
-
         public LoginViewModel ()
         {
             apiService = new ApiService();
@@ -85,8 +83,6 @@
                 Username = this.Email
             };
 
-
-            //var url = Application.Current.Resources["UrlAPI"].ToString();
             var response = await this.apiService.GetTokenAsync(
                 "https://ipcviewerapi.azurewebsites.net",
                 "/api",
@@ -107,7 +103,20 @@
             }
 
             var token = (TokenResponse)response.Result;
+
+            // Cogemos las datos del usuario mediante ese email
+            var response2 = await this.apiService.GetUserByEmailAsync(
+                "https://ipcviewerapi.azurewebsites.net",
+                "/api",
+                "/Account/GetUserByEmail",
+                this.Email,
+                "bearer",
+                token.Token);
+
+            var user = (User) response2.Result;
+
             var mainViewModel = MainViewModel.GetInstance();
+            mainViewModel.User = user;
             mainViewModel.Token = token;
             mainViewModel.Cameras = new CamerasViewModel();
             mainViewModel.UserEmail = this.Email;
@@ -119,15 +128,10 @@
             Settings.UserEmail = Email;
             Settings.UserPassword = Password;
             Settings.Token = JsonConvert.SerializeObject(token); // coge el token y lo guarda en un string
+            Settings.User = JsonConvert.SerializeObject(user); // coge el user y lo guarda en un string
 
             Application.Current.MainPage = new /*NavigationPage(new */MasterPage()/*)*/;
 
-        }
-
-        private void RememberPassword ()
-        {
-            MainViewModel.GetInstance().RememberPassword = new RememberPasswordViewModel();
-            Application.Current.MainPage = new NavigationPage(new RememberPasswordPage());
         }
 
     }

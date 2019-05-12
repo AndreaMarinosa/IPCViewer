@@ -15,6 +15,8 @@ namespace IPCViewer.Api.Controllers
     using System.Security.Claims;
     using System.Text;
     using System.Threading.Tasks;
+    using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Authentication.JwtBearer;
 
     [Route("api/[Controller]")]
     public class AccountController : Controller
@@ -184,103 +186,67 @@ namespace IPCViewer.Api.Controllers
             return Ok(user);
         }
 
-        //    [HttpPost]
-        //    [Route("RecoverPassword")]
-        //    public async Task<IActionResult> RecoverPassword([FromBody] RecoverPasswordRequest request)
-        //    {
-        //        if (!ModelState.IsValid)
-        //        {
-        //            return this.BadRequest(new Response
-        //            {
-        //                IsSuccess = false,
-        //                Message = "Bad request"
-        //            });
-        //        }
+        [HttpPost]
+        [Route("GetUserByEmail")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        public async Task<IActionResult> GetUserByEmail ([FromBody] UserEmailRequest request)
+        {
+            if ( !ModelState.IsValid )
+            {
+                return this.BadRequest(new Response
+                {
+                    IsSuccess = false,
+                    Message = "Bad request"
+                });
+            }
 
-        //        var user = await this.userHelper.GetUserByEmailAsync(request.Email);
-        //        if (user == null)
-        //        {
-        //            return this.BadRequest(new Response
-        //            {
-        //                IsSuccess = false,
-        //                Message = "This email is not assigned to any user."
-        //            });
-        //        }
+            var user = await this.userHelper.GetUserByEmailAsync(request.Email);
+            if ( user == null )
+            {
+                return this.BadRequest(new Response
+                {
+                    IsSuccess = false,
+                    Message = "User don't exists."
+                });
+            }
 
-        //        var myToken = await this.userHelper.GeneratePasswordResetTokenAsync(user);
-        //        var link = this.Url.Action("ResetPassword", "Account", new { token = myToken }, protocol: HttpContext.Request.Scheme);
-        //        this.mailHelper.SendMail(request.Email, "Password Reset", $"<h1>Recover Password</h1>" +
-        //            $"To reset the password click in this link:</br></br>" +
-        //            $"<a href = \"{link}\">Reset Password</a>");
+            return Ok(user);
+        }
 
-        //        return Ok(new Response
-        //        {
-        //            IsSuccess = true,
-        //            Message = "An email with instructions to change the password was sent."
-        //        });
-        //    }
 
-        //    [HttpPost]
-        //    [Route("GetUserByEmail")]
-        //    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
-        //    public async Task<IActionResult> GetUserByEmail([FromBody] RecoverPasswordRequest request)
-        //    {
-        //        if (!ModelState.IsValid)
-        //        {
-        //            return this.BadRequest(new Response
-        //            {
-        //                IsSuccess = false,
-        //                Message = "Bad request"
-        //            });
-        //        }
 
-        //        var user = await this.userHelper.GetUserByEmailAsync(request.Email);
-        //        if (user == null)
-        //        {
-        //            return this.BadRequest(new Response
-        //            {
-        //                IsSuccess = false,
-        //                Message = "User don't exists."
-        //            });
-        //        }
+        [HttpPut]
+        public async Task<IActionResult> PutUser ([FromBody] Common.Models.User user)
+        {
+            if ( !ModelState.IsValid )
+            {
+                return this.BadRequest(ModelState);
+            }
 
-        //        return Ok(user);
-        //    }
+            var userEntity = await this.userHelper.GetUserByEmailAsync(user.Email);
+            if ( userEntity == null )
+            {
+                return this.BadRequest("User not found.");
+            }
 
-        //    [HttpPut]
-        //    public async Task<IActionResult> PutUser([FromBody] User user)
-        //    {
-        //        if (!ModelState.IsValid)
-        //        {
-        //            return this.BadRequest(ModelState);
-        //        }
+            var city = await this.cityRepository.GetCityByIdAsync(user.CityId);
+            if ( city != null )
+            {
+                userEntity.City = city;
+            }
 
-        //        var userEntity = await this.userHelper.GetUserByEmailAsync(user.Email);
-        //        if (userEntity == null)
-        //        {
-        //            return this.BadRequest("User not found.");
-        //        }
+            userEntity.FirstName = user.FirstName;
+            userEntity.CityId = user.CityId;
 
-        //        var city = await this.cityRepository.GetCityAsync(user.CityId);
-        //        if (city != null)
-        //        {
-        //            userEntity.City = city;
-        //        }
+            var respose = await this.userHelper.UpdateUserAsync(userEntity);
+            if ( !respose.Succeeded )
+            {
+                return this.BadRequest(respose.Errors.FirstOrDefault().Description);
+            }
 
-        //        userEntity.FirstName = user.FirstName;
-        //        userEntity.CityId = user.CityId;
-        //        userEntity.Address = user.Address;
-        //        userEntity.PhoneNumber = user.PhoneNumber;
-
-        //        var respose = await this.userHelper.UpdateUserAsync(userEntity);
-        //        if (!respose.Succeeded)
-        //        {
-        //            return this.BadRequest(respose.Errors.FirstOrDefault().Description);
-        //        }
-
-        //        var updatedUser = await this.userHelper.GetUserByEmailAsync(user.Email);
-        //        return Ok(updatedUser);
-        //    }
+            var updatedUser = await this.userHelper.GetUserByEmailAsync(user.Email);
+            return Ok(updatedUser);
+        }
 
         //    [HttpPost]
         //    [Route("ChangePassword")]

@@ -88,15 +88,6 @@ namespace IPCViewer.Forms.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Enter an email to recover the password....
-        /// </summary>
-        public static string EmailRecoverPlaceholder {
-            get {
-                return ResourceManager.GetString("EmailRecoverPlaceholder", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Error.
         /// </summary>
         public static string Error {
@@ -106,20 +97,20 @@ namespace IPCViewer.Forms.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Firstname.
+        /// </summary>
+        public static string Firstname {
+            get {
+                return ResourceManager.GetString("Firstname", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Firstname....
         /// </summary>
         public static string FirstnamePlaceHolder {
             get {
                 return ResourceManager.GetString("FirstnamePlaceHolder", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Forgot my password.
-        /// </summary>
-        public static string ForgotPassword {
-            get {
-                return ResourceManager.GetString("ForgotPassword", resourceCulture);
             }
         }
         
@@ -165,15 +156,6 @@ namespace IPCViewer.Forms.Resources {
         public static string PasswordPlaceHolder {
             get {
                 return ResourceManager.GetString("PasswordPlaceHolder", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Recover password.
-        /// </summary>
-        public static string RecoverPassword {
-            get {
-                return ResourceManager.GetString("RecoverPassword", resourceCulture);
             }
         }
         

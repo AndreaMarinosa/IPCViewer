@@ -20,8 +20,14 @@
                 case "AboutPage":
                     await App.Navigator.PushAsync(new AboutPage());
                     break;
+
                 case "SetupPage":
                     await App.Navigator.PushAsync(new SetupPage());
+                    break;
+
+                case "ProfilePage":
+                    MainViewModel.GetInstance().Profile = new ProfileViewModel();
+                    await App.Navigator.PushAsync(new ProfilePage());
                     break;
 
                 case "MapsPage":
@@ -36,6 +42,7 @@
 
                 default:
                     // Cuando cierre sesion el usuario, que se quiten los valores de persistencia
+                    Settings.User = string.Empty;
                     Settings.IsRemember = false;
                     Settings.Token = string.Empty;
                     Settings.UserEmail = string.Empty;
