@@ -162,4 +162,7 @@
   <data name="Firstname" xml:space="preserve">
     <value>Nome</value>
   </data>
+  <data name="Username" xml:space="preserve">
+    <value>Nome utente</value>
+  </data>
 </root>

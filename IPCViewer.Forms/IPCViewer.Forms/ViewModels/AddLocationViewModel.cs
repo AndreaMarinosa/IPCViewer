@@ -10,7 +10,7 @@ using Xamarin.Forms.GoogleMaps.Bindings;
 
 namespace IPCViewer.Forms.ViewModels
 {
-    class AddLocationViewModel : BaseViewModel
+    public class AddLocationViewModel : BaseViewModel
     {
         private Pin _pin;
         private string _latitude;

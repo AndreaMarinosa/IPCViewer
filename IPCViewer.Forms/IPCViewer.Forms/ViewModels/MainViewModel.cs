@@ -13,13 +13,12 @@ using Menu = IPCViewer.Common.Models.Menu;
 
 namespace IPCViewer.Forms.ViewModels
 {
-    class MainViewModel
+    public class MainViewModel : BaseViewModel
     {
         public ObservableCollection<MenuItemViewModel> Menus { get; set; }
 
         private static MainViewModel _instance;
-
-        public User User { get; set; }
+        private User user;
 
         public RegisterViewModel Register { get; set; }
 
@@ -52,6 +51,12 @@ namespace IPCViewer.Forms.ViewModels
         public AddLocationViewModel AddLocation{ get; set; }
 
         public ProfileViewModel Profile { get; set; }
+
+        public User User
+        {
+            get => this.user;
+            set => this.SetProperty(ref this.user, value);
+        }
 
         private void GoAddCamera ()
         {

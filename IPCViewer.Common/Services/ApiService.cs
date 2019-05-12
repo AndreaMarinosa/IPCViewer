@@ -20,7 +20,7 @@
         /**
          * Devulve una lista generica sin seguridad (Para recibir las ciudades)
          */
-        public async Task<Response> GetListAsync<T>(
+        public async Task<Response> GetListAsync<T> (
             string urlBase,
             string servicePrefix,
             string controller)
@@ -37,7 +37,7 @@
                 var response = await client.GetAsync(url); // Devuelve la respuesta del cliente a la url
                 var result = await response.Content.ReadAsStringAsync();
 
-                if (!response.IsSuccessStatusCode)
+                if ( !response.IsSuccessStatusCode )
                 {
                     return new Response
                     {
@@ -53,7 +53,7 @@
                     Result = list
                 };
             }
-            catch (Exception ex)
+            catch ( Exception ex )
             {
                 return new Response
                 {
@@ -67,51 +67,51 @@
          * Devuelve una lista generica comprobando los token del usuario
          * Para recibir listas de camaras / usuarios
          */
-        public async Task<Response> GetListAsync<T>(
+        public async Task<Response> GetListAsync<T> (
              string urlBase,
              string servicePrefix,
              string controller,
              string tokenType,
              string accessToken)
+        {
+            try
+            {
+                var client = new HttpClient
                 {
-                    try
+                    BaseAddress = new Uri(urlBase),
+                };
+
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(tokenType, accessToken);
+
+                var url = $"{servicePrefix}{controller}";
+                var response = await client.GetAsync(url);
+                var result = await response.Content.ReadAsStringAsync();
+
+                if ( !response.IsSuccessStatusCode )
+                {
+                    return new Response
                     {
-                        var client = new HttpClient
-                        {
-                            BaseAddress = new Uri(urlBase),
-                        };
-
-                        client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(tokenType, accessToken);
-
-                        var url = $"{servicePrefix}{controller}";
-                        var response = await client.GetAsync(url);
-                        var result = await response.Content.ReadAsStringAsync();
-
-                        if (!response.IsSuccessStatusCode)
-                        {
-                            return new Response
-                            {
-                                IsSuccess = false,
-                                Message = result
-                            };
-                        }
-
-                        var list = JsonConvert.DeserializeObject<List<T>>(result);
-                        return new Response
-                        {
-                            IsSuccess = true,
-                            Result = list
-                        };
-                    }
-                    catch (Exception ex)
-                    {
-                        return new Response
-                        {
-                            IsSuccess = false,
-                            Message = ex.Message
-                        };
-                    }
+                        IsSuccess = false,
+                        Message = result
+                    };
                 }
+
+                var list = JsonConvert.DeserializeObject<List<T>>(result);
+                return new Response
+                {
+                    IsSuccess = true,
+                    Result = list
+                };
+            }
+            catch ( Exception ex )
+            {
+                return new Response
+                {
+                    IsSuccess = false,
+                    Message = ex.Message
+                };
+            }
+        }
 
         /**
          * Devuelve una camara comprobando los token del usuario
@@ -127,7 +127,7 @@
         {
             try
             {
-          
+
                 var client = new HttpClient
                 {
                     BaseAddress = new Uri(urlBase)
@@ -168,7 +168,7 @@
         /**
          * Recibir un token cuando te estas logeando para tener permisos en la aplicacion
          */
-        public async Task<Response> GetTokenAsync(
+        public async Task<Response> GetTokenAsync (
             string urlBase,
             string servicePrefix,
             string controller,
@@ -187,7 +187,7 @@
                 var response = await client.PostAsync(url, content);
                 var result = await response.Content.ReadAsStringAsync();
 
-                if (!response.IsSuccessStatusCode)
+                if ( !response.IsSuccessStatusCode )
                 {
                     return new Response
                     {
@@ -203,7 +203,7 @@
                     Result = token
                 };
             }
-            catch (Exception ex)
+            catch ( Exception ex )
             {
                 return new Response
                 {
@@ -216,7 +216,7 @@
         /**
          * Insertar una camara desde la aplicacion movil
          */
-        public async Task<Response> PostAsync<T>(
+        public async Task<Response> PostAsync<T> (
             string urlBase,
             string servicePrefix,
             string controller,
@@ -237,7 +237,7 @@
                 var url = $"{servicePrefix}{controller}";
                 var response = await client.PostAsync(url, content);
                 var answer = await response.Content.ReadAsStringAsync();
-                if (!response.IsSuccessStatusCode)
+                if ( !response.IsSuccessStatusCode )
                 {
                     return new Response
                     {
@@ -253,7 +253,7 @@
                     Result = obj,
                 };
             }
-            catch (Exception ex)
+            catch ( Exception ex )
             {
                 return new Response
                 {
@@ -263,7 +263,7 @@
             }
         }
 
-        public async Task<Response> PutAsync<T>(
+        public async Task<Response> PutAsync<T> (
             string urlBase,
             string servicePrefix,
             string controller,
@@ -285,7 +285,7 @@
                 var url = $"{servicePrefix}{controller}/{id}";
                 var response = await client.PutAsync(url, content);
                 var answer = await response.Content.ReadAsStringAsync();
-                if (!response.IsSuccessStatusCode)
+                if ( !response.IsSuccessStatusCode )
                 {
                     return new Response
                     {
@@ -301,7 +301,7 @@
                     Result = obj,
                 };
             }
-            catch (Exception ex)
+            catch ( Exception ex )
             {
                 return new Response
                 {
@@ -311,7 +311,7 @@
             }
         }
 
-        public async Task<Response> DeleteAsync(
+        public async Task<Response> DeleteAsync (
             string urlBase,
             string servicePrefix,
             string controller,
@@ -330,7 +330,7 @@
                 var url = $"{servicePrefix}{controller}/{id}";
                 var response = await client.DeleteAsync(url);
                 var answer = await response.Content.ReadAsStringAsync();
-                if (!response.IsSuccessStatusCode)
+                if ( !response.IsSuccessStatusCode )
                 {
                     return new Response
                     {
@@ -344,7 +344,7 @@
                     IsSuccess = true
                 };
             }
-            catch (Exception ex)
+            catch ( Exception ex )
             {
                 return new Response
                 {
@@ -358,7 +358,7 @@
         /**
          * Registrar un usuario
          */
-        public async Task<Response> RegisterUserAsync(
+        public async Task<Response> RegisterUserAsync (
             string urlBase,
             string servicePrefix,
             string controller,
@@ -380,7 +380,7 @@
                 var obj = JsonConvert.DeserializeObject<Response>(answer);
                 return obj;
             }
-            catch (Exception ex)
+            catch ( Exception ex )
             {
                 return new Response
                 {
@@ -391,7 +391,7 @@
         }
 
         // todo: poner autenticacion para eliminar usuario
-        public async Task<Response> DeleteUserAsync(
+        public async Task<Response> DeleteUserAsync (
             string urlBase,
             string servicePrefix,
             string controller,
@@ -407,7 +407,7 @@
                 var url = $"{servicePrefix}{controller}/{id}";
                 var response = await client.DeleteAsync(url);
                 var answer = await response.Content.ReadAsStringAsync();
-                if (!response.IsSuccessStatusCode)
+                if ( !response.IsSuccessStatusCode )
                 {
                     return new Response
                     {
@@ -421,7 +421,7 @@
                     IsSuccess = true
                 };
             }
-            catch (Exception ex)
+            catch ( Exception ex )
             {
                 return new Response
                 {
@@ -431,7 +431,7 @@
             }
         }
 
-        public async Task<Response> GetUserListAsync<User>(
+        public async Task<Response> GetUserListAsync<User> (
             string urlBase,
             string servicePrefix,
             string controller)
@@ -448,7 +448,7 @@
                 var response = await client.GetAsync(url); // Devuelve la respuesta del cliente a la url
                 var result = await response.Content.ReadAsStringAsync();
 
-                if (!response.IsSuccessStatusCode)
+                if ( !response.IsSuccessStatusCode )
                 {
                     return new Response
                     {
@@ -464,7 +464,7 @@
                     Result = list
                 };
             }
-            catch (Exception ex)
+            catch ( Exception ex )
             {
                 return new Response
                 {
@@ -526,50 +526,84 @@
         }
 
 
-        //public async Task<Response> PutUserAsync<T>(
-        //    string urlBase,
-        //    string servicePrefix,
-        //    string controller,
-        //    Guid id,
-        //    T model)
-        //{
-        //    try
-        //    {
-        //        var request = JsonConvert.SerializeObject(model);
-        //        var content = new StringContent(request, Encoding.UTF8, "application/json");
-        //        var client = new HttpClient
-        //        {
-        //            BaseAddress = new Uri(urlBase)
-        //        };
+        public async Task<Response> PutAsync<T> (
+            string urlBase,
+            string servicePrefix,
+            string controller,
+            T model,
+            string tokenType,
+            string accessToken)
+        {
+            try
+            {
+                var request = JsonConvert.SerializeObject(model);
+                var content = new StringContent(request, Encoding.UTF8, "application/json");
+                var client = new HttpClient
+                {
+                    BaseAddress = new Uri(urlBase)
+                };
 
-        //        var url = $"{servicePrefix}{controller}/{id}";
-        //        var response = await client.PutAsync(url, content);
-        //        var answer = await response.Content.ReadAsStringAsync();
-        //        if (!response.IsSuccessStatusCode)
-        //        {
-        //            return new Response
-        //            {
-        //                IsSuccess = false,
-        //                Message = answer,
-        //            };
-        //        }
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(tokenType, accessToken);
+                var url = $"{servicePrefix}{controller}";
+                var response = await client.PutAsync(url, content);
+                var answer = await response.Content.ReadAsStringAsync();
+                if ( !response.IsSuccessStatusCode )
+                {
+                    return new Response
+                    {
+                        IsSuccess = false,
+                        Message = answer,
+                    };
+                }
 
-        //        var obj = JsonConvert.DeserializeObject<T>(answer);
-        //        return new Response
-        //        {
-        //            IsSuccess = true,
-        //            Result = obj,
-        //        };
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return new Response
-        //        {
-        //            IsSuccess = false,
-        //            Message = ex.Message,
-        //        };
-        //    }
-        //}
+                var obj = JsonConvert.DeserializeObject<T>(answer);
+                return new Response
+                {
+                    IsSuccess = true,
+                    Result = obj,
+                };
+            }
+            catch ( Exception ex )
+            {
+                return new Response
+                {
+                    IsSuccess = false,
+                    Message = ex.Message,
+                };
+            }
+        }
+        public async Task<Response> ChangePasswordAsync (
+            string urlBase,
+            string servicePrefix,
+            string controller,
+            ChangePasswordRequest changePasswordRequest,
+            string tokenType,
+            string accessToken)
+        {
+            try
+            {
+                var request = JsonConvert.SerializeObject(changePasswordRequest);
+                var content = new StringContent(request, Encoding.UTF8, "application/json");
+                var client = new HttpClient
+                {
+                    BaseAddress = new Uri(urlBase)
+                };
+
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(tokenType, accessToken);
+                var url = $"{servicePrefix}{controller}";
+                var response = await client.PostAsync(url, content);
+                var answer = await response.Content.ReadAsStringAsync();
+                var obj = JsonConvert.DeserializeObject<Response>(answer);
+                return obj;
+            }
+            catch ( Exception ex )
+            {
+                return new Response
+                {
+                    IsSuccess = false,
+                    Message = ex.Message,
+                };
+            }
+        }
     }
-
 }

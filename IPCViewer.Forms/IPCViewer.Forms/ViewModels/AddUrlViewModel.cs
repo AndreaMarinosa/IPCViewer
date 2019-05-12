@@ -4,7 +4,7 @@ using System.Text;
 
 namespace IPCViewer.Forms.ViewModels
 {
-    class AddUrlViewModel
+    public class AddUrlViewModel
     {
     }
 }

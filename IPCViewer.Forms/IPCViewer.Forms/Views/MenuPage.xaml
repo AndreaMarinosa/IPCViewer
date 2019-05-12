@@ -8,22 +8,26 @@
         <StackLayout>
             
             <StackLayout
-                Padding="20"
+                Padding="10"
                 BackgroundColor="{StaticResource SecondaryDark}">
+
                 <Image
                     HorizontalOptions="EndAndExpand"
-                    Margin="0, 10"
-                    HeightRequest="80"
+                    HeightRequest="100"
                 	Source="IconLigth">
                 </Image>
+                
                 <Label
+                    VerticalOptions="End"
                     TextColor="{StaticResource PrimaryFontColor}"
 	                Text="Welcome"/>
+                
                 <Label
                     FontAttributes="Bold"
                     TextColor="White"
 	                FontSize="Medium"
-	                Text="{Binding User.Email}"/>
+	                Text="{Binding User.UserName}"/>
+                
             </StackLayout>
 
             <ListView

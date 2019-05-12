@@ -45,6 +45,8 @@
 
         public static string Firstname => Resource.Firstname;
 
+        public static string Username => Resource.Username;
+
         // ------------------
         public static string LeadMeTo => Resource.LeadMeTo;
     }

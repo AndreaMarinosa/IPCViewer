@@ -10,7 +10,7 @@
     using Xamarin.Forms;
     using IPCViewer.Forms.Helpers;
 
-    class LoginViewModel : BaseViewModel
+    public class LoginViewModel : BaseViewModel
     {
 
         private bool _isRunning;
