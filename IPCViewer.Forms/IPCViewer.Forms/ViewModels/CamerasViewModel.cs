@@ -18,6 +18,12 @@
         private ObservableCollection<CameraItemViewModel> cameras;
         private bool isRefreshing;
 
+        private ObservableCollection<CityList<string, City>> cities;
+        private City city;
+
+        public City City { get => this.city; set => this.SetProperty(ref this.city, value); }
+
+        public ObservableCollection<CityList<string, City>> CitiesGrouped { get => this.cities; set => this.SetProperty(ref this.cities, value); }
 
         public ObservableCollection<CameraItemViewModel> Cameras
         {
@@ -37,6 +43,7 @@
         {
             this.apiService = new ApiService();
             LoadCamerasAsync();
+            //LoadCities();
         }
 
         private async void LoadCamerasAsync()
@@ -65,6 +72,8 @@
 
         public void AddCamera(Camera camera)
         {
+            
+
             this.myCameras.Add(camera);
             RefreshCamerasList();
         }
@@ -121,5 +130,34 @@
                 ImageFullPath = c.ImageFullPath
             }).ToList());
         }
+
+        public async void LoadCities ()
+        {
+
+            var response = await this.apiService.GetListAsync<City>(
+                "https://ipcviewerapi.azurewebsites.net",
+                "/api",
+                "/Cities");
+
+            if ( !response.IsSuccess )
+            {
+                await Application.Current.MainPage.DisplayAlert(
+                    "Error",
+                    response.Message,
+                    "Accept");
+                return;
+            }
+            
+            var myCities = (List<City>) response.Result;
+
+            var citiesSorted = from city in myCities
+                         orderby city.Name
+                         group city by city.Name into cityGroup
+                         select new CityList<string, City>(cityGroup.Key, cityGroup);
+
+            this.CitiesGrouped = new ObservableCollection<CityList<string, City>>(citiesSorted);
+
+        }
+
     }
 }
