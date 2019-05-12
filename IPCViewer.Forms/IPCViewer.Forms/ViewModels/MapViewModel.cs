@@ -49,6 +49,8 @@ namespace IPCViewer.Forms.ViewModels
 
         public ObservableCollection<City> Cities { get => this.cities; set => this.SetProperty(ref this.cities, value); }
 
+        public ObservableCollection<Pin> Pins { get; set; }
+
         public ImageSource ImageSource
         {
             get => _imageSource;
@@ -91,7 +93,6 @@ namespace IPCViewer.Forms.ViewModels
             set => SetProperty(ref _pin, value);
         }
 
-        public ObservableCollection<Pin> Pins { get; set; }
 
         public MapViewModel ()
         {

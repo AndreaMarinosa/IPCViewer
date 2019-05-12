@@ -9,7 +9,7 @@
         <ScrollView
         	BindingContext="{Binding AddCamera}">
             <StackLayout
-            	Padding="10">
+            	Padding="12">
                 
                 <Image
                     HeightRequest="150"
@@ -19,15 +19,10 @@
                     </Image.GestureRecognizers>
                 </Image>
                 
-                <Button
-                    VerticalOptions="Center"
-                    FontSize="Micro"
-                    Text="Click to check the url"
-                    Command="{Binding ChangeUrlCommand}"/>
-               
-                <Grid>
+                <Grid
+                    VerticalOptions="CenterAndExpand">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
 
@@ -37,100 +32,70 @@
                         <RowDefinition Height="*"></RowDefinition>
                         <RowDefinition Height="*"></RowDefinition>
                         <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
                     </Grid.RowDefinitions>
 
-                    <!-- Name -->
-                    <Label
-                    	Grid.Column="0"
-                    	Grid.Row="0"
-                    	Text="Name"
-                    	VerticalOptions="Center">
-                    </Label>
                     <Entry
-                    	Grid.Column="1"
+                        Grid.ColumnSpan="2"
+                    	Grid.Column="0"
                     	Grid.Row="0"
                     	Placeholder="Name..."
                     	Text="{Binding Name}">
                     </Entry>
-                    
-                    <!-- Latitude -->
-                    <Label
+                  
+                    <Entry
                     	Grid.Column="0"
                     	Grid.Row="1"
-                    	Text="Latitude"
-                    	VerticalOptions="Center">
-                    </Label>
-                    <Entry
-                    	Grid.Column="1"
-                    	Grid.Row="1"
-                    	Placeholder="Latitude..."
-                    	Text="{Binding Latitude}"/>
-
-
-                    <!-- Longitude -->
-                    <Label
-                    	Grid.Column="0"
-                    	Grid.Row="2"
-                    	Text="Longitude"
-                    	VerticalOptions="Center">
-                    </Label>
-                    <Entry
-                    	Grid.Column="1"
-                    	Grid.Row="2"
-                    	Placeholder="Longitude..."
-                    	Text="{Binding Longitude}"/>
-
-                    <!-- Comments -->
-                    <Label
-                    	Grid.Column="0"
-                    	Grid.Row="3"
-                    	Text="Comments"
-                    	VerticalOptions="Center">
-                    </Label>
-                    <Entry
-                    	Grid.Column="1"
-                    	Grid.Row="3"
+                        Grid.ColumnSpan="2"
                     	Placeholder="Comments..."
                     	Text="{Binding Comments}"/>
 
-                    <!--<Label
-                    	Grid.Column="0"
-                    	Grid.Row="4"
-                    	Text="ImageUrl"
-                    	VerticalOptions="Center">
-                    </Label>
-                    <Entry
-                    	Grid.Column="1"
-                    	Grid.Row="4"
-                    	Placeholder="ImageUrl..."
-                    	Text="{Binding ImageUrl}"/>-->
-
-                    <!-- City -->
-                    <Label
-                    	Grid.Column="0"
-                    	Grid.Row="4"
-                    	Text="Localización"
-                    	VerticalOptions="Center">
-                    </Label>
                     <Picker
-                    	Grid.Column="1"
-                    	Grid.Row="4"
+                    	Grid.Column="0"
+                    	Grid.Row="2"
+                        Grid.ColumnSpan="2"
                     	Title="Select a city..."
                     	ItemDisplayBinding="{Binding Name}"
                     	ItemsSource="{Binding Cities}"
                     	SelectedItem="{Binding City}"/>
+
+                    <Entry
+                    	Grid.Column="0"
+                    	Grid.Row="3"
+                    	Placeholder="Longitude..."
+                    	Text="{Binding Longitude}"/>
+
+                    <Entry
+                    	Grid.Column="1"
+                    	Grid.Row="3"
+                    	Placeholder="Latitude..."
+                    	Text="{Binding Latitude}"/>
+
+                    <Button
+                        Grid.Column="1"
+                        Grid.Row="4"
+                        VerticalOptions="Center"
+                        FontSize="Micro"
+                        Text="Location"
+                        Command="{Binding AddLocationCommand}"/>
+
+                    <ActivityIndicator
+                        Grid.Row="5"
+                	    IsRunning="{Binding IsRunning}"
+                	    VerticalOptions="CenterAndExpand">
+                    </ActivityIndicator>
+
+                    <Button
+                        Grid.Row="6"
+                        Grid.ColumnSpan="2"
+                        BorderColor="Green"
+                        TextColor="Green"
+                	    Command="{Binding SaveCommand}"
+                	    IsEnabled="{Binding IsEnabled}"
+                	    Text="Save">
+                    </Button>
                 </Grid>
-                    
-                <ActivityIndicator
-                	IsRunning="{Binding IsRunning}"
-                	VerticalOptions="CenterAndExpand">
-                </ActivityIndicator>
-                    
-                <Button
-                	Command="{Binding SaveCommand}"
-                	IsEnabled="{Binding IsEnabled}"
-                	Text="Save">
-                </Button>
+               
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

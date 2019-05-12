@@ -47,6 +47,10 @@ namespace IPCViewer.Forms.ViewModels
 
         public DisplayViewModel DisplayCamera { get; set; }
 
+        public AddLocationViewModel AddLocation{ get; set; }
+
+        public RememberPasswordViewModel RememberPassword { get; set; }
+
         private void GoAddCamera ()
         {
             this.AddCamera = new AddCameraViewModel();

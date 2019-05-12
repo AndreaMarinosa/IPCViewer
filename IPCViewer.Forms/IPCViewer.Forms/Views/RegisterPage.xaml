@@ -10,11 +10,7 @@
         <StackLayout 
              Spacing="10">
 
-            <Grid 
-                  ColumnSpacing="0" 
-                  RowSpacing="0" 
-                  Padding="0" 
-                  Margin="0" >
+            <Grid>
 
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
@@ -77,7 +73,7 @@
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto*"/>
+                            <RowDefinition Height="Auto"/>
                             <RowDefinition Height="*"/>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>

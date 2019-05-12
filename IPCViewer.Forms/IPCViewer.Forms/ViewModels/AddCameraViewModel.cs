@@ -7,6 +7,7 @@ namespace IPCViewer.Forms.ViewModels
     using Common.Services;
     using GalaSoft.MvvmLight.Command;
     using IPCViewer.Common.Helpers;
+    using IPCViewer.Forms.Views;
     using Plugin.Media;
     using Plugin.Media.Abstractions;
     using System.Collections.ObjectModel;
@@ -39,6 +40,8 @@ namespace IPCViewer.Forms.ViewModels
         }
 
         public string UrlCamera { get; set; }
+
+        public ICommand AddLocationCommand => new RelayCommand(this.AddLocation);
 
         public ICommand SaveCommand => new RelayCommand(this.Save);
 
@@ -178,35 +181,41 @@ namespace IPCViewer.Forms.ViewModels
                 "From Camera",
                 "From Url");
 
-            if ( source == "Cancel" )
+            switch (source)
             {
-                this.file = null;
-                return;
-            }
-
-            if ( source == "From Camera" )
-            {
-                // le decimos que coja la foto de la camara
-                this.file = await CrossMedia.Current.TakePhotoAsync(
-                    new StoreCameraMediaOptions
+                case "Cancel":
                     {
-                        Directory = "Pictures",
-                        Name = "test.jpg",
-                        PhotoSize = PhotoSize.Small,
+                        this.file = null;
+                        return;
                     }
-                );
-            }
-            // desde la galeria
-            else if ( source == "From Gallery" )
-            {
-                this.file = await CrossMedia.Current.PickPhotoAsync();
-            }
-            // desde url
-            else
-            {
-                // todo: aniadir popup, crear propertie image url y comprobar si es null
+                case "From Camera":
+                    {
+                        // le decimos que coja la foto de la camara
+                        this.file = await CrossMedia.Current.TakePhotoAsync(
+                            new StoreCameraMediaOptions
+                            {
+                                Directory = "Pictures",
+                                Name = "test.jpg",
+                                PhotoSize = PhotoSize.Small,
+                            }
+                        );
+                        break;
+                    }
+                case "From Galery":
+                    {
+                        this.file = await CrossMedia.Current.PickPhotoAsync();
+                        break;
+                    }
+                case "From Url":
+                    {
+                        // todo: aniadir popup, crear propertie image url y comprobar si es null
+
+                        break;
+                    }
+               
             }
 
+            // Si han elegido una imagen
             if ( this.file != null )
             {
                 this.ImageSource = ImageSource.FromStream(() =>
@@ -215,6 +224,14 @@ namespace IPCViewer.Forms.ViewModels
                     return stream;
                 });
             }
+
+        }
+
+        // todo: add location from maps
+        private async void AddLocation ()
+        {
+            MainViewModel.GetInstance().AddLocation = new AddLocationViewModel();
+            await App.Navigator.PushAsync(new AddLocationPage());
         }
 
     }

@@ -1,11 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:i18n="clr-namespace:IPCViewer.Forms.Helpers"
              xmlns:maps="clr-namespace:Xamarin.Forms.GoogleMaps;assembly=Xamarin.Forms.GoogleMaps"
              xmlns:bindings="clr-namespace:Xamarin.Forms.GoogleMaps.Bindings;assembly=Xamarin.Forms.GoogleMaps.Bindings"
              xmlns:viewModels="clr-namespace:IPCViewer.Forms.ViewModels"
-             xmlns:sfPopup="clr-namespace:Syncfusion.XForms.PopupLayout;assembly=Syncfusion.SfPopupLayout.XForms"
              x:Class="IPCViewer.Forms.Views.MapsPage"
              Title="Map">
 
@@ -71,10 +69,10 @@
 
             <Image 
                 HeightRequest="100"
-                Grid.Column="2" 
+                Grid.Column="0" 
                 Grid.Row="0" 
                 Grid.RowSpan="4" 
-                Source="{Binding ImageSource}"/>
+                Source="{Binding ImageUrl}"/>
 
         </Grid>
 
@@ -85,14 +83,10 @@
                 <maps:Map.Behaviors>
                     <bindings:BindingPinsBehavior Value="{Binding Pins}"/>
                     <bindings:UpdateRegionBehavior Region="{Binding Region}"/>
-                    <bindings:TakeSnapshotBehavior Request="{Binding TakeSnapshotRequest}"/>
                 </maps:Map.Behaviors>
 
             </maps:Map>
-
-            <Button 
-                Text="Take Snapshot" 
-                Command="{Binding TakeSnapshotCommand}"/>
         </StackLayout>
+        
     </StackLayout>
 </ContentPage>
