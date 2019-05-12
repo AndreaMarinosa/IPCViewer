@@ -159,4 +159,13 @@
   <data name="LeadMeTo" xml:space="preserve">
     <value>Llévame a ...</value>
   </data>
+  <data name="ForgotPassword" xml:space="preserve">
+    <value>Olvidé mi contraseña</value>
+  </data>
+  <data name="RecoverPassword" xml:space="preserve">
+    <value>Recuperar contraseña</value>
+  </data>
+  <data name="EmailRecoverPlaceholder" xml:space="preserve">
+    <value>Introduzca un correo electrónico para recuperar la contraseña</value>
+  </data>
 </root>

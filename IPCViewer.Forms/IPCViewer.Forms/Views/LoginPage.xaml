@@ -10,11 +10,7 @@
         <StackLayout 
              Spacing="10">
 
-            <Grid 
-              ColumnSpacing="0" 
-              RowSpacing="0" 
-              Padding="0" 
-              Margin="0" >
+            <Grid>
 
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
@@ -130,12 +126,25 @@
                     IsRunning="{Binding IsRunning}"
                     VerticalOptions="CenterAndExpand"/>
 
+                    
                     <!-- Button Login Command-->
                     <Button
                     Text="{i18n:Translate Login}"
                     Command="{Binding LoginCommand}"
                     IsEnabled="{Binding IsEnabled}"
     	            HorizontalOptions="FillAndExpand"/>
+                    
+                    <Label
+                        Margin="5"
+	                    HorizontalOptions="Center"
+	                    Text="{i18n:Translate Login}"
+	                    TextColor="{StaticResource SecondaryLight}">
+                        
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding RememberPasswordCommand }"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+
                 </StackLayout>
             </ScrollView>
         </StackLayout>

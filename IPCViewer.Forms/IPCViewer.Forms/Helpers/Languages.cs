@@ -43,6 +43,13 @@
 
         public static string Register => Resource.Register;
 
+        public static string ForgotPassword => Resource.ForgotPassword;
+
+        public static string RecoverPassword => Resource.RecoverPassword;
+
+        public static string EmailRecoverPlaceholder => Resource.EmailRecoverPlaceholder;
+
+        // ------------------
         public static string LeadMeTo => Resource.LeadMeTo;
     }
 

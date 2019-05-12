@@ -44,7 +44,9 @@
 
         public ICommand LoginCommand => new RelayCommand(this.Login);
 
-        public LoginViewModel()
+        public ICommand RememberPasswordCommand => new RelayCommand(this.RememberPassword);
+
+        public LoginViewModel ()
         {
             apiService = new ApiService();
             IsEnabled = true;
@@ -121,5 +123,12 @@
             Application.Current.MainPage = new /*NavigationPage(new */MasterPage()/*)*/;
 
         }
+
+        private void RememberPassword ()
+        {
+            MainViewModel.GetInstance().RememberPassword = new RememberPasswordViewModel();
+            Application.Current.MainPage = new NavigationPage(new RememberPasswordPage());
+        }
+
     }
 }

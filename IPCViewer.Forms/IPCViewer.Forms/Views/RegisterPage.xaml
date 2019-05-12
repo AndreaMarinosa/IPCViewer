@@ -148,7 +148,6 @@
                         </ActivityIndicator>
                     </Grid>
 
-
                     <Button
                 	    Command="{Binding RegisterCommand}"
                 	    HeightRequest="46"
@@ -156,6 +155,7 @@
                 	    IsEnabled="{Binding IsEnabled}"
                 	    Text="{i18n:Translate Register}">
                     </Button>
+                    
                 </StackLayout>
             </ScrollView>
         </StackLayout>
