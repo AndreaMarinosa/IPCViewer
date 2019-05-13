@@ -3,49 +3,61 @@ using IPCViewer.Common.Models;
 using IPCViewer.Common.Services;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace IPCViewer.Forms.ViewModels
 {
-    public class DisplayViewModel
+    public class DisplayViewModel : BaseViewModel
     {
-        private readonly ApiService apiService;
+        private string imageUrl;
+        private string placeholderUrl;
+
+        public string ImageUrl
+        {
+            get => this.imageUrl;
+            set => this.SetProperty(ref imageUrl, value);
+        }
+
+        public string PlaceholderUrl
+        {
+            get => this.placeholderUrl;
+            set => this.SetProperty(ref placeholderUrl, value);
+        }
+
+        //public ICommand LoadCommand => new RelayCommand(LoadCameraAsync);
 
         public Camera Camera { get; set; }
 
         public DisplayViewModel (Camera camera)
         {
             this.Camera = camera;
-            this.apiService = new ApiService();
-            
-        }
+            ImageUrl = camera.ImageUrl;
+            Action<Task> reloadImageTask = null;
 
-        public ICommand LoadCommand => new RelayCommand(LoadCameraAsync);
-
-        // todo: hilo que vaya recargando la imagen automaticamente
-        private async void LoadCameraAsync ()
-        {
-            var response = await this.apiService.GetCameraAsync<Camera>(
-                "https://ipcviewerapi.azurewebsites.net",
-                "/api",
-                "/Cameras",
-                this.Camera.Id,
-                "bearer",
-                MainViewModel.GetInstance().Token.Token);
-
-            if ( !response.IsSuccess )
+            reloadImageTask = t =>
             {
-                await Application.Current.MainPage.DisplayAlert(
-                    "Error",
-                    response.Message,
-                    "Accept");
-                return;
-            }
+                var test =
+                    "https://media.revistagq.com/photos/5ca5f6a77a3aec0df5496c59/master/w_1280,c_limit/bob_esponja_9564.png";
+                ImageUrl = ImageUrl == test ? Camera.ImageUrl : test;
 
-            Camera = (Camera) response.Result;
+                if (ImageUrl == test)
+                {
+                    Task.Delay(5).ContinueWith(r => reloadImageTask(r));
+                }
+                else
+                {
+                    Task.Delay(350).ContinueWith(r => reloadImageTask(r));
+                }
+               
+            };
 
+            Task.Delay(500).ContinueWith(reloadImageTask); 
         }
+
     }
 }

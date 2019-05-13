@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using IPCViewer.Forms.Interfaces;
 
 namespace IPCViewer.Forms.ViewModels
 {
@@ -14,16 +15,17 @@ namespace IPCViewer.Forms.ViewModels
     using System.Windows.Input;
     using Xamarin.Forms;
 
-    public class AddCameraViewModel : BaseViewModel
+    public class AddCameraViewModel : BaseViewModel, IClosePopup
     {
         private bool isRunning;
         private bool isEnabled;
         private ApiService apiService;
+        private bool isVisible;
         private ObservableCollection<City> cities;
         private City city;
         private MediaFile file;
         private ImageSource imageSource;
-
+        private string urlCamera;
 
         public string Name { get; set; }
 
@@ -39,7 +41,11 @@ namespace IPCViewer.Forms.ViewModels
             set => this.SetProperty(ref this.imageSource, value);
         }
 
-        public string UrlCamera { get; set; }
+        public string UrlCamera
+        {
+            get => this.urlCamera;
+            set => SetProperty(ref this.urlCamera, value);
+        }
 
         public ICommand AddLocationCommand => new RelayCommand(this.AddLocation);
 
@@ -54,6 +60,9 @@ namespace IPCViewer.Forms.ViewModels
         public City City { get => this.city; set => this.SetProperty(ref this.city, value); }
 
         public ObservableCollection<City> Cities { get => this.cities; set => this.SetProperty(ref this.cities, value); }
+
+        public bool IsVisible { get => this.isVisible; set => this.SetProperty(ref this.isVisible, value); }
+
 
         public AddCameraViewModel ()
         {
@@ -106,9 +115,6 @@ namespace IPCViewer.Forms.ViewModels
             this.IsRunning = true;
             this.IsEnabled = false;
 
-
-           
-
             var camera = new Camera
             {
                 Name = this.Name,
@@ -134,9 +140,14 @@ namespace IPCViewer.Forms.ViewModels
 
             }
             // si el file image array es null, que compruebe si existe la url
-            else
+            else if (!string.IsNullOrEmpty(UrlCamera))
             {
-                // image url
+                camera.ImageUrl = UrlCamera;
+
+            }
+            else{
+                await Application.Current.MainPage.DisplayAlert("Error", "You must enter an url or image.", "Accept");
+                return;
             }
 
             // si no tiene ninguna, poner un alert y que cancele la operacion
@@ -209,7 +220,8 @@ namespace IPCViewer.Forms.ViewModels
                 case "From Url":
                     {
                         // todo: aniadir popup, crear propertie image url y comprobar si es null
-
+                        MainViewModel.GetInstance().AddUrl = new AddUrlViewModel(this);
+                        await App.Navigator.PushAsync(new AddUrlPage());
                         break;
                     }
                
@@ -234,5 +246,18 @@ namespace IPCViewer.Forms.ViewModels
             await App.Navigator.PushAsync(new AddLocationPage());
         }
 
+
+        public void OnClose(string url)
+        {
+            if (string.IsNullOrEmpty(url))
+            {
+                IsVisible = false;
+            }
+            else
+            {
+                UrlCamera = url;
+                IsVisible = true;
+            }
+        }
     }
 }

@@ -63,6 +63,7 @@
                 return this.BadRequest("Camera Id don't exists.");
             }
 
+            // todo: images part
             oldCamera.ImageUrl = camera.ImageUrl;
             oldCamera.Comments = camera.Comments;
             oldCamera.Name = camera.Name;
@@ -110,6 +111,11 @@
                 {
                     imageUrl = fullPath;
                 }
+            }
+
+            else
+            {
+                imageUrl = camera.ImageUrl;
             }
 
             var entityCamera = new Camera

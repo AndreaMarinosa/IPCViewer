@@ -18,6 +18,12 @@
                         <TapGestureRecognizer Command="{Binding ChangeImageCommand}"/>
                     </Image.GestureRecognizers>
                 </Image>
+                <Label
+                    HorizontalOptions="CenterAndExpand"
+                    FontSize="Small"
+                    Text="{Binding UrlCamera}"
+                    IsVisible="{Binding IsVisible}"
+                    />
                 
                 <Grid
                     VerticalOptions="CenterAndExpand">
@@ -27,6 +33,7 @@
                     </Grid.ColumnDefinitions>
 
                     <Grid.RowDefinitions>
+                        <RowDefinition Height="*"></RowDefinition>
                         <RowDefinition Height="*"></RowDefinition>
                         <RowDefinition Height="*"></RowDefinition>
                         <RowDefinition Height="*"></RowDefinition>
@@ -80,14 +87,14 @@
                         Command="{Binding AddLocationCommand}"/>
 
                     <ActivityIndicator
-                        Grid.Row="5"
-                	    IsRunning="{Binding IsRunning}"
+                        Grid.Row="5" Grid.Column="0"
+                        IsRunning="{Binding IsRunning}"
                 	    VerticalOptions="CenterAndExpand">
                     </ActivityIndicator>
 
                     <Button
                         Grid.Row="6"
-                        Grid.ColumnSpan="2"
+                        Grid.ColumnSpan="2" Grid.Column="0"
                         BorderColor="Green"
                         TextColor="Green"
                 	    Command="{Binding SaveCommand}"

@@ -48,7 +48,7 @@ namespace IPCViewer.Forms.ViewModels
 
         public DisplayViewModel DisplayCamera { get; set; }
 
-        public AddLocationViewModel AddLocation{ get; set; }
+        public AddLocationViewModel AddLocation { get; set; }
 
         public ProfileViewModel Profile { get; set; }
 
