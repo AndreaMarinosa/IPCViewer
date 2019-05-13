@@ -1,18 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:maps="clr-namespace:Xamarin.Forms.GoogleMaps;assembly=Xamarin.Forms.GoogleMaps"
-             xmlns:bindings="clr-namespace:Xamarin.Forms.GoogleMaps.Bindings;assembly=Xamarin.Forms.GoogleMaps.Bindings"
-              BindingContext="{Binding Main, Source={StaticResource Locator}}"
-             x:Class="IPCViewer.Forms.Views.AddLocationPage"
-             Title="Add Location">
+<ContentPage
+    x:Class="IPCViewer.Forms.Views.AddLocationPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:bindings="clr-namespace:Xamarin.Forms.GoogleMaps.Bindings;assembly=Xamarin.Forms.GoogleMaps.Bindings"
+    xmlns:maps="clr-namespace:Xamarin.Forms.GoogleMaps;assembly=Xamarin.Forms.GoogleMaps"
+    Title="Add Location"
+    BindingContext="{Binding Main, Source={StaticResource Locator}}">
 
-    <StackLayout
-        BindingContext="{Binding AddLocation}"
-        Margin="10,20">
+    <StackLayout Margin="10,20" BindingContext="{Binding AddLocation}">
 
-        <Grid
-            RowSpacing="15">
+        <Grid RowSpacing="15">
 
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
@@ -26,36 +24,40 @@
             </Grid.RowDefinitions>
 
             <Image
-                HeightRequest="130"
-                Grid.Column="1"
                 Grid.Row="0"
                 Grid.RowSpan="3"
+                Grid.Column="1"
+                HeightRequest="130"
                 HorizontalOptions="CenterAndExpand"
                 Source="{Binding ImageSource}" />
 
-            <StackLayout Grid.Column="0" Grid.Row="0" Orientation="Horizontal">
+            <StackLayout
+                Grid.Row="0"
+                Grid.Column="0"
+                Orientation="Horizontal">
                 <Label Text="Latitude:" />
                 <Label Text="{Binding Pin.Position.Latitude}" />
             </StackLayout>
 
-            <StackLayout Grid.Column="0" Grid.Row="1" Orientation="Horizontal">
+            <StackLayout
+                Grid.Row="1"
+                Grid.Column="0"
+                Orientation="Horizontal">
                 <Label Text="Longitude:" />
                 <Label Text="{Binding Pin.Position.Longitude}" />
             </StackLayout>
 
             <Button
+                Grid.Row="2"
+                Grid.Column="0"
+                Command="{Binding TakeSnapshotCommand}"
                 FontSize="Micro"
                 HeightRequest="30"
                 HorizontalOptions="Start"
-                Grid.Row="2"
-                Grid.Column="0"
-                Text="Take Snapshot"
-                Command="{Binding TakeSnapshotCommand}" />
+                Text="Take Snapshot" />
         </Grid>
 
-        <StackLayout
-            Padding="5"
-            VerticalOptions="FillAndExpand">
+        <StackLayout Padding="5" VerticalOptions="FillAndExpand">
             <maps:Map>
 
                 <maps:Map.Behaviors>
@@ -80,9 +82,9 @@
 
             <Button
                 Grid.Column="1"
-                HorizontalOptions="CenterAndExpand"
-                Text="Save"
-                Command="{Binding SaveCommand}" />
+                Command="{Binding SaveCommand}"
+                HorizontalOptions="EndAndExpand"
+                Text="Save" />
         </Grid>
     </StackLayout>
 </ContentPage>

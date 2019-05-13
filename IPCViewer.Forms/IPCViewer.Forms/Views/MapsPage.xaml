@@ -1,67 +1,67 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+<forms:ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:maps="clr-namespace:Xamarin.Forms.GoogleMaps;assembly=Xamarin.Forms.GoogleMaps"
              xmlns:bindings="clr-namespace:Xamarin.Forms.GoogleMaps.Bindings;assembly=Xamarin.Forms.GoogleMaps.Bindings"
              xmlns:viewModels="clr-namespace:IPCViewer.Forms.ViewModels"
+             xmlns:forms="clr-namespace:Xamarin.Forms;assembly=Xamarin.Forms.Core"
              x:Class="IPCViewer.Forms.Views.MapsPage"
              Title="Map">
 
-    <ContentPage.BindingContext>
+    <forms:ContentPage.BindingContext>
         <viewModels:MapViewModel />
-    </ContentPage.BindingContext>
+    </forms:ContentPage.BindingContext>
 
-    <StackLayout
+    <forms:StackLayout
         Margin="10,20">
 
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
+        <forms:Grid>
+            <forms:Grid.ColumnDefinitions>
+                <forms:ColumnDefinition Width="Auto" />
+                <forms:ColumnDefinition Width="*" />
+                <forms:ColumnDefinition Width="*" />
+            </forms:Grid.ColumnDefinitions>
 
-            <Grid.RowDefinitions>
-                <RowDefinition Height="20" />
-                <RowDefinition Height="20" />
-                <RowDefinition Height="20" />
-                <RowDefinition Height="20" />
-                <RowDefinition Height="20" />
-            </Grid.RowDefinitions>
+            <forms:Grid.RowDefinitions>
+                <forms:RowDefinition Height="20" />
+                <forms:RowDefinition Height="20" />
+                <forms:RowDefinition Height="20" />
+                <forms:RowDefinition Height="20" />
+                <forms:RowDefinition Height="20" />
+            </forms:Grid.RowDefinitions>
 
             <Image
                 HeightRequest="100"
-                Grid.Column="0"
-                Grid.Row="0"
-                Grid.RowSpan="4"
+                forms:Grid.Column="0"
+                forms:Grid.Row="0"
+                forms:Grid.RowSpan="4"
                 Source="{Binding ImageUrl}" />
 
-            <StackLayout Grid.Column="1" Grid.Row="0" Orientation="Horizontal">
+            <forms:StackLayout forms:Grid.Column="1" forms:Grid.Row="0" Orientation="Horizontal">
                 <Label Text="Label:" />
                 <Label Text="{Binding Pin.Label}" />
-            </StackLayout>
+            </forms:StackLayout>
 
-            <StackLayout Grid.Column="1" Grid.Row="1" Orientation="Horizontal">
+            <forms:StackLayout forms:Grid.Column="1" forms:Grid.Row="1" Orientation="Horizontal">
                 <Label Text="Latitude:" />
                 <Label Text="{Binding Pin.Position.Latitude}" />
-            </StackLayout>
+            </forms:StackLayout>
 
-            <StackLayout Grid.Column="1" Grid.Row="2" Orientation="Horizontal">
+            <forms:StackLayout forms:Grid.Column="1" forms:Grid.Row="2" Orientation="Horizontal">
                 <Label Text="Longitude:" />
                 <Label Text="{Binding Pin.Position.Longitude}" />
-            </StackLayout>
+            </forms:StackLayout>
 
-            <StackLayout Grid.Column="1" Grid.Row="3" Orientation="Horizontal">
+            <forms:StackLayout forms:Grid.Column="1" forms:Grid.Row="3" Orientation="Horizontal">
                 <Label
                     	Text="Localización"
                     	VerticalOptions="Center">
                 </Label>
                 <Picker
                     	Title="Select a city..."
-                    	ItemDisplayBinding="{Binding Name}"
                     	ItemsSource="{Binding Cities}"
                     	SelectedItem="{Binding City}" />
-            </StackLayout>
+            </forms:StackLayout>
 
             <!--<Image
                 HeightRequest="100"
@@ -69,9 +69,9 @@
                 Grid.Row="0"
                 Grid.RowSpan="4"
                 Source="{Binding ImageUrl}" />-->
-        </Grid>
+        </forms:Grid>
 
-        <StackLayout
+        <forms:StackLayout
             VerticalOptions="FillAndExpand">
             <maps:Map>
 
@@ -81,6 +81,6 @@
                     <bindings:SelectedPinChangedToCommandBehavior Command="{Binding SelectedPinChangedCommand}" />
                 </maps:Map.Behaviors>
             </maps:Map>
-        </StackLayout>
-    </StackLayout>
-</ContentPage>
+        </forms:StackLayout>
+    </forms:StackLayout>
+</forms:ContentPage>

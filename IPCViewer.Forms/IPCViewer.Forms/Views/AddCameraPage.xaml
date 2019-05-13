@@ -1,105 +1,101 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="IPCViewer.Forms.Views.AddCameraPage"
-             BindingContext="{Binding Main, Source={StaticResource Locator}}"
-             Title="Add Camera">
+<ContentPage
+    x:Class="IPCViewer.Forms.Views.AddCameraPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Add Camera"
+    BindingContext="{Binding Main, Source={StaticResource Locator}}">
 
     <ContentPage.Content>
-        <ScrollView
-        	BindingContext="{Binding AddCamera}">
-            <StackLayout
-            	Padding="12">
+        <ScrollView BindingContext="{Binding AddCamera}">
+            <StackLayout Padding="12">
 
-                <Image
-                    HeightRequest="150"
-                    Source="{Binding ImageSource}">
+                <Image HeightRequest="150" Source="{Binding ImageSource}">
                     <Image.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding ChangeImageCommand}" />
                     </Image.GestureRecognizers>
                 </Image>
                 <Label
-                    HorizontalOptions="CenterAndExpand"
                     FontSize="Small"
-                    Text="{Binding UrlCamera}"
-                    IsVisible="{Binding IsVisible}" />
+                    HorizontalOptions="CenterAndExpand"
+                    IsVisible="{Binding IsVisible}"
+                    Text="{Binding UrlCamera}" />
 
-                <Grid
-                    VerticalOptions="CenterAndExpand">
+                <Grid VerticalOptions="CenterAndExpand">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
 
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="*"></RowDefinition>
-                        <RowDefinition Height="*"></RowDefinition>
-                        <RowDefinition Height="*"></RowDefinition>
-                        <RowDefinition Height="*"></RowDefinition>
-                        <RowDefinition Height="*"></RowDefinition>
-                        <RowDefinition Height="*"></RowDefinition>
-                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
 
                     <Entry
+                        Grid.Row="0"
+                        Grid.Column="0"
                         Grid.ColumnSpan="2"
-                    	Grid.Column="0"
-                    	Grid.Row="0"
-                    	Placeholder="Name..."
-                    	Text="{Binding Name}">
-                    </Entry>
+                        Placeholder="Name..."
+                        Text="{Binding Name}" />
 
                     <Entry
-                    	Grid.Column="0"
-                    	Grid.Row="1"
+                        Grid.Row="1"
+                        Grid.Column="0"
                         Grid.ColumnSpan="2"
-                    	Placeholder="Comments..."
-                    	Text="{Binding Comments}" />
+                        Placeholder="Comments..."
+                        Text="{Binding Comments}" />
 
                     <Picker
-                    	Grid.Column="0"
-                    	Grid.Row="2"
+                        Title="Select a city..."
+                        Grid.Row="2"
+                        Grid.Column="0"
                         Grid.ColumnSpan="2"
-                    	Title="Select a city..."
-                    	ItemDisplayBinding="{Binding Name}"
-                    	ItemsSource="{Binding Cities}"
-                    	SelectedItem="{Binding City}" />
+                        ItemDisplayBinding="{Binding Name}"
+                        ItemsSource="{Binding Cities}"
+                        SelectedItem="{Binding City}" />
 
                     <Entry
-                    	Grid.Column="0"
-                    	Grid.Row="3"
-                    	Placeholder="Longitude..."
-                    	Text="{Binding Longitude}" />
+                        Grid.Row="3"
+                        Grid.Column="0"
+                        Placeholder="Longitude..."
+                        Text="{Binding Longitude}" />
 
                     <Entry
-                    	Grid.Column="1"
-                    	Grid.Row="3"
-                    	Placeholder="Latitude..."
-                    	Text="{Binding Latitude}" />
+                        Grid.Row="3"
+                        Grid.Column="1"
+                        Placeholder="Latitude..."
+                        Text="{Binding Latitude}" />
 
                     <Button
-                        Grid.Column="1"
                         Grid.Row="4"
-                        VerticalOptions="Center"
-                        FontSize="Micro"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="2"
+                        Command="{Binding AddLocationCommand}"
+                        HorizontalOptions="Center"
                         Text="Location"
-                        Command="{Binding AddLocationCommand}" />
+                        VerticalOptions="Center" />
 
                     <ActivityIndicator
-                        Grid.Row="5" Grid.Column="0"
+                        Grid.Row="5"
+                        Grid.Column="0"
                         IsRunning="{Binding IsRunning}"
-                	    VerticalOptions="CenterAndExpand">
-                    </ActivityIndicator>
+                        VerticalOptions="CenterAndExpand" />
 
                     <Button
                         Grid.Row="6"
-                        Grid.ColumnSpan="2" Grid.Column="0"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="2"
                         BorderColor="Green"
-                        TextColor="Green"
-                	    Command="{Binding SaveCommand}"
-                	    IsEnabled="{Binding IsEnabled}"
-                	    Text="Save">
-                    </Button>
+                        Command="{Binding SaveCommand}"
+                        IsEnabled="{Binding IsEnabled}"
+                        Text="Save"
+                        TextColor="Green" />
                 </Grid>
             </StackLayout>
         </ScrollView>

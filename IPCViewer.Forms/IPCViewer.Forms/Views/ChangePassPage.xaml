@@ -1,68 +1,58 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             BindingContext="{Binding Main, Source={StaticResource Locator}}"
-             x:Class="IPCViewer.Forms.Views.ChangePassPage"
-            Title="Change Password">
+<ContentPage
+    x:Class="IPCViewer.Forms.Views.ChangePassPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Change Password"
+    BindingContext="{Binding Main, Source={StaticResource Locator}}">
     <ContentPage.Content>
-        <ScrollView
-        	BindingContext="{Binding ChangePassword}">
-            <StackLayout
-            	Padding="8">
+        <ScrollView BindingContext="{Binding ChangePassword}">
+            <StackLayout Padding="8">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="2*" />
                     </Grid.ColumnDefinitions>
                     <Label
-                    	Grid.Column="0"
-                    	Grid.Row="0"
-                    	Text="Current password"
-                    	VerticalOptions="Center">
-                    </Label>
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        Text="Current password"
+                        VerticalOptions="Center" />
                     <Entry
-                    	Grid.Column="1"
-                    	Grid.Row="0"
-                    	IsPassword="True"
-                    	Placeholder="Enter your current password..."
-                    	Text="{Binding CurrentPassword}">
-                    </Entry>
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        IsPassword="True"
+                        Placeholder="Enter your current password..."
+                        Text="{Binding CurrentPassword}" />
                     <Label
-                    	Grid.Column="0"
-                    	Grid.Row="1"
-                    	Text="New password"
-                    	VerticalOptions="Center">
-                    </Label>
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        Text="New password"
+                        VerticalOptions="Center" />
                     <Entry
-                    	Grid.Column="1"
-                    	Grid.Row="1"
-                    	IsPassword="True"
-                    	Placeholder="Enter the new password..."
-                    	Text="{Binding NewPassword}">
-                    </Entry>
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        IsPassword="True"
+                        Placeholder="Enter the new password..."
+                        Text="{Binding NewPassword}" />
                     <Label
-                    	Grid.Column="0"
-                    	Grid.Row="2"
-                    	Text="Confirm new password"
-                    	VerticalOptions="Center">
-                    </Label>
+                        Grid.Row="2"
+                        Grid.Column="0"
+                        Text="Confirm new password"
+                        VerticalOptions="Center" />
                     <Entry
-                    	Grid.Column="1"
-                    	Grid.Row="2"
-                    	IsPassword="True"
-                    	Placeholder="Renter the new password..."
-                    	Text="{Binding PasswordConfirm}">
-                    </Entry>
+                        Grid.Row="2"
+                        Grid.Column="1"
+                        IsPassword="True"
+                        Placeholder="Renter the new password..."
+                        Text="{Binding PasswordConfirm}" />
                 </Grid>
-                <ActivityIndicator
-                	IsRunning="{Binding IsRunning}"
-                	VerticalOptions="CenterAndExpand">
-                </ActivityIndicator>
+                <ActivityIndicator IsRunning="{Binding IsRunning}" VerticalOptions="CenterAndExpand" />
                 <Button
-                	Command="{Binding ChangePasswordCommand}"
-                	HorizontalOptions="FillAndExpand"
-                	IsEnabled="{Binding IsEnabled}"
-                	Text="Change Password" />
+                    Command="{Binding ChangePasswordCommand}"
+                    HorizontalOptions="FillAndExpand"
+                    IsEnabled="{Binding IsEnabled}"
+                    Text="Change Password" />
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

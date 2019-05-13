@@ -1,17 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:i18n="clr-namespace:IPCViewer.Forms.Helpers"
-             x:Class="IPCViewer.Forms.Views.RegisterPage"
-             BindingContext="{Binding Main, Source={StaticResource Locator}}"
-             NavigationPage.HasNavigationBar="false">
+<ContentPage
+    x:Class="IPCViewer.Forms.Views.RegisterPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:i18n="clr-namespace:IPCViewer.Forms.Helpers"
+    BindingContext="{Binding Main, Source={StaticResource Locator}}"
+    NavigationPage.HasNavigationBar="false">
 
     <ContentPage.Content>
-        <StackLayout
-             Spacing="10">
+        <StackLayout Spacing="10">
 
             <Grid>
-
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*" />
                     <RowDefinition Height="*" />
@@ -24,49 +23,47 @@
                 </Grid.ColumnDefinitions>
 
                 <BoxView
-                    VerticalOptions="FillAndExpand"
-                    HorizontalOptions="FillAndExpand"
-                    BackgroundColor="{StaticResource Primary}"
                     Grid.Row="0"
                     Grid.RowSpan="3"
-                    Grid.ColumnSpan="2" />
+                    Grid.ColumnSpan="2"
+                    BackgroundColor="{StaticResource Primary}"
+                    HorizontalOptions="Fill"
+                    VerticalOptions="Fill" />
 
                 <Label
-                    FontSize="Medium"
-                    TextColor="{StaticResource PrimaryFontColor}"
-                    Grid.Column="1"
                     Grid.Row="1"
+                    Grid.Column="1"
+                    Margin="0,0,0,5"
+                    FontSize="Medium"
                     Text="{i18n:Translate Welcome}"
-                    VerticalOptions="EndAndExpand"
-                    Margin="0, 0, 0, 5" />
+                    TextColor="{StaticResource PrimaryFontColor}"
+                    VerticalOptions="End" />
 
                 <Label
-                    Margin="0, 0, 0, 30"
-                    FontSize="40"
-                    TextColor="{StaticResource PrimaryFontColor}"
-                    Grid.Column="1"
                     Grid.Row="2"
+                    Grid.Column="1"
+                    Margin="0,0,0,30"
+                    FontSize="40"
                     Text="IPCViewer"
-                    VerticalOptions="StartAndExpand" />
+                    TextColor="{StaticResource PrimaryFontColor}"
+                    VerticalOptions="Start" />
 
                 <Image
-                    VerticalOptions="EndAndExpand"
-                    Margin="30"
-                    Grid.Column="0"
                     Grid.Row="1"
-                	Grid.RowSpan="2"
-                    HeightRequest="100"
-                	Source="logoIPCViewerLigthLarge" />
+                    Grid.RowSpan="2"
+                    Grid.Column="0"
+                    Margin="30"
+                    HeightRequest="110"
+                    Source="logoIPCViewerLigthLarge"
+                    VerticalOptions="End" />
             </Grid>
 
-            <ScrollView
-            BindingContext="{Binding Register}">
-                <StackLayout
-            	    Padding="8">
+            <ScrollView BindingContext="{Binding Register}">
+                <StackLayout Padding="8">
                     <Grid
-                    Padding="12"
-                    ColumnSpacing="10"
-                    RowSpacing="10">
+                        Padding="12"
+                        ColumnSpacing="10"
+                        RowSpacing="10">
 
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" />
@@ -74,87 +71,79 @@
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
-                            <RowDefinition Height="*" />
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
 
-                        <!-- Email -->
+                        <!--  Email  -->
                         <Image
-                            VerticalOptions="CenterAndExpand"
-                            WidthRequest="30"
                             Grid.Row="0"
                             Grid.Column="0"
-                            Source="emailIcon" />
+                            Source="ic_mail"
+                            VerticalOptions="CenterAndExpand"
+                            WidthRequest="40" />
 
                         <Entry
-                    	    Grid.Column="1"
-                    	    Grid.Row="0"
-                    	    Keyboard="Email"
-                    	    Placeholder="Email..."
-                    	    Text="{Binding Email}" />
+                            Grid.Row="0"
+                            Grid.Column="1"
+                            Keyboard="Email"
+                            Placeholder="Email..."
+                            Text="{Binding Email}" />
 
-                        <!-- Pass -->
+                        <!--  Pass  -->
                         <Image
-                            HeightRequest="45"
                             Grid.Row="1"
                             Grid.Column="0"
-                            Source="iconPass" />
+                            HeightRequest="50"
+                            Source="ic_pass" />
 
                         <Entry
-                    	    Grid.Column="1"
-                    	    Grid.Row="1"
-                    	    IsPassword="True"
-                    	    Placeholder="{i18n:Translate PasswordPlaceHolder}"
-                    	    Text="{Binding Password}" />
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            IsPassword="True"
+                            Placeholder="{i18n:Translate PasswordPlaceHolder}"
+                            Text="{Binding Password}" />
 
-                        <!-- Nombre -->
+                        <!--  Nombre  -->
                         <Image
-                            HeightRequest="10"
                             Grid.Row="2"
                             Grid.Column="0"
-                            Source="userIcon" />
+                            HeightRequest="40"
+                            Source="ic_user" />
 
                         <Entry
-                    	    Grid.Column="1"
-                    	    Grid.Row="2"
-                    	    Placeholder="{i18n:Translate FirstnamePlaceHolder}"
-                    	    Text="{Binding FirstName}" />
+                            Grid.Row="2"
+                            Grid.Column="1"
+                            Placeholder="{i18n:Translate FirstnamePlaceHolder}"
+                            Text="{Binding FirstName}" />
 
-                        <!-- City -->
+                        <!--  City  -->
                         <Image
-                            HeightRequest="40"
                             Grid.Row="3"
                             Grid.Column="0"
-                            Source="city"
+                            HeightRequest="40"
+                            Source="ic_city"
                             VerticalOptions="CenterAndExpand" />
 
                         <Picker
-                    	    Grid.Column="1"
-                    	    Grid.Row="3"
-                    	    ItemDisplayBinding="{Binding Name}"
+                            Title="{i18n:Translate CitySelect}"
+                            Grid.Row="3"
+                            Grid.Column="1"
+                            ItemDisplayBinding="{Binding Name}"
                             ItemsSource="{Binding Cities}"
-                    	    SelectedItem="{Binding City}"
-                    	    Title="{i18n:Translate CitySelect}">
-                        </Picker>
+                            SelectedItem="{Binding City}" />
 
-                        <ActivityIndicator
-                            Grid.ColumnSpan="2"
-                            Grid.Column="0"
-                            Grid.Row="4"
-                            IsRunning="{Binding IsRunning}"
-                            VerticalOptions="CenterAndExpand">
-                        </ActivityIndicator>
+
                     </Grid>
 
+                    <ActivityIndicator IsRunning="{Binding IsRunning}" VerticalOptions="CenterAndExpand" />
                     <Button
-                	    Command="{Binding RegisterCommand}"
-                	    HeightRequest="46"
-                	    HorizontalOptions="FillAndExpand"
-                	    IsEnabled="{Binding IsEnabled}"
-                	    Text="{i18n:Translate Register}">
-                    </Button>
+                        Command="{Binding RegisterCommand}"
+                        HeightRequest="46"
+                        HorizontalOptions="FillAndExpand"
+                        IsEnabled="{Binding IsEnabled}"
+                        Text="{i18n:Translate Register}" />
                 </StackLayout>
             </ScrollView>
         </StackLayout>

@@ -21,9 +21,9 @@
                     await App.Navigator.PushAsync(new AboutPage());
                     break;
 
-                case "SetupPage":
-                    await App.Navigator.PushAsync(new SetupPage());
-                    break;
+                //case "SetupPage":
+                //    await App.Navigator.PushAsync(new SetupPage());
+                //    break;
 
                 case "ProfilePage":
                     MainViewModel.GetInstance().Profile = new ProfileViewModel();
@@ -35,10 +35,10 @@
                     await App.Navigator.PushAsync(new MapsPage());
                     break;
 
-                case "UsersPage":
-                    MainViewModel.GetInstance().Users = new UsersViewModel();
-                    await App.Navigator.PushAsync(new UsersPage());
-                    break;
+                //case "UsersPage":
+                //    MainViewModel.GetInstance().Users = new UsersViewModel();
+                //    await App.Navigator.PushAsync(new UsersPage());
+                //    break;
 
                 default:
                     // Cuando cierre sesion el usuario, que se quiten los valores de persistencia

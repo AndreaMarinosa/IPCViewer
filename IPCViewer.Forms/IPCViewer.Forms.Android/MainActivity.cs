@@ -37,15 +37,15 @@ namespace IPCViewer.Forms.Droid
             //Initialize maps
             Xamarin.FormsGoogleMaps.Init(this, savedInstanceState);
             Xamarin.FormsGoogleMapsBindings.Init();
-            //LoadApplication(new App());
-            LoadApplication(UXDivers.Gorilla.Droid.Player.CreateApplication(
-                this,
-                new UXDivers.Gorilla.Config("Good Gorilla")
-                  // FFImageLoading.Transformations
-                  .RegisterAssemblyFromType<FFImageLoading.Transformations.BlurredTransformation>()
-                  // FFImageLoading.Forms
-                  .RegisterAssemblyFromType<FFImageLoading.Forms.CachedImage>()
-                ));
+            LoadApplication(new App());
+            //LoadApplication(UXDivers.Gorilla.Droid.Player.CreateApplication(
+            //    this,
+            //    new UXDivers.Gorilla.Config("Good Gorilla")
+            //      // FFImageLoading.Transformations
+            //      .RegisterAssemblyFromType<FFImageLoading.Transformations.BlurredTransformation>()
+            //      // FFImageLoading.Forms
+            //      .RegisterAssemblyFromType<FFImageLoading.Forms.CachedImage>()
+            //    ));
         }
 
         public override void OnBackPressed ()

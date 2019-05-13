@@ -74,42 +74,42 @@ namespace IPCViewer.Forms.ViewModels
             {
                 new Menu
                 {
-                    Icon = null,
+                    Icon = "ic_mapPink",
                     PageName = "MapsPage",
-                    Title= "Map"
+                    Title= "Maps"
                 },
 
-                new Menu
-                {
-                    Icon = "setup",
-                    PageName = "SetupPage",
-                    Title = "Setup"
-                },
+                //new Menu
+                //{
+                //    Icon = "setup",
+                //    PageName = "SetupPage",
+                //    Title = "Setup"
+                //},
 
                  new Menu
                 {
-                    Icon = null,
+                    Icon = "ic_settingsPink",
                     PageName = "ProfilePage",
                     Title = "Modify User"
                 },
 
-                new Menu
-                {
-                    Icon = null,
-                    PageName = "UsersPage",
-                    Title= "Users"
-                },
+                //new Menu
+                //{
+                //    Icon = null,
+                //    PageName = "UsersPage",
+                //    Title= "Users"
+                //},
 
                 new Menu
                 {
-                    Icon = "about",
+                    Icon = "ic_aboutPink",
                     PageName = "AboutPage",
                     Title = "About"
                 },
 
                 new Menu
                 {
-                    Icon = "exit",
+                    Icon = "ic_logoutPink",
                     PageName = "LoginPage",
                     Title = "Close session"
                 }

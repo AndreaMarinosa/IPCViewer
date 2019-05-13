@@ -8,14 +8,6 @@ public sealed class AccessNativeBitmapConfig : IBitmapDescriptorFactory
 {
     public AndroidBitmapDescriptor ToNative (BitmapDescriptor descriptor)
     {
-        int resId = 0;
-        switch ( descriptor.Id )
-        {
-            case "ipCameraPin":
-                resId = Resource.Drawable.ipCameraPin;
-                break;
-        }
-
-        return AndroidBitmapDescriptorFactory.FromResource(resId);
+        
     }
 }

@@ -69,7 +69,7 @@ namespace IPCViewer.Forms.ViewModels
         });
 
         //todo: lista de ciudades y llevar a la seleccionada
-        public Command LeadMeToCommand => new Command(async () =>
+        public Command LeadMeToCommand => new Command(() =>
         {
         });
 
