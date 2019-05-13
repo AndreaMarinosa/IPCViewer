@@ -15,7 +15,7 @@
                     FontSize="Large"
                     FontAttributes="Bold"
                     TextColor="{StaticResource Secondary}"
-                    Text="{Binding Camera.Name}"/>
+                    Text="{Binding Camera.Name}" />
             </StackLayout>
 
             <forms:CachedImage HorizontalOptions="Center" VerticalOptions="Center"
@@ -26,7 +26,6 @@
                                         LoadingDelay="0"
                                         Source = "{Binding ImageUrl}">
             </forms:CachedImage>
-
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

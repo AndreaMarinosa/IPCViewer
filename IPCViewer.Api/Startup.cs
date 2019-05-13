@@ -2,7 +2,6 @@
 using IPCViewer.Api.Helpers;
 using IPCViewer.Api.Models;
 using IPCViewer.Api.Services;
-using IPCViewer.Common.Helpers;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -17,7 +16,7 @@ namespace IPCViewer.Api
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public Startup (IConfiguration configuration)
         {
             Configuration = configuration;
         }
@@ -25,7 +24,7 @@ namespace IPCViewer.Api
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)
+        public void ConfigureServices (IServiceCollection services)
         {
             /* INJECTIONS */
             services.AddIdentity<User, IdentityRole>(cfg =>
@@ -73,9 +72,9 @@ namespace IPCViewer.Api
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure (IApplicationBuilder app, IHostingEnvironment env)
         {
-            if (env.IsDevelopment())
+            if ( env.IsDevelopment() )
             {
                 app.UseDeveloperExceptionPage();
             }

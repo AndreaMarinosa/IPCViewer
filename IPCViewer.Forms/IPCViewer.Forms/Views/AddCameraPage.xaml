@@ -4,32 +4,31 @@
              x:Class="IPCViewer.Forms.Views.AddCameraPage"
              BindingContext="{Binding Main, Source={StaticResource Locator}}"
              Title="Add Camera">
-    
+
     <ContentPage.Content>
         <ScrollView
         	BindingContext="{Binding AddCamera}">
             <StackLayout
             	Padding="12">
-                
+
                 <Image
                     HeightRequest="150"
                     Source="{Binding ImageSource}">
                     <Image.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding ChangeImageCommand}"/>
+                        <TapGestureRecognizer Command="{Binding ChangeImageCommand}" />
                     </Image.GestureRecognizers>
                 </Image>
                 <Label
                     HorizontalOptions="CenterAndExpand"
                     FontSize="Small"
                     Text="{Binding UrlCamera}"
-                    IsVisible="{Binding IsVisible}"
-                    />
-                
+                    IsVisible="{Binding IsVisible}" />
+
                 <Grid
                     VerticalOptions="CenterAndExpand">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
 
                     <Grid.RowDefinitions>
@@ -49,13 +48,13 @@
                     	Placeholder="Name..."
                     	Text="{Binding Name}">
                     </Entry>
-                  
+
                     <Entry
                     	Grid.Column="0"
                     	Grid.Row="1"
                         Grid.ColumnSpan="2"
                     	Placeholder="Comments..."
-                    	Text="{Binding Comments}"/>
+                    	Text="{Binding Comments}" />
 
                     <Picker
                     	Grid.Column="0"
@@ -64,19 +63,19 @@
                     	Title="Select a city..."
                     	ItemDisplayBinding="{Binding Name}"
                     	ItemsSource="{Binding Cities}"
-                    	SelectedItem="{Binding City}"/>
+                    	SelectedItem="{Binding City}" />
 
                     <Entry
                     	Grid.Column="0"
                     	Grid.Row="3"
                     	Placeholder="Longitude..."
-                    	Text="{Binding Longitude}"/>
+                    	Text="{Binding Longitude}" />
 
                     <Entry
                     	Grid.Column="1"
                     	Grid.Row="3"
                     	Placeholder="Latitude..."
-                    	Text="{Binding Latitude}"/>
+                    	Text="{Binding Latitude}" />
 
                     <Button
                         Grid.Column="1"
@@ -84,7 +83,7 @@
                         VerticalOptions="Center"
                         FontSize="Micro"
                         Text="Location"
-                        Command="{Binding AddLocationCommand}"/>
+                        Command="{Binding AddLocationCommand}" />
 
                     <ActivityIndicator
                         Grid.Row="5" Grid.Column="0"
@@ -102,7 +101,6 @@
                 	    Text="Save">
                     </Button>
                 </Grid>
-               
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

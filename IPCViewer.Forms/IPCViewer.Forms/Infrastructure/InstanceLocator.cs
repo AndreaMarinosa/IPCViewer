@@ -1,16 +1,14 @@
-﻿
-namespace IPCViewer.Forms.Infrastructure
+﻿namespace IPCViewer.Forms.Infrastructure
 {
     using IPCViewer.Forms.ViewModels;
 
-    class InstanceLocator
+    internal class InstanceLocator
     {
         public MainViewModel Main { get; set; }
 
-        public InstanceLocator()
+        public InstanceLocator ()
         {
             this.Main = new MainViewModel();
         }
-
     }
 }

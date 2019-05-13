@@ -1,9 +1,7 @@
 ﻿using IPCViewer.Common.Models;
 using IPCViewer.Common.Services;
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
 using Xamarin.Forms;
 using Xamarin.Forms.GoogleMaps;
 using Xamarin.Forms.GoogleMaps.Bindings;
@@ -25,11 +23,11 @@ namespace IPCViewer.Forms.ViewModels
     //TODO: mostrar la lista mediante pines personalizados
     public class MapViewModel : BaseViewModel
     {
-
         private Pin _pin;
         private readonly ApiService apiService;
         private List<Camera> myCameras; // La lista original del API
         private bool _animated = true;
+
         // todo: user location
         private MapSpan _region =
             MapSpan.FromCenterAndRadius(
@@ -73,7 +71,6 @@ namespace IPCViewer.Forms.ViewModels
         //todo: lista de ciudades y llevar a la seleccionada
         public Command LeadMeToCommand => new Command(async () =>
         {
-            
         });
 
         public MapSpan Region
@@ -94,7 +91,6 @@ namespace IPCViewer.Forms.ViewModels
             set => SetProperty(ref _pin, value);
         }
 
-
         public MapViewModel ()
         {
             this.apiService = new ApiService();
@@ -104,9 +100,9 @@ namespace IPCViewer.Forms.ViewModels
         /**
          * Cargamos todas las camaras
          */
+
         private async void LoadCamerasAsync ()
         {
-           
             var response = await this.apiService.GetListAsync<Camera>(
                 "https://ipcviewerapi.azurewebsites.net",
                 "/api",
@@ -125,7 +121,6 @@ namespace IPCViewer.Forms.ViewModels
 
             this.myCameras = (List<Camera>) response.Result;
             AddMarkers();
-
         }
 
         private void AddMarkers ()
@@ -142,7 +137,6 @@ namespace IPCViewer.Forms.ViewModels
 
                 Pins?.Add(pin);
             }
-
         }
 
         public Command<SelectedPinChangedEventArgs> SelectedPinChangedCommand => new Command<SelectedPinChangedEventArgs>(
@@ -153,7 +147,6 @@ namespace IPCViewer.Forms.ViewModels
 
         public async void LoadCities ()
         {
-
             var response = await this.apiService.GetListAsync<City>(
                 "https://ipcviewerapi.azurewebsites.net",
                 "/api",
@@ -170,7 +163,6 @@ namespace IPCViewer.Forms.ViewModels
 
             var myCities = (List<City>) response.Result;
             this.Cities = new ObservableCollection<City>(myCities);
-
         }
     }
 }

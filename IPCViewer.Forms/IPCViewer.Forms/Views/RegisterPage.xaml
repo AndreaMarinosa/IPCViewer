@@ -7,47 +7,47 @@
              NavigationPage.HasNavigationBar="false">
 
     <ContentPage.Content>
-        <StackLayout 
+        <StackLayout
              Spacing="10">
 
             <Grid>
 
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
 
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
-                <BoxView   
+                <BoxView
                     VerticalOptions="FillAndExpand"
                     HorizontalOptions="FillAndExpand"
                     BackgroundColor="{StaticResource Primary}"
                     Grid.Row="0"
                     Grid.RowSpan="3"
-                    Grid.ColumnSpan="2"/>
+                    Grid.ColumnSpan="2" />
 
                 <Label
                     FontSize="Medium"
                     TextColor="{StaticResource PrimaryFontColor}"
                     Grid.Column="1"
-                    Grid.Row="1" 
+                    Grid.Row="1"
                     Text="{i18n:Translate Welcome}"
                     VerticalOptions="EndAndExpand"
-                    Margin="0, 0, 0, 5"/>
+                    Margin="0, 0, 0, 5" />
 
                 <Label
                     Margin="0, 0, 0, 30"
                     FontSize="40"
                     TextColor="{StaticResource PrimaryFontColor}"
                     Grid.Column="1"
-                    Grid.Row="2" 
+                    Grid.Row="2"
                     Text="IPCViewer"
-                    VerticalOptions="StartAndExpand"/>
+                    VerticalOptions="StartAndExpand" />
 
                 <Image
                     VerticalOptions="EndAndExpand"
@@ -56,7 +56,7 @@
                     Grid.Row="1"
                 	Grid.RowSpan="2"
                     HeightRequest="100"
-                	Source="logoIPCViewerLigthLarge"/>
+                	Source="logoIPCViewerLigthLarge" />
             </Grid>
 
             <ScrollView
@@ -69,66 +69,66 @@
                     RowSpacing="10">
 
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
 
                         <!-- Email -->
                         <Image
                             VerticalOptions="CenterAndExpand"
                             WidthRequest="30"
-                            Grid.Row="0" 
+                            Grid.Row="0"
                             Grid.Column="0"
-                            Source="emailIcon"/>
+                            Source="emailIcon" />
 
                         <Entry
                     	    Grid.Column="1"
                     	    Grid.Row="0"
                     	    Keyboard="Email"
                     	    Placeholder="Email..."
-                    	    Text="{Binding Email}"/>
+                    	    Text="{Binding Email}" />
 
                         <!-- Pass -->
                         <Image
                             HeightRequest="45"
-                            Grid.Row="1" 
+                            Grid.Row="1"
                             Grid.Column="0"
-                            Source="iconPass"/>
+                            Source="iconPass" />
 
                         <Entry
                     	    Grid.Column="1"
                     	    Grid.Row="1"
                     	    IsPassword="True"
                     	    Placeholder="{i18n:Translate PasswordPlaceHolder}"
-                    	    Text="{Binding Password}"/>
+                    	    Text="{Binding Password}" />
 
                         <!-- Nombre -->
                         <Image
                             HeightRequest="10"
-                            Grid.Row="2" 
+                            Grid.Row="2"
                             Grid.Column="0"
-                            Source="userIcon"/>
+                            Source="userIcon" />
 
                         <Entry
                     	    Grid.Column="1"
                     	    Grid.Row="2"
                     	    Placeholder="{i18n:Translate FirstnamePlaceHolder}"
-                    	    Text="{Binding FirstName}"/>
+                    	    Text="{Binding FirstName}" />
 
                         <!-- City -->
                         <Image
                             HeightRequest="40"
-                            Grid.Row="3" 
+                            Grid.Row="3"
                             Grid.Column="0"
                             Source="city"
-                            VerticalOptions="CenterAndExpand"/>
+                            VerticalOptions="CenterAndExpand" />
 
                         <Picker
                     	    Grid.Column="1"
@@ -140,7 +140,7 @@
                         </Picker>
 
                         <ActivityIndicator
-                            Grid.ColumnSpan="2" 
+                            Grid.ColumnSpan="2"
                             Grid.Column="0"
                             Grid.Row="4"
                             IsRunning="{Binding IsRunning}"
@@ -155,7 +155,6 @@
                 	    IsEnabled="{Binding IsEnabled}"
                 	    Text="{i18n:Translate Register}">
                     </Button>
-                    
                 </StackLayout>
             </ScrollView>
         </StackLayout>

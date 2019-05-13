@@ -1,7 +1,7 @@
 ﻿namespace IPCViewer.Forms.ViewModels
 {
-    using GalaSoft.MvvmLight.Command;
     using Common.Models;
+    using GalaSoft.MvvmLight.Command;
     using System.Windows.Input;
     using Views;
 
@@ -10,12 +10,12 @@
      * Se utiliza esta nueva clase para no meter codigo interno
      * al modelo de user, de esta manera se conserva el modelo limpio
      */
+
     public class UserItemViewModel : User
     {
         public ICommand SelectUserCommand => new RelayCommand(SelectUser);
 
-
-        private async void SelectUser()
+        private async void SelectUser ()
         {
             MainViewModel.GetInstance().EditUser = new EditUserViewModel(this);
             await App.Navigator.PushAsync(new EditUserPage());

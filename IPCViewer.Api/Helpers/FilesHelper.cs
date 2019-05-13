@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace IPCViewer.Api.Helpers
+﻿namespace IPCViewer.Api.Helpers
 {
     using System.IO;
-
 
     public class FilesHelper
     {
@@ -29,5 +23,4 @@ namespace IPCViewer.Api.Helpers
             return true;
         }
     }
-
 }

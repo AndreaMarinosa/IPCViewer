@@ -19,8 +19,8 @@
         private readonly ICityRepository cityRespository;
         private readonly IUserHelper userHelper;
 
-        public CamerasController(
-            ICameraRepository cameraRepository, 
+        public CamerasController (
+            ICameraRepository cameraRepository,
             IUserHelper userHelper,
             ICityRepository cityRespository)
         {
@@ -31,34 +31,34 @@
 
         // GET: api/Cameras
         [HttpGet]
-        public IActionResult GetCameras()
+        public IActionResult GetCameras ()
         {
             return Ok(cameraRepository.GetAllWithUsers());
         }
 
         // GET: api/Cameras/5
         [HttpGet("{id}")]
-        public IActionResult GetCamera(int id)
+        public IActionResult GetCamera (int id)
         {
             return Ok(cameraRepository.GetCamera(id).Result);
         }
 
-        //PUT 
+        //PUT
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutCamera([FromRoute] int id, [FromBody] Common.Models.Camera camera)
+        public async Task<IActionResult> PutCamera ([FromRoute] int id, [FromBody] Common.Models.Camera camera)
         {
-            if (!ModelState.IsValid)
+            if ( !ModelState.IsValid )
             {
                 return this.BadRequest(ModelState);
             }
 
-            if (id != camera.Id)
+            if ( id != camera.Id )
             {
                 return BadRequest();
             }
 
             var oldCamera = await this.cameraRepository.GetByIdAsync(id);
-            if (oldCamera == null)
+            if ( oldCamera == null )
             {
                 return this.BadRequest("Camera Id don't exists.");
             }
@@ -76,21 +76,21 @@
 
         // POST Camera
         [HttpPost]
-        public async Task<IActionResult> PostCamera([FromBody] Common.Models.Camera camera)
+        public async Task<IActionResult> PostCamera ([FromBody] Common.Models.Camera camera)
         {
-            if (!ModelState.IsValid)
+            if ( !ModelState.IsValid )
             {
                 return this.BadRequest(ModelState);
             }
 
             var user = await this.userHelper.GetUserByEmailAsync(camera.User.Email);
-            if (user == null)
+            if ( user == null )
             {
                 return this.BadRequest("Invalid user");
             }
 
             var city = await this.cityRespository.GetCityByIdAsync(camera.CityId);
-            if (city == null)
+            if ( city == null )
             {
                 return this.BadRequest("Invalid city");
             }
@@ -112,7 +112,6 @@
                     imageUrl = fullPath;
                 }
             }
-
             else
             {
                 imageUrl = camera.ImageUrl;
@@ -135,17 +134,16 @@
             return Ok(newCamera);
         }
 
-
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteCamera([FromRoute] int id)
+        public async Task<IActionResult> DeleteCamera ([FromRoute] int id)
         {
-            if (!ModelState.IsValid)
+            if ( !ModelState.IsValid )
             {
                 return this.BadRequest(ModelState);
             }
 
-            var camera= await this.cameraRepository.GetByIdAsync(id);
-            if (camera == null)
+            var camera = await this.cameraRepository.GetByIdAsync(id);
+            if ( camera == null )
             {
                 return this.NotFound();
             }

@@ -1,14 +1,10 @@
 ﻿using GalaSoft.MvvmLight.Command;
 using IPCViewer.Common.Models;
 using IPCViewer.Forms.Views;
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
 using System.Windows.Input;
-using Xamarin.Forms;
-using Xamarin.Forms.GoogleMaps;
 using Menu = IPCViewer.Common.Models.Menu;
 
 namespace IPCViewer.Forms.ViewModels
@@ -129,6 +125,5 @@ namespace IPCViewer.Forms.ViewModels
 
         // Singleton
         public static MainViewModel GetInstance () => _instance ?? new MainViewModel();
-
     }
 }

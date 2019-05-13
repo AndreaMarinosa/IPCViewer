@@ -1,25 +1,26 @@
 ﻿namespace IPCViewer.Common.Services
 {
+    using Models;
+    using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
     using System.Net.Http;
-    using Models;
-    using Newtonsoft.Json;
-    using System.Threading.Tasks;
     using System.Net.Http.Headers;
     using System.Text;
+    using System.Threading.Tasks;
 
     /**
-     * 
+     *
      * Clase generica para consumir servicios Web RESTFUL
-     * 
+     *
      */
+
     public class ApiService
     {
-
         /**
          * Devulve una lista generica sin seguridad (Para recibir las ciudades)
          */
+
         public async Task<Response> GetListAsync<T> (
             string urlBase,
             string servicePrefix,
@@ -67,6 +68,7 @@
          * Devuelve una lista generica comprobando los token del usuario
          * Para recibir listas de camaras / usuarios
          */
+
         public async Task<Response> GetListAsync<T> (
              string urlBase,
              string servicePrefix,
@@ -117,6 +119,7 @@
          * Devuelve una camara comprobando los token del usuario
          * Para recibir listas de camaras / usuarios
          */
+
         public async Task<Response> GetCameraAsync<T> (
              string urlBase,
              string servicePrefix,
@@ -127,7 +130,6 @@
         {
             try
             {
-
                 var client = new HttpClient
                 {
                     BaseAddress = new Uri(urlBase)
@@ -168,6 +170,7 @@
         /**
          * Recibir un token cuando te estas logeando para tener permisos en la aplicacion
          */
+
         public async Task<Response> GetTokenAsync (
             string urlBase,
             string servicePrefix,
@@ -216,6 +219,7 @@
         /**
          * Insertar una camara desde la aplicacion movil
          */
+
         public async Task<Response> PostAsync<T> (
             string urlBase,
             string servicePrefix,
@@ -354,10 +358,10 @@
             }
         }
 
-
         /**
          * Registrar un usuario
          */
+
         public async Task<Response> RegisterUserAsync (
             string urlBase,
             string servicePrefix,
@@ -476,8 +480,9 @@
 
         /***
          * Para consumir los datos del usuario
-         * 
+         *
          */
+
         public async Task<Response> GetUserByEmailAsync (
             string urlBase,
             string servicePrefix,
@@ -525,7 +530,6 @@
             }
         }
 
-
         public async Task<Response> PutAsync<T> (
             string urlBase,
             string servicePrefix,
@@ -572,6 +576,7 @@
                 };
             }
         }
+
         public async Task<Response> ChangePasswordAsync (
             string urlBase,
             string servicePrefix,

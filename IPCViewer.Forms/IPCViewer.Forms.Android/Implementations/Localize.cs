@@ -1,5 +1,5 @@
-﻿
-[assembly: Xamarin.Forms.Dependency(typeof(IPCViewer.Forms.Droid.Implementations.Localize))]
+﻿[assembly: Xamarin.Forms.Dependency(typeof(IPCViewer.Forms.Droid.Implementations.Localize))]
+
 namespace IPCViewer.Forms.Droid.Implementations
 {
     using Helpers;
@@ -55,9 +55,11 @@ namespace IPCViewer.Forms.Droid.Implementations
                 case "ms-SG":   // "Malaysian (Singapore)" not supported .NET culture
                     netLanguage = "ms"; // closest supported
                     break;
+
                 case "in-ID":  // "Indonesian (Indonesia)" has different code in  .NET
                     netLanguage = "id-ID"; // correct code for .NET
                     break;
+
                 case "gsw-CH":  // "Schwiizertüütsch (Swiss German)" not supported .NET culture
                     netLanguage = "de-CH"; // closest supported
                     break;

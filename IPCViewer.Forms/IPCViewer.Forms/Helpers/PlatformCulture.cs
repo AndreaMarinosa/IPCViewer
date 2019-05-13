@@ -1,9 +1,11 @@
 ﻿namespace IPCViewer.Forms.Helpers
 {
     using System;
+
     /***
-     * Clase generica adicional que nos devuelve un lenguaje comun entre android 
+     * Clase generica adicional que nos devuelve un lenguaje comun entre android
      */
+
     public class PlatformCulture
     {
         public string PlatformString { get; private set; }
@@ -38,6 +40,5 @@
         {
             return PlatformString;
         }
-
     }
 }

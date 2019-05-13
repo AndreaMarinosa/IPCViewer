@@ -7,6 +7,7 @@
      * Clase Usuario que hereda de IdentityUsers (Usuarios de asp net core)
      * Le anado unas nuevas propiedades
      */
+
     public class User : IdentityUser
     {
         public string FirstName { get; set; }
@@ -21,4 +22,3 @@
         public int CityId { get; set; }
     }
 }
-

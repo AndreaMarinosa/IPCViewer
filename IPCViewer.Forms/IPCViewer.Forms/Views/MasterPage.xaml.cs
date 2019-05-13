@@ -1,5 +1,4 @@
-﻿
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace IPCViewer.Forms.Views
@@ -7,18 +6,16 @@ namespace IPCViewer.Forms.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MasterPage : MasterDetailPage
     {
-
-        public MasterPage()
+        public MasterPage ()
         {
             InitializeComponent();
         }
 
-        protected override void OnAppearing()
+        protected override void OnAppearing ()
         {
             base.OnAppearing();
             App.Navigator = this.Navigator;
             App.Master = this;
         }
-
     }
 }

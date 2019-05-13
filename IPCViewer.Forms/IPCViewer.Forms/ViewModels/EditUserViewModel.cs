@@ -24,7 +24,6 @@
 
         public ICommand DeleteCommand => new RelayCommand(this.Delete);
 
-
         public bool IsEnabled
         {
             get => this.isEnabled;
@@ -34,7 +33,8 @@
         /**
          * La camara ligada a la MainViewModel es la que se pasa por parametro
          */
-        public EditUserViewModel(User user)
+
+        public EditUserViewModel (User user)
         {
             this.User = user;
             this.apiService = new ApiService();
@@ -76,10 +76,10 @@
 
         //}
 
-        private async void Delete()
+        private async void Delete ()
         {
             var confirm = await Application.Current.MainPage.DisplayAlert("Confirm", "Are you sure to delete the user?", "Yes", "No");
-            if (!confirm)
+            if ( !confirm )
             {
                 return;
             }
@@ -96,7 +96,7 @@
             this.IsRunning = false;
             this.IsEnabled = true;
 
-            if (!response.IsSuccess)
+            if ( !response.IsSuccess )
             {
                 await Application.Current.MainPage.DisplayAlert("Error", response.Message, "Accept");
                 return;
@@ -105,6 +105,5 @@
             MainViewModel.GetInstance().Users.DeleteUser(this.User.Id);
             await App.Navigator.PopAsync();
         }
-
     }
 }

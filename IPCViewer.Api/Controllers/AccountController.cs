@@ -4,19 +4,19 @@ namespace IPCViewer.Api.Controllers
 {
     using Common.Models;
     using Helpers;
-    using Models;
+    using Microsoft.AspNetCore.Authentication.JwtBearer;
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Configuration;
     using Microsoft.IdentityModel.Tokens;
+    using Models;
     using System;
     using System.IdentityModel.Tokens.Jwt;
     using System.Linq;
     using System.Security.Claims;
     using System.Text;
     using System.Threading.Tasks;
-    using Microsoft.AspNetCore.Authorization;
-    using Microsoft.AspNetCore.Authentication.JwtBearer;
 
     [Route("api/[Controller]")]
     public class AccountController : Controller
@@ -25,7 +25,7 @@ namespace IPCViewer.Api.Controllers
         private readonly ICityRepository cityRepository;
         private readonly IConfiguration configuration;
 
-        public AccountController(
+        public AccountController (
             IUserHelper userHelper,
             ICityRepository cityRepository,
             IConfiguration configuration)
@@ -37,7 +37,7 @@ namespace IPCViewer.Api.Controllers
 
         // GET: api/Cameras
         [HttpGet]
-        public IActionResult GetUsers()
+        public IActionResult GetUsers ()
         {
             var users = userHelper.GetAllUsersAsync().Result;
             return Ok(users);
@@ -45,18 +45,18 @@ namespace IPCViewer.Api.Controllers
 
         [HttpPost]
         [Route("PostCreateToken")]
-        public async Task<IActionResult> PostCreateToken([FromBody] LoginViewModel model)
+        public async Task<IActionResult> PostCreateToken ([FromBody] LoginViewModel model)
         {
-            if (this.ModelState.IsValid)
+            if ( this.ModelState.IsValid )
             {
                 var user = await this.userHelper.GetUserByEmailAsync(model.Username);
-                if (user != null)
+                if ( user != null )
                 {
                     var result = await this.userHelper.ValidatePasswordAsync(
                         user,
                         model.Password);
 
-                    if (result.Succeeded)
+                    if ( result.Succeeded )
                     {
                         var claims = new[]
                         {
@@ -87,9 +87,9 @@ namespace IPCViewer.Api.Controllers
 
         [HttpPost]
         [Route("PostUser")]
-        public async Task<IActionResult> PostUser([FromBody] NewUserRequest request)
+        public async Task<IActionResult> PostUser ([FromBody] NewUserRequest request)
         {
-            if (!ModelState.IsValid)
+            if ( !ModelState.IsValid )
             {
                 return this.BadRequest(new Response
                 {
@@ -99,7 +99,7 @@ namespace IPCViewer.Api.Controllers
             }
 
             var user = await this.userHelper.GetUserByEmailAsync(request.Email);
-            if (user != null)
+            if ( user != null )
             {
                 return this.BadRequest(new Response
                 {
@@ -108,9 +108,8 @@ namespace IPCViewer.Api.Controllers
                 });
             }
 
-
             var city = await cityRepository.GetCityByIdAsync(request.CityId);
-            if (city == null)
+            if ( city == null )
             {
                 return this.BadRequest(new Response
                 {
@@ -126,11 +125,10 @@ namespace IPCViewer.Api.Controllers
                 UserName = request.Email,
                 CityId = request.CityId,
                 City = city
-
             };
 
             var result = await this.userHelper.AddUserAsync(user, request.Password);
-            if (result != IdentityResult.Success)
+            if ( result != IdentityResult.Success )
             {
                 return this.BadRequest(result.Errors.FirstOrDefault()?.Description);
             }
@@ -163,21 +161,21 @@ namespace IPCViewer.Api.Controllers
 
         // GET: api/User/5
         [HttpGet("{id}")]
-        public IActionResult GetUser(string id)
+        public IActionResult GetUser (string id)
         {
             return Ok(userHelper.GetUserByIdAsync(id));
         }
 
         [HttpDelete("{id}")] // todo:email llega null
-        public async Task<IActionResult> DeleteUser([FromRoute] string email)
+        public async Task<IActionResult> DeleteUser ([FromRoute] string email)
         {
-            if (!ModelState.IsValid)
+            if ( !ModelState.IsValid )
             {
                 return this.BadRequest(ModelState);
             }
 
             var user = await this.userHelper.GetUserByEmailAsync(email);
-            if (user == null)
+            if ( user == null )
             {
                 return this.NotFound();
             }
@@ -212,8 +210,6 @@ namespace IPCViewer.Api.Controllers
 
             return Ok(user);
         }
-
-
 
         [HttpPut]
         public async Task<IActionResult> PutUser ([FromBody] Common.Models.User user)
@@ -289,6 +285,5 @@ namespace IPCViewer.Api.Controllers
                 Message = "The password was changed succesfully!"
             });
         }
-
     }
 }

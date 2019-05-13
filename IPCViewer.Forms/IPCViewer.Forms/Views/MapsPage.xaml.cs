@@ -1,5 +1,4 @@
 ﻿using Xamarin.Forms;
-using Xamarin.Forms.GoogleMaps;
 using Xamarin.Forms.Xaml;
 
 namespace IPCViewer.Forms.Views
@@ -7,10 +6,9 @@ namespace IPCViewer.Forms.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MapsPage : ContentPage
     {
-        public MapsPage()
+        public MapsPage ()
         {
             InitializeComponent();
         }
-
     }
 }

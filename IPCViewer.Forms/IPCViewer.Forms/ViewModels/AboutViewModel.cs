@@ -7,7 +7,7 @@ namespace IPCViewer.Forms.ViewModels
 {
     public class AboutViewModel : BaseViewModel
     {
-        public AboutViewModel()
+        public AboutViewModel ()
         {
             Title = "About";
 

@@ -13,111 +13,106 @@
                     HeightRequest="250">
                     <Image.GestureRecognizers>
                         <TapGestureRecognizer
-                            Command="{Binding TapCommand}"/>
+                            Command="{Binding TapCommand}" />
                     </Image.GestureRecognizers>
                     <Image.Source>
 
                         <UriImageSource
-                            Uri="{Binding Camera.ImageFullPath}"/>
-
+                            Uri="{Binding Camera.ImageFullPath}" />
                     </Image.Source>
                 </Image>
 
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
 
                     <!-- Name -->
                     <Label
                         Grid.Column="0"
                         Grid.Row="0"
-                        Text="Name"/>
+                        Text="Name" />
 
                     <Entry
                         Grid.Column="1"
                         Grid.Row="0"
                         Placeholder="Camera name"
-                        Text="{Binding Camera.Name}"/>
+                        Text="{Binding Camera.Name}" />
 
                     <!-- Latitude -->
                     <Label
                         Grid.Column="0"
                         Grid.Row="1"
-                        Text="Latitude"/>
+                        Text="Latitude" />
 
                     <Entry
                         Grid.Column="1"
                         Grid.Row="1"
                         Placeholder="Latitude"
                         Text="{Binding Camera.Latitude}"
-                        Keyboard="Numeric"/>
+                        Keyboard="Numeric" />
 
                     <!-- Longitude -->
                     <Label
                         Grid.Column="0"
                         Grid.Row="2"
-                        Text="Longitude"/>
+                        Text="Longitude" />
 
                     <Entry
                         Grid.Column="1"
                         Grid.Row="2"
                         Placeholder="Longitude"
                         Text="{Binding Camera.Longitude}"
-                        Keyboard="Numeric"/>
+                        Keyboard="Numeric" />
 
                     <!-- Image Url -->
                     <Label
                         Grid.Column="0"
                         Grid.Row="3"
-                        Text="Url"/>
+                        Text="Url" />
 
                     <Entry
                         Grid.Column="1"
                         Grid.Row="3"
                         Placeholder="ImageUrl"
-                        Text="{Binding Camera.ImageFullPath}"/>
-
+                        Text="{Binding Camera.ImageFullPath}" />
 
                     <!-- User -->
                     <Label
                         Grid.Column="0"
                         Grid.Row="5"
-                        Text="Creación: "/>
+                        Text="Creación: " />
 
                     <Entry
                         Grid.Column="1"
                         Grid.Row="5"
                         Text="{Binding Camera.User.FirstName}"
-                        IsReadOnly="True"/>
+                        IsReadOnly="True" />
 
                     <!-- Comments -->
                     <Label
                         Grid.Column="0"
                         Grid.Row="4"
-                        Text="Comments"/>
+                        Text="Comments" />
 
                     <Entry
                         Grid.Column="1"
                         Grid.Row="4"
                         Placeholder="Comments"
-                        Text="{Binding Camera.Comments}"
-                        />
-
-
+                        Text="{Binding Camera.Comments}" />
                 </Grid>
                 <ActivityIndicator
                     IsRunning="{Binding IsRunning}"
-                    VerticalOptions="CenterAndExpand"/>
+                    VerticalOptions="CenterAndExpand" />
 
                 <StackLayout
                     Orientation="Horizontal">
@@ -128,7 +123,7 @@
                     	Command="{Binding SaveCommand}"
                     	HorizontalOptions="FillAndExpand"
                     	IsEnabled="{Binding IsEnabled}"
-                    	Text="Save"/>
+                    	Text="Save" />
 
                     <Button
                         BorderColor="Red"
@@ -136,8 +131,7 @@
                     	HorizontalOptions="FillAndExpand"
                     	IsEnabled="{Binding IsEnabled}"
                     	Text="Delete"
-                    	TextColor="Red"/>
-
+                    	TextColor="Red" />
                 </StackLayout>
             </StackLayout>
         </ScrollView>

@@ -12,18 +12,18 @@
     {
         // Para navegar por la aplicacion
         public static NavigationPage Navigator { get; internal set; }
+
         public static MasterPage Master { get; internal set; }
 
-        public App()
+        public App ()
         {
-            
             //Register Syncfusion license
             Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("@31372e312e30Yq+maR8+yovkjCxAUy9Of06jRxlGClixfzVZKnNjTrE=");
 
             InitializeComponent();
 
             // Cargamos primero los settings del usuario
-            if (Settings.IsRemember)
+            if ( Settings.IsRemember )
             {
                 // Como esta guardado como un string, lo deserilizamos como un objeto
                 var token = JsonConvert.DeserializeObject<TokenResponse>(Settings.Token);
@@ -32,7 +32,7 @@
                 var user = JsonConvert.DeserializeObject<User>(Settings.User);
 
                 // Si el token no es valido (Porque ha pasado el tiempo), lo devolvemos al login
-                if ( token.Expiration > DateTime.Now)
+                if ( token.Expiration > DateTime.Now )
                 {
                     var mainViewModel = MainViewModel.GetInstance();
                     mainViewModel.Token = token;
@@ -49,17 +49,17 @@
             MainPage = /*new NavigationPage(*/new ControlUsersPage()/*)*/;
         }
 
-        protected override void OnStart()
+        protected override void OnStart ()
         {
             // Handle when your app starts
         }
 
-        protected override void OnSleep()
+        protected override void OnSleep ()
         {
             // Handle when your app sleeps
         }
 
-        protected override void OnResume()
+        protected override void OnResume ()
         {
             // Handle when your app resumes
         }

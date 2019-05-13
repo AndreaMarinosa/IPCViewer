@@ -1,18 +1,17 @@
 ﻿namespace IPCViewer.Forms.ViewModels
 {
-    using GalaSoft.MvvmLight.Command;
     using Common.Helpers;
     using Common.Models;
     using Common.Services;
-    using Views;
+    using GalaSoft.MvvmLight.Command;
+    using IPCViewer.Forms.Helpers;
     using Newtonsoft.Json;
     using System.Windows.Input;
+    using Views;
     using Xamarin.Forms;
-    using IPCViewer.Forms.Helpers;
 
     public class LoginViewModel : BaseViewModel
     {
-
         private bool _isRunning;
         private bool _isEnabled;
         private readonly ApiService apiService;
@@ -38,9 +37,9 @@
         public string Password
         {
             get; set;
-
         }
-        #endregion
+
+        #endregion Properties
 
         public ICommand LoginCommand => new RelayCommand(this.Login);
 
@@ -51,21 +50,19 @@
             Email = "andreamarinosalopez@gmail.com";
             Password = "123456";
             IsRemember = true;
-
         }
 
-
-        private async void Login()
+        private async void Login ()
         {
-            if (string.IsNullOrEmpty(this.Email))
+            if ( string.IsNullOrEmpty(this.Email) )
             {
                 await Application.Current.MainPage.DisplayAlert(
-                    Languages.Error, 
-                    Languages.EmailError, 
+                    Languages.Error,
+                    Languages.EmailError,
                     Languages.Accept);
                 return;
             }
-            if (string.IsNullOrEmpty(this.Password))
+            if ( string.IsNullOrEmpty(this.Password) )
             {
                 await Application.Current.MainPage.DisplayAlert(
                     Languages.Error,
@@ -92,8 +89,7 @@
             IsRunning = false;
             IsEnabled = true;
 
-
-            if (!response.IsSuccess)
+            if ( !response.IsSuccess )
             {
                 await Application.Current.MainPage.DisplayAlert(
                     Languages.Error,
@@ -102,7 +98,7 @@
                 return;
             }
 
-            var token = (TokenResponse)response.Result;
+            var token = (TokenResponse) response.Result;
 
             // Cogemos las datos del usuario mediante ese email
             var response2 = await this.apiService.GetUserByEmailAsync(
@@ -122,7 +118,6 @@
             mainViewModel.UserEmail = this.Email;
             mainViewModel.UserPassword = this.Password;
 
-
             // Guardamos los datos en persistencia (El email, la password, y el remember)
             Settings.IsRemember = IsRemember;
             Settings.UserEmail = Email;
@@ -131,8 +126,6 @@
             Settings.User = JsonConvert.SerializeObject(user); // coge el user y lo guarda en un string
 
             Application.Current.MainPage = new /*NavigationPage(new */MasterPage()/*)*/;
-
         }
-
     }
 }

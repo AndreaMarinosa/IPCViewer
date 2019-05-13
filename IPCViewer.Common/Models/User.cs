@@ -1,7 +1,7 @@
 ﻿namespace IPCViewer.Common.Models
 {
-    using System;
     using Newtonsoft.Json;
+    using System;
 
     public partial class User
     {
@@ -61,6 +61,5 @@
 
         [JsonProperty("city")]
         public City City { get; set; }
-
     }
 }

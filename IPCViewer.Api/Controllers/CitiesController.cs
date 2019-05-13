@@ -9,14 +9,14 @@
     {
         private readonly ICityRepository cityRepository;
 
-        public CitiesController(ICityRepository cityRepository)
+        public CitiesController (ICityRepository cityRepository)
         {
             this.cityRepository = cityRepository;
         }
 
         // GET: api/Cities
         [HttpGet]
-        public IActionResult GetCities()
+        public IActionResult GetCities ()
         {
             return Ok(this.cityRepository.GetAll());
         }

@@ -11,11 +11,13 @@
     /***
      * Clase para traducir la parte de XAML
      */
+
     [ContentProperty("Text")]
     public class TranslateExtension : IMarkupExtension
     {
         private readonly CultureInfo ci;
         private const string ResourceId = "IPCViewer.Forms.Resources.Resource";
+
         private static readonly Lazy<ResourceManager> ResMgr =
             new Lazy<ResourceManager>(() => new ResourceManager(
                 ResourceId,

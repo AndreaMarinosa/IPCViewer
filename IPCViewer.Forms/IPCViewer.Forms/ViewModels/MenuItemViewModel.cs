@@ -1,8 +1,8 @@
 ﻿namespace IPCViewer.Forms.ViewModels
 {
-    using System.Windows.Input;
     using GalaSoft.MvvmLight.Command;
     using IPCViewer.Common.Helpers;
+    using System.Windows.Input;
     using Views;
     using Xamarin.Forms;
 
@@ -10,12 +10,12 @@
     {
         public ICommand SelectMenuCommand => new RelayCommand(SelectMenu);
 
-        private async void SelectMenu()
+        private async void SelectMenu ()
         {
             var mainViewModel = MainViewModel.GetInstance();
             App.Master.IsPresented = false;
 
-            switch (PageName)
+            switch ( PageName )
             {
                 case "AboutPage":
                     await App.Navigator.PushAsync(new AboutPage());
@@ -54,5 +54,4 @@
             }
         }
     }
-
 }

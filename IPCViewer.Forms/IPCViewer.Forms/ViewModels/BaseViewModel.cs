@@ -7,26 +7,27 @@
 
     public class BaseViewModel : INotifyPropertyChanged
     {
+        private bool isBusy = false;
 
-        bool isBusy = false;
         public bool IsBusy
         {
             get { return isBusy; }
             set { SetProperty(ref isBusy, value); }
         }
 
-        string title = string.Empty;
+        private string title = string.Empty;
+
         public string Title
         {
             get { return title; }
             set { SetProperty(ref title, value); }
         }
 
-        protected void SetProperty<T>(ref T backingStore, T value,
+        protected void SetProperty<T> (ref T backingStore, T value,
             [CallerMemberName]string propertyName = "",
             Action onChanged = null)
         {
-            if (EqualityComparer<T>.Default.Equals(backingStore, value))
+            if ( EqualityComparer<T>.Default.Equals(backingStore, value) )
                 return;
 
             backingStore = value;
@@ -49,12 +50,11 @@
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        protected void OnPropertyChanged([CallerMemberName] string propertyName = "")
+        protected void OnPropertyChanged ([CallerMemberName] string propertyName = "")
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-
         }
 
-        #endregion
+        #endregion INotifyPropertyChanged
     }
 }

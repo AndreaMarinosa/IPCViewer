@@ -1,14 +1,6 @@
-﻿using GalaSoft.MvvmLight.Command;
-using IPCViewer.Common.Models;
-using IPCViewer.Common.Services;
+﻿using IPCViewer.Common.Models;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
-using System.Windows.Input;
-using Xamarin.Forms;
 
 namespace IPCViewer.Forms.ViewModels
 {
@@ -36,7 +28,7 @@ namespace IPCViewer.Forms.ViewModels
                     "https://media.revistagq.com/photos/5ca5f6a77a3aec0df5496c59/master/w_1280,c_limit/bob_esponja_9564.png";
                 ImageUrl = ImageUrl == test ? Camera.ImageUrl : test;
 
-                if (ImageUrl == test)
+                if ( ImageUrl == test )
                 {
                     Task.Delay(5).ContinueWith(r => reloadImageTask(r));
                 }
@@ -44,11 +36,9 @@ namespace IPCViewer.Forms.ViewModels
                 {
                     Task.Delay(350).ContinueWith(r => reloadImageTask(r));
                 }
-               
             };
 
-            Task.Delay(500).ContinueWith(reloadImageTask); 
+            Task.Delay(500).ContinueWith(reloadImageTask);
         }
-
     }
 }

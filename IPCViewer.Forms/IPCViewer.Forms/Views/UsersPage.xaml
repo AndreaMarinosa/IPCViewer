@@ -3,8 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="IPCViewer.Forms.Views.UsersPage"
              Title="Users"
-             BindingContext="{Binding Main, Source={StaticResource Locator}}"
-             >
+             BindingContext="{Binding Main, Source={StaticResource Locator}}">
 
   <ContentPage.Content>
     <StackLayout
@@ -21,12 +20,12 @@
             <ViewCell>
               <Grid>
                 <Grid.ColumnDefinitions>
-                  <ColumnDefinition Width="*"/>
-                  <ColumnDefinition Width="Auto"/>
+                  <ColumnDefinition Width="*" />
+                  <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
 
                 <Grid.GestureRecognizers>
-                  <TapGestureRecognizer Command="{Binding SelectUserCommand}"/>
+                  <TapGestureRecognizer Command="{Binding SelectUserCommand}" />
                 </Grid.GestureRecognizers>
 
                 <StackLayout
@@ -56,7 +55,6 @@
                     Grid.Column="1">
                   <Button
                       Command="{Binding DeleteUserCommand}"></Button>
-
                 </StackLayout>
               </Grid>
             </ViewCell>

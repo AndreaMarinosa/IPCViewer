@@ -1,7 +1,7 @@
 ﻿namespace IPCViewer.Common.Models
 {
-    using System;
     using Newtonsoft.Json;
+    using System;
 
     public class Camera
     {
@@ -39,6 +39,5 @@
         public string ImageFullPath { get; set; }
 
         public byte[] ImageArray { get; set; }
-
     }
 }

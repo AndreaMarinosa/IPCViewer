@@ -1,12 +1,12 @@
 ﻿namespace IPCViewer.Forms.ViewModels
 {
-    using System.Collections.Generic;
-    using System.Collections.ObjectModel;
-    using System.Windows.Input;
     using Common.Models;
     using GalaSoft.MvvmLight.Command;
     using IPCViewer.Common.Helpers;
     using IPCViewer.Common.Services;
+    using System.Collections.Generic;
+    using System.Collections.ObjectModel;
+    using System.Windows.Input;
     using Xamarin.Forms;
 
     public class RegisterViewModel : BaseViewModel
@@ -23,7 +23,6 @@
         public string Password { get; set; }
 
         private readonly ApiService apiService;
-
 
         public City City
         {
@@ -51,9 +50,8 @@
 
         public ICommand RegisterCommand => new RelayCommand(this.Register);
 
-        public async void LoadCities()
+        public async void LoadCities ()
         {
-
             this.IsRunning = true;
             this.IsEnabled = false;
 
@@ -65,7 +63,7 @@
             this.IsRunning = false;
             this.IsEnabled = true;
 
-            if (!response.IsSuccess || response == null)
+            if ( !response.IsSuccess || response == null )
             {
                 await Application.Current.MainPage.DisplayAlert(
                     "Error",
@@ -74,11 +72,11 @@
                 return;
             }
 
-            var myCities = (List<City>)response.Result;
+            var myCities = (List<City>) response.Result;
             this.Cities = new ObservableCollection<City>(myCities);
         }
 
-        public RegisterViewModel()
+        public RegisterViewModel ()
         {
             this.apiService = new ApiService();
             this.IsEnabled = true;
@@ -88,10 +86,9 @@
             Password = "123456";
         }
 
-
-        private async void Register()
+        private async void Register ()
         {
-            if (string.IsNullOrEmpty(this.FirstName))
+            if ( string.IsNullOrEmpty(this.FirstName) )
             {
                 await Application.Current.MainPage.DisplayAlert(
                     "Error",
@@ -100,8 +97,7 @@
                 return;
             }
 
-            
-            if (string.IsNullOrEmpty(this.Email))
+            if ( string.IsNullOrEmpty(this.Email) )
             {
                 await Application.Current.MainPage.DisplayAlert(
                     "Error",
@@ -110,7 +106,7 @@
                 return;
             }
 
-            if (!RegexHelper.IsValidEmail(this.Email))
+            if ( !RegexHelper.IsValidEmail(this.Email) )
             {
                 await Application.Current.MainPage.DisplayAlert(
                     "Error",
@@ -119,7 +115,7 @@
                 return;
             }
 
-            if (this.City == null)
+            if ( this.City == null )
             {
                 await Application.Current.MainPage.DisplayAlert(
                     "Error",
@@ -128,7 +124,7 @@
                 return;
             }
 
-            if (string.IsNullOrEmpty(this.Password))
+            if ( string.IsNullOrEmpty(this.Password) )
             {
                 await Application.Current.MainPage.DisplayAlert(
                     "Error",
@@ -137,7 +133,7 @@
                 return;
             }
 
-            if (this.Password.Length < 6)
+            if ( this.Password.Length < 6 )
             {
                 await Application.Current.MainPage.DisplayAlert(
                     "Error",
@@ -169,7 +165,7 @@
             this.IsRunning = false;
             this.IsEnabled = true;
 
-            if (!response.IsSuccess)
+            if ( !response.IsSuccess )
             {
                 await Application.Current.MainPage.DisplayAlert(
                     "Error",
@@ -184,7 +180,5 @@
                 "Accept");
             await App.Navigator.PopAsync();
         }
-
     }
-
 }

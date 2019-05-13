@@ -6,10 +6,10 @@ using AndroidBitmapDescriptorFactory = Android.Gms.Maps.Model.BitmapDescriptorFa
 
 public sealed class AccessNativeBitmapConfig : IBitmapDescriptorFactory
 {
-    public AndroidBitmapDescriptor ToNative(BitmapDescriptor descriptor)
+    public AndroidBitmapDescriptor ToNative (BitmapDescriptor descriptor)
     {
         int resId = 0;
-        switch (descriptor.Id)
+        switch ( descriptor.Id )
         {
             case "ipCameraPin":
                 resId = Resource.Drawable.ipCameraPin;

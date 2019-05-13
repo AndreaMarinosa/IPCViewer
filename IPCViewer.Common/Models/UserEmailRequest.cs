@@ -6,6 +6,5 @@ namespace IPCViewer.Common.Models
     {
         [Required]
         public string Email { get; set; }
-
     }
 }

@@ -1,12 +1,7 @@
-﻿using IPCViewer.Common.Models;
-using IPCViewer.Common.Services;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Text;
-using System.Windows.Input;
-using GalaSoft.MvvmLight.Command;
+﻿using GalaSoft.MvvmLight.Command;
 using IPCViewer.Forms.Interfaces;
+using System.Collections.ObjectModel;
+using System.Windows.Input;
 using Xamarin.Forms;
 using Xamarin.Forms.GoogleMaps;
 using Xamarin.Forms.GoogleMaps.Bindings;
@@ -31,7 +26,6 @@ namespace IPCViewer.Forms.ViewModels
         {
             this._location = location;
         }
-
 
         public ICommand SaveCommand => new RelayCommand(this.Save);
 
@@ -80,9 +74,7 @@ namespace IPCViewer.Forms.ViewModels
         {
             var stream = await TakeSnapshotRequest.TakeSnapshot();
             ImageSource = ImageSource.FromStream(() => stream);
-
         });
-
 
         private async void Save ()
         {

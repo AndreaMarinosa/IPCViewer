@@ -5,7 +5,7 @@
 
     public static class RegexHelper
     {
-        public static bool IsValidEmail(string emailaddress)
+        public static bool IsValidEmail (string emailaddress)
         {
             try
             {
@@ -13,11 +13,10 @@
 
                 return true;
             }
-            catch (FormatException)
+            catch ( FormatException )
             {
                 return false;
             }
         }
     }
-
 }

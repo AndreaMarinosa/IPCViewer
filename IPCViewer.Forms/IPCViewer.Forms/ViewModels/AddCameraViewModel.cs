@@ -1,6 +1,6 @@
-﻿using System;
+﻿using IPCViewer.Forms.Interfaces;
+using System;
 using System.Collections.Generic;
-using IPCViewer.Forms.Interfaces;
 
 namespace IPCViewer.Forms.ViewModels
 {
@@ -28,7 +28,6 @@ namespace IPCViewer.Forms.ViewModels
         private MediaFile file;
         private ImageSource _imageSource;
         private string urlCamera;
-
 
         public string Name { get; set; }
 
@@ -74,7 +73,6 @@ namespace IPCViewer.Forms.ViewModels
 
         public bool IsVisible { get => this.isVisible; set => this.SetProperty(ref this.isVisible, value); }
 
-
         public AddCameraViewModel ()
         {
             this.apiService = new ApiService();
@@ -85,7 +83,6 @@ namespace IPCViewer.Forms.ViewModels
 
         public async void LoadCities ()
         {
-
             IsRunning = true;
             IsEnabled = false;
 
@@ -108,7 +105,6 @@ namespace IPCViewer.Forms.ViewModels
 
             var myCities = (List<City>) response.Result;
             this.Cities = new ObservableCollection<City>(myCities);
-
         }
 
         private async void Save ()
@@ -159,21 +155,19 @@ namespace IPCViewer.Forms.ViewModels
             {
                 imageArray = FilesHelper.ReadFully(this.file.GetStream());
                 camera.ImageArray = imageArray;
-
             }
             // si el file image array es null, que compruebe si existe la url
-            else if (!string.IsNullOrEmpty(UrlCamera))
+            else if ( !string.IsNullOrEmpty(UrlCamera) )
             {
                 camera.ImageUrl = UrlCamera;
-
             }
-            else{
+            else
+            {
                 await Application.Current.MainPage.DisplayAlert("Error", "You must enter an url or image.", "Accept");
                 return;
             }
 
             // si no tiene ninguna, poner un alert y que cancele la operacion
-
 
             var response = await apiService.PostAsync(
                 "https://ipcviewerapi.azurewebsites.net",
@@ -214,7 +208,7 @@ namespace IPCViewer.Forms.ViewModels
                 "From Camera",
                 "From Url");
 
-            switch (source)
+            switch ( source )
             {
                 case "Cancel":
                     {
@@ -246,7 +240,6 @@ namespace IPCViewer.Forms.ViewModels
                         await App.Navigator.PushAsync(new AddUrlPage(), true);
                         break;
                     }
-               
             }
 
             // Si han elegido una imagen
@@ -258,7 +251,6 @@ namespace IPCViewer.Forms.ViewModels
                     return stream;
                 });
             }
-
         }
 
         // todo: add location from maps
@@ -268,10 +260,9 @@ namespace IPCViewer.Forms.ViewModels
             await App.Navigator.PushAsync(new AddLocationPage(), true);
         }
 
-
-        public void OnClose(string url)
+        public void OnClose (string url)
         {
-            if (string.IsNullOrEmpty(url))
+            if ( string.IsNullOrEmpty(url) )
             {
                 IsVisible = false;
             }
@@ -282,7 +273,7 @@ namespace IPCViewer.Forms.ViewModels
             }
         }
 
-        public void SetLocation(string longitude, string latitude, ImageSource imageSource)
+        public void SetLocation (string longitude, string latitude, ImageSource imageSource)
         {
             Latitude = latitude;
             Longitude = longitude;

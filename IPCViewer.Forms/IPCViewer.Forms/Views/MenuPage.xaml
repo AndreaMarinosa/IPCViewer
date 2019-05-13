@@ -6,7 +6,7 @@
              Title="Menu">
     <ContentPage.Content>
         <StackLayout>
-            
+
             <StackLayout
                 Padding="10"
                 BackgroundColor="{StaticResource SecondaryDark}">
@@ -16,18 +16,17 @@
                     HeightRequest="100"
                 	Source="IconLigth">
                 </Image>
-                
+
                 <Label
                     VerticalOptions="End"
                     TextColor="{StaticResource PrimaryFontColor}"
-	                Text="Welcome"/>
-                
+	                Text="Welcome" />
+
                 <Label
                     FontAttributes="Bold"
                     TextColor="White"
 	                FontSize="Medium"
-	                Text="{Binding User.UserName}"/>
-                
+	                Text="{Binding User.UserName}" />
             </StackLayout>
 
             <ListView
@@ -40,7 +39,7 @@
                             <Grid
                                 Padding="10, 0">
                                 <Grid.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding SelectMenuCommand}"/>
+                                    <TapGestureRecognizer Command="{Binding SelectMenuCommand}" />
                                 </Grid.GestureRecognizers>
 
                                 <Grid.ColumnDefinitions>
@@ -58,33 +57,28 @@
                                     Grid.ColumnSpan="2"
                                     Grid.Row="0"
                                     HeightRequest="0"
-                                    VerticalOptions="FillAndExpand"
-                                    />
+                                    VerticalOptions="FillAndExpand" />
                                 <Image
-                                    Grid.Row="1" 
+                                    Grid.Row="1"
                                     Grid.Column="0"
                                 	HeightRequest="50"
                                 	Source="{Binding Icon}"
                                     VerticalOptions="CenterAndExpand"
-                                    HorizontalOptions="CenterAndExpand"/>
+                                    HorizontalOptions="CenterAndExpand" />
 
                                 <Label
                                     TextColor="{StaticResource PrimaryLight}"
                                     FontSize="14"
-                                    Grid.Row="1" 
+                                    Grid.Row="1"
                                     Grid.Column="1"
                                 	FontAttributes="Bold"
                                 	VerticalOptions="CenterAndExpand"
                                 	Text="{Binding Title}">
                                 </Label>
-
                             </Grid>
                         </ViewCell>
-
                     </DataTemplate>
-
                 </ListView.ItemTemplate>
-
             </ListView>
         </StackLayout>
     </ContentPage.Content>

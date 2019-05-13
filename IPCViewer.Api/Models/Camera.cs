@@ -1,14 +1,13 @@
 ﻿namespace IPCViewer.Api.Models
 {
-    using Microsoft.AspNetCore.Http;
     using System;
 
     /**
      * Objeto con el que se almacenaran todas las caramas de la aplicacion
      */
+
     public class Camera : IEntity
     {
-
         public int Id { get; set; }
 
         public string Name { get; set; }
@@ -33,7 +32,7 @@
         {
             get
             {
-                if ( string.IsNullOrEmpty(this.ImageUrl)  )
+                if ( string.IsNullOrEmpty(this.ImageUrl) )
                 {
                     return null;
                 }

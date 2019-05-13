@@ -10,7 +10,7 @@
     <item name="android:colorFocusedHighlight">@color/ListViewSelected</item>
     <item name="android:colorActivatedHighlight">@color/ListViewSelected</item>
     <item name="android:activatedBackgroundIndicator">@color/ListViewSelected</item>
-    
+
     <!--If you are using revision 22.1 please use just windowNoTitle. Without android:-->
     <item name="windowNoTitle">true</item>
     <!--We will be using the toolbar so no need to show ActionBar-->
@@ -26,7 +26,7 @@
     <!-- You can also set colorControlNormal, colorControlActivated
          colorControlHighlight and colorSwitchThumbNormal. -->
     <item name="windowActionModeOverlay">true</item>
-    
+
     <item name="android:datePickerDialogTheme">@style/AppCompatDialogStyle</item>
 
     <!-- Action bar height -->
@@ -36,7 +36,7 @@
   <style name="AppCompatDialogStyle" parent="Theme.AppCompat.Light.Dialog">
     <item name="colorAccent">#e81e62</item>
   </style>
-  
+
   <color name="ListViewSelected">#e81e62</color>
   <color name="ListViewHighlighted">#ff608f</color>
 </resources>

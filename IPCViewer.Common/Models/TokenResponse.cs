@@ -11,5 +11,4 @@
         [JsonProperty("expiration")]
         public DateTime Expiration { get; set; }
     }
-
 }

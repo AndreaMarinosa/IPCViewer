@@ -8,7 +8,7 @@
              Title="Map">
 
     <ContentPage.BindingContext>
-        <viewModels:MapViewModel/>
+        <viewModels:MapViewModel />
     </ContentPage.BindingContext>
 
     <StackLayout
@@ -16,39 +16,39 @@
 
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
             <Grid.RowDefinitions>
-                <RowDefinition Height="20"/>
-                <RowDefinition Height="20"/>
-                <RowDefinition Height="20"/>
-                <RowDefinition Height="20"/>
-                <RowDefinition Height="20"/>
+                <RowDefinition Height="20" />
+                <RowDefinition Height="20" />
+                <RowDefinition Height="20" />
+                <RowDefinition Height="20" />
+                <RowDefinition Height="20" />
             </Grid.RowDefinitions>
 
-            <Image 
+            <Image
                 HeightRequest="100"
-                Grid.Column="0" 
-                Grid.Row="0" 
-                Grid.RowSpan="4" 
-                Source="{Binding ImageUrl}"/>
+                Grid.Column="0"
+                Grid.Row="0"
+                Grid.RowSpan="4"
+                Source="{Binding ImageUrl}" />
 
             <StackLayout Grid.Column="1" Grid.Row="0" Orientation="Horizontal">
-                <Label Text="Label:"/>
-                <Label Text="{Binding Pin.Label}"/>
+                <Label Text="Label:" />
+                <Label Text="{Binding Pin.Label}" />
             </StackLayout>
 
             <StackLayout Grid.Column="1" Grid.Row="1" Orientation="Horizontal">
-                <Label Text="Latitude:"/>
-                <Label Text="{Binding Pin.Position.Latitude}"/>
+                <Label Text="Latitude:" />
+                <Label Text="{Binding Pin.Position.Latitude}" />
             </StackLayout>
 
             <StackLayout Grid.Column="1" Grid.Row="2" Orientation="Horizontal">
-                <Label Text="Longitude:"/>
-                <Label Text="{Binding Pin.Position.Longitude}"/>
+                <Label Text="Longitude:" />
+                <Label Text="{Binding Pin.Position.Longitude}" />
             </StackLayout>
 
             <StackLayout Grid.Column="1" Grid.Row="3" Orientation="Horizontal">
@@ -60,16 +60,15 @@
                     	Title="Select a city..."
                     	ItemDisplayBinding="{Binding Name}"
                     	ItemsSource="{Binding Cities}"
-                    	SelectedItem="{Binding City}"/>
+                    	SelectedItem="{Binding City}" />
             </StackLayout>
 
-            <!--<Image 
+            <!--<Image
                 HeightRequest="100"
-                Grid.Column="0" 
-                Grid.Row="0" 
-                Grid.RowSpan="4" 
-                Source="{Binding ImageUrl}"/>-->
-
+                Grid.Column="0"
+                Grid.Row="0"
+                Grid.RowSpan="4"
+                Source="{Binding ImageUrl}" />-->
         </Grid>
 
         <StackLayout
@@ -77,12 +76,11 @@
             <maps:Map>
 
                 <maps:Map.Behaviors>
-                    <bindings:BindingPinsBehavior Value="{Binding Pins}"/>
-                    <bindings:UpdateRegionBehavior Region="{Binding Region}"/>
-                    <bindings:SelectedPinChangedToCommandBehavior Command="{Binding SelectedPinChangedCommand}"/>
+                    <bindings:BindingPinsBehavior Value="{Binding Pins}" />
+                    <bindings:UpdateRegionBehavior Region="{Binding Region}" />
+                    <bindings:SelectedPinChangedToCommandBehavior Command="{Binding SelectedPinChangedCommand}" />
                 </maps:Map.Behaviors>
             </maps:Map>
         </StackLayout>
-        
     </StackLayout>
 </ContentPage>

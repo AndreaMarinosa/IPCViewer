@@ -70,9 +70,9 @@
             this.IsEnabled = true;
             LoadCities();
         }
+
         public async void LoadCities ()
         {
-
             this.IsRunning = true;
             this.IsEnabled = false;
 
@@ -170,7 +170,6 @@
                 "Accept");
             await App.Navigator.PopAsync();
         }
-      
 
         private async void ChangePassword ()
         {

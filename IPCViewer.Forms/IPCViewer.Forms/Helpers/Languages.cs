@@ -7,6 +7,7 @@
     /***
      * Clase donde almacenará todas las cadenas de texto para traducirlas
      */
+
     public static class Languages
     {
         static Languages ()
@@ -50,5 +51,4 @@
         // ------------------
         public static string LeadMeTo => Resource.LeadMeTo;
     }
-
 }

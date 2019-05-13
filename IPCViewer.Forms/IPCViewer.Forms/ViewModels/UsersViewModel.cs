@@ -19,7 +19,6 @@ namespace IPCViewer.Forms.ViewModels
         private ObservableCollection<UserItemViewModel> users;
         private bool isRefreshing;
 
-
         public ObservableCollection<UserItemViewModel> Users
         {
             get => users;
@@ -34,13 +33,13 @@ namespace IPCViewer.Forms.ViewModels
 
         public ICommand RefreshCommand => new RelayCommand(this.LoadUsersAsync);
 
-        public UsersViewModel()
+        public UsersViewModel ()
         {
             this.apiService = new ApiService();
             LoadUsersAsync();
         }
 
-        private async void LoadUsersAsync()
+        private async void LoadUsersAsync ()
         {
             //var url = Application.Current.Resources["UrlAPI"].ToString();
             var response = await this.apiService.GetUserListAsync<User>(
@@ -48,7 +47,7 @@ namespace IPCViewer.Forms.ViewModels
                 "/api",
                 "/Account");
 
-            if (!response.IsSuccess)
+            if ( !response.IsSuccess )
             {
                 await Application.Current.MainPage.DisplayAlert(
                     "Error",
@@ -57,13 +56,12 @@ namespace IPCViewer.Forms.ViewModels
                 return;
             }
 
-            this.myUsers = (List<User>)response.Result;
+            this.myUsers = (List<User>) response.Result;
             RefreshUsersList();
             IsRefreshing = false;
-
         }
 
-        public void AddUser(UserItemViewModel user)
+        public void AddUser (UserItemViewModel user)
         {
             this.myUsers.Add(user);
             RefreshUsersList();
@@ -83,12 +81,11 @@ namespace IPCViewer.Forms.ViewModels
         //    myUsers.Add(user);
         //    RefreshUsersList();
         //}
-      
 
-        public  void DeleteUser(Guid id)
+        public void DeleteUser (Guid id)
         {
             var oldUser = myUsers.FirstOrDefault(c => c.Id == id);
-            if (oldUser != null)
+            if ( oldUser != null )
             {
                 myUsers.Remove(oldUser);
             }
@@ -96,7 +93,7 @@ namespace IPCViewer.Forms.ViewModels
             RefreshUsersList();
         }
 
-        private void RefreshUsersList()
+        private void RefreshUsersList ()
         {
             // ObservableCollection de la Clase UserItemViewModel -> (User + Comando)
             Users = new ObservableCollection<UserItemViewModel>(

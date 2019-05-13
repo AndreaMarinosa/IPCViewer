@@ -5,15 +5,14 @@
                 x:Class="IPCViewer.Forms.Views.MasterPage">
 
     <MasterDetailPage.Master>
-        <pages:MenuPage/>
+        <pages:MenuPage />
     </MasterDetailPage.Master>
 
     <MasterDetailPage.Detail>
         <NavigationPage x:Name="Navigator">
             <x:Arguments>
-                <pages:CamerasPage/>
+                <pages:CamerasPage />
             </x:Arguments>
         </NavigationPage>
     </MasterDetailPage.Detail>
-
 </MasterDetailPage>

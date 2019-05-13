@@ -11,58 +11,57 @@
 
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
 
                     <!-- Email -->
                     <Label
                         Grid.Column="0"
                         Grid.Row="0"
-                        Text="Email"/>
+                        Text="Email" />
 
                     <Entry
                         Grid.Column="1"
                         Grid.Row="0"
                         Placeholder="Email"
-                        Text="{Binding User.Email}"/>
+                        Text="{Binding User.Email}" />
 
                     <!-- Username -->
                     <Label
                         Grid.Column="0"
                         Grid.Row="1"
-                        Text="Username"/>
+                        Text="Username" />
 
                     <Entry
                         Grid.Column="1"
                         Grid.Row="1"
                         Placeholder="Latitude"
                         Keyboard="Numeric"
-                        Text="{Binding User.UserName}"/>
+                        Text="{Binding User.UserName}" />
 
                     <!-- Firstname -->
                     <Label
                         Grid.Column="0"
                         Grid.Row="2"
-                        Text="Firstname"/>
+                        Text="Firstname" />
 
                     <Entry
                         Grid.Column="1"
                         Grid.Row="2"
                         Placeholder="Longitude"
                         Keyboard="Numeric"
-                        Text="{Binding User.FirstName}"/>
-
+                        Text="{Binding User.FirstName}" />
                 </Grid>
 
                 <ActivityIndicator
                 	IsRunning="{Binding IsRunning}"
-                	VerticalOptions="CenterAndExpand"/>
+                	VerticalOptions="CenterAndExpand" />
 
                 <StackLayout
                 	Orientation="Horizontal">
@@ -72,7 +71,7 @@
                     	Command="{Binding SaveCommand}"
                     	HorizontalOptions="FillAndExpand"
                     	IsEnabled="{Binding IsEnabled}"
-                    	Text="Save"/>
+                    	Text="Save" />
 
                     <Button
                         BorderColor="Red"
@@ -80,8 +79,7 @@
                     	HorizontalOptions="FillAndExpand"
                     	IsEnabled="{Binding IsEnabled}"
                     	Text="Delete"
-                    	TextColor="Red"/>
-
+                    	TextColor="Red" />
                 </StackLayout>
             </StackLayout>
         </ScrollView>

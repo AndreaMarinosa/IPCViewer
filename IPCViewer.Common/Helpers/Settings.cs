@@ -8,6 +8,7 @@
     {
         // Almacenamos el token, el usuario, la password y si quiere que le recuerde
         private const string token = "token"; // leemos el token como string para posteriormente serializarlo y desserializarlo como un objeto
+
         private const string userEmail = "userEmail";
         private const string userPassword = "userPassword";
         private const string isRemember = "isRemember";
@@ -48,6 +49,5 @@
             get => AppSettings.GetValueOrDefault(user, stringDefault);
             set => AppSettings.AddOrUpdateValue(user, value);
         }
-
     }
 }

@@ -1,7 +1,4 @@
-﻿
-using Rg.Plugins.Popup.Pages;
-using Rg.Plugins.Popup.Services;
-using System;
+﻿using Rg.Plugins.Popup.Pages;
 using Xamarin.Forms.Xaml;
 
 namespace IPCViewer.Forms.Views
@@ -20,6 +17,5 @@ namespace IPCViewer.Forms.Views
             // Return false if you don't want to close this popup page when a background of the popup page is clicked
             return false;
         }
-
     }
 }

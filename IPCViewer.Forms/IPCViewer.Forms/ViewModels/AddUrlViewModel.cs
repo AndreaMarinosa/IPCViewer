@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Windows.Input;
-using GalaSoft.MvvmLight.Command;
+﻿using GalaSoft.MvvmLight.Command;
 using IPCViewer.Forms.Interfaces;
+using System.Windows.Input;
 
 namespace IPCViewer.Forms.ViewModels
 {
@@ -15,12 +12,12 @@ namespace IPCViewer.Forms.ViewModels
 
         public ICommand AddUrlCommand => new RelayCommand(this.AddUrl);
 
-        public AddUrlViewModel(IClosePopup closePopup)
+        public AddUrlViewModel (IClosePopup closePopup)
         {
             this.closePopup = closePopup;
         }
 
-        private async void AddUrl()
+        private async void AddUrl ()
         {
             closePopup.OnClose(UrlCamera);
 

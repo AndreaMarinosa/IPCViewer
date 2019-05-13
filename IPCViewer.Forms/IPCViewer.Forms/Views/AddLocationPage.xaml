@@ -13,45 +13,44 @@
 
         <Grid
             RowSpacing="15">
-            
+
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
             <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
-            <Image 
+            <Image
                 HeightRequest="130"
-                Grid.Column="1" 
-                Grid.Row="0" 
-                Grid.RowSpan="3" 
+                Grid.Column="1"
+                Grid.Row="0"
+                Grid.RowSpan="3"
                 HorizontalOptions="CenterAndExpand"
-                Source="{Binding ImageSource}"/>
+                Source="{Binding ImageSource}" />
 
             <StackLayout Grid.Column="0" Grid.Row="0" Orientation="Horizontal">
-                <Label Text="Latitude:"/>
-                <Label Text="{Binding Pin.Position.Latitude}"/>
+                <Label Text="Latitude:" />
+                <Label Text="{Binding Pin.Position.Latitude}" />
             </StackLayout>
 
             <StackLayout Grid.Column="0" Grid.Row="1" Orientation="Horizontal">
-                <Label Text="Longitude:"/>
-                <Label Text="{Binding Pin.Position.Longitude}"/>
+                <Label Text="Longitude:" />
+                <Label Text="{Binding Pin.Position.Longitude}" />
             </StackLayout>
 
-            <Button 
+            <Button
                 FontSize="Micro"
                 HeightRequest="30"
                 HorizontalOptions="Start"
                 Grid.Row="2"
                 Grid.Column="0"
-                Text="Take Snapshot" 
-                Command="{Binding TakeSnapshotCommand}"/>
-
+                Text="Take Snapshot"
+                Command="{Binding TakeSnapshotCommand}" />
         </Grid>
 
         <StackLayout
@@ -60,34 +59,30 @@
             <maps:Map>
 
                 <maps:Map.Behaviors>
-                    <bindings:MapClickedToCommandBehavior Command="{Binding MapClickedCommand}"/>
-                    <bindings:BindingPinsBehavior Value="{Binding Pins}"/>
-                    <bindings:UpdateRegionBehavior Region="{Binding Region}"/>
-                    <bindings:PinClickedToCommandBehavior Command="{Binding PinClickedCommand}"/>
-                    <bindings:TakeSnapshotBehavior Request="{Binding TakeSnapshotRequest}"/>
+                    <bindings:MapClickedToCommandBehavior Command="{Binding MapClickedCommand}" />
+                    <bindings:BindingPinsBehavior Value="{Binding Pins}" />
+                    <bindings:UpdateRegionBehavior Region="{Binding Region}" />
+                    <bindings:PinClickedToCommandBehavior Command="{Binding PinClickedCommand}" />
+                    <bindings:TakeSnapshotBehavior Request="{Binding TakeSnapshotRequest}" />
                 </maps:Map.Behaviors>
-
             </maps:Map>
         </StackLayout>
 
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
             <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-
-            
 
             <Button
                 Grid.Column="1"
                 HorizontalOptions="CenterAndExpand"
                 Text="Save"
-                Command="{Binding SaveCommand}"/>
+                Command="{Binding SaveCommand}" />
         </Grid>
-
     </StackLayout>
 </ContentPage>
