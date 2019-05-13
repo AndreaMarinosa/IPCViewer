@@ -106,7 +106,6 @@ namespace IPCViewer.Forms.ViewModels
 
             _location.SetLocation(_latitude, _longitude, ImageSource);
 
-            // Close the last PopupPage int the PopupStack
             await App.Navigator.PopAsync();
         }
     }

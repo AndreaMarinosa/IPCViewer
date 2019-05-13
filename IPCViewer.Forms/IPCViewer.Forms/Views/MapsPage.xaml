@@ -53,26 +53,22 @@
 
             <StackLayout Grid.Column="1" Grid.Row="3" Orientation="Horizontal">
                 <Label
-                    	Grid.Column="0"
-                    	Grid.Row="5"
                     	Text="Localización"
                     	VerticalOptions="Center">
                 </Label>
                 <Picker
-                    	Grid.Column="1"
-                    	Grid.Row="5"
                     	Title="Select a city..."
                     	ItemDisplayBinding="{Binding Name}"
                     	ItemsSource="{Binding Cities}"
                     	SelectedItem="{Binding City}"/>
             </StackLayout>
 
-            <Image 
+            <!--<Image 
                 HeightRequest="100"
                 Grid.Column="0" 
                 Grid.Row="0" 
                 Grid.RowSpan="4" 
-                Source="{Binding ImageUrl}"/>
+                Source="{Binding ImageUrl}"/>-->
 
         </Grid>
 
@@ -83,8 +79,8 @@
                 <maps:Map.Behaviors>
                     <bindings:BindingPinsBehavior Value="{Binding Pins}"/>
                     <bindings:UpdateRegionBehavior Region="{Binding Region}"/>
+                    <bindings:SelectedPinChangedToCommandBehavior Command="{Binding SelectedPinChangedCommand}"/>
                 </maps:Map.Behaviors>
-
             </maps:Map>
         </StackLayout>
         

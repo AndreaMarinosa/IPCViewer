@@ -30,6 +30,7 @@ namespace IPCViewer.Forms.ViewModels
         private readonly ApiService apiService;
         private List<Camera> myCameras; // La lista original del API
         private bool _animated = true;
+        // todo: user location
         private MapSpan _region =
             MapSpan.FromCenterAndRadius(
                 new Position(41.655801, -0.881),
@@ -143,6 +144,12 @@ namespace IPCViewer.Forms.ViewModels
             }
 
         }
+
+        public Command<SelectedPinChangedEventArgs> SelectedPinChangedCommand => new Command<SelectedPinChangedEventArgs>(
+            args =>
+            {
+                Pin = args.SelectedPin;
+            });
 
         public async void LoadCities ()
         {

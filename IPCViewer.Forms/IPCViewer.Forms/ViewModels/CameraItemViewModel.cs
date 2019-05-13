@@ -20,7 +20,7 @@
         private async void SelectCameraImage ()
         {
             MainViewModel.GetInstance().DisplayCamera = new DisplayViewModel(this);
-            await App.Navigator.PushAsync(new DisplayCameraPage());
+            await App.Navigator.PushAsync(new DisplayCameraPage(), true);
         }
 
         private async void SelectCamera()

@@ -243,7 +243,7 @@ namespace IPCViewer.Forms.ViewModels
                     {
                         // todo: aniadir popup, crear propertie image url y comprobar si es null
                         MainViewModel.GetInstance().AddUrl = new AddUrlViewModel(this);
-                        await App.Navigator.PushAsync(new AddUrlPage());
+                        await App.Navigator.PushAsync(new AddUrlPage(), true);
                         break;
                     }
                
@@ -265,7 +265,7 @@ namespace IPCViewer.Forms.ViewModels
         private async void AddLocation ()
         {
             MainViewModel.GetInstance().AddLocation = new AddLocationViewModel(this);
-            await App.Navigator.PushAsync(new AddLocationPage());
+            await App.Navigator.PushAsync(new AddLocationPage(), true);
         }
 
 
