@@ -24,14 +24,9 @@
                                         CacheType="None"
                                         FadeAnimationEnabled="False"
                                         LoadingDelay="0"
-                                        LoadingPlaceholder="{Binding PlaceholderUrl}"
                                         Source = "{Binding ImageUrl}">
             </forms:CachedImage>
 
-            <!--<Button 
-                Text="Cargar"
-                Command="{Binding LoadCommand}"
-                />-->
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

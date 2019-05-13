@@ -15,21 +15,12 @@ namespace IPCViewer.Forms.ViewModels
     public class DisplayViewModel : BaseViewModel
     {
         private string imageUrl;
-        private string placeholderUrl;
 
         public string ImageUrl
         {
             get => this.imageUrl;
             set => this.SetProperty(ref imageUrl, value);
         }
-
-        public string PlaceholderUrl
-        {
-            get => this.placeholderUrl;
-            set => this.SetProperty(ref placeholderUrl, value);
-        }
-
-        //public ICommand LoadCommand => new RelayCommand(LoadCameraAsync);
 
         public Camera Camera { get; set; }
 

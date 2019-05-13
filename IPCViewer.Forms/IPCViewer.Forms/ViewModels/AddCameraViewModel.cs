@@ -15,30 +15,41 @@ namespace IPCViewer.Forms.ViewModels
     using System.Windows.Input;
     using Xamarin.Forms;
 
-    public class AddCameraViewModel : BaseViewModel, IClosePopup
+    public class AddCameraViewModel : BaseViewModel, IClosePopup, ILocation
     {
         private bool isRunning;
         private bool isEnabled;
-        private ApiService apiService;
         private bool isVisible;
+        private string _latitude;
+        private string _longitude;
+        private ApiService apiService;
         private ObservableCollection<City> cities;
         private City city;
         private MediaFile file;
-        private ImageSource imageSource;
+        private ImageSource _imageSource;
         private string urlCamera;
+
 
         public string Name { get; set; }
 
-        public string Latitude { get; set; }
-
-        public string Longitude { get; set; }
-
         public string Comments { get; set; }
+
+        public string Latitude
+        {
+            get => this._latitude;
+            set => this.SetProperty(ref this._latitude, value);
+        }
+
+        public string Longitude
+        {
+            get => this._longitude;
+            set => this.SetProperty(ref this._longitude, value);
+        }
 
         public ImageSource ImageSource
         {
-            get => this.imageSource;
-            set => this.SetProperty(ref this.imageSource, value);
+            get => this._imageSource;
+            set => this.SetProperty(ref this._imageSource, value);
         }
 
         public string UrlCamera
@@ -102,10 +113,21 @@ namespace IPCViewer.Forms.ViewModels
 
         private async void Save ()
         {
-            // todo: more alerts
             if ( string.IsNullOrEmpty(Name) )
             {
                 await Application.Current.MainPage.DisplayAlert("Error", "You must enter a camera name.", "Accept");
+                return;
+            }
+
+            if ( string.IsNullOrEmpty(Latitude) )
+            {
+                await Application.Current.MainPage.DisplayAlert("Error", "You must enter a latitude.", "Accept");
+                return;
+            }
+
+            if ( string.IsNullOrEmpty(Longitude) )
+            {
+                await Application.Current.MainPage.DisplayAlert("Error", "You must enter a longitude.", "Accept");
                 return;
             }
 
@@ -242,7 +264,7 @@ namespace IPCViewer.Forms.ViewModels
         // todo: add location from maps
         private async void AddLocation ()
         {
-            MainViewModel.GetInstance().AddLocation = new AddLocationViewModel();
+            MainViewModel.GetInstance().AddLocation = new AddLocationViewModel(this);
             await App.Navigator.PushAsync(new AddLocationPage());
         }
 
@@ -258,6 +280,13 @@ namespace IPCViewer.Forms.ViewModels
                 UrlCamera = url;
                 IsVisible = true;
             }
+        }
+
+        public void SetLocation(string longitude, string latitude, ImageSource imageSource)
+        {
+            Latitude = latitude;
+            Longitude = longitude;
+            ImageSource = imageSource;
         }
     }
 }

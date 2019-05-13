@@ -54,6 +54,7 @@
 
         private async void Save()
         {
+            // todo: more alerts
             if (string.IsNullOrEmpty(this.Camera.Name))
             {
                 await Application.Current.MainPage.DisplayAlert("Error", "You must enter a camera name.", "Accept");
