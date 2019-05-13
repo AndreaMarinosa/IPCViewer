@@ -41,7 +41,7 @@
                     <Entry
                         Grid.Column="1"
                         Grid.Row="1"
-                        Placeholder="Latitude"
+                        Placeholder="Username"
                         Keyboard="Numeric"
                         Text="{Binding User.UserName}" />
 
@@ -54,7 +54,7 @@
                     <Entry
                         Grid.Column="1"
                         Grid.Row="2"
-                        Placeholder="Longitude"
+                        Placeholder="Firstname"
                         Keyboard="Numeric"
                         Text="{Binding User.FirstName}" />
                 </Grid>

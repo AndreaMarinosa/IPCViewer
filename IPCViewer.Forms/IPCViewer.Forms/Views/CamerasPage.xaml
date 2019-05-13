@@ -35,7 +35,8 @@
 
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <ViewCell>
+                        <ViewCell
+                            >
 
                             <Grid>
                                 <Grid.ColumnDefinitions>
@@ -47,6 +48,7 @@
                                     <TapGestureRecognizer Command="{Binding SelectCameraCommand}" />
                                 </Grid.GestureRecognizers>
 
+                                
                                 <Image
                                     Grid.Column="0"
                                     Source="{Binding ImageFullPath}"

@@ -51,24 +51,6 @@
                 <Label Text="Longitude:" />
                 <Label Text="{Binding Pin.Position.Longitude}" />
             </forms:StackLayout>
-
-            <forms:StackLayout forms:Grid.Column="1" forms:Grid.Row="3" Orientation="Horizontal">
-                <Label
-                    	Text="Localización"
-                    	VerticalOptions="Center">
-                </Label>
-                <Picker
-                    	Title="Select a city..."
-                    	ItemsSource="{Binding Cities}"
-                    	SelectedItem="{Binding City}" />
-            </forms:StackLayout>
-
-            <!--<Image
-                HeightRequest="100"
-                Grid.Column="0"
-                Grid.Row="0"
-                Grid.RowSpan="4"
-                Source="{Binding ImageUrl}" />-->
         </forms:Grid>
 
         <forms:StackLayout

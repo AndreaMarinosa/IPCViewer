@@ -16,31 +16,33 @@
                     HorizontalOptions="End"
                     Source="IconLigth" />
 
-                <Grid Margin="12,10">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="Auto" />
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
+                <StackLayout Margin="10,0" Orientation="Horizontal">
 
-                    <Label
-                        Grid.Column="0"
+                    <!--<Label
                         Text="Welcome, "
-                        TextColor="{StaticResource PrimaryFontColor}" />
-                    <Label
-                        Grid.Column="1"
-                        Text="{Binding User.UserName}"
                         TextColor="{StaticResource PrimaryFontColor}"
-                        HorizontalOptions="Start" />
-                </Grid>
+                        VerticalOptions="End" />
+                    <Label
+                        Text="{Binding User.UserName}"
+                        TextColor="{StaticResource PrimaryFontColor}" />-->
+                    <Label Text="Welcome, " TextColor="{StaticResource PrimaryFontColor}" />
+                    <Label
+                        HorizontalOptions="Start"
+                        Text="Snof"
+                        TextColor="{StaticResource PrimaryFontColor}" />
+                </StackLayout>
+                <!--<Label
+                    Margin="10,5"
+                    FontAttributes="Bold"
+                    FontSize="Medium"
+                    Text="{Binding User.Email}"
+                    TextColor="White" />-->
                 <Label
-                        FontAttributes="Bold"
-                        FontSize="Medium"
-                        Text="{Binding User.Email}"
-                        TextColor="White" />
+                    Margin="10,5"
+                    FontAttributes="Bold"
+                    FontSize="Medium"
+                    Text="andreamarinosalopez@gmail.com"
+                    TextColor="White" />
             </StackLayout>
 
             <ListView

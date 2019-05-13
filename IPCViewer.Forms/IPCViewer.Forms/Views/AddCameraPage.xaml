@@ -84,6 +84,7 @@
                     <ActivityIndicator
                         Grid.Row="5"
                         Grid.Column="0"
+                        Grid.ColumnSpan="2"
                         IsRunning="{Binding IsRunning}"
                         VerticalOptions="CenterAndExpand" />
 

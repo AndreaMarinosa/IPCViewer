@@ -37,10 +37,12 @@ namespace IPCViewer.Forms.Droid
             //Initialize maps
             Xamarin.FormsGoogleMaps.Init(this, savedInstanceState);
             Xamarin.FormsGoogleMapsBindings.Init();
+
             LoadApplication(new App());
             //LoadApplication(UXDivers.Gorilla.Droid.Player.CreateApplication(
             //    this,
             //    new UXDivers.Gorilla.Config("Good Gorilla")
+            //    // Google Maps
             //      // FFImageLoading.Transformations
             //      .RegisterAssemblyFromType<FFImageLoading.Transformations.BlurredTransformation>()
             //      // FFImageLoading.Forms

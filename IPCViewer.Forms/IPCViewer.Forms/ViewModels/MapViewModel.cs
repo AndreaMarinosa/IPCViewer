@@ -39,15 +39,6 @@ namespace IPCViewer.Forms.ViewModels
         // todo: poner la imagen en la label de arriba
         private ImageSource _imageUrl;
 
-        private ObservableCollection<City> cities;
-        private City city;
-
-        public TakeSnapshotRequest TakeSnapshotRequest { get; } = new TakeSnapshotRequest();
-
-        public City City { get => this.city; set => this.SetProperty(ref this.city, value); }
-
-        public ObservableCollection<City> Cities { get => this.cities; set => this.SetProperty(ref this.cities, value); }
-
         public ObservableCollection<Pin> Pins { get; set; }
 
         public ImageSource ImageSource
@@ -61,17 +52,6 @@ namespace IPCViewer.Forms.ViewModels
             get => _imageUrl;
             set => SetProperty(ref _imageUrl, value);
         }
-
-        public Command TakeSnapshotCommand => new Command(async () =>
-        {
-            var stream = await TakeSnapshotRequest.TakeSnapshot();
-            ImageSource = ImageSource.FromStream(() => stream);
-        });
-
-        //todo: lista de ciudades y llevar a la seleccionada
-        public Command LeadMeToCommand => new Command(() =>
-        {
-        });
 
         public MapSpan Region
         {
@@ -145,24 +125,6 @@ namespace IPCViewer.Forms.ViewModels
                 Pin = args.SelectedPin;
             });
 
-        public async void LoadCities ()
-        {
-            var response = await this.apiService.GetListAsync<City>(
-                "https://ipcviewerapi.azurewebsites.net",
-                "/api",
-                "/Cities");
-
-            if ( !response.IsSuccess )
-            {
-                await Application.Current.MainPage.DisplayAlert(
-                    "Error",
-                    response.Message,
-                    "Accept");
-                return;
-            }
-
-            var myCities = (List<City>) response.Result;
-            this.Cities = new ObservableCollection<City>(myCities);
-        }
+       
     }
 }

@@ -228,16 +228,15 @@ namespace IPCViewer.Forms.ViewModels
                         );
                         break;
                     }
-                case "From Galery":
+                case "From Gallery":
                     {
                         this.file = await CrossMedia.Current.PickPhotoAsync();
                         break;
                     }
                 case "From Url":
                     {
-                        // todo: aniadir popup, crear propertie image url y comprobar si es null
                         MainViewModel.GetInstance().AddUrl = new AddUrlViewModel(this);
-                        await App.Navigator.PushAsync(new AddUrlPage(), true);
+                        await App.Navigator.PushAsync(new AddUrlPage());
                         break;
                     }
             }
@@ -253,7 +252,6 @@ namespace IPCViewer.Forms.ViewModels
             }
         }
 
-        // todo: add location from maps
         private async void AddLocation ()
         {
             MainViewModel.GetInstance().AddLocation = new AddLocationViewModel(this);

@@ -80,13 +80,12 @@
                             Grid.Row="0"
                             Grid.Column="0"
                             Source="ic_mail"
-                            VerticalOptions="CenterAndExpand"
                             WidthRequest="40" />
 
                         <Entry
                             Grid.Row="0"
-                            Grid.ColumnSpan="2"
                             Grid.Column="1"
+                            Grid.ColumnSpan="2"
                             Keyboard="Email"
                             Placeholder="Email..."
                             Text="{Binding Email}" />
@@ -99,9 +98,9 @@
                             Source="ic_pass" />
 
                         <Entry
-                            Grid.ColumnSpan="2"
                             Grid.Row="1"
                             Grid.Column="1"
+                            Grid.ColumnSpan="2"
                             IsPassword="True"
                             Placeholder="{i18n:Translate PasswordPlaceHolder}"
                             Text="{Binding Password}" />

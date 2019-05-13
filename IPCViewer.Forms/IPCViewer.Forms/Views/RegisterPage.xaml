@@ -53,7 +53,7 @@
                     Grid.RowSpan="2"
                     Grid.Column="0"
                     Margin="30"
-                    HeightRequest="110"
+                    HeightRequest="100"
                     Source="logoIPCViewerLigthLarge"
                     VerticalOptions="End" />
             </Grid>
@@ -81,7 +81,6 @@
                             Grid.Row="0"
                             Grid.Column="0"
                             Source="ic_mail"
-                            VerticalOptions="CenterAndExpand"
                             WidthRequest="40" />
 
                         <Entry
@@ -95,7 +94,7 @@
                         <Image
                             Grid.Row="1"
                             Grid.Column="0"
-                            HeightRequest="50"
+                            HeightRequest="40"
                             Source="ic_pass" />
 
                         <Entry
@@ -123,8 +122,7 @@
                             Grid.Row="3"
                             Grid.Column="0"
                             HeightRequest="40"
-                            Source="ic_city"
-                            VerticalOptions="CenterAndExpand" />
+                            Source="ic_city" />
 
                         <Picker
                             Title="{i18n:Translate CitySelect}"
@@ -133,15 +131,12 @@
                             ItemDisplayBinding="{Binding Name}"
                             ItemsSource="{Binding Cities}"
                             SelectedItem="{Binding City}" />
-
-
                     </Grid>
 
                     <ActivityIndicator IsRunning="{Binding IsRunning}" VerticalOptions="CenterAndExpand" />
                     <Button
                         Command="{Binding RegisterCommand}"
-                        HeightRequest="46"
-                        HorizontalOptions="FillAndExpand"
+                        HorizontalOptions="Fill"
                         IsEnabled="{Binding IsEnabled}"
                         Text="{i18n:Translate Register}" />
                 </StackLayout>

@@ -10,11 +10,12 @@ namespace IPCViewer.Forms.ViewModels
 {
     public class AddLocationViewModel : BaseViewModel
     {
-        private Pin _pin;
-        private string _latitude;
-        private string _longitude;
-        private ILocation _location;
         private ImageSource _imageSource;
+        private string _latitude;
+        private ILocation _location;
+        private string _longitude;
+        private MapType _mapType;
+        private Pin _pin;
 
         // todo: localización del usuario
         private MapSpan _region =
@@ -22,21 +23,23 @@ namespace IPCViewer.Forms.ViewModels
                 new Position(41.655801, -0.881),
                 Distance.FromKilometers(2));
 
+        public ObservableCollection<Pin> Pins { get; set; }
+
+        public ImageSource ImageSource
+        {
+            get => _imageSource;
+            set => SetProperty(ref _imageSource, value);
+        }
+
         public AddLocationViewModel (ILocation location)
         {
             this._location = location;
+            MapType = MapType.Satellite;
         }
-
-        public ICommand SaveCommand => new RelayCommand(this.Save);
-
-        public ObservableCollection<Pin> Pins { get; set; }
-
-        public TakeSnapshotRequest TakeSnapshotRequest { get; } = new TakeSnapshotRequest();
-
-        public MapSpan Region
+        public MapType MapType
         {
-            get => _region;
-            set => SetProperty(ref _region, value);
+            get => this._mapType;
+            set => SetProperty(ref _mapType, value);
         }
 
         public Pin Pin
@@ -44,12 +47,20 @@ namespace IPCViewer.Forms.ViewModels
             get => _pin;
             set => SetProperty(ref _pin, value);
         }
-
-        public ImageSource ImageSource
+        public MapSpan Region
         {
-            get => _imageSource;
-            set => SetProperty(ref _imageSource, value);
+            get => _region;
+            set => SetProperty(ref _region, value);
         }
+        public ICommand GlobalCommand => new RelayCommand(this.Global);
+
+        public ICommand SaveCommand => new RelayCommand(this.Save);
+
+        public ICommand StreetCommand => new RelayCommand(this.Street);
+
+        public ICommand HybridCommand => new RelayCommand(this.Hybrid);
+
+        public TakeSnapshotRequest TakeSnapshotRequest { get; } = new TakeSnapshotRequest();
 
         public Command<MapClickedEventArgs> MapClickedCommand => new Command<MapClickedEventArgs>(
             args =>
@@ -76,6 +87,7 @@ namespace IPCViewer.Forms.ViewModels
             ImageSource = ImageSource.FromStream(() => stream);
         });
 
+
         private async void Save ()
         {
             _latitude = Pin.Position.Latitude.ToString();
@@ -99,6 +111,21 @@ namespace IPCViewer.Forms.ViewModels
             _location.SetLocation(_latitude, _longitude, ImageSource);
 
             await App.Navigator.PopAsync();
+        }
+
+        private void Global ()
+        {
+            MapType = MapType.Street;
+        }
+
+        private void Street ()
+        {
+            MapType = MapType.Satellite;
+        }
+
+        private void Hybrid ()
+        {
+            MapType = MapType.Hybrid;
         }
     }
 }
