@@ -12,10 +12,7 @@ namespace IPCViewer.Forms.ViewModels
 
         public ICommand AddUrlCommand => new RelayCommand(this.AddUrl);
 
-        public AddUrlViewModel (IClosePopup closePopup)
-        {
-            this.closePopup = closePopup;
-        }
+        public AddUrlViewModel (IClosePopup closePopup) => this.closePopup = closePopup;
 
         private async void AddUrl ()
         {

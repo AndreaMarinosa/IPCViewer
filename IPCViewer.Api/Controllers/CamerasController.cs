@@ -31,17 +31,11 @@
 
         // GET: api/Cameras
         [HttpGet]
-        public IActionResult GetCameras ()
-        {
-            return Ok(cameraRepository.GetAllWithUsers());
-        }
+        public IActionResult GetCameras () => Ok(cameraRepository.GetAllWithUsers());
 
         // GET: api/Cameras/5
         [HttpGet("{id}")]
-        public IActionResult GetCamera (int id)
-        {
-            return Ok(cameraRepository.GetCamera(id).Result);
-        }
+        public IActionResult GetCamera (int id) => Ok(cameraRepository.GetCamera(id).Result);
 
         //PUT
         [HttpPut("{id}")]
@@ -63,12 +57,44 @@
                 return this.BadRequest("Camera Id don't exists.");
             }
 
-            // todo: images part
-            oldCamera.ImageUrl = camera.ImageUrl;
+            var city = await this.cityRespository.GetCityByIdAsync(camera.CityId);
+            if ( city == null )
+            {
+                return this.BadRequest("Invalid city");
+            }
+
+            // Image part
+            var imageUrl = string.Empty;
+
+            // Si tiene la camara
+            if ( camera.ImageArray != null && camera.ImageArray.Length > 0 )
+            {
+                var stream = new MemoryStream(camera.ImageArray);
+                var guid = Guid.NewGuid().ToString();
+                var file = $"{guid}.jpg";
+                var folder = "wwwroot\\images\\cameras";
+                var fullPath = $"~/images/cameras/{file}";
+                var response = FilesHelper.UploadPhoto(stream, folder, file);
+                
+                // todo: eliminar imagen anterior
+
+                // si puede subir la imagen
+                if ( response )
+                {
+                    imageUrl = fullPath;
+                }
+            }
+            // si la imagen es null pero tiene url
+            else
+                imageUrl = camera.ImageUrl ?? string.Empty;
+
+            oldCamera.ImageUrl = imageUrl;
             oldCamera.Comments = camera.Comments;
             oldCamera.Name = camera.Name;
             oldCamera.Latitude = camera.Latitude;
             oldCamera.Longitude = camera.Longitude;
+            oldCamera.City = city;
+            oldCamera.CityId = city.Id;
 
             var updatedCamera = await this.cameraRepository.UpdateAsync(oldCamera);
             return Ok(updatedCamera);

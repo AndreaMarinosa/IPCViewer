@@ -1,47 +1,58 @@
-﻿namespace IPCViewer.Forms.ViewModels
+﻿using IPCViewer.Common.Helpers;
+
+namespace IPCViewer.Forms.ViewModels
 {
+    using System;
+    using System.Windows.Input;
+    using System.Globalization;
     using Common.Models;
     using Common.Services;
     using GalaSoft.MvvmLight.Command;
-    using IPCViewer.Forms.Interfaces;
-    using IPCViewer.Forms.Views;
-    using System;
-    using System.Windows.Input;
+    using Interfaces;
+    using Views;
     using Xamarin.Forms;
+    using Plugin.Media;
+    using Plugin.Media.Abstractions;
 
-    public class EditCameraViewModel : BaseViewModel, ILocation
+    public class EditCameraViewModel : BaseViewModel, ILocation, IClosePopup
     {
         private readonly ApiService apiService;
         private bool isEnabled;
         private bool isRunning;
         private string latitude;
         private string longitude;
+        private MediaFile file;
+        private ImageSource imageSource;
+        private string _urlCamera;
 
         public string Latitude
         {
-            get => this.latitude;
+            get => latitude;
             set => SetProperty(ref latitude, value);
         }
 
         public string Longitude
         {
-            get => this.longitude;
+            get => longitude;
             set => SetProperty(ref longitude, value);
+        }
+
+        public ImageSource ImageSource
+        {
+            get => imageSource;
+            set => SetProperty(ref imageSource, value);
         }
 
         /**
          * La camara ligada a la MainViewModel es la que se pasa por parametro
          */
-
-        // todo: hilo actualizando la imagen
-        // todo: boton que te lleve al mapa donde se muestre el pin de esta camara en concreto
         public EditCameraViewModel (Camera camera)
         {
-            this.Camera = camera;
-            this.apiService = new ApiService();
-            this.IsEnabled = true;
-            Longitude = Camera.Longitude.ToString();
-            Latitude = Camera.Latitude.ToString();
+            Camera = camera;
+            apiService = new ApiService();
+            IsEnabled = true;
+            Longitude = Camera.Longitude.ToString(CultureInfo.InvariantCulture);
+            Latitude = Camera.Latitude.ToString(CultureInfo.InvariantCulture);
         }
 
         private async void AddLocation ()
@@ -58,19 +69,19 @@
                 return;
             }
 
-            this.IsRunning = true;
-            this.IsEnabled = false;
+            IsRunning = true;
+            IsEnabled = false;
 
-            var response = await this.apiService.DeleteAsync(
+            var response = await apiService.DeleteAsync(
                 "https://ipcviewerapi.azurewebsites.net",
                 "/api",
                 "/Cameras",
-                this.Camera.Id,
+                Camera.Id,
                 "bearer",
                 MainViewModel.GetInstance().Token.Token);
 
-            this.IsRunning = false;
-            this.IsEnabled = true;
+            IsRunning = false;
+            IsEnabled = true;
 
             if ( !response.IsSuccess )
             {
@@ -78,7 +89,7 @@
                 return;
             }
 
-            MainViewModel.GetInstance().Cameras.DeleteCamera(this.Camera.Id);
+            MainViewModel.GetInstance().Cameras.DeleteCamera(Camera.Id);
             await App.Navigator.PopAsync();
         }
 
@@ -90,32 +101,63 @@
 
         private async void Save ()
         {
-            // todo: more alerts
-            if ( string.IsNullOrEmpty(this.Camera.Name) )
+            if ( string.IsNullOrEmpty(Camera.Name) )
             {
                 await Application.Current.MainPage.DisplayAlert("Error", "You must enter a camera name.", "Accept");
                 return;
             }
 
-            // Todo: other alerts
+            if ( string.IsNullOrEmpty(Longitude) )
+            {
+                await Application.Current.MainPage.DisplayAlert("Error", "You must enter a longitude.", "Accept");
+                return;
+            }
 
-            this.IsRunning = true;
-            this.IsEnabled = false;
+            if ( string.IsNullOrEmpty(Latitude) )
+            {
+                await Application.Current.MainPage.DisplayAlert("Error", "You must enter a latitude.", "Accept");
+                return;
+            }
+
+            // Primero comprobamos si hay imagen
+            if ( file != null ) // Si hay imagen
+            {
+                byte[] imageArray = null;
+                imageArray = FilesHelper.ReadFully(this.file.GetStream());
+                Camera.ImageArray = imageArray;
+            }
+            // Si no hay imagen, comprobamos la url
+            else if ( !string.IsNullOrEmpty(UrlCamera) ) // Si hay url
+            {
+                Camera.ImageUrl = UrlCamera;
+            }
+            // Si no hay imagen ni url, alert preguntando si estamos seguros de que queremos guardar la camara sin imagen
+            else
+            {
+                var source = await Application.Current.MainPage.DisplayAlert("Alert", "Are you sure you want to save the camera without an image?", "Accept", "Cancel");
+                if ( source.CompareTo("Accept") != 1 )
+                {
+                    return;
+                }
+            }
 
             Camera.Latitude = Convert.ToDouble(Latitude);
             Camera.Longitude = Convert.ToDouble(Longitude);
 
-            var response = await this.apiService.PutAsync(
+            IsRunning = true;
+            IsEnabled = false;
+
+            var response = await apiService.PutAsync(
                 "https://ipcviewerapi.azurewebsites.net",
                 "/api",
                 "/Cameras",
-                this.Camera.Id,
-                this.Camera,
+                Camera.Id,
+                Camera,
                 "bearer",
                 MainViewModel.GetInstance().Token.Token);
 
-            this.IsRunning = false;
-            this.IsEnabled = true;
+            IsRunning = false;
+            IsEnabled = true;
             if ( !response.IsSuccess )
             {
                 await Application.Current.MainPage.DisplayAlert("Error", response.Message, "Accept");
@@ -127,33 +169,104 @@
             await App.Navigator.PopAsync();
         }
 
+        private async void ChangeImage ()
+        {
+            // Inicializamos la camara
+            await CrossMedia.Current.Initialize();
+
+            // Dialogo para varias opciones
+            var source = await Application.Current.MainPage.DisplayActionSheet(
+                "Where do you take the picture?",
+                "Cancel",
+                null,
+                "From Gallery",
+                "From Camera",
+                "From Url",
+                "View camera");
+
+            switch ( source )
+            {
+                case "Cancel":
+                    {
+                        file = null;
+                        return;
+                    }
+                case "From Camera":
+                    {
+                        // le decimos que coja la foto de la camara
+                        file = await CrossMedia.Current.TakePhotoAsync(
+                            new StoreCameraMediaOptions
+                            {
+                                Directory = "Pictures",
+                                Name = "test.jpg",
+                                PhotoSize = PhotoSize.Small,
+                            }
+                        );
+                        break;
+                    }
+                case "From Gallery":
+                    {
+                        file = await CrossMedia.Current.PickPhotoAsync();
+                        break;
+                    }
+                case "From Url":
+                    {
+                        MainViewModel.GetInstance().AddUrl = new AddUrlViewModel(this);
+                        await App.Navigator.PushAsync(new AddUrlPage());
+                        break;
+                    }
+                case "View camera":
+                    {
+                        DisplayCameraAsync();
+                        break;
+                    }
+            }
+
+            // Si han elegido una imagen
+            if ( file != null )
+            {
+                ImageSource = ImageSource.FromStream(() =>
+                {
+                    var stream = file.GetStream();
+                    return stream;
+                });
+            }
+        }
+
         public void SetLocation (string longitude, string latitude, ImageSource imageSource)
         {
             Latitude = latitude;
             Longitude = longitude;
+            // todo: poner el image source llegado por parametro en este image source
         }
-
-        public ICommand AddLocationCommand => new RelayCommand(this.AddLocation);
-
-        public Camera Camera { get; set; }
-
-        public ICommand DeleteCommand => new RelayCommand(this.Delete);
 
         public bool IsEnabled
         {
-            get => this.isEnabled;
-            set => this.SetProperty(ref this.isEnabled, value);
+            get => isEnabled;
+            set => SetProperty(ref isEnabled, value);
         }
 
         public bool IsRunning
         {
-            get => this.isRunning;
-            set => this.SetProperty(ref this.isRunning, value);
+            get => isRunning;
+            set => SetProperty(ref isRunning, value);
+        }
+        public string UrlCamera
+        {
+            get => _urlCamera;
+            set => SetProperty(ref _urlCamera, value);
         }
 
+        public Camera Camera { get; set; }
 
-        public ICommand SaveCommand => new RelayCommand(this.Save);
+        public ICommand AddLocationCommand => new RelayCommand(AddLocation);
 
-        public ICommand TapCommand => new RelayCommand(this.DisplayCameraAsync);
+        public ICommand DeleteCommand => new RelayCommand(Delete);
+
+        public ICommand SaveCommand => new RelayCommand(Save);
+
+        public ICommand TapCommand => new RelayCommand(ChangeImage);
+
+        public void OnClose (string urlCamera) => UrlCamera = urlCamera;
     }
 }

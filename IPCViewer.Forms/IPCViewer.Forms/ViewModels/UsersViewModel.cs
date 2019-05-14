@@ -93,9 +93,7 @@ namespace IPCViewer.Forms.ViewModels
             RefreshUsersList();
         }
 
-        private void RefreshUsersList ()
-        {
-            // ObservableCollection de la Clase UserItemViewModel -> (User + Comando)
+        private void RefreshUsersList () =>
             Users = new ObservableCollection<UserItemViewModel>(
                 myUsers.Select(c => new UserItemViewModel // Por cada user se creara una nueva instancia de UserItemViewModel
                 {
@@ -106,6 +104,5 @@ namespace IPCViewer.Forms.ViewModels
                     CityId = c.CityId,
                     City = c.City
                 }).ToList());
-        }
     }
 }

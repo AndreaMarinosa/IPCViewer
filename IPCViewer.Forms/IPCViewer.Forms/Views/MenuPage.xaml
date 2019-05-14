@@ -18,31 +18,23 @@
 
                 <StackLayout Margin="10,0" Orientation="Horizontal">
 
-                    <!--<Label
+                    <Label
                         Text="Welcome, "
                         TextColor="{StaticResource PrimaryFontColor}"
-                        VerticalOptions="End" />
+                         />
                     <Label
+                    HorizontalOptions="Start"
                         Text="{Binding User.UserName}"
-                        TextColor="{StaticResource PrimaryFontColor}" />-->
-                    <Label Text="Welcome, " TextColor="{StaticResource PrimaryFontColor}" />
-                    <Label
-                        HorizontalOptions="Start"
-                        Text="Snof"
                         TextColor="{StaticResource PrimaryFontColor}" />
+                    
                 </StackLayout>
-                <!--<Label
-                    Margin="10,5"
-                    FontAttributes="Bold"
-                    FontSize="Medium"
-                    Text="{Binding User.Email}"
-                    TextColor="White" />-->
                 <Label
                     Margin="10,5"
                     FontAttributes="Bold"
                     FontSize="Medium"
-                    Text="andreamarinosalopez@gmail.com"
+                    Text="{Binding User.Email}"
                     TextColor="White" />
+                
             </StackLayout>
 
             <ListView

@@ -136,35 +136,16 @@ namespace IPCViewer.Api.Controllers
             // Aniadimos el rol al usuario y guardamos en bbdd
             await this.userHelper.AddUserToRoleAsync(user, "Customer");
 
-            // Generamos el email de confirmacion
-            //var myToken = await this.userHelper.GenerateEmailConfirmationTokenAsync(user);
-            //var tokenLink = this.Url.Action("ConfirmEmail", "Account", new
-            //{
-            //    userid = user.Id,
-            //    token = myToken
-            //}, protocol: HttpContext.Request.Scheme);
-
-            //this.mailHelper.SendMail(request.Email, "Email confirmation", $"<h1>Email Confirmation</h1>" +
-            //    "To allow the user, " +
-            //    "please click in this link:</br></br><a href = " + tokenLink + ">Confirm Email</a>");
-
-            //// Confirmamos el email
-            //await userHelper.ConfirmEmailAsync(user, myToken);
-
             return Ok(new Response
             {
                 IsSuccess = true,
-                //Message = "A Confirmation email was sent. Please confirm your account and log into the App."
                 Message = "Usuario creado correctamente."
             });
         }
 
         // GET: api/User/5
         [HttpGet("{id}")]
-        public IActionResult GetUser (string id)
-        {
-            return Ok(userHelper.GetUserByIdAsync(id));
-        }
+        public IActionResult GetUser (string id) => Ok(userHelper.GetUserByIdAsync(id));
 
         [HttpDelete("{id}")] // todo:email llega null
         public async Task<IActionResult> DeleteUser ([FromRoute] string email)
@@ -199,16 +180,14 @@ namespace IPCViewer.Api.Controllers
             }
 
             var user = await this.userHelper.GetUserByEmailAsync(request.Email);
-            if ( user == null )
-            {
-                return this.BadRequest(new Response
+
+            return user == null
+                ? (IActionResult) this.BadRequest(new Response
                 {
                     IsSuccess = false,
                     Message = "User don't exists."
-                });
-            }
-
-            return Ok(user);
+                })
+                : Ok(user);
         }
 
         [HttpPut]
@@ -238,7 +217,7 @@ namespace IPCViewer.Api.Controllers
             var respose = await this.userHelper.UpdateUserAsync(userEntity);
             if ( !respose.Succeeded )
             {
-                return this.BadRequest(respose.Errors.FirstOrDefault().Description);
+                return this.BadRequest(respose.Errors.FirstOrDefault()?.Description);
             }
 
             var updatedUser = await this.userHelper.GetUserByEmailAsync(user.Email);
@@ -270,20 +249,18 @@ namespace IPCViewer.Api.Controllers
             }
 
             var result = await this.userHelper.ChangePasswordAsync(user, request.OldPassword, request.NewPassword);
-            if ( !result.Succeeded )
-            {
-                return this.BadRequest(new Response
+
+            return !result.Succeeded
+                ? (IActionResult) this.BadRequest(new Response
                 {
                     IsSuccess = false,
-                    Message = result.Errors.FirstOrDefault().Description
+                    Message = result.Errors.FirstOrDefault()?.Description
+                })
+                : this.Ok(new Response
+                {
+                    IsSuccess = true,
+                    Message = "The password was changed succesfully!"
                 });
-            }
-
-            return this.Ok(new Response
-            {
-                IsSuccess = true,
-                Message = "The password was changed succesfully!"
-            });
         }
     }
 }

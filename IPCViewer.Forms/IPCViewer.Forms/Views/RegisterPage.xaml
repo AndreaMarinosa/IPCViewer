@@ -133,7 +133,7 @@
                             SelectedItem="{Binding City}" />
                     </Grid>
 
-                    <ActivityIndicator IsRunning="{Binding IsRunning}" VerticalOptions="CenterAndExpand" />
+                    <ActivityIndicator IsRunning="{Binding IsRunning}" HorizontalOptions="CenterAndExpand" />
                     <Button
                         Command="{Binding RegisterCommand}"
                         HorizontalOptions="Fill"

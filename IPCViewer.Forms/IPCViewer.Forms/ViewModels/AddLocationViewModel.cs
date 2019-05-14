@@ -1,7 +1,9 @@
 ﻿using GalaSoft.MvvmLight.Command;
 using IPCViewer.Forms.Interfaces;
 using System.Collections.ObjectModel;
+using System.Globalization;
 using System.Windows.Input;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.GoogleMaps;
 using Xamarin.Forms.GoogleMaps.Bindings;
@@ -16,12 +18,7 @@ namespace IPCViewer.Forms.ViewModels
         private string _longitude;
         private MapType _mapType;
         private Pin _pin;
-
-        // todo: localización del usuario
-        private MapSpan _region =
-            MapSpan.FromCenterAndRadius(
-                new Position(41.655801, -0.881),
-                Distance.FromKilometers(2));
+        private MapSpan _region;
 
         public ObservableCollection<Pin> Pins { get; set; }
 
@@ -52,11 +49,12 @@ namespace IPCViewer.Forms.ViewModels
             get => _region;
             set => SetProperty(ref _region, value);
         }
+
+        public AddLocationViewModel() => LoadLocation();
+
         public ICommand GlobalCommand => new RelayCommand(this.Global);
 
         public ICommand SaveCommand => new RelayCommand(this.Save);
-
-        public ICommand StreetCommand => new RelayCommand(this.Street);
 
         public ICommand HybridCommand => new RelayCommand(this.Hybrid);
 
@@ -76,10 +74,7 @@ namespace IPCViewer.Forms.ViewModels
             });
 
         public Command<PinClickedEventArgs> PinClickedCommand => new Command<PinClickedEventArgs>(
-           args =>
-           {
-               Pin = args.Pin;
-           });
+            args => Pin = args.Pin);
 
         public Command TakeSnapshotCommand => new Command(async () =>
         {
@@ -90,8 +85,8 @@ namespace IPCViewer.Forms.ViewModels
 
         private async void Save ()
         {
-            _latitude = Pin.Position.Latitude.ToString();
-            _longitude = Pin.Position.Longitude.ToString();
+            _latitude = Pin.Position.Latitude.ToString(CultureInfo.InvariantCulture);
+            _longitude = Pin.Position.Longitude.ToString(CultureInfo.InvariantCulture);
 
             if ( string.IsNullOrEmpty(_latitude) || string.IsNullOrEmpty(_longitude) )
             {
@@ -113,19 +108,17 @@ namespace IPCViewer.Forms.ViewModels
             await App.Navigator.PopAsync();
         }
 
-        private void Global ()
-        {
-            MapType = MapType.Street;
-        }
+        private void Global () => MapType = MapType.Street;
 
-        private void Street ()
-        {
-            MapType = MapType.Satellite;
-        }
+        private void Hybrid () => MapType = MapType.Hybrid;
 
-        private void Hybrid ()
+        private async void LoadLocation ()
         {
-            MapType = MapType.Hybrid;
+            var request = new GeolocationRequest(GeolocationAccuracy.Medium);
+            var location = await Geolocation.GetLocationAsync(request);
+            Region = MapSpan.FromCenterAndRadius(
+                new Position(location.Latitude, location.Longitude),
+                Distance.FromKilometers(2));
         }
     }
 }

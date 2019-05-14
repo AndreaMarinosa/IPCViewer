@@ -50,8 +50,6 @@
         //        return;
         //    }
 
-        //    // Todo: other alerts
-
         //    this.IsRunning = true;
         //    this.IsEnabled = false;
 

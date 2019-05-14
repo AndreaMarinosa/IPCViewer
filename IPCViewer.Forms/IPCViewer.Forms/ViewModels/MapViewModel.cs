@@ -2,6 +2,7 @@
 using IPCViewer.Common.Services;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.GoogleMaps;
 using Xamarin.Forms.GoogleMaps.Bindings;
@@ -25,19 +26,12 @@ namespace IPCViewer.Forms.ViewModels
     {
         private Pin _pin;
         private readonly ApiService apiService;
-        private List<Camera> myCameras; // La lista original del API
-        private bool _animated = true;
-
-        // todo: user location
-        private MapSpan _region =
-            MapSpan.FromCenterAndRadius(
-                new Position(41.655801, -0.881),
-                Distance.FromKilometers(2));
-
-        private ImageSource _imageSource;
+        private List<Camera> myCameras;
+        private MapSpan _region;
 
         // todo: poner la imagen en la label de arriba
-        private ImageSource _imageUrl;
+        private ImageSource _imageSource;
+
 
         public ObservableCollection<Pin> Pins { get; set; }
 
@@ -47,22 +41,10 @@ namespace IPCViewer.Forms.ViewModels
             set => SetProperty(ref _imageSource, value);
         }
 
-        public ImageSource ImageUrl
-        {
-            get => _imageUrl;
-            set => SetProperty(ref _imageUrl, value);
-        }
-
         public MapSpan Region
         {
             get => _region;
             set => SetProperty(ref _region, value);
-        }
-
-        public bool Animated
-        {
-            get => _animated;
-            set => SetProperty(ref _animated, value);
         }
 
         public Pin Pin
@@ -75,6 +57,17 @@ namespace IPCViewer.Forms.ViewModels
         {
             this.apiService = new ApiService();
             LoadCamerasAsync();
+            LoadLocation();
+             
+        }
+
+        private async void LoadLocation()
+        {
+            var request = new GeolocationRequest(GeolocationAccuracy.Medium);
+            var location = await Geolocation.GetLocationAsync(request);
+            Region = MapSpan.FromCenterAndRadius(
+                new Position(location.Latitude, location.Longitude),
+                Distance.FromKilometers(2));
         }
 
         /**
@@ -105,25 +98,23 @@ namespace IPCViewer.Forms.ViewModels
 
         private void AddMarkers ()
         {
-            foreach ( var Camera in myCameras )
+            foreach ( var camera in myCameras )
             {
                 var pin = new Pin
                 {
                     IsVisible = true,
-                    Label = Camera.Name,
-                    Position = new Position(Camera.Latitude, Camera.Longitude),
-                    Type = PinType.Place
+                    Label = camera.Name,
+                    Position = new Position(camera.Latitude, camera.Longitude),
+                    Type = PinType.SavedPin
                 };
 
                 Pins?.Add(pin);
             }
         }
 
-        public Command<SelectedPinChangedEventArgs> SelectedPinChangedCommand => new Command<SelectedPinChangedEventArgs>(
-            args =>
-            {
-                Pin = args.SelectedPin;
-            });
+        public Command<SelectedPinChangedEventArgs> SelectedPinChangedCommand => 
+            new Command<SelectedPinChangedEventArgs>(
+            args => Pin = args.SelectedPin);
 
        
     }
