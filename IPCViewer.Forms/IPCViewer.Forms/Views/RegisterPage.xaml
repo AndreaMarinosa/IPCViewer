@@ -128,12 +128,12 @@
                             Title="{i18n:Translate CitySelect}"
                             Grid.Row="3"
                             Grid.Column="1"
-                            ItemDisplayBinding="{Binding Name}"
+                            ItemDisplayBinding="{Binding City.Name}"
                             ItemsSource="{Binding Cities}"
                             SelectedItem="{Binding City}" />
                     </Grid>
 
-                    <ActivityIndicator IsRunning="{Binding IsRunning}" HorizontalOptions="CenterAndExpand" />
+                    <ActivityIndicator HeightRequest="10" IsRunning="{Binding IsRunning}" HorizontalOptions="Center" />
                     <Button
                         Command="{Binding RegisterCommand}"
                         HorizontalOptions="Fill"

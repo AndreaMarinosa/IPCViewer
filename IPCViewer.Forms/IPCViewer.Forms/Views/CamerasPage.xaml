@@ -14,52 +14,28 @@
         <StackLayout Padding="5" BindingContext="{Binding Cameras}">
 
             <ListView
-                GroupDisplayBinding="{Binding Key}"
-                ItemsSource="{Binding CameraGroups}" 
-                IsPullToRefreshEnabled="True"
                 x:Name="MyCamerasListView"
-                IsRefreshing="{Binding IsRefreshing}"
-                RefreshCommand="{Binding RefreshCommand}"
                 CachingStrategy="RecycleElement"
-                IsGroupingEnabled="true">
+                GroupDisplayBinding="{Binding Key}"
+                IsGroupingEnabled="true"
+                IsPullToRefreshEnabled="True"
+                IsRefreshing="{Binding IsRefreshing}"
+                ItemsSource="{Binding CamerasGrouped}"
+                RefreshCommand="{Binding RefreshCommand}">
 
-                <!--<ListView.HeaderTemplate>
+                <ListView.HeaderTemplate>
                     <DataTemplate>
                         <ContentView BackgroundColor="Black">
-                            <StackLayout
-                                Orientation="Horizontal">
-                                <Label 
-                                    Margin="10" 
-                                    HorizontalOptions="End"
-                                    Text="Camera's list: "  
-                                    TextColor="White"/>
+                            <StackLayout Orientation="Horizontal">
                                 <Label
-                                    HorizontalOptions="Start"
-                                    TextColor="White"
-                                    Text="{Binding CitiesCount}"/>
+                                    Margin="10"
+                                    HorizontalOptions="EndAndExpand"
+                                    TextColor="White" />
+                                <Label HorizontalOptions="StartAndExpand" Text="{Binding CitiesCount}" />
                             </StackLayout>
                         </ContentView>
                     </DataTemplate>
-                </ListView.HeaderTemplate>-->
-
-                <ListView.GroupHeaderTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <StackLayout
-                                Orientation="Horizontal">
-                                <Label 
-                                    Margin="10" 
-                                    HorizontalOptions="End"
-                                    Text="City: "  
-                                    TextColor="White"/>
-                                <Label
-                                    HorizontalOptions="Start"
-                                    TextColor="Black"
-                                    Text="{Binding CityName}"/>
-                            </StackLayout>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.GroupHeaderTemplate>
+                </ListView.HeaderTemplate>
 
                 <ListView.ItemTemplate>
                     <DataTemplate>
@@ -70,9 +46,9 @@
                                     <ColumnDefinition Width="*" />
                                 </Grid.ColumnDefinitions>
 
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="50"/>
-                                </Grid.RowDefinitions>
+                                <!--<Grid.RowDefinitions>
+                                    <RowDefinition Height="50" />
+                                </Grid.RowDefinitions>-->
 
                                 <Grid.GestureRecognizers>
                                     <TapGestureRecognizer Command="{Binding SelectCameraCommand}" />

@@ -19,9 +19,9 @@
 
         private ObservableCollection<CameraItemViewModel> cameras;
         private bool isRefreshing;
-        private List<City> myCities;
         private City city;
         private int citiesCount;
+        private ObservableCollection<Grouping<string, CameraItemViewModel>> camerasGrouped;
 
         public ObservableCollection<CameraItemViewModel> MyCamerasList { get; set; }
 
@@ -40,7 +40,10 @@
             set => SetProperty(ref citiesCount, value);
         }
 
-        public ObservableCollection<Grouping<string, CameraItemViewModel>> CamerasGrouped { get; set; }
+        public ObservableCollection<Grouping<string, CameraItemViewModel>> CamerasGrouped
+        { get => camerasGrouped;
+            set => SetProperty(ref camerasGrouped, value);
+        }
 
         public ObservableCollection<CameraItemViewModel> Cameras
         {
@@ -97,7 +100,6 @@
             this.myCameras = (List<Camera>) response.Result;
             RefreshCamerasList();
             IsRefreshing = false;
-            LoadCities();
 
             //Use linq to sorty our cameras by name and then group them by the new name sort property
             var sorted =
@@ -118,31 +120,11 @@
                 CameraGroups.Add(cameraGroup);
             }
 
-            CitiesCount = MyCamerasList.Count;
+            CitiesCount = MyCamerasList.Count();
 
             OnPropertyChanged("MyCamerasListView");
-            OnPropertyChanged("CitiesCount");
         }
-
-        public async void LoadCities ()
-        {
-            var response = await this.apiService.GetListAsync<City>(
-                "https://ipcviewerapi.azurewebsites.net",
-                "/api",
-                "/Cities");
-
-            if ( !response.IsSuccess )
-            {
-                await Application.Current.MainPage.DisplayAlert(
-                    "Error",
-                    response.Message,
-                    "Accept");
-                return;
-            }
-
-            myCities = (List<City>) response.Result;
-            CitiesCount = myCities.Count;
-        }
+     
         #endregion
 
 
