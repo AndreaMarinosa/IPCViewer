@@ -4590,26 +4590,26 @@ namespace IPCViewer.Forms.Droid
 			// aapt resource value: 0x7f020054
 			public const int avd_hide_password = 2130837588;
 			
-			// aapt resource value: 0x7f020159
-			public const int avd_hide_password_1 = 2130837849;
-			
 			// aapt resource value: 0x7f02015a
-			public const int avd_hide_password_2 = 2130837850;
+			public const int avd_hide_password_1 = 2130837850;
 			
 			// aapt resource value: 0x7f02015b
-			public const int avd_hide_password_3 = 2130837851;
+			public const int avd_hide_password_2 = 2130837851;
+			
+			// aapt resource value: 0x7f02015c
+			public const int avd_hide_password_3 = 2130837852;
 			
 			// aapt resource value: 0x7f020055
 			public const int avd_show_password = 2130837589;
 			
-			// aapt resource value: 0x7f02015c
-			public const int avd_show_password_1 = 2130837852;
-			
 			// aapt resource value: 0x7f02015d
-			public const int avd_show_password_2 = 2130837853;
+			public const int avd_show_password_1 = 2130837853;
 			
 			// aapt resource value: 0x7f02015e
-			public const int avd_show_password_3 = 2130837854;
+			public const int avd_show_password_2 = 2130837854;
+			
+			// aapt resource value: 0x7f02015f
+			public const int avd_show_password_3 = 2130837855;
 			
 			// aapt resource value: 0x7f020056
 			public const int common_full_open_on_phone = 2130837590;
@@ -5358,11 +5358,11 @@ namespace IPCViewer.Forms.Droid
 			// aapt resource value: 0x7f02014e
 			public const int notification_icon_background = 2130837838;
 			
-			// aapt resource value: 0x7f020157
-			public const int notification_template_icon_bg = 2130837847;
-			
 			// aapt resource value: 0x7f020158
-			public const int notification_template_icon_low_bg = 2130837848;
+			public const int notification_template_icon_bg = 2130837848;
+			
+			// aapt resource value: 0x7f020159
+			public const int notification_template_icon_low_bg = 2130837849;
 			
 			// aapt resource value: 0x7f02014f
 			public const int notification_tile_bg = 2130837839;
@@ -5383,10 +5383,13 @@ namespace IPCViewer.Forms.Droid
 			public const int popup_forms_light_theme_close_icon = 2130837844;
 			
 			// aapt resource value: 0x7f020155
-			public const int tooltip_frame_dark = 2130837845;
+			public const int splash = 2130837845;
 			
 			// aapt resource value: 0x7f020156
-			public const int tooltip_frame_light = 2130837846;
+			public const int tooltip_frame_dark = 2130837846;
+			
+			// aapt resource value: 0x7f020157
+			public const int tooltip_frame_light = 2130837847;
 			
 			static Drawable()
 			{
@@ -7605,6 +7608,9 @@ namespace IPCViewer.Forms.Droid
 			
 			// aapt resource value: 0x7f0e0006
 			public const int Theme_MediaRouter_LightControlPanel = 2131623942;
+			
+			// aapt resource value: 0x7f0e0193
+			public const int Theme_Splash = 2131624339;
 			
 			// aapt resource value: 0x7f0e0116
 			public const int ThemeOverlay_AppCompat = 2131624214;
