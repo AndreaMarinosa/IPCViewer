@@ -42,7 +42,7 @@ namespace IPCViewer.Forms.Droid
             //LoadApplication(UXDivers.Gorilla.Droid.Player.CreateApplication(
             //    this,
             //    new UXDivers.Gorilla.Config("Good Gorilla")
-            //    // Google Maps
+            //      // Google Maps
             //      // FFImageLoading.Transformations
             //      .RegisterAssemblyFromType<FFImageLoading.Transformations.BlurredTransformation>()
             //      // FFImageLoading.Forms

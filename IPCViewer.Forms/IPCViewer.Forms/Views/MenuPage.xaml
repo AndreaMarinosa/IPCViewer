@@ -8,7 +8,60 @@
     <ContentPage.Content>
         <StackLayout>
 
-            <StackLayout Padding="10" BackgroundColor="{StaticResource Primary}">
+            <Grid RowSpacing="5">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Image
+                    Grid.RowSpan="3"
+                    Grid.ColumnSpan="2"
+                    Aspect="AspectFill"
+                    HorizontalOptions="Fill"
+                    Source="menuImg"
+                    VerticalOptions="Fill" />
+
+                <Image
+                    Grid.Column="1"
+                    Margin="0,15,10,0"
+                    HorizontalOptions="End"
+                    Source="IconLigth"
+                    VerticalOptions="Center" />
+
+                <StackLayout
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    Orientation="Horizontal">
+
+                    <Label
+                        Margin="15,0,0,0"
+                        Text="Welcome, "
+                        TextColor="{StaticResource PrimaryFontColor}" />
+
+                    <Label
+                        HorizontalOptions="StartAndExpand"
+                        Text="{Binding User.UserName}"
+                        TextColor="{StaticResource PrimaryFontColor}" />
+                </StackLayout>
+
+                <Label
+                    Grid.Row="2"
+                    Grid.ColumnSpan="2"
+                    Margin="15,0,0,0"
+                    FontAttributes="Bold"
+                    FontSize="Medium"
+                    Text="{Binding User.Email}"
+                    TextColor="White" />
+            </Grid>
+
+            <!--<StackLayout Padding="10" BackgroundColor="{StaticResource Primary}">
 
                 <Image
                     Margin="0"
@@ -18,15 +71,12 @@
 
                 <StackLayout Margin="10,0" Orientation="Horizontal">
 
+                    <Label Text="Welcome, " TextColor="{StaticResource PrimaryFontColor}" />
                     <Label
-                        Text="Welcome, "
-                        TextColor="{StaticResource PrimaryFontColor}"
-                         />
-                    <Label
-                    HorizontalOptions="Start"
+                        HorizontalOptions="Start"
                         Text="{Binding User.UserName}"
                         TextColor="{StaticResource PrimaryFontColor}" />
-                    
+
                 </StackLayout>
                 <Label
                     Margin="10,5"
@@ -34,8 +84,8 @@
                     FontSize="Medium"
                     Text="{Binding User.Email}"
                     TextColor="White" />
-                
-            </StackLayout>
+
+            </StackLayout>-->
 
             <ListView
                 HasUnevenRows="True"

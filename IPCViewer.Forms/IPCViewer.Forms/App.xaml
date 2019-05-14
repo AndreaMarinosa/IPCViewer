@@ -1,72 +1,73 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<Application xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:infra="clr-namespace:IPCViewer.Forms.Infrastructure"
-             x:Class="IPCViewer.Forms.App">
+<Application
+    x:Class="IPCViewer.Forms.App"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:infra="clr-namespace:IPCViewer.Forms.Infrastructure">
 
     <Application.Resources>
         <ResourceDictionary>
 
-            <!-- Locator -->
+            <!--  Locator  -->
             <infra:InstanceLocator x:Key="Locator" />
 
-            <!-- Parameters -->
+            <!--  Parameters  -->
 
-            <!--Global Styles-->
+            <!--  Global Styles  -->
 
-            <OnPlatform x:TypeArguments="x:String" x:Key="BoldFont">
+            <OnPlatform x:Key="BoldFont" x:TypeArguments="x:String">
                 <On Platform="Android" Value="fonts/Montserrat-SemiBold.ttf#Open Montserrat" />
                 <!--<On Platform="iOS" Value="Montserrat-Bold" />-->
             </OnPlatform>
-            <OnPlatform x:TypeArguments="x:String" x:Key="RegularFont#Open Montserrat">
+            <OnPlatform x:Key="RegularFont#Open Montserrat" x:TypeArguments="x:String">
                 <On Platform="Android" Value="fonts/Montserrat-Regular.ttf" />
                 <!--<On Platform="iOS" Value="Montserrat-Regular" />-->
             </OnPlatform>
-            <OnPlatform x:TypeArguments="x:String" x:Key="MediumFont">
+            <OnPlatform x:Key="MediumFont" x:TypeArguments="x:String">
                 <On Platform="Android" Value="fonts/Montserrat-Medium.ttf#Open Montserrat" />
                 <!--<On Platform="iOS" Value="Montserrat-Medium" />-->
             </OnPlatform>
-            <OnPlatform x:TypeArguments="x:String" x:Key="LightFont">
+            <OnPlatform x:Key="LightFont" x:TypeArguments="x:String">
                 <On Platform="Android" Value="fonts/Montserrat-Light.ttf#Open Montserrat" />
                 <!--<On Platform="iOS" Value="Montserrat-Light" />-->
             </OnPlatform>
 
-            <!-- Primary colors -->
+            <!--  Primary colors  -->
             <Color x:Key="Primary">#212121</Color>
             <Color x:Key="PrimaryDark">#000000</Color>
             <Color x:Key="PrimaryLight">#484848</Color>
 
-            <!-- Secondary colors -->
+            <!--  Secondary colors  -->
             <Color x:Key="Secondary">#e81e62</Color>
             <Color x:Key="SecondaryDark">#af0039</Color>
             <Color x:Key="SecondaryLight">#ff608f</Color>
 
-            <!-- Font Color -->
+            <!--  Font Color  -->
             <Color x:Key="PrimaryFontColor">#ffffff</Color>
             <Color x:Key="SecondaryFontColor">#000000</Color>
 
-            <!-- Navigation Page styles -->
+            <!--  Navigation Page styles  -->
             <Style TargetType="NavigationPage">
                 <Setter Property="BarBackgroundColor" Value="{StaticResource PrimaryDark}" />
             </Style>
 
-            <!-- Content page styles-->
+            <!--  Content page styles  -->
             <Style TargetType="ContentPage">
                 <!--<Setter Property="" Value="White" />-->
             </Style>
 
-            <!-- Tabbed Page styles-->
+            <!--  Tabbed Page styles  -->
             <Style TargetType="TabbedPage">
                 <Setter Property="BarBackgroundColor" Value="{StaticResource PrimaryDark}" />
                 <Setter Property="BackgroundColor" Value="{StaticResource PrimaryDark}" />
             </Style>
 
-            <!-- Selectable items view Styles -->
+            <!--  Selectable items view Styles  -->
             <Style TargetType="SelectableItemsView">
                 <!--<Setter Property="BackgroundColor" Value="{StaticResource Secondary}" />-->
             </Style>
 
-            <!-- Button Styles -->
+            <!--  Button Styles  -->
             <Style TargetType="Button">
                 <Setter Property="BorderColor" Value="{StaticResource Secondary}" />
                 <Setter Property="BorderWidth" Value="2" />
@@ -78,26 +79,26 @@
                 <Setter Property="FontSize" Value="15" />
             </Style>
 
-            <!-- Label styles -->
+            <!--  Label styles  -->
             <Style TargetType="Label">
                 <Setter Property="FontFamily" Value="{StaticResource MediumFont}" />
                 <Setter Property="VerticalOptions" Value="CenterAndExpand" />
             </Style>
 
-            <!-- Entry styles -->
+            <!--  Entry styles  -->
             <Style TargetType="Entry">
                 <Setter Property="FontFamily" Value="{StaticResource LightFont}" />
                 <Setter Property="FontSize" Value="15" />
             </Style>
 
-            <!-- Box View Styles-->
+            <!--  Box View Styles  -->
             <Style TargetType="BoxView">
                 <!--<Setter Property="Color" Value="{StaticResource SecondaryDark}" />-->
             </Style>
 
-            <!-- Picker Styles -->
+            <!--  Picker Styles  -->
             <Style TargetType="Picker">
-                <Setter Property="FontFamily" Value="{StaticResource LightFont}"></Setter>
+                <Setter Property="FontFamily" Value="{StaticResource LightFont}" />
             </Style>
         </ResourceDictionary>
     </Application.Resources>

@@ -23,7 +23,7 @@
                 ItemsSource="{Binding CamerasGrouped}"
                 RefreshCommand="{Binding RefreshCommand}">
 
-                <ListView.HeaderTemplate>
+                <ListView.GroupHeaderTemplate>
                     <DataTemplate>
                         <ContentView BackgroundColor="Black">
                             <StackLayout Orientation="Horizontal">
@@ -31,11 +31,11 @@
                                     Margin="10"
                                     HorizontalOptions="EndAndExpand"
                                     TextColor="White" />
-                                <Label HorizontalOptions="StartAndExpand" Text="{Binding CitiesCount}" />
+                                <Label HorizontalOptions="StartAndExpand" Text="{Binding Key}" />
                             </StackLayout>
                         </ContentView>
                     </DataTemplate>
-                </ListView.HeaderTemplate>
+                </ListView.GroupHeaderTemplate>
 
                 <ListView.ItemTemplate>
                     <DataTemplate>
@@ -46,9 +46,9 @@
                                     <ColumnDefinition Width="*" />
                                 </Grid.ColumnDefinitions>
 
-                                <!--<Grid.RowDefinitions>
-                                    <RowDefinition Height="50" />
-                                </Grid.RowDefinitions>-->
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
 
                                 <Grid.GestureRecognizers>
                                     <TapGestureRecognizer Command="{Binding SelectCameraCommand}" />
@@ -58,6 +58,7 @@
                                 <Image
                                     Grid.Column="0"
                                     Source="{Binding ImageFullPath}"
+                                    VerticalOptions="Fill"
                                     WidthRequest="100">
 
                                     <Image.GestureRecognizers>
@@ -71,16 +72,18 @@
                                         FontSize="Medium"
                                         Text="{Binding Name}"
                                         TextColor="Black" />
-                                    <Label
-                                        FontAttributes="Bold"
-                                        FontSize="Small"
-                                        Text="{Binding Latitude}"
-                                        TextColor="{StaticResource SecondaryDark}" />
-                                    <Label
-                                        FontAttributes="Bold"
-                                        FontSize="Small"
-                                        Text="{Binding Longitude}"
-                                        TextColor="Navy" />
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label
+                                            FontAttributes="Bold"
+                                            FontSize="Small"
+                                            Text="{Binding Latitude}"
+                                            TextColor="{StaticResource SecondaryDark}" />
+                                        <Label
+                                            FontAttributes="Bold"
+                                            FontSize="Small"
+                                            Text="{Binding Longitude}"
+                                            TextColor="Navy" />
+                                    </StackLayout>
                                 </StackLayout>
                             </Grid>
                         </ViewCell>

@@ -1,31 +1,71 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
-             x:Class="IPCViewer.Forms.Views.DisplayCameraPage"
-             BindingContext="{Binding Main, Source={StaticResource Locator}}">
+<ContentPage
+    x:Class="IPCViewer.Forms.Views.DisplayCameraPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+    BindingContext="{Binding Main, Source={StaticResource Locator}}">
 
     <ContentPage.Content>
-        <StackLayout
-            Padding="30"
-            BindingContext="{Binding DisplayCamera}">
+        <StackLayout Padding="30" BindingContext="{Binding DisplayCamera}">
 
             <StackLayout>
                 <Label
-                    FontSize="Large"
                     FontAttributes="Bold"
-                    TextColor="{StaticResource Secondary}"
-                    Text="{Binding Camera.Name}" />
+                    FontSize="Large"
+                    Text="{Binding Camera.Name}"
+                    TextColor="{StaticResource Secondary}" />
+                <BoxView
+                    HeightRequest="2"
+                    HorizontalOptions="Fill"
+                    Color="Black" />
+
             </StackLayout>
 
-            <forms:CachedImage HorizontalOptions="Center" VerticalOptions="Center"
-                                        WidthRequest="300" HeightRequest="300"
-                                        DownsampleToViewSize="true"
-                                        CacheType="None"
-                                        FadeAnimationEnabled="False"
-                                        LoadingDelay="0"
-                                        Source = "{Binding ImageUrl}">
-            </forms:CachedImage>
+            <forms:CachedImage
+                Margin="0,10,0,0"
+                CacheType="None"
+                DownsampleToViewSize="true"
+                FadeAnimationEnabled="False"
+                HeightRequest="300"
+                HorizontalOptions="Center"
+                LoadingDelay="0"
+                Source="{Binding ImageUrl}"
+                VerticalOptions="CenterAndExpand"
+                WidthRequest="300" />
+
+
+            <TableView>
+                <TableRoot>
+                    <TableSection />
+                </TableRoot>
+            </TableView>
+            <StackLayout Orientation="Horizontal">
+
+                <Label
+                    Margin="0"
+                    FontAttributes="bold"
+                    FontSize="Large"
+                    Text="Zaragoza" />
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Latitud: " />
+                <Label Text="1" TextColor="{StaticResource Secondary}" />
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Longitud: " />
+                <Label Text="2" TextColor="{StaticResource Secondary}" />
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Creada por: " />
+                <Label Text="Nombre usuario" TextColor="{StaticResource Secondary}" />
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Fecha creación: " />
+                <Label Text="fecha creacion" TextColor="{StaticResource Secondary}" />
+            </StackLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
