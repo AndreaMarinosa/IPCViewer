@@ -15,6 +15,7 @@ namespace IPCViewer.Forms.ViewModels
     using System.Windows.Input;
     using Xamarin.Forms;
 
+    //TODO: boton que compruebe la url (Muestre la imagen de esa url para ver si esta bien)
     public class AddCameraViewModel : BaseViewModel, IClosePopup, ILocation
     {
         private bool isRunning;

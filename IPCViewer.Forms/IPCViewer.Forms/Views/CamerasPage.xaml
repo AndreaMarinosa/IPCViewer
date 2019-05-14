@@ -14,41 +14,71 @@
         <StackLayout Padding="5" BindingContext="{Binding Cameras}">
 
             <ListView
-                x:Name="list"
-                HasUnevenRows="True"
+                GroupDisplayBinding="{Binding Key}"
+                ItemsSource="{Binding CameraGroups}" 
                 IsPullToRefreshEnabled="True"
+                x:Name="MyCamerasListView"
                 IsRefreshing="{Binding IsRefreshing}"
-                ItemsSource="{Binding Cameras}"
-                RefreshCommand="{Binding RefreshCommand}">
+                RefreshCommand="{Binding RefreshCommand}"
+                CachingStrategy="RecycleElement"
+                IsGroupingEnabled="true">
 
-                <!--<ListView.GroupHeaderTemplate>
-                         <DataTemplate>
-                         <ViewCell Height="25">
-                         <StackLayout VerticalOptions="FillAndExpand"
-                         Padding="5"
-                         BackgroundColor="#3498DB">
-                         <Label Text="{Binding Key}" TextColor="White" VerticalOptions="Center" />
-                         </StackLayout>
-                         </ViewCell>
-                         </DataTemplate>
-                         </ListView.GroupHeaderTemplate>-->
+                <!--<ListView.HeaderTemplate>
+                    <DataTemplate>
+                        <ContentView BackgroundColor="Black">
+                            <StackLayout
+                                Orientation="Horizontal">
+                                <Label 
+                                    Margin="10" 
+                                    HorizontalOptions="End"
+                                    Text="Camera's list: "  
+                                    TextColor="White"/>
+                                <Label
+                                    HorizontalOptions="Start"
+                                    TextColor="White"
+                                    Text="{Binding CitiesCount}"/>
+                            </StackLayout>
+                        </ContentView>
+                    </DataTemplate>
+                </ListView.HeaderTemplate>-->
+
+                <ListView.GroupHeaderTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout
+                                Orientation="Horizontal">
+                                <Label 
+                                    Margin="10" 
+                                    HorizontalOptions="End"
+                                    Text="City: "  
+                                    TextColor="White"/>
+                                <Label
+                                    HorizontalOptions="Start"
+                                    TextColor="Black"
+                                    Text="{Binding CityName}"/>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.GroupHeaderTemplate>
 
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <ViewCell
-                            >
-
+                        <ViewCell>
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
                                     <ColumnDefinition Width="*" />
                                 </Grid.ColumnDefinitions>
 
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="50"/>
+                                </Grid.RowDefinitions>
+
                                 <Grid.GestureRecognizers>
                                     <TapGestureRecognizer Command="{Binding SelectCameraCommand}" />
                                 </Grid.GestureRecognizers>
 
-                                
+
                                 <Image
                                     Grid.Column="0"
                                     Source="{Binding ImageFullPath}"

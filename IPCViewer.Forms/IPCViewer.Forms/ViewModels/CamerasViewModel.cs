@@ -9,20 +9,38 @@
     using System.Windows.Input;
     using Xamarin.Forms;
 
+    //TODO: Headers de las listview, agrupar las camaras por ciudades mediante linq
     public class CamerasViewModel : BaseViewModel
     {
+        #region Private properties
+
         private readonly ApiService apiService;
         private List<Camera> myCameras; // La lista original del API
 
         private ObservableCollection<CameraItemViewModel> cameras;
         private bool isRefreshing;
-
-        private ObservableCollection<CityList<string, City>> cities;
+        private List<City> myCities;
         private City city;
+        private int citiesCount;
+
+        public ObservableCollection<CameraItemViewModel> MyCamerasList { get; set; }
+
+        public ObservableCollection<CameraGroup> CameraGroups { get; set; }
+
+
+        #endregion
+
+        #region Public properties
 
         public City City { get => this.city; set => this.SetProperty(ref this.city, value); }
 
-        public ObservableCollection<CityList<string, City>> CitiesGrouped { get => this.cities; set => this.SetProperty(ref this.cities, value); }
+        public int CitiesCount
+        {
+            get => citiesCount;
+            set => SetProperty(ref citiesCount, value);
+        }
+
+        public ObservableCollection<Grouping<string, CameraItemViewModel>> CamerasGrouped { get; set; }
 
         public ObservableCollection<CameraItemViewModel> Cameras
         {
@@ -36,15 +54,28 @@
             set => this.SetProperty(ref this.isRefreshing, value);
         }
 
+        #endregion
+
         public ICommand RefreshCommand => new RelayCommand(this.LoadCamerasAsync);
+
+        #region ctor
 
         public CamerasViewModel ()
         {
             this.apiService = new ApiService();
+
+            CameraGroups = new ObservableCollection<CameraGroup>();
+
+            MyCamerasList = new ObservableCollection<CameraItemViewModel>();
+
             LoadCamerasAsync();
-            //LoadCities();
+
+
         }
 
+        #endregion
+
+        #region Loads
         private async void LoadCamerasAsync ()
         {
             var response = await this.apiService.GetListAsync<Camera>(
@@ -66,7 +97,56 @@
             this.myCameras = (List<Camera>) response.Result;
             RefreshCamerasList();
             IsRefreshing = false;
+            LoadCities();
+
+            //Use linq to sorty our cameras by name and then group them by the new name sort property
+            var sorted =
+                from camera in Cameras
+                orderby camera.Name
+                group camera by camera.NameSort into cameraGroup
+                select new Grouping<string, CameraItemViewModel>(cameraGroup.Key, cameraGroup);
+
+            //create a new collection of groups
+            CamerasGrouped = new ObservableCollection<Grouping<string, CameraItemViewModel>>(sorted);
+
+            foreach ( var cameraGrouped in sorted )
+            {
+                var cameraGroup = new CameraGroup();
+                cameraGroup.CityName = cameraGrouped.Key;
+                cameraGroup.Cameras = cameraGrouped.ToList();
+
+                CameraGroups.Add(cameraGroup);
+            }
+
+            CitiesCount = MyCamerasList.Count;
+
+            OnPropertyChanged("MyCamerasListView");
+            OnPropertyChanged("CitiesCount");
         }
+
+        public async void LoadCities ()
+        {
+            var response = await this.apiService.GetListAsync<City>(
+                "https://ipcviewerapi.azurewebsites.net",
+                "/api",
+                "/Cities");
+
+            if ( !response.IsSuccess )
+            {
+                await Application.Current.MainPage.DisplayAlert(
+                    "Error",
+                    response.Message,
+                    "Accept");
+                return;
+            }
+
+            myCities = (List<City>) response.Result;
+            CitiesCount = myCities.Count;
+        }
+        #endregion
+
+
+        #region Camera Functions
 
         public void AddCamera (Camera camera)
         {
@@ -109,6 +189,9 @@
             RefreshCamerasList();
         }
 
+        #endregion
+
+
         private void RefreshCamerasList ()
         {
             // ObservableCollection de la Clase CameraItemViewModel -> (Camera + Comando)
@@ -128,31 +211,20 @@
                     ImageFullPath = c.ImageFullPath
                 }).ToList());
         }
+    }
 
-        public async void LoadCities ()
+    /**
+     * Class for grouping
+     */
+    public class Grouping<TK, T> : ObservableCollection<T>
+    {
+        public TK Key { get; private set; }
+
+        public Grouping (TK key, IEnumerable<T> items)
         {
-            var response = await this.apiService.GetListAsync<City>(
-                "https://ipcviewerapi.azurewebsites.net",
-                "/api",
-                "/Cities");
-
-            if ( !response.IsSuccess )
-            {
-                await Application.Current.MainPage.DisplayAlert(
-                    "Error",
-                    response.Message,
-                    "Accept");
-                return;
-            }
-
-            var myCities = (List<City>) response.Result;
-
-            var citiesSorted = from city in myCities
-                               orderby city.Name
-                               group city by city.Name into cityGroup
-                               select new CityList<string, City>(cityGroup.Key, cityGroup);
-
-            this.CitiesGrouped = new ObservableCollection<CityList<string, City>>(citiesSorted);
+            Key = key;
+            foreach ( var item in items )
+                this.Items.Add(item);
         }
     }
 }

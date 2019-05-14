@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 
 namespace IPCViewer.Forms.ViewModels
 {
+    //TODO: ver datos de la camara (hora actual actualizada, posicion en el mapa, quien la creó etc)
     public class DisplayViewModel : BaseViewModel
     {
         private string imageUrl;

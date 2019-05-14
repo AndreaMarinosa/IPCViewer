@@ -21,11 +21,5 @@
             return Ok(this.cityRepository.GetAll());
         }
 
-        //// GET: api/Cities/5
-        //[HttpGet]
-        //public IActionResult GetCitie([FromRoute] int id)
-        //{
-        //    return Ok(this.cityRepository.GetCityByIdAsync(id));
-        //}
     }
 }
