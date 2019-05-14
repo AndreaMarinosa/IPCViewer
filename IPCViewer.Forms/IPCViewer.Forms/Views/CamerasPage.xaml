@@ -17,6 +17,8 @@
                 x:Name="MyCamerasListView"
                 CachingStrategy="RecycleElement"
                 GroupDisplayBinding="{Binding Key}"
+                GroupShortNameBinding="{Binding Key}"
+                HasUnevenRows="True"
                 IsGroupingEnabled="true"
                 IsPullToRefreshEnabled="True"
                 IsRefreshing="{Binding IsRefreshing}"
@@ -25,15 +27,19 @@
 
                 <ListView.GroupHeaderTemplate>
                     <DataTemplate>
-                        <ContentView BackgroundColor="Black">
-                            <StackLayout Orientation="Horizontal">
+                        <ViewCell>
+                            <StackLayout
+                                Padding="5"
+                                BackgroundColor="{StaticResource Primary}"
+                                VerticalOptions="FillAndExpand">
                                 <Label
-                                    Margin="10"
-                                    HorizontalOptions="EndAndExpand"
-                                    TextColor="White" />
-                                <Label HorizontalOptions="StartAndExpand" Text="{Binding Key}" />
+                                    Margin="5"
+                                    FontSize="Large"
+                                    Text="{Binding Key}"
+                                    TextColor="White"
+                                    VerticalOptions="CenterAndExpand" />
                             </StackLayout>
-                        </ContentView>
+                        </ViewCell>
                     </DataTemplate>
                 </ListView.GroupHeaderTemplate>
 
