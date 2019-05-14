@@ -1,14 +1,14 @@
-﻿using GalaSoft.MvvmLight.Command;
-using IPCViewer.Common.Models;
-using IPCViewer.Forms.Views;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Windows.Input;
-using Menu = IPCViewer.Common.Models.Menu;
-
-namespace IPCViewer.Forms.ViewModels
+﻿namespace IPCViewer.Forms.ViewModels
 {
+    using GalaSoft.MvvmLight.Command;
+    using IPCViewer.Common.Models;
+    using IPCViewer.Forms.Views;
+    using System.Collections.Generic;
+    using System.Collections.ObjectModel;
+    using System.Linq;
+    using System.Windows.Input;
+    using Menu = IPCViewer.Common.Models.Menu;
+
     public class MainViewModel : BaseViewModel
     {
         public ObservableCollection<MenuItemViewModel> Menus { get; set; }
@@ -35,10 +35,6 @@ namespace IPCViewer.Forms.ViewModels
         public ICommand AddCameraCommand => new RelayCommand(this.GoAddCamera);
 
         public EditCameraViewModel EditCamera { get; set; }
-
-        public UsersViewModel Users { get; set; }
-
-        public EditUserViewModel EditUser { get; set; }
 
         public AddUrlViewModel AddUrl { get; set; }
 
@@ -79,26 +75,12 @@ namespace IPCViewer.Forms.ViewModels
                     Title= "Maps"
                 },
 
-                //new Menu
-                //{
-                //    Icon = "setup",
-                //    PageName = "SetupPage",
-                //    Title = "Setup"
-                //},
-
                  new Menu
                 {
                     Icon = "ic_settingsPink",
                     PageName = "ProfilePage",
                     Title = "Modify User"
                 },
-
-                //new Menu
-                //{
-                //    Icon = null,
-                //    PageName = "UsersPage",
-                //    Title= "Users"
-                //},
 
                 new Menu
                 {

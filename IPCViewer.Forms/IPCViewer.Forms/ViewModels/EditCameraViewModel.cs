@@ -24,23 +24,70 @@ namespace IPCViewer.Forms.ViewModels
         private MediaFile file;
         private ImageSource imageSource;
         private string _urlCamera;
+        private bool isVisible;
 
         public string Latitude
         {
-            get => latitude;
-            set => SetProperty(ref latitude, value);
+            get { return latitude; }
+            set { SetProperty(ref latitude, value); }
         }
 
         public string Longitude
         {
-            get => longitude;
-            set => SetProperty(ref longitude, value);
+            get { return longitude; }
+            set { SetProperty(ref longitude, value); }
         }
 
         public ImageSource ImageSource
         {
-            get => imageSource;
-            set => SetProperty(ref imageSource, value);
+            get { return imageSource; }
+            set { SetProperty(ref imageSource, value); }
+        }
+
+        public bool IsEnabled
+        {
+            get { return isEnabled; }
+            set { SetProperty(ref isEnabled, value); }
+        }
+
+        public bool IsRunning
+        {
+            get { return isRunning; }
+            set { SetProperty(ref isRunning, value); }
+        }
+
+        public string UrlCamera
+        {
+            get { return _urlCamera; }
+            set { SetProperty(ref _urlCamera, value); }
+        }
+
+        public bool IsVisible
+        {
+            get { return isVisible; }
+            set { SetProperty(ref isVisible, value); }
+        }
+
+        public Camera Camera { get; set; }
+
+        public ICommand AddLocationCommand
+        {
+            get { return new RelayCommand(AddLocation); }
+        }
+
+        public ICommand DeleteCommand
+        {
+            get { return new RelayCommand(Delete); }
+        }
+
+        public ICommand SaveCommand
+        {
+            get { return new RelayCommand(Save); }
+        }
+
+        public ICommand TapCommand
+        {
+            get { return new RelayCommand(ChangeImage); }
         }
 
         /**
@@ -53,13 +100,14 @@ namespace IPCViewer.Forms.ViewModels
             IsEnabled = true;
             Longitude = Camera.Longitude.ToString(CultureInfo.InvariantCulture);
             Latitude = Camera.Latitude.ToString(CultureInfo.InvariantCulture);
+            UrlCamera = Camera.ImageFullPath;
+            if (!string.IsNullOrEmpty(UrlCamera))
+            {
+                IsVisible = true;
+            }
+
         }
 
-        private async void AddLocation ()
-        {
-            MainViewModel.GetInstance().AddLocation = new AddLocationViewModel(this);
-            await App.Navigator.PushAsync(new AddLocationPage(), true);
-        }
 
         private async void Delete ()
         {
@@ -233,6 +281,12 @@ namespace IPCViewer.Forms.ViewModels
             }
         }
 
+        private async void AddLocation ()
+        {
+            MainViewModel.GetInstance().AddLocation = new AddLocationViewModel(this);
+            await App.Navigator.PushAsync(new AddLocationPage(), true);
+        }
+
         public void SetLocation (string longitude, string latitude, ImageSource imageSource)
         {
             Latitude = latitude;
@@ -240,33 +294,13 @@ namespace IPCViewer.Forms.ViewModels
             // todo: poner el image source llegado por parametro en este image source
         }
 
-        public bool IsEnabled
+        public void OnClose (string urlCamera)
         {
-            get => isEnabled;
-            set => SetProperty(ref isEnabled, value);
+            if ( !string.IsNullOrEmpty(Camera.ImageUrl) )
+            {
+                IsVisible = true;
+                UrlCamera = urlCamera;
+            }
         }
-
-        public bool IsRunning
-        {
-            get => isRunning;
-            set => SetProperty(ref isRunning, value);
-        }
-        public string UrlCamera
-        {
-            get => _urlCamera;
-            set => SetProperty(ref _urlCamera, value);
-        }
-
-        public Camera Camera { get; set; }
-
-        public ICommand AddLocationCommand => new RelayCommand(AddLocation);
-
-        public ICommand DeleteCommand => new RelayCommand(Delete);
-
-        public ICommand SaveCommand => new RelayCommand(Save);
-
-        public ICommand TapCommand => new RelayCommand(ChangeImage);
-
-        public void OnClose (string urlCamera) => UrlCamera = urlCamera;
     }
 }

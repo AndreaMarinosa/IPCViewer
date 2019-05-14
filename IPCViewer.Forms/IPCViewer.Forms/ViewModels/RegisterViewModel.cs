@@ -142,7 +142,6 @@
                 return;
             }
 
-            // TODO: More alerts
             this.IsRunning = true;
             this.IsEnabled = false;
 

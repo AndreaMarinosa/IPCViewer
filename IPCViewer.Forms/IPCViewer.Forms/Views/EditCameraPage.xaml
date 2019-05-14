@@ -8,15 +8,22 @@
     <ContentPage.Content>
         <ScrollView BindingContext="{Binding EditCamera}">
             <StackLayout Padding="10">
+
                 <Image HeightRequest="250">
                     <Image.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding TapCommand}" />
                     </Image.GestureRecognizers>
-                    <Image.Source>
 
+                    <Image.Source>
                         <UriImageSource Uri="{Binding Camera.ImageFullPath}" />
                     </Image.Source>
                 </Image>
+
+                <Label
+                    FontSize="Small"
+                    HorizontalOptions="CenterAndExpand"
+                    IsVisible="{Binding IsVisible}"
+                    Text="{Binding UrlCamera}" />
 
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -47,7 +54,7 @@
                         Text="{Binding Camera.Name}" />
 
                     <!--  Image Url  -->
-                    <Label
+                    <!--<Label
                         Grid.Row="1"
                         Grid.Column="0"
                         Text="Url" />
@@ -57,7 +64,7 @@
                         Grid.Column="1"
                         Grid.ColumnSpan="2"
                         Placeholder="ImageUrl"
-                        Text="{Binding Camera.ImageFullPath}" />
+                        Text="{Binding Camera.ImageFullPath}" />-->
 
                     <!--  Comments  -->
                     <Label
@@ -76,7 +83,7 @@
                         Grid.Column="1"
                         Grid.ColumnSpan="2"
                         IsReadOnly="True"
-                        Text="{Binding Camera.User.FirstName}" />
+                        Text="{Binding Camera.User.UserName}" />
                     <Entry
                         Grid.Row="3"
                         Grid.Column="1"
@@ -103,7 +110,7 @@
                         Grid.Column="0"
                         Command="{Binding AddLocationCommand}"
                         FontSize="Small"
-                        HeightRequest="20"
+                        HeightRequest="10"
                         Text="Location" />
 
                     <ActivityIndicator Grid.Row="5" Grid.ColumnSpan="3" Grid.Column="0"

@@ -394,47 +394,6 @@
             }
         }
 
-        // todo: poner autenticacion para eliminar usuario
-        public async Task<Response> DeleteUserAsync (
-            string urlBase,
-            string servicePrefix,
-            string controller,
-            Guid id)
-        {
-            try
-            {
-                var client = new HttpClient
-                {
-                    BaseAddress = new Uri(urlBase)
-                };
-
-                var url = $"{servicePrefix}{controller}/{id}";
-                var response = await client.DeleteAsync(url);
-                var answer = await response.Content.ReadAsStringAsync();
-                if ( !response.IsSuccessStatusCode )
-                {
-                    return new Response
-                    {
-                        IsSuccess = false,
-                        Message = answer,
-                    };
-                }
-
-                return new Response
-                {
-                    IsSuccess = true
-                };
-            }
-            catch ( Exception ex )
-            {
-                return new Response
-                {
-                    IsSuccess = false,
-                    Message = ex.Message,
-                };
-            }
-        }
-
         public async Task<Response> GetUserListAsync<User> (
             string urlBase,
             string servicePrefix,
