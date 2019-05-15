@@ -4,10 +4,10 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.GoogleMaps;
-using Xamarin.Forms.GoogleMaps.Bindings;
 
 namespace IPCViewer.Forms.ViewModels
 {
@@ -32,6 +32,7 @@ namespace IPCViewer.Forms.ViewModels
         private ImageSource _imageSource;
         private bool _isVisible;
 
+        public Location UserLocation { get; set; }
         public ObservableCollection<Pin> Pins { get; set; }
 
         public ImageSource ImageSource
@@ -63,31 +64,39 @@ namespace IPCViewer.Forms.ViewModels
             this._apiService = new ApiService();
             LoadCamerasAsync();
             LoadLocation();
-             
+
         }
 
         public MapViewModel (Camera camera)
         {
             this._apiService = new ApiService();
             LoadCamerasAsync();
-            LoadLocationCamera(camera);
+            LoadLocationCameraAsync(camera);
 
         }
 
-        private void LoadLocationCamera (Camera camera)
+        private async void LoadLocationCameraAsync (Camera camera)
         {
-            Region = MapSpan.FromCenterAndRadius(
+            bool success =  await RequestLocation();
+
+            if ( success )
+            {
+                Region = MapSpan.FromCenterAndRadius(
                 new Position(camera.Latitude, camera.Longitude),
                 Distance.FromKilometers(2));
+            }
         }
-
-        private async void LoadLocation()
+       
+        private async void LoadLocation ()
         {
-            var request = new GeolocationRequest(GeolocationAccuracy.Medium);
-            var location = await Geolocation.GetLocationAsync(request);
-            Region = MapSpan.FromCenterAndRadius(
-                new Position(location.Latitude, location.Longitude),
+            bool success = await RequestLocation();
+
+            if ( success )
+            {
+                Region = MapSpan.FromCenterAndRadius(
+                new Position(UserLocation.Latitude, UserLocation.Longitude),
                 Distance.FromKilometers(2));
+            }
         }
 
         /**
@@ -129,7 +138,7 @@ namespace IPCViewer.Forms.ViewModels
                     Label = camera.Name,
                     Position = new Position(camera.Latitude, camera.Longitude),
                     Type = PinType.SavedPin,
-                    Icon = BitmapDescriptorFactory.FromBundle("type"+ 2)
+                    Icon = BitmapDescriptorFactory.FromBundle("type" + 2)
                 };
 
                 Pins?.Add(pin);
@@ -147,7 +156,7 @@ namespace IPCViewer.Forms.ViewModels
                 return new Command<SelectedPinChangedEventArgs>(
                     args =>
                     {
-                        if (args.SelectedPin!=null)
+                        if ( args.SelectedPin != null && args.SelectedPin.Label != "Your position" )
                         {
                             IsVisible = true;
                             ImageSource = _myCameras.FirstOrDefault(c =>
@@ -162,6 +171,29 @@ namespace IPCViewer.Forms.ViewModels
                         Pin = args.SelectedPin;
                     });
             }
+        }
+        private async Task<bool> RequestLocation ()
+        {
+            var request = new GeolocationRequest(GeolocationAccuracy.Medium);
+            var location = await Geolocation.GetLocationAsync(request);
+            UserLocation = location;
+
+            if ( UserLocation == null )
+            {
+                await Application.Current.MainPage.DisplayAlert(
+                    "Error",
+                    "Failure to receive the user's location",
+                    "Accept");
+                return false;
+            }
+
+            Pins.Add(new Pin
+            {
+                Label = "Your position",
+                Position = new Position(UserLocation.Latitude, UserLocation.Longitude),
+            });
+
+            return true;
         }
     }
 }
