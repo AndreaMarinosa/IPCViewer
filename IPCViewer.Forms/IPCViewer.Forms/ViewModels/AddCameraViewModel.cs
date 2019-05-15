@@ -269,14 +269,11 @@ namespace IPCViewer.Forms.ViewModels
             }
         }
 
-        public void SetLocation(string longitude, string latitude, FileStream imageSource)
+        public void SetLocation(string longitude, string latitude, byte[] imageSource)
         {
             Latitude = latitude;
             Longitude = longitude;
-            ImageSource = ImageSource.FromStream(() =>
-            {
-                return imageSource;
-            });
+            ImageSource = new StreamImageSource();
         }
     }
 }

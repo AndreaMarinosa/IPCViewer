@@ -1,5 +1,4 @@
-﻿using System.IO;
-using IPCViewer.Common.Helpers;
+﻿using IPCViewer.Common.Helpers;
 
 namespace IPCViewer.Forms.ViewModels
 {
@@ -108,6 +107,7 @@ namespace IPCViewer.Forms.ViewModels
             }
 
         }
+
 
         private async void Delete ()
         {
@@ -287,14 +287,12 @@ namespace IPCViewer.Forms.ViewModels
             await App.Navigator.PushAsync(new AddLocationPage(), true);
         }
 
-        public void SetLocation(string longitude, string latitude, FileStream imageSource)
+        public void SetLocation(string longitude, string latitude, byte[] imageSource)
         {
             Latitude = latitude;
             Longitude = longitude;
-            ImageSource = ImageSource.FromStream(() =>
-            {
-                return imageSource;
-            });
+            ImageSource = new StreamImageSource();
+            // todo: error access (stream closed)
         }
 
         public void OnClose (string urlCamera)

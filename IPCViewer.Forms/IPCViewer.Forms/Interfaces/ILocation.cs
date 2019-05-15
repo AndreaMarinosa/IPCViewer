@@ -5,6 +5,6 @@ namespace IPCViewer.Forms.Interfaces
 {
     public interface ILocation
     {
-        void SetLocation(string longitude, string latitude, FileStream imageSource);
+        void SetLocation(string longitude, string latitude, byte[] imageSource);
     }
 }
