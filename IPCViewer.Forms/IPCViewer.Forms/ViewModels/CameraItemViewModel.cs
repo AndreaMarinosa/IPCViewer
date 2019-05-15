@@ -16,16 +16,7 @@ namespace IPCViewer.Forms.ViewModels
 
     public class CameraItemViewModel : Camera
     {
-        public string NameSort
-        {
-            get
-            {
-                if ( string.IsNullOrWhiteSpace(City.Name) || City.Name.Length == 0 )
-                    return "?";
-
-                return City.Name.ToUpper();
-            }
-        }
+        public string NameSort => string.IsNullOrWhiteSpace(City.Name) || City.Name.Length == 0 ? "?" : City.Name.ToUpper();
 
         public ICommand SelectCameraCommand => new RelayCommand(SelectCamera);
 
@@ -46,7 +37,7 @@ namespace IPCViewer.Forms.ViewModels
         {
             var source = await Application.Current.MainPage.DisplayActionSheet(
                 "What do you want to do?", "Cancel", null,
-                "Edit camera", "View Camera");
+                "Edit camera", "View Camera", "View Maps");
 
             switch ( source )
             {
@@ -62,6 +53,12 @@ namespace IPCViewer.Forms.ViewModels
                 case "View Camera":
                     {
                         SelectCameraImage();
+                        break;
+                    }
+                case "View Maps":
+                    {
+                        MainViewModel.GetInstance().Maps = new MapViewModel(this);
+                        await App.Navigator.PushAsync(new MapsPage());
                         break;
                     }
             }

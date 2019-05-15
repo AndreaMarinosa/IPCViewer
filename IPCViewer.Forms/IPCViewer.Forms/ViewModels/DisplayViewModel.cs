@@ -29,7 +29,7 @@ namespace IPCViewer.Forms.ViewModels
         {
             this.Camera = camera;
             Date = DateTime.Now;
-            ImageUrl = camera.ImageUrl;
+            ImageUrl = camera.ImageFullPath;
             Action<Task> reloadImageTask = null;
 
             reloadImageTask = t =>

@@ -1,8 +1,12 @@
-﻿using GalaSoft.MvvmLight.Command;
+﻿using System;
+using GalaSoft.MvvmLight.Command;
 using IPCViewer.Forms.Interfaces;
 using System.Collections.ObjectModel;
 using System.Globalization;
+using System.IO;
 using System.Windows.Input;
+using FFImageLoading;
+using Plugin.Media.Abstractions;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.GoogleMaps;
@@ -19,6 +23,7 @@ namespace IPCViewer.Forms.ViewModels
         private MapType _mapType;
         private Pin _pin;
         private MapSpan _region;
+        private MediaFile _file;
 
         public ObservableCollection<Pin> Pins { get; set; }
 
@@ -51,6 +56,12 @@ namespace IPCViewer.Forms.ViewModels
             set => SetProperty(ref _region, value);
         }
 
+        public FileStream fs
+        {
+            get;
+            set;
+        }
+
         public ICommand GlobalCommand => new RelayCommand(this.Global);
 
         public ICommand SaveCommand => new RelayCommand(this.Save);
@@ -79,8 +90,11 @@ namespace IPCViewer.Forms.ViewModels
 
         public Command TakeSnapshotCommand => new Command(async () =>
         {
-            var stream = await TakeSnapshotRequest.TakeSnapshot();
-            ImageSource = ImageSource.FromStream(() => stream);
+            fs = (FileStream) await TakeSnapshotRequest.TakeSnapshot();
+            ImageSource = ImageSource.FromStream(() =>
+            {
+                return fs;
+            });
         });
 
 
@@ -102,9 +116,17 @@ namespace IPCViewer.Forms.ViewModels
                 {
                     ImageSource = string.Empty;
                 }
+                else
+                {
+                    var tempFile = Path.GetTempFileName();
+                    using ( var fs = File.Create(tempFile) )
+                    {
+                        await this.fs.CopyToAsync(fs);
+                    }
+                }
             }
 
-            _location.SetLocation(_latitude, _longitude, ImageSource);
+            _location.SetLocation(_latitude, _longitude, fs);
 
             await App.Navigator.PopAsync();
         }
@@ -127,5 +149,6 @@ namespace IPCViewer.Forms.ViewModels
                 Position = new Position(location.Latitude, location.Longitude)
             });
         }
+
     }
 }

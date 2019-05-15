@@ -3,18 +3,15 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:maps="clr-namespace:Xamarin.Forms.GoogleMaps;assembly=Xamarin.Forms.GoogleMaps"
              xmlns:bindings="clr-namespace:Xamarin.Forms.GoogleMaps.Bindings;assembly=Xamarin.Forms.GoogleMaps.Bindings"
-             xmlns:viewModels="clr-namespace:IPCViewer.Forms.ViewModels"
              xmlns:forms="clr-namespace:Xamarin.Forms;assembly=Xamarin.Forms.Core"
              x:Class="IPCViewer.Forms.Views.MapsPage"
              Title="Map"
-        BackgroundColor="{StaticResource Primary}"
+             BackgroundColor="{StaticResource Primary}"
+             BindingContext="{Binding Main, Source={StaticResource Locator}}"
              >
 
-    <forms:ContentPage.BindingContext>
-        <viewModels:MapViewModel />
-    </forms:ContentPage.BindingContext>
-
     <forms:StackLayout
+        BindingContext="{Binding Maps}"
         Margin="10,20">
 
         <forms:Grid

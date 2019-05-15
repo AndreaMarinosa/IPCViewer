@@ -44,6 +44,9 @@
 
         public ProfileViewModel Profile { get; set; }
 
+        public MapViewModel Maps { get; set; }
+
+
         public User User
         {
             get => this.user;

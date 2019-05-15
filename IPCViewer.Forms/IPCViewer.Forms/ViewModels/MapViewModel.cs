@@ -1,5 +1,6 @@
 ﻿using IPCViewer.Common.Models;
 using IPCViewer.Common.Services;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -22,12 +23,11 @@ namespace IPCViewer.Forms.ViewModels
      * https://xamarinlatino.com/crear-un-pin-personalizado-para-mis-mapas-en-xamarin-forms-f4d62ada5e30
      */
 
-    //TODO: mostrar la lista mediante pines personalizados
     public class MapViewModel : BaseViewModel
     {
         private Pin _pin;
-        private readonly ApiService apiService;
-        private List<Camera> myCameras;
+        private readonly ApiService _apiService;
+        private List<Camera> _myCameras;
         private MapSpan _region;
         private ImageSource _imageSource;
         private bool _isVisible;
@@ -36,8 +36,8 @@ namespace IPCViewer.Forms.ViewModels
 
         public ImageSource ImageSource
         {
-            get { return _imageSource; }
-            set { SetProperty(ref _imageSource, value); }
+            get => _imageSource;
+            set => SetProperty(ref _imageSource, value);
         }
 
         public bool IsVisible
@@ -48,22 +48,37 @@ namespace IPCViewer.Forms.ViewModels
 
         public MapSpan Region
         {
-            get { return _region; }
-            set { SetProperty(ref _region, value); }
+            get => _region;
+            set => SetProperty(ref _region, value);
         }
 
         public Pin Pin
         {
-            get { return _pin; }
-            set { SetProperty(ref _pin, value); }
+            get => _pin;
+            set => SetProperty(ref _pin, value);
         }
 
         public MapViewModel ()
         {
-            this.apiService = new ApiService();
+            this._apiService = new ApiService();
             LoadCamerasAsync();
             LoadLocation();
              
+        }
+
+        public MapViewModel (Camera camera)
+        {
+            this._apiService = new ApiService();
+            LoadCamerasAsync();
+            LoadLocationCamera(camera);
+
+        }
+
+        private void LoadLocationCamera (Camera camera)
+        {
+            Region = MapSpan.FromCenterAndRadius(
+                new Position(camera.Latitude, camera.Longitude),
+                Distance.FromKilometers(2));
         }
 
         private async void LoadLocation()
@@ -81,7 +96,7 @@ namespace IPCViewer.Forms.ViewModels
 
         private async void LoadCamerasAsync ()
         {
-            var response = await this.apiService.GetListAsync<Camera>(
+            var response = await this._apiService.GetListAsync<Camera>(
                 "https://ipcviewerapi.azurewebsites.net",
                 "/api",
                 "/Cameras",
@@ -97,27 +112,34 @@ namespace IPCViewer.Forms.ViewModels
                 return;
             }
 
-            this.myCameras = (List<Camera>) response.Result;
+            this._myCameras = (List<Camera>) response.Result;
             AddMarkers();
         }
 
+        /***
+         * Añade los pines al mapa
+         */
         private void AddMarkers ()
         {
-            foreach ( var camera in myCameras )
+            foreach ( var camera in _myCameras )
             {
                 var pin = new Pin
                 {
                     IsVisible = true,
                     Label = camera.Name,
                     Position = new Position(camera.Latitude, camera.Longitude),
-                    Type = PinType.SavedPin
+                    Type = PinType.SavedPin,
+                    Icon = BitmapDescriptorFactory.FromBundle("type"+ 2)
                 };
 
                 Pins?.Add(pin);
             }
         }
 
-
+        /***
+         * Cuando pulse un pin, se le hará visible el layout que contiene los valores de ese pin además de la imagen que coincida con la
+         * posicion de la camara y el pin
+         */
         public Command<SelectedPinChangedEventArgs> SelectedPinChangedCommand
         {
             get
@@ -128,7 +150,7 @@ namespace IPCViewer.Forms.ViewModels
                         if (args.SelectedPin!=null)
                         {
                             IsVisible = true;
-                            ImageSource = myCameras.FirstOrDefault(c =>
+                            ImageSource = _myCameras.FirstOrDefault(c =>
                                 c.Latitude == args.SelectedPin.Position.Latitude &&
                                 c.Longitude == args.SelectedPin.Position.Longitude).ImageUrl;
                         }

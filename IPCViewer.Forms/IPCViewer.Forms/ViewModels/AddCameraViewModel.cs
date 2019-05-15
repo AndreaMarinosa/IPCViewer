@@ -1,6 +1,7 @@
 ﻿using IPCViewer.Forms.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.IO;
 
 namespace IPCViewer.Forms.ViewModels
 {
@@ -261,22 +262,21 @@ namespace IPCViewer.Forms.ViewModels
 
         public void OnClose (string url)
         {
-            if ( string.IsNullOrEmpty(url) )
-            {
-                IsVisible = false;
-            }
-            else
+            if ( !string.IsNullOrEmpty(url) )
             {
                 UrlCamera = url;
                 IsVisible = true;
             }
         }
 
-        public void SetLocation (string longitude, string latitude, ImageSource imageSource)
+        public void SetLocation(string longitude, string latitude, FileStream imageSource)
         {
             Latitude = latitude;
             Longitude = longitude;
-            ImageSource = imageSource;
+            ImageSource = ImageSource.FromStream(() =>
+            {
+                return imageSource;
+            });
         }
     }
 }

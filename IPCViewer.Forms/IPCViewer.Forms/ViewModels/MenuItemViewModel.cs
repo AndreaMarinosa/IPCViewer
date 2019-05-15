@@ -31,7 +31,7 @@
                     break;
 
                 case "MapsPage":
-                    //MainViewModel.GetInstance().Map = new MapViewModel();
+                    MainViewModel.GetInstance().Maps = new MapViewModel();
                     await App.Navigator.PushAsync(new MapsPage());
                     break;
 

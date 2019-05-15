@@ -9,7 +9,6 @@
     using System.Windows.Input;
     using Xamarin.Forms;
 
-    //TODO: Headers de las listview, agrupar las camaras por ciudades mediante linq
     public class CamerasViewModel : BaseViewModel
     {
         #region Private properties
@@ -54,10 +53,7 @@
         public CamerasViewModel ()
         {
             this.apiService = new ApiService();
-
             LoadCamerasAsync();
-
-
         }
 
         #endregion
@@ -167,7 +163,7 @@
     }
 
     /**
-     * Class for grouping
+     * Class for grouping headers
      */
     public class Grouping<TK, T> : ObservableCollection<T>
     {

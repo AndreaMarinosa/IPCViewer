@@ -4,6 +4,7 @@ using Android.OS;
 using Android.Runtime;
 using Plugin.CurrentActivity;
 using Plugin.Permissions;
+using Xamarin.Forms.GoogleMaps.Android;
 
 namespace IPCViewer.Forms.Droid
 {
@@ -25,17 +26,17 @@ namespace IPCViewer.Forms.Droid
 
             Syncfusion.XForms.Android.PopupLayout.SfPopupLayoutRenderer.Init();
 
-            //var platformConfig = new PlatformConfig
-            //{
-            //    BitmapDescriptorFactory = new AccessNativeBitmapConfig()
-            //};
+            var platformConfig = new PlatformConfig
+            {
+                BitmapDescriptorFactory = new AccessNativeBitmapConfig()
+            };
 
             // Initialize plugin
             Rg.Plugins.Popup.Popup.Init(this, savedInstanceState);
             FFImageLoading.Forms.Platform.CachedImageRenderer.Init(enableFastRenderer: true);
 
             //Initialize maps
-            Xamarin.FormsGoogleMaps.Init(this, savedInstanceState);
+            Xamarin.FormsGoogleMaps.Init(this, savedInstanceState, platformConfig);
             Xamarin.FormsGoogleMapsBindings.Init();
 
             LoadApplication(new App());

@@ -73,7 +73,7 @@
                 <Label 
                     TextColor="White"
                     FontSize="Small"
-                    HorizontalOptions="End" Text="{Binding Camera.ImageUrl}" />
+                    HorizontalOptions="End" Text="{Binding Camera.ImageFullPath}" />
                 
             </StackLayout>
 
