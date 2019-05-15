@@ -20,25 +20,13 @@
         private ObservableCollection<CameraItemViewModel> cameras;
         private bool isRefreshing;
         private City city;
-        private int citiesCount;
         private ObservableCollection<Grouping<string, CameraItemViewModel>> camerasGrouped;
-
-        public ObservableCollection<CameraItemViewModel> MyCamerasList { get; set; }
-
-        public ObservableCollection<CameraGroup> CameraGroups { get; set; }
-
 
         #endregion
 
         #region Public properties
 
         public City City { get => this.city; set => this.SetProperty(ref this.city, value); }
-
-        public int CitiesCount
-        {
-            get => citiesCount;
-            set => SetProperty(ref citiesCount, value);
-        }
 
         public ObservableCollection<Grouping<string, CameraItemViewModel>> CamerasGrouped
         { get => camerasGrouped;
@@ -66,10 +54,6 @@
         public CamerasViewModel ()
         {
             this.apiService = new ApiService();
-
-            CameraGroups = new ObservableCollection<CameraGroup>();
-
-            MyCamerasList = new ObservableCollection<CameraItemViewModel>();
 
             LoadCamerasAsync();
 
@@ -104,25 +88,13 @@
             //Use linq to sorty our cameras by name and then group them by the new name sort property
             var sorted =
                 from camera in Cameras
-                orderby camera.Name
+                orderby camera.City.Name
                 group camera by camera.NameSort into cameraGroup
                 select new Grouping<string, CameraItemViewModel>(cameraGroup.Key, cameraGroup);
 
             //create a new collection of groups
             CamerasGrouped = new ObservableCollection<Grouping<string, CameraItemViewModel>>(sorted);
 
-            foreach ( var cameraGrouped in sorted )
-            {
-                var cameraGroup = new CameraGroup();
-                cameraGroup.CityName = cameraGrouped.Key;
-                cameraGroup.Cameras = cameraGrouped.ToList();
-
-                CameraGroups.Add(cameraGroup);
-            }
-
-            CitiesCount = MyCamerasList.Count();
-
-            OnPropertyChanged("MyCamerasListView");
         }
      
         #endregion
@@ -167,7 +139,6 @@
             {
                 myCameras.Remove(oldCamera);
             }
-
             RefreshCamerasList();
         }
 

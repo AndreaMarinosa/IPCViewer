@@ -28,7 +28,7 @@
                 <ContentView Padding="0,40,0,40" VerticalOptions="FillAndExpand">
                     <Image
                         HeightRequest="64"
-                        Source="xamarin_logo.png"
+                        Source="logoIPCViewerLight.png"
                         VerticalOptions="Center" />
                 </ContentView>
             </StackLayout>

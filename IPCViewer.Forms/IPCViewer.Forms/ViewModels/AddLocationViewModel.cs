@@ -32,6 +32,7 @@ namespace IPCViewer.Forms.ViewModels
         {
             this._location = location;
             MapType = MapType.Satellite;
+            LoadLocation();
         }
         public MapType MapType
         {
@@ -50,8 +51,6 @@ namespace IPCViewer.Forms.ViewModels
             set => SetProperty(ref _region, value);
         }
 
-        public AddLocationViewModel() => LoadLocation();
-
         public ICommand GlobalCommand => new RelayCommand(this.Global);
 
         public ICommand SaveCommand => new RelayCommand(this.Save);
@@ -63,8 +62,10 @@ namespace IPCViewer.Forms.ViewModels
         public Command<MapClickedEventArgs> MapClickedCommand => new Command<MapClickedEventArgs>(
             args =>
             {
-                Pins.Clear();
-
+                if ( Pins.Count > 1 )
+                {
+                    Pins.RemoveAt(1);
+                }
                 Pin = new Pin
                 {
                     Label = "Pin",
@@ -96,10 +97,10 @@ namespace IPCViewer.Forms.ViewModels
 
             if ( ImageSource != null )
             {
-                var source = await Application.Current.MainPage.DisplayAlert("Important", "Do you want to save the screenshot as the camera image ? ", "Accept", "No");
+                var source = await Application.Current.MainPage.DisplayAlert("Important", "Do you want to save the screenshot as the camera image ? ", "Accept", "Cancel");
                 if ( !source )
                 {
-                    ImageSource = null;
+                    ImageSource = string.Empty;
                 }
             }
 
@@ -118,7 +119,13 @@ namespace IPCViewer.Forms.ViewModels
             var location = await Geolocation.GetLocationAsync(request);
             Region = MapSpan.FromCenterAndRadius(
                 new Position(location.Latitude, location.Longitude),
-                Distance.FromKilometers(2));
+                Distance.FromMeters(100));
+
+            Pins.Add(new Pin
+            {
+                Label = "Your location",
+                Position = new Position(location.Latitude, location.Longitude)
+            });
         }
     }
 }

@@ -6,7 +6,9 @@
              xmlns:viewModels="clr-namespace:IPCViewer.Forms.ViewModels"
              xmlns:forms="clr-namespace:Xamarin.Forms;assembly=Xamarin.Forms.Core"
              x:Class="IPCViewer.Forms.Views.MapsPage"
-             Title="Map">
+             Title="Map"
+        BackgroundColor="{StaticResource Primary}"
+             >
 
     <forms:ContentPage.BindingContext>
         <viewModels:MapViewModel />
@@ -15,7 +17,13 @@
     <forms:StackLayout
         Margin="10,20">
 
-        <forms:Grid>
+        <forms:Grid
+            IsVisible="{Binding IsVisible}"
+            Padding="10"
+            BackgroundColor="{StaticResource Primary}"
+            ColumnSpacing="10"
+            RowSpacing="10">
+
             <forms:Grid.ColumnDefinitions>
                 <forms:ColumnDefinition Width="Auto" />
                 <forms:ColumnDefinition Width="*" />
@@ -26,30 +34,29 @@
                 <forms:RowDefinition Height="20" />
                 <forms:RowDefinition Height="20" />
                 <forms:RowDefinition Height="20" />
-                <forms:RowDefinition Height="20" />
-                <forms:RowDefinition Height="20" />
             </forms:Grid.RowDefinitions>
 
             <Image
-                HeightRequest="100"
+                Aspect="Fill"
+                WidthRequest="100"
                 forms:Grid.Column="0"
                 forms:Grid.Row="0"
-                forms:Grid.RowSpan="4"
-                Source="{Binding ImageUrl}" />
+                forms:Grid.RowSpan="3"
+                Source="{Binding ImageSource}" />
 
-            <forms:StackLayout forms:Grid.Column="1" forms:Grid.Row="0" Orientation="Horizontal">
-                <Label Text="Name:" />
-                <Label Text="{Binding Pin.Label}" />
+            <forms:StackLayout Grid.ColumnSpan="2" forms:Grid.Column="1" forms:Grid.Row="0" Orientation="Horizontal">
+                <Label Text="Name:" TextColor="{StaticResource PrimaryFontColor}"/>
+                <Label Text="{Binding Pin.Label}" TextColor="{StaticResource PrimaryFontColor}" FontSize="Medium"/>
             </forms:StackLayout>
 
-            <forms:StackLayout forms:Grid.Column="1" forms:Grid.Row="1" Orientation="Horizontal">
-                <Label Text="Latitude:" />
-                <Label Text="{Binding Pin.Position.Latitude}" />
+            <forms:StackLayout Grid.ColumnSpan="2" forms:Grid.Column="1" forms:Grid.Row="1" Orientation="Horizontal">
+                <Label Text="Latitude:" TextColor="{StaticResource PrimaryFontColor}" />
+                <Label Text="{Binding Pin.Position.Latitude}" TextColor="{StaticResource PrimaryFontColor}" FontSize="Medium"/>
             </forms:StackLayout>
 
-            <forms:StackLayout forms:Grid.Column="1" forms:Grid.Row="2" Orientation="Horizontal">
-                <Label Text="Longitude:" />
-                <Label Text="{Binding Pin.Position.Longitude}" />
+            <forms:StackLayout Grid.ColumnSpan="2" forms:Grid.Column="1" forms:Grid.Row="2" Orientation="Horizontal">
+                <Label Text="Longitude:" TextColor="{StaticResource PrimaryFontColor}"/>
+                <Label Text="{Binding Pin.Position.Longitude}" TextColor="{StaticResource PrimaryFontColor}" FontSize="Medium"/>
             </forms:StackLayout>
         </forms:Grid>
 
@@ -61,6 +68,7 @@
                     <bindings:BindingPinsBehavior Value="{Binding Pins}" />
                     <bindings:UpdateRegionBehavior Region="{Binding Region}" />
                     <bindings:SelectedPinChangedToCommandBehavior Command="{Binding SelectedPinChangedCommand}" />
+                    <bindings:MapClickedToCommandBehavior Command="{Binding MapClickedCommand}" />
                 </maps:Map.Behaviors>
             </maps:Map>
         </forms:StackLayout>

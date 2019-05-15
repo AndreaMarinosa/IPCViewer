@@ -2,6 +2,7 @@
 using IPCViewer.Common.Services;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.GoogleMaps;
@@ -28,29 +29,33 @@ namespace IPCViewer.Forms.ViewModels
         private readonly ApiService apiService;
         private List<Camera> myCameras;
         private MapSpan _region;
-
-        // todo: poner la imagen en la label de arriba
         private ImageSource _imageSource;
-
+        private bool _isVisible;
 
         public ObservableCollection<Pin> Pins { get; set; }
 
         public ImageSource ImageSource
         {
-            get => _imageSource;
-            set => SetProperty(ref _imageSource, value);
+            get { return _imageSource; }
+            set { SetProperty(ref _imageSource, value); }
+        }
+
+        public bool IsVisible
+        {
+            get => _isVisible;
+            set => SetProperty(ref _isVisible, value);
         }
 
         public MapSpan Region
         {
-            get => _region;
-            set => SetProperty(ref _region, value);
+            get { return _region; }
+            set { SetProperty(ref _region, value); }
         }
 
         public Pin Pin
         {
-            get => _pin;
-            set => SetProperty(ref _pin, value);
+            get { return _pin; }
+            set { SetProperty(ref _pin, value); }
         }
 
         public MapViewModel ()
@@ -112,10 +117,29 @@ namespace IPCViewer.Forms.ViewModels
             }
         }
 
-        public Command<SelectedPinChangedEventArgs> SelectedPinChangedCommand => 
-            new Command<SelectedPinChangedEventArgs>(
-            args => Pin = args.SelectedPin);
 
-       
+        public Command<SelectedPinChangedEventArgs> SelectedPinChangedCommand
+        {
+            get
+            {
+                return new Command<SelectedPinChangedEventArgs>(
+                    args =>
+                    {
+                        if (args.SelectedPin!=null)
+                        {
+                            IsVisible = true;
+                            ImageSource = myCameras.FirstOrDefault(c =>
+                                c.Latitude == args.SelectedPin.Position.Latitude &&
+                                c.Longitude == args.SelectedPin.Position.Longitude).ImageUrl;
+                        }
+                        else
+                        {
+                            IsVisible = false;
+                            ImageSource = string.Empty;
+                        }
+                        Pin = args.SelectedPin;
+                    });
+            }
+        }
     }
 }

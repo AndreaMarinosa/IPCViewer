@@ -14,7 +14,6 @@
         <StackLayout Padding="5" BindingContext="{Binding Cameras}">
 
             <ListView
-                x:Name="MyCamerasListView"
                 CachingStrategy="RecycleElement"
                 GroupDisplayBinding="{Binding Key}"
                 GroupShortNameBinding="{Binding Key}"
@@ -46,7 +45,8 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <Grid>
+                            <Grid
+                                Margin="10">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
                                     <ColumnDefinition Width="*" />
@@ -78,7 +78,7 @@
                                         FontSize="Medium"
                                         Text="{Binding Name}"
                                         TextColor="Black" />
-                                    <StackLayout Orientation="Horizontal">
+                                    <StackLayout >
                                         <Label
                                             FontAttributes="Bold"
                                             FontSize="Small"
