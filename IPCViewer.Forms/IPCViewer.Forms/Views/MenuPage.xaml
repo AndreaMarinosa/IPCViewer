@@ -44,7 +44,7 @@
                     Grid.Row="1"
                     Grid.Column="1"
                     HorizontalOptions="Start"
-                    Text="Snuffy"
+                    Text="{Binding User.UserName}"
                     TextColor="{StaticResource PrimaryFontColor}"
                     VerticalOptions="End" />
                 <Label
@@ -54,11 +54,11 @@
                     Margin="10,0,0,15"
                     FontAttributes="Bold"
                     FontSize="Medium"
-                    Text="andreamarinosalopez@gmail.com"
+                    Text="{Binding User.Email}"
                     TextColor="White"
                     VerticalOptions="Center" />
-                <!--  Text="{Binding User.UserName}"  -->
-                <!--  Text="{Binding User.Email}"  -->
+                <!--    -->
+                <!--    -->
             </Grid>
             <!--<RelativeLayout>
                 <Image

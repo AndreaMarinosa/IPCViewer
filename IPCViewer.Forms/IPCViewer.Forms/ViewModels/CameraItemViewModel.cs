@@ -18,6 +18,8 @@ namespace IPCViewer.Forms.ViewModels
     {
         public string NameSort => string.IsNullOrWhiteSpace(City.Name) || City.Name.Length == 0 ? "?" : City.Name.ToUpper();
 
+        public ImageSource Icon { get => this.ImageUrl.StartsWith("http") ? "ic_available" : "ic_error"; }
+
         public ICommand SelectCameraCommand => new RelayCommand(SelectCamera);
 
         public ICommand SelectCameraImageCommand => new RelayCommand(SelectCameraImage);
@@ -36,7 +38,7 @@ namespace IPCViewer.Forms.ViewModels
         async void SelectCamera ()
         {
             var source = await Application.Current.MainPage.DisplayActionSheet(
-                "What do you want to do?", "Cancel", null,
+                this.Name, "Cancel", null,
                 "Edit camera", "View Camera", "View Maps");
 
             switch ( source )

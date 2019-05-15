@@ -22,22 +22,37 @@
                 IsPullToRefreshEnabled="True"
                 IsRefreshing="{Binding IsRefreshing}"
                 ItemsSource="{Binding CamerasGrouped}"
-                RefreshCommand="{Binding RefreshCommand}">
+                RefreshCommand="{Binding RefreshCommand}"
+                SeparatorVisibility="None">
+
+                <ListView.Header>
+                    <StackLayout
+                        Margin="0,0,0,10"
+                        HorizontalOptions="StartAndExpand"
+                        Orientation="Horizontal">
+                        <Label FontSize="Medium" Text="Nº Cameras:" />
+                        <Label FontSize="Medium" Text="{Binding Cameras.Count}" />
+                    </StackLayout>
+                </ListView.Header>
 
                 <ListView.GroupHeaderTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <StackLayout
-                                Padding="5"
-                                BackgroundColor="{StaticResource Primary}"
-                                VerticalOptions="FillAndExpand">
+                            <Grid Padding="5" BackgroundColor="{StaticResource Primary}">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="30" />
+                                </Grid.RowDefinitions>
+                                <Image
+                                    Aspect="AspectFill"
+                                    HorizontalOptions="Fill"
+                                    Source="bc_header" />
                                 <Label
                                     Margin="5"
                                     FontSize="Large"
                                     Text="{Binding Key}"
                                     TextColor="White"
                                     VerticalOptions="CenterAndExpand" />
-                            </StackLayout>
+                            </Grid>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.GroupHeaderTemplate>
@@ -45,14 +60,15 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <Grid
-                                Margin="10">
+                            <Grid Padding="10">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
                                     <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
                                 </Grid.ColumnDefinitions>
 
                                 <Grid.RowDefinitions>
+                                    <RowDefinition Height="*" />
                                     <RowDefinition Height="*" />
                                 </Grid.RowDefinitions>
 
@@ -61,35 +77,39 @@
                                 </Grid.GestureRecognizers>
 
                                 <Image
+                                    Grid.RowSpan="2"
                                     Grid.Column="0"
+                                    Aspect="AspectFill"
+                                    HeightRequest="60"
                                     Source="{Binding ImageFullPath}"
-                                    VerticalOptions="Fill"
-                                    WidthRequest="100">
+                                    VerticalOptions="Fill">
 
                                     <Image.GestureRecognizers>
                                         <TapGestureRecognizer Command="{Binding SelectCameraImageCommand}" />
                                     </Image.GestureRecognizers>
                                 </Image>
 
-                                <StackLayout Grid.Column="1" VerticalOptions="Center">
-                                    <Label
-                                        FontAttributes="Bold"
-                                        FontSize="Medium"
-                                        Text="{Binding Name}"
-                                        TextColor="Black" />
-                                    <StackLayout >
-                                        <Label
-                                            FontAttributes="Bold"
-                                            FontSize="Small"
-                                            Text="{Binding Latitude}"
-                                            TextColor="{StaticResource SecondaryDark}" />
-                                        <Label
-                                            FontAttributes="Bold"
-                                            FontSize="Small"
-                                            Text="{Binding Longitude}"
-                                            TextColor="Navy" />
-                                    </StackLayout>
-                                </StackLayout>
+                                <Label
+                                    Grid.Column="1"
+                                    FontAttributes="Bold"
+                                    FontSize="Medium"
+                                    Text="{Binding Name}"
+                                    TextColor="Black"
+                                    VerticalOptions="Center" />
+                                <Label
+                                    Grid.Row="1"
+                                    Grid.Column="1"
+                                    FontAttributes="Bold"
+                                    FontSize="Small"
+                                    Text="{Binding Comments}"
+                                    TextColor="{StaticResource SecondaryDark}" />
+
+                                <Image
+                                    Grid.RowSpan="2"
+                                    Grid.Column="2"
+                                    HeightRequest="20"
+                                    Source="{Binding Icon}"
+                                    VerticalOptions="Center" />
                             </Grid>
                         </ViewCell>
                     </DataTemplate>

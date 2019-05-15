@@ -98,8 +98,8 @@ namespace IPCViewer.Forms.ViewModels
             Camera = camera;
             apiService = new ApiService();
             IsEnabled = true;
-            Longitude = Camera.Longitude.ToString(CultureInfo.InvariantCulture);
-            Latitude = Camera.Latitude.ToString(CultureInfo.InvariantCulture);
+            Longitude = Camera.Longitude.ToString();
+            Latitude = Camera.Latitude.ToString();
             UrlCamera = Camera.ImageFullPath;
             if (!string.IsNullOrEmpty(UrlCamera))
             {
@@ -291,7 +291,6 @@ namespace IPCViewer.Forms.ViewModels
         {
             Latitude = latitude;
             Longitude = longitude;
-            ImageSource = new StreamImageSource();
             // todo: error access (stream closed)
         }
 

@@ -35,7 +35,6 @@
                         <RowDefinition Height="*" />
                         <RowDefinition Height="*" />
                         <RowDefinition Height="*" />
-                        <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
 
                     <!--  Name  -->
@@ -50,19 +49,6 @@
                         Grid.ColumnSpan="2"
                         Placeholder="Camera name"
                         Text="{Binding Camera.Name}" />
-
-                    <!--  User  -->
-                    <Label
-                        Grid.Row="1"
-                        Grid.Column="0"
-                        Text="Created by: " />
-
-                    <Entry
-                        Grid.Row="1"
-                        Grid.Column="1"
-                        Grid.ColumnSpan="2"
-                        IsReadOnly="True"
-                        Text="{Binding Camera.User.UserName}" />
 
                     <!--  Comments  -->
                     <Label
@@ -91,18 +77,15 @@
                         Text="{Binding Latitude}" />
 
                     <Button
-                        VerticalOptions="End"
                         Grid.Row="3"
                         Grid.Column="0"
                         Command="{Binding AddLocationCommand}"
                         FontSize="Small"
-                        HeightRequest="10"
-                        Text="Location" />
+                        Text="Location"
+                        VerticalOptions="End" />
 
                 </Grid>
-                <ActivityIndicator
-                    HorizontalOptions="Center"
-                    IsRunning="{Binding IsRunning}" />
+                <ActivityIndicator HorizontalOptions="Center" IsRunning="{Binding IsRunning}" />
                 <StackLayout Orientation="Horizontal">
 
                     <Button

@@ -107,8 +107,7 @@ namespace IPCViewer.Forms.ViewModels
 
             }
 
-
-            _location.SetLocation(_latitude, _longitude, new byte[3]);
+            _location.SetLocation(_latitude, _longitude, new byte[0]);
 
             await App.Navigator.PopAsync();
         }

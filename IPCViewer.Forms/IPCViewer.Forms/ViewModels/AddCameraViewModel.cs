@@ -273,7 +273,6 @@ namespace IPCViewer.Forms.ViewModels
         {
             Latitude = latitude;
             Longitude = longitude;
-            ImageSource = new StreamImageSource();
         }
     }
 }

@@ -157,7 +157,7 @@
                     Comments = c.Comments,
                     Name = c.Name,
                     User = c.User,
-                    ImageFullPath = c.ImageFullPath
+                    ImageFullPath = c.ImageFullPath,
                 }).ToList());
         }
     }

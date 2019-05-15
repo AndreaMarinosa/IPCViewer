@@ -4,79 +4,90 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:forms="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
-    BindingContext="{Binding Main, Source={StaticResource Locator}}"
+    Title="View Camera"
     BackgroundColor="{StaticResource Primary}"
-    Title="View Camera">
+    BindingContext="{Binding Main, Source={StaticResource Locator}}">
 
     <ContentPage.Content>
-        <StackLayout Padding="30" BindingContext="{Binding DisplayCamera}">
-
+        <ScrollView Padding="30" BindingContext="{Binding DisplayCamera}">
             <StackLayout>
                 <Label
-                    TextDecorations="Underline"
-                    FontAttributes="Bold"
-                    FontSize="30"
-                    Text="{Binding Camera.Name}"
-                    TextColor="{StaticResource PrimaryFontColor}"
-                    Margin="0,0,0,10"/>
+                        Margin="0,0,0,10"
+                        FontAttributes="Bold"
+                        FontSize="30"
+                        Text="{Binding Camera.Name}"
+                        TextColor="{StaticResource PrimaryFontColor}"
+                        TextDecorations="Underline" />
 
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
 
-                <StackLayout Orientation="Horizontal" >
-                    <Label Text="Latitude: " TextColor="{StaticResource PrimaryFontColor}" />
-                    <Label Text="{Binding Camera.Latitude}" TextColor="{StaticResource SecondaryLight}" />
-                </StackLayout>
-                <StackLayout Orientation="Horizontal" >
-                    <Label Text="Longitude: " TextColor="{StaticResource PrimaryFontColor}" />
-                    <Label Text="{Binding Camera.Longitude}" TextColor="{StaticResource SecondaryLight}" />
+                    <Label Grid.Column="0" Grid.Row="0" Text="Latitude: " TextColor="{StaticResource PrimaryFontColor}" />
+                    <Label Grid.Column="1" Grid.Row="0" Text="{Binding Camera.Latitude}" TextColor="{StaticResource SecondaryLight}" />
+
+                    <Label Grid.Column="0" Grid.Row="1" Text="Longitude: " TextColor="{StaticResource PrimaryFontColor}" />
+                    <Label Grid.Column="1" Grid.Row="1" Text="{Binding Camera.Longitude}" TextColor="{StaticResource SecondaryLight}" />
+
+                    <Label Grid.Column="0" Grid.Row="2"  Text="City: " TextColor="{StaticResource PrimaryFontColor}" />
+                    <Label Grid.Column="1" Grid.Row="2"  Text="{Binding Camera.City.Name}" TextColor="{StaticResource SecondaryLight}" />
+
+                    <Label Grid.Column="0" Grid.Row="3" Text="Created by: " TextColor="{StaticResource PrimaryFontColor}" />
+                    <Label Grid.Column="1" Grid.Row="3" Text="{Binding Camera.User.UserName}" TextColor="{StaticResource SecondaryLight}" />
+
+                    <Label Grid.Column="0" Grid.Row="4"  Text="Creation: " TextColor="{StaticResource PrimaryFontColor}" />
+                    <Label Grid.Column="1" Grid.Row="4"  Text="{Binding Camera.CreatedDate}" TextColor="{StaticResource SecondaryLight}" />
+
+                  </Grid>
+
+                <StackLayout>
+                    
+
+                    <BoxView
+                        Margin="0,10"
+                        HeightRequest="2"
+                        HorizontalOptions="Fill"
+                        Opacity="0.5"
+                        Color="White" />
+
                 </StackLayout>
 
-                <StackLayout Orientation="Horizontal" >
-                    <Label Text="Created by: " TextColor="{StaticResource PrimaryFontColor}"/>
-                    <Label Text="{Binding Camera.User.UserName}" TextColor="{StaticResource SecondaryLight}" />
-                </StackLayout>
-                <StackLayout Orientation="Horizontal" >
-                    <Label 
-                        Text="Creation: " TextColor="{StaticResource PrimaryFontColor}"/>
-                    <Label Text="{Binding Camera.CreatedDate}" TextColor="{StaticResource SecondaryLight}" />
-                </StackLayout>
+                <StackLayout>
+                    <Label
+                        FontSize="Small"
+                        HorizontalOptions="CenterAndExpand"
+                        Text="{Binding Date}"
+                        TextColor="{StaticResource PrimaryFontColor}" />
 
-                <StackLayout Orientation="Horizontal" >
-                    <Label 
-                        Text="City: " TextColor="{StaticResource PrimaryFontColor}"/>
-                    <Label  Text="{Binding Camera.City.Name}" TextColor="{StaticResource SecondaryLight}" />
-                </StackLayout>
+                    <forms:CachedImage
+                        Aspect="Fill"
+                        CacheType="None"
+                        DownsampleToViewSize="true"
+                        FadeAnimationEnabled="True"
+                        HeightRequest="250"
+                        HorizontalOptions="FillAndExpand"
+                        LoadingDelay="0"
+                        Source="{Binding ImageUrl}"
+                        VerticalOptions="FillAndExpand" />
 
-                <BoxView
-                    Opacity="0.5"
-                    Margin="0,10"
-                    HeightRequest="2"
-                    HorizontalOptions="Fill"
-                    Color="White" />
+                    <Label
+                        FontSize="Small"
+                        HorizontalOptions="End"
+                        Text="{Binding Camera.ImageFullPath}"
+                        TextColor="White" />
+
+                </StackLayout>
 
             </StackLayout>
-
-            <StackLayout >
-                <Label FontSize="Small"
-                       HorizontalOptions="CenterAndExpand" Text="{Binding Date}" TextColor="{StaticResource PrimaryFontColor}"/>
-
-                <forms:CachedImage
-                CacheType="None"
-                DownsampleToViewSize="true"
-                FadeAnimationEnabled="True"
-                HorizontalOptions="FillAndExpand"
-                VerticalOptions="FillAndExpand"
-                LoadingDelay="0"
-                HeightRequest="250"
-                Source="{Binding ImageUrl}"
-                Aspect="Fill" />
-
-                <Label 
-                    TextColor="White"
-                    FontSize="Small"
-                    HorizontalOptions="End" Text="{Binding Camera.ImageFullPath}" />
-                
-            </StackLayout>
-
-        </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>
