@@ -11,11 +11,11 @@ namespace IPCViewer.Forms.Views
             InitializeComponent();
         }
 
-        // Invoked when background is clicked
-        //protected override bool OnBackgroundClicked ()
-        //{
-        //    // Return false if you don't want to close this popup page when a background of the popup page is clicked
-        //    return false;
-        //}
+        //Invoked when background is clicked
+        protected override bool OnBackgroundClicked ()
+        {
+            // Return false if you don't want to close this popup page when a background of the popup page is clicked
+            return false;
+        }
     }
 }

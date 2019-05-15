@@ -83,7 +83,6 @@ namespace IPCViewer.Forms.ViewModels
         {
            var stream = await TakeSnapshotRequest.TakeSnapshot();
             ImageSource = ImageSource.FromStream(() => stream);
-            var img = ImageSource.ToByteArray();
         });
 
 
@@ -108,9 +107,8 @@ namespace IPCViewer.Forms.ViewModels
 
             }
 
-            byte[] arr = stream.ToByteArray();
 
-            _location.SetLocation(_latitude, _longitude, arr);
+            _location.SetLocation(_latitude, _longitude, new byte[3]);
 
             await App.Navigator.PopAsync();
         }
