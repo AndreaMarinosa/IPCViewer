@@ -41,7 +41,7 @@
                     return this.ImageUrl;
                 }
 
-                return $"https://ipcviewerapi.azurewebsites.net{this.ImageUrl.Substring(1)}";
+                return $"https://ipcviewerapi.azurewebsites.net/files{this.ImageUrl.Substring(1)}";
             }
         }
     }
