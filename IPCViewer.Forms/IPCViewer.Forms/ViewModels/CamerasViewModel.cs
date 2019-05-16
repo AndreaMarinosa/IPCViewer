@@ -1,4 +1,6 @@
-﻿namespace IPCViewer.Forms.ViewModels
+﻿using System.Net;
+
+namespace IPCViewer.Forms.ViewModels
 {
     using Common.Models;
     using Common.Services;
@@ -28,7 +30,8 @@
         public City City { get => this.city; set => this.SetProperty(ref this.city, value); }
 
         public ObservableCollection<Grouping<string, CameraItemViewModel>> CamerasGrouped
-        { get => camerasGrouped;
+        {
+            get => camerasGrouped;
             set => SetProperty(ref camerasGrouped, value);
         }
 
@@ -92,7 +95,7 @@
             CamerasGrouped = new ObservableCollection<Grouping<string, CameraItemViewModel>>(sorted);
 
         }
-     
+
         #endregion
 
 
@@ -143,6 +146,7 @@
 
         private void RefreshCamerasList ()
         {
+
             // ObservableCollection de la Clase CameraItemViewModel -> (Camera + Comando)
             Cameras = new ObservableCollection<CameraItemViewModel>(
                 myCameras.Select(c => new CameraItemViewModel // Por cada camera se creara una nueva instancia de CameraItemViewModel
@@ -157,9 +161,11 @@
                     Comments = c.Comments,
                     Name = c.Name,
                     User = c.User,
-                    ImageFullPath = c.ImageFullPath,
+                    ImageFullPath = apiService.RemoteFileExists(c.ImageFullPath, 3000) ? c.ImageFullPath : "ic_error"
                 }).ToList());
         }
+
+       
     }
 
     /**

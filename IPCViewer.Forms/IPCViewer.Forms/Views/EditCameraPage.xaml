@@ -15,7 +15,7 @@
                     </Image.GestureRecognizers>
 
                     <Image.Source>
-                        <UriImageSource Uri="{Binding Camera.ImageFullPath}" />
+                        <UriImageSource Uri="{Binding UrlCamera}" />
                     </Image.Source>
                 </Image>
 

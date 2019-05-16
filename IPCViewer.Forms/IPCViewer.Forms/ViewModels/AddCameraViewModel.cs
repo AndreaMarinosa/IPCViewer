@@ -165,8 +165,11 @@ namespace IPCViewer.Forms.ViewModels
             }
             else
             {
-                await Application.Current.MainPage.DisplayAlert("Error", "You must enter an url or image.", "Accept");
-                return;
+                var source = await Application.Current.MainPage.DisplayAlert("Alert", "Are you sure you want to save the camera without an image?", "Accept", "Cancel");
+                if ( source.CompareTo("Accept") != 1 )
+                {
+                    return;
+                }
             }
 
             // si no tiene ninguna, poner un alert y que cancele la operacion
