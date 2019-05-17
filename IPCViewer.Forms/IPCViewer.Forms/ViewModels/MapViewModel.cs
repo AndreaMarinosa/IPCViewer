@@ -161,7 +161,7 @@ namespace IPCViewer.Forms.ViewModels
                             IsVisible = true;
                             ImageSource = _myCameras.FirstOrDefault(c =>
                                 c.Latitude == args.SelectedPin.Position.Latitude &&
-                                c.Longitude == args.SelectedPin.Position.Longitude).ImageUrl;
+                                c.Longitude == args.SelectedPin.Position.Longitude).ImageFullPath;
                         }
                         else
                         {

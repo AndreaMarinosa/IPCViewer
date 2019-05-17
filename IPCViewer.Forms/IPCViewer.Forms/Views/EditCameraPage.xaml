@@ -9,20 +9,24 @@
         <ScrollView BindingContext="{Binding EditCamera}">
             <StackLayout Padding="10">
 
-                <Image HeightRequest="250">
+                <StackLayout Orientation="Vertical">
+                    <ImageButton
+                        Source="" Command="{Binding DisplayCommand}"/>
+                    
+                    <ImageButton/>
+
+                </StackLayout>
+
+                <Image HeightRequest="250" Source="{Binding UrlCamera}">
                     <Image.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding TapCommand}" />
                     </Image.GestureRecognizers>
 
-                    <Image.Source>
-                        <UriImageSource Uri="{Binding UrlCamera}" />
-                    </Image.Source>
                 </Image>
 
                 <Label
                     FontSize="Small"
                     HorizontalOptions="Center"
-                    IsVisible="{Binding IsVisible}"
                     Text="{Binding UrlCamera}" />
 
                 <Grid>
@@ -52,11 +56,11 @@
 
                     <!--  Comments  -->
                     <Label
-                        Grid.Row="2"
+                        Grid.Row="1"
                         Grid.Column="0"
                         Text="Comments" />
                     <Entry
-                        Grid.Row="2"
+                        Grid.Row="1"
                         Grid.Column="1"
                         Grid.ColumnSpan="2"
                         Placeholder="Comments"
@@ -64,25 +68,33 @@
 
                     <!--  Latitude  -->
                     <Entry
-                        Grid.Row="3"
+                        Grid.Row="2"
                         Grid.Column="1"
-                        Placeholder="Longitude..."
-                        Text="{Binding Longitude}" />
-
-                    <!--  Longitude  -->
-                    <Entry
-                        Grid.Row="3"
-                        Grid.Column="2"
                         Placeholder="Latitude..."
                         Text="{Binding Latitude}" />
 
-                    <Button
-                        Grid.Row="3"
+                    <!--  Longitude  -->
+                    <Entry
+                        Grid.Row="2"
+                        Grid.Column="2"
+                        Placeholder="Longitude..."
+                        Text="{Binding Longitude}" />
+
+                    <ImageButton
+                        Grid.Row="2"
+                        Grid.Column="0"
+                        BackgroundColor="Transparent"
+                        Command="{Binding AddLocationCommand}"
+                        HeightRequest="20"
+                        Source="ic_pinList" />
+
+                    <!--<Button
+                        Grid.Row="2"
                         Grid.Column="0"
                         Command="{Binding AddLocationCommand}"
                         FontSize="Small"
                         Text="Location"
-                        VerticalOptions="End" />
+                        VerticalOptions="End" />-->
 
                 </Grid>
                 <ActivityIndicator HorizontalOptions="Center" IsRunning="{Binding IsRunning}" />

@@ -12,12 +12,12 @@
         <ScrollView Padding="30" BindingContext="{Binding DisplayCamera}">
             <StackLayout>
                 <Label
-                        Margin="0,0,0,10"
-                        FontAttributes="Bold"
-                        FontSize="30"
-                        Text="{Binding Camera.Name}"
-                        TextColor="{StaticResource PrimaryFontColor}"
-                        TextDecorations="Underline" />
+                    Margin="0,0,0,10"
+                    FontAttributes="Bold"
+                    FontSize="30"
+                    Text="{Binding Camera.Name}"
+                    TextColor="{StaticResource PrimaryFontColor}"
+                    TextDecorations="Underline" />
 
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -32,25 +32,65 @@
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
 
-                    <Label Grid.Column="0" Grid.Row="0" Text="Latitude: " TextColor="{StaticResource PrimaryFontColor}" />
-                    <Label Grid.Column="1" Grid.Row="0" Text="{Binding Camera.Latitude}" TextColor="{StaticResource SecondaryLight}" />
+                    <Label
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        Text="Latitude: "
+                        TextColor="{StaticResource PrimaryFontColor}" />
+                    <Label
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        Text="{Binding Camera.Latitude}"
+                        TextColor="{StaticResource SecondaryLight}" />
 
-                    <Label Grid.Column="0" Grid.Row="1" Text="Longitude: " TextColor="{StaticResource PrimaryFontColor}" />
-                    <Label Grid.Column="1" Grid.Row="1" Text="{Binding Camera.Longitude}" TextColor="{StaticResource SecondaryLight}" />
+                    <Label
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        Text="Longitude: "
+                        TextColor="{StaticResource PrimaryFontColor}" />
+                    <Label
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        Text="{Binding Camera.Longitude}"
+                        TextColor="{StaticResource SecondaryLight}" />
 
-                    <Label Grid.Column="0" Grid.Row="2"  Text="City: " TextColor="{StaticResource PrimaryFontColor}" />
-                    <Label Grid.Column="1" Grid.Row="2"  Text="{Binding Camera.City.Name}" TextColor="{StaticResource SecondaryLight}" />
+                    <Label
+                        Grid.Row="2"
+                        Grid.Column="0"
+                        Text="City: "
+                        TextColor="{StaticResource PrimaryFontColor}" />
+                    <Label
+                        Grid.Row="2"
+                        Grid.Column="1"
+                        Text="{Binding Camera.City.Name}"
+                        TextColor="{StaticResource SecondaryLight}" />
 
-                    <Label Grid.Column="0" Grid.Row="3" Text="Created by: " TextColor="{StaticResource PrimaryFontColor}" />
-                    <Label Grid.Column="1" Grid.Row="3" Text="{Binding Camera.User.UserName}" TextColor="{StaticResource SecondaryLight}" />
+                    <Label
+                        Grid.Row="3"
+                        Grid.Column="0"
+                        Text="Created by: "
+                        TextColor="{StaticResource PrimaryFontColor}" />
+                    <Label
+                        Grid.Row="3"
+                        Grid.Column="1"
+                        Text="{Binding Camera.User.UserName}"
+                        TextColor="{StaticResource SecondaryLight}" />
 
-                    <Label Grid.Column="0" Grid.Row="4"  Text="Creation: " TextColor="{StaticResource PrimaryFontColor}" />
-                    <Label Grid.Column="1" Grid.Row="4"  Text="{Binding Camera.CreatedDate}" TextColor="{StaticResource SecondaryLight}" />
+                    <Label
+                        Grid.Row="4"
+                        Grid.Column="0"
+                        Text="Creation: "
+                        TextColor="{StaticResource PrimaryFontColor}" />
+                    <Label
+                        Grid.Row="4"
+                        Grid.Column="1"
+                        Text="{Binding Camera.CreatedDate}"
+                        TextColor="{StaticResource SecondaryLight}" />
 
-                  </Grid>
+                </Grid>
 
                 <StackLayout>
-                    
+
 
                     <BoxView
                         Margin="0,10"
@@ -69,7 +109,7 @@
                         TextColor="{StaticResource PrimaryFontColor}" />
 
                     <forms:CachedImage
-                        Aspect="Fill"
+                        Aspect="AspectFill"
                         CacheType="None"
                         DownsampleToViewSize="true"
                         FadeAnimationEnabled="True"

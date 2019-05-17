@@ -23,6 +23,8 @@ namespace IPCViewer.Forms.ViewModels
         private Pin _pin;
         private MapSpan _region;
 
+        public Stream stream { get; set; }
+
         public ObservableCollection<Pin> Pins { get; set; }
 
         public ImageSource ImageSource
@@ -34,7 +36,7 @@ namespace IPCViewer.Forms.ViewModels
         public AddLocationViewModel (ILocation location)
         {
             this._location = location;
-            MapType = MapType.Satellite;
+            MapType = MapType.Hybrid;
             LoadLocation();
         }
         public MapType MapType
@@ -82,21 +84,27 @@ namespace IPCViewer.Forms.ViewModels
 
         public Command TakeSnapshotCommand => new Command(async () =>
         {
-           var stream = await TakeSnapshotRequest.TakeSnapshot();
-            ImageSource = ImageSource.FromStream(() => stream);
-
+            stream = await TakeSnapshotRequest.TakeSnapshot();
+            //ImageSource = ImageSource.FromStream(() => stream);
             using ( MemoryStream ms = new MemoryStream() )
             {
                 stream.CopyTo(ms);
-                _imageBytes =  ms.ToArray();
+                _imageBytes = ms.ToArray();
             }
+
+            ImageSource = ImageSource.FromStream(() => new MemoryStream(_imageBytes));
+
         });
-
-
 
 
         private async void Save ()
         {
+            if ( Pin == null )
+            {
+                await Application.Current.MainPage.DisplayAlert("Error", "You select select a Pin", null, "Accept");
+                return;
+            }
+
             _latitude = Pin.Position.Latitude.ToString(CultureInfo.InvariantCulture);
             _longitude = Pin.Position.Longitude.ToString(CultureInfo.InvariantCulture);
 
@@ -112,8 +120,8 @@ namespace IPCViewer.Forms.ViewModels
                 if ( !source )
                 {
                     ImageSource = string.Empty;
+                    _imageBytes = null;
                 }
-
             }
 
             _location.SetLocation(_latitude, _longitude, _imageBytes);
@@ -121,19 +129,19 @@ namespace IPCViewer.Forms.ViewModels
             await App.Navigator.PopAsync();
         }
 
-      
-
         private void Global () => MapType = MapType.Street;
 
         private void Hybrid () => MapType = MapType.Hybrid;
 
         private async void LoadLocation ()
         {
+
             var request = new GeolocationRequest(GeolocationAccuracy.Medium);
             var location = await Geolocation.GetLocationAsync(request);
             Region = MapSpan.FromCenterAndRadius(
-                new Position(location.Latitude, location.Longitude),
-                Distance.FromMeters(100));
+            new Position(location.Latitude, location.Longitude),
+            Distance.FromMeters(100));
+
 
             Pins.Add(new Pin
             {

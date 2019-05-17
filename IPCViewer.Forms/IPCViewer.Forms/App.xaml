@@ -85,6 +85,11 @@
                 <Setter Property="VerticalOptions" Value="CenterAndExpand" />
             </Style>
 
+            <!--  Image button  -->
+
+            <Style TargetType="ImageButton">
+                <Setter Property="BackgroundColor" Value="Transparent" />
+            </Style>
             <!--  Entry styles  -->
             <Style TargetType="Entry">
                 <Setter Property="FontFamily" Value="{StaticResource LightFont}" />

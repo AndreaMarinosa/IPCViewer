@@ -17,7 +17,7 @@
                 </Image>
                 <Label
                     FontSize="Small"
-                    HorizontalOptions="CenterAndExpand"
+                    HorizontalOptions="Center"
                     IsVisible="{Binding IsVisible}"
                     Text="{Binding UrlCamera}" />
 
@@ -63,14 +63,14 @@
                     <Entry
                         Grid.Row="3"
                         Grid.Column="0"
-                        Placeholder="Longitude..."
-                        Text="{Binding Longitude}" />
+                        Placeholder="Latitude..."
+                        Text="{Binding Latitude}" />
 
                     <Entry
                         Grid.Row="3"
                         Grid.Column="1"
-                        Placeholder="Latitude..."
-                        Text="{Binding Latitude}" />
+                        Placeholder="Longitude..."
+                        Text="{Binding Longitude}" />
 
                     <Button
                         Grid.Row="4"

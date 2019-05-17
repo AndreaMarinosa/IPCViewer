@@ -4,7 +4,6 @@ namespace IPCViewer.Forms.ViewModels
 {
     using System;
     using System.Windows.Input;
-    using System.Globalization;
     using Common.Models;
     using Common.Services;
     using GalaSoft.MvvmLight.Command;
@@ -13,6 +12,7 @@ namespace IPCViewer.Forms.ViewModels
     using Xamarin.Forms;
     using Plugin.Media;
     using Plugin.Media.Abstractions;
+    using System.IO;
 
     public class EditCameraViewModel : BaseViewModel, ILocation, IClosePopup
     {
@@ -23,6 +23,7 @@ namespace IPCViewer.Forms.ViewModels
         private string longitude;
         private MediaFile file;
         private ImageSource imageSource;
+        private byte[] _imageByte;
         private string _urlCamera;
         private bool isVisible;
 
@@ -90,6 +91,11 @@ namespace IPCViewer.Forms.ViewModels
             get { return new RelayCommand(ChangeImage); }
         }
 
+        public ICommand DisplayCommand
+        {
+            get { return new RelayCommand(DisplayCameraAsync); }
+        }
+
         /**
          * La camara ligada a la MainViewModel es la que se pasa por parametro
          */
@@ -100,12 +106,7 @@ namespace IPCViewer.Forms.ViewModels
             IsEnabled = true;
             Longitude = Camera.Longitude.ToString();
             Latitude = Camera.Latitude.ToString();
-            UrlCamera = Camera.ImageFullPath;
-            if (!string.IsNullOrEmpty(UrlCamera))
-            {
-                IsVisible = true;
-            }
-
+            UrlCamera = camera.ImageFullPath;
         }
 
 
@@ -155,6 +156,12 @@ namespace IPCViewer.Forms.ViewModels
                 return;
             }
 
+            if ( City == null )
+            {
+                await Application.Current.MainPage.DisplayAlert("Error", "You must select a city.", "Accept");
+                return;
+            }
+
             if ( string.IsNullOrEmpty(Longitude) )
             {
                 await Application.Current.MainPage.DisplayAlert("Error", "You must enter a longitude.", "Accept");
@@ -167,25 +174,34 @@ namespace IPCViewer.Forms.ViewModels
                 return;
             }
 
-            // Primero comprobamos si hay imagen
-            if ( file != null ) // Si hay imagen
+            byte[] imageArray = null;
+            // si es file no es null, que cargue la imagen
+            if ( this.file != null )
             {
-                byte[] imageArray = null;
                 imageArray = FilesHelper.ReadFully(this.file.GetStream());
                 Camera.ImageArray = imageArray;
             }
-            // Si no hay imagen, comprobamos la url
-            else if ( !string.IsNullOrEmpty(UrlCamera) ) // Si hay url
+            // si el file image array es null, que compruebe si existe la url
+            else if ( !string.IsNullOrEmpty(UrlCamera) )
             {
                 Camera.ImageUrl = UrlCamera;
             }
-            // Si no hay imagen ni url, alert preguntando si estamos seguros de que queremos guardar la camara sin imagen
+            // si el screenshot no es null
+            else if ( this._imageByte != null )
+            {
+                Camera.ImageArray = _imageByte;
+            }
             else
             {
                 var source = await Application.Current.MainPage.DisplayAlert("Alert", "Are you sure you want to save the camera without an image?", "Accept", "Cancel");
-                if ( source.CompareTo("Accept") != 1 )
+                if ( source != true )
                 {
                     return;
+                }
+                else
+                {
+                    Camera.ImageUrl = string.Empty;
+                    Camera.ImageArray = null;
                 }
             }
 
@@ -229,8 +245,7 @@ namespace IPCViewer.Forms.ViewModels
                 null,
                 "From Gallery",
                 "From Camera",
-                "From Url",
-                "View camera");
+                "From Url");
 
             switch ( source )
             {
@@ -263,11 +278,6 @@ namespace IPCViewer.Forms.ViewModels
                         await App.Navigator.PushAsync(new AddUrlPage());
                         break;
                     }
-                case "View camera":
-                    {
-                        DisplayCameraAsync();
-                        break;
-                    }
             }
 
             // Si han elegido una imagen
@@ -287,11 +297,17 @@ namespace IPCViewer.Forms.ViewModels
             await App.Navigator.PushAsync(new AddLocationPage(), true);
         }
 
-        public void SetLocation(string longitude, string latitude, byte[] imageSource)
+        public void SetLocation(string latitude, string longitude, byte[] imageSource)
         {
             Latitude = latitude;
             Longitude = longitude;
-            // todo: error access (stream closed)
+
+            if ( imageSource != null && imageSource.Length > 0 )
+            {
+                _imageByte = imageSource;
+                ImageSource = ImageSource.FromStream(() => new MemoryStream(_imageByte));
+
+            }
         }
 
         public void OnClose (string urlCamera)

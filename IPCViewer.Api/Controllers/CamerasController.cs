@@ -31,14 +31,17 @@
 
         // GET: api/Cameras
         [HttpGet]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public IActionResult GetCameras () => Ok(cameraRepository.GetAllWithUsers());
 
         // GET: api/Cameras/5
         [HttpGet("{id}")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public IActionResult GetCamera (int id) => Ok(cameraRepository.GetCamera(id).Result);
 
         //PUT
         [HttpPut("{id}")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public async Task<IActionResult> PutCamera ([FromRoute] int id, [FromBody] Common.Models.Camera camera)
         {
             if ( !ModelState.IsValid )
@@ -73,7 +76,7 @@
                 var guid = Guid.NewGuid().ToString();
                 var file = $"{guid}.jpg";
                 var folder = "wwwroot\\images\\cameras";
-                var fullPath = $"~/images/cameras/{file}";
+                var fullPath = $"{file}";
                 var response = FilesHelper.UploadPhoto(stream, folder, file);
                 
                 // todo: eliminar imagen anterior
@@ -102,6 +105,7 @@
 
         // POST Camera
         [HttpPost]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public async Task<IActionResult> PostCamera ([FromBody] Common.Models.Camera camera)
         {
             if ( !ModelState.IsValid )
@@ -161,6 +165,7 @@
         }
 
         [HttpDelete("{id}")]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public async Task<IActionResult> DeleteCamera ([FromRoute] int id)
         {
             if ( !ModelState.IsValid )
@@ -187,14 +192,6 @@
             var image = FilesHelper.GetPhoto("wwwroot\\images\\cameras", name);
             return File(image, "image/jpeg");
             //return Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images/cameras", name);
-        }
-        // GET: api/Cameras/Image/
-        [HttpGet]
-        [Route("Test")]
-        [AllowAnonymous]
-        public string Test ()
-        {
-            return Directory.GetCurrentDirectory();
         }
     }
 }

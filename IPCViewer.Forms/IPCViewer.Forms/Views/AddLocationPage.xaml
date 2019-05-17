@@ -28,7 +28,7 @@
                 Grid.RowSpan="3"
                 Grid.Column="1"
                 HeightRequest="130"
-                HorizontalOptions="CenterAndExpand"
+                HorizontalOptions="Center"
                 Source="{Binding ImageSource}" />
 
             <StackLayout
@@ -47,14 +47,12 @@
                 <Label Text="{Binding Pin.Position.Longitude}" />
             </StackLayout>
 
-            <Button
+            <ImageButton
                 Grid.Row="2"
                 Grid.Column="0"
                 Command="{Binding TakeSnapshotCommand}"
-                FontSize="Micro"
-                HeightRequest="30"
-                HorizontalOptions="Start"
-                Text="Take Snapshot" />
+                HorizontalOptions="Center"
+                Source="ic_takeSnapshoot" />
         </Grid>
 
         <StackLayout Padding="5" VerticalOptions="FillAndExpand">

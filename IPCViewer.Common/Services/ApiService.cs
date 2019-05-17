@@ -586,7 +586,7 @@ namespace IPCViewer.Common.Services
                 // ************
 
                 //Configurando el Request method HEAD, puede ser GET tambien.
-                request.Method = "GET";
+                request.Method = "HEAD";
                 //Obteniendo la respuesta
                 HttpWebResponse response = request.GetResponse() as HttpWebResponse;
                 //Regresa TRUE si el codigo de esdado es == 200

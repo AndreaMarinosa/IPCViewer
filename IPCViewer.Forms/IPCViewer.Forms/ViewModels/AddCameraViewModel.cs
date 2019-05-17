@@ -118,6 +118,12 @@ namespace IPCViewer.Forms.ViewModels
                 return;
             }
 
+              if ( City == null )
+            {
+                await Application.Current.MainPage.DisplayAlert("Error", "You must select a city.", "Accept");
+                return;
+            }
+
             if ( string.IsNullOrEmpty(Latitude) )
             {
                 await Application.Current.MainPage.DisplayAlert("Error", "You must enter a latitude.", "Accept");
@@ -133,8 +139,7 @@ namespace IPCViewer.Forms.ViewModels
             var latitude = double.Parse(this.Latitude);
             var longitude = double.Parse(this.Longitude);
 
-            this.IsRunning = true;
-            this.IsEnabled = false;
+            
 
             var camera = new Camera
             {
@@ -164,19 +169,27 @@ namespace IPCViewer.Forms.ViewModels
             {
                 camera.ImageUrl = UrlCamera;
             }
-            else if (this.file == null)
+            // si el screenshot no es null
+            else if (this._imageByte != null)
             {
                 camera.ImageArray = _imageByte;
             }
             else
             {
                 var source = await Application.Current.MainPage.DisplayAlert("Alert", "Are you sure you want to save the camera without an image?", "Accept", "Cancel");
-                if ( source.CompareTo("Accept") != 1 )
+                if ( source!= true )
                 {
                     return;
                 }
+                else
+                {
+                    camera.ImageUrl = string.Empty;
+                    camera.ImageArray = null;
+                }
             }
 
+            this.IsRunning = true;
+            this.IsEnabled = false;
             // si no tiene ninguna, poner un alert y que cancele la operacion
 
             var response = await apiService.PostAsync(
@@ -277,18 +290,24 @@ namespace IPCViewer.Forms.ViewModels
             }
         }
 
-        public void SetLocation(string longitude, string latitude, byte[] imageSource)
+        public void SetLocation(string latitude, string longitude, byte[] imageSource)
         {
             Latitude = latitude;
             Longitude = longitude;
-            _imageByte = imageSource;
-
-            this.ImageSource = ImageSource.FromStream(() =>
+            if (imageSource != null && imageSource.Length > 0 )
             {
-                var stream = new MemoryStream();
-                stream.Write(imageSource, 0, imageSource.Length);
-                return stream;
-            });
+                _imageByte = imageSource;
+                ImageSource = ImageSource.FromStream(() => new MemoryStream(_imageByte));
+
+            }
+
+            //this.ImageSource = ImageSource.FromStream(() =>
+            //{
+            //    var stream = new MemoryStream();
+            //    stream.Write(imageSource, 0, imageSource.Length);
+            //    return stream;
+            //});
+
         }
     }
 }
