@@ -32,8 +32,4 @@
     <ProjectReference Include="..\IPCViewer.Forms\IPCViewer.Forms\IPCViewer.Forms.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="wwwroot\images\cameras\" />
-  </ItemGroup>
-
 </Project>

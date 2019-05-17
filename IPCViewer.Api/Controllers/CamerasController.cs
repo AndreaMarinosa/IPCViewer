@@ -11,7 +11,7 @@
     using System.Threading.Tasks;
 
     [Route("api/[controller]")]
-    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+    //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     [ApiController]
     public class CamerasController : Controller
     {
@@ -129,7 +129,7 @@
                 var guid = Guid.NewGuid().ToString();
                 var file = $"{guid}.jpg";
                 var folder = "wwwroot\\images\\cameras";
-                var fullPath = $"~/images/cameras/{file}";
+                var fullPath = $"{file}";
                 var response = FilesHelper.UploadPhoto(stream, folder, file);
 
                 // si puede subir la imagen
@@ -176,6 +176,25 @@
 
             await this.cameraRepository.DeleteAsync(camera);
             return Ok(camera);
+        }
+
+        // GET: api/Cameras/Image/
+        [HttpGet]
+        [Route("Image/{name}")]
+        [AllowAnonymous]
+        public IActionResult GetImage([FromRoute] string name)
+        {
+            var image = FilesHelper.GetPhoto("wwwroot\\images\\cameras", name);
+            return File(image, "image/jpeg");
+            //return Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images/cameras", name);
+        }
+        // GET: api/Cameras/Image/
+        [HttpGet]
+        [Route("Test")]
+        [AllowAnonymous]
+        public string Test ()
+        {
+            return Directory.GetCurrentDirectory();
         }
     }
 }

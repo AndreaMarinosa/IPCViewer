@@ -32,25 +32,29 @@ namespace IPCViewer.Forms.ViewModels
             ImageUrl = camera.ImageFullPath;
             Action<Task> reloadImageTask = null;
 
-            reloadImageTask = t =>
+            if ( !ImageUrl.Contains("ipcviewerapi") )
             {
-                Date = DateTime.Now;
-
-                var test =
-                    "https://media.revistagq.com/photos/5ca5f6a77a3aec0df5496c59/master/w_1280,c_limit/bob_esponja_9564.png";
-                ImageUrl = ImageUrl == test ? Camera.ImageUrl : test;
-
-                if ( ImageUrl == test )
+                reloadImageTask = t =>
                 {
-                    Task.Delay(5).ContinueWith(r => reloadImageTask(r));
-                }
-                else
-                {
-                    Task.Delay(350).ContinueWith(r => reloadImageTask(r));
-                }
-            };
+                    Date = DateTime.Now;
 
-            Task.Delay(500).ContinueWith(reloadImageTask);
+                    var test =
+                        "https://media.revistagq.com/photos/5ca5f6a77a3aec0df5496c59/master/w_1280,c_limit/bob_esponja_9564.png";
+                    ImageUrl = ImageUrl == test ? Camera.ImageUrl : test;
+
+                    if ( ImageUrl == test )
+                    {
+                        Task.Delay(5).ContinueWith(r => reloadImageTask(r));
+                    }
+                    else
+                    {
+                        Task.Delay(350).ContinueWith(r => reloadImageTask(r));
+                    }
+                };
+
+                Task.Delay(500).ContinueWith(reloadImageTask);
+            }
         }
+
     }
 }

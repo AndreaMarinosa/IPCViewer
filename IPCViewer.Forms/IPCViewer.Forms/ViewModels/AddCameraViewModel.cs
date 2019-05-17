@@ -29,6 +29,7 @@ namespace IPCViewer.Forms.ViewModels
         private City city;
         private MediaFile file;
         private ImageSource _imageSource;
+        private byte[] _imageByte;
         private string urlCamera;
 
         public string Name { get; set; }
@@ -163,6 +164,10 @@ namespace IPCViewer.Forms.ViewModels
             {
                 camera.ImageUrl = UrlCamera;
             }
+            else if (this.file == null)
+            {
+                camera.ImageArray = _imageByte;
+            }
             else
             {
                 var source = await Application.Current.MainPage.DisplayAlert("Alert", "Are you sure you want to save the camera without an image?", "Accept", "Cancel");
@@ -276,6 +281,14 @@ namespace IPCViewer.Forms.ViewModels
         {
             Latitude = latitude;
             Longitude = longitude;
+            _imageByte = imageSource;
+
+            this.ImageSource = ImageSource.FromStream(() =>
+            {
+                var stream = new MemoryStream();
+                stream.Write(imageSource, 0, imageSource.Length);
+                return stream;
+            });
         }
     }
 }

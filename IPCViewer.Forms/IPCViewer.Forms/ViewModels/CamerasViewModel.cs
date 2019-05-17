@@ -161,7 +161,7 @@ namespace IPCViewer.Forms.ViewModels
                     Comments = c.Comments,
                     Name = c.Name,
                     User = c.User,
-                    ImageFullPath = apiService.RemoteFileExists(c.ImageFullPath, 3000) ? c.ImageFullPath : "noImage"
+                    ImageFullPath = c.ImageFullPath// apiService.RemoteFileExists(c.ImageFullPath, 3000) ? c.ImageFullPath : "noImage"
                 }).ToList());
         }
 

@@ -15,6 +15,7 @@ namespace IPCViewer.Forms.ViewModels
     public class AddLocationViewModel : BaseViewModel
     {
         private ImageSource _imageSource;
+        private byte[] _imageBytes;
         private string _latitude;
         private ILocation _location;
         private string _longitude;
@@ -83,7 +84,15 @@ namespace IPCViewer.Forms.ViewModels
         {
            var stream = await TakeSnapshotRequest.TakeSnapshot();
             ImageSource = ImageSource.FromStream(() => stream);
+
+            using ( MemoryStream ms = new MemoryStream() )
+            {
+                stream.CopyTo(ms);
+                _imageBytes =  ms.ToArray();
+            }
         });
+
+
 
 
         private async void Save ()
@@ -107,7 +116,7 @@ namespace IPCViewer.Forms.ViewModels
 
             }
 
-            _location.SetLocation(_latitude, _longitude, new byte[0]);
+            _location.SetLocation(_latitude, _longitude, _imageBytes);
 
             await App.Navigator.PopAsync();
         }

@@ -22,5 +22,20 @@
 
             return true;
         }
+
+        public static byte[] GetPhoto (string folder, string name)
+        {
+            byte[] result = null;
+            try
+            {
+                var path = Path.Combine(Directory.GetCurrentDirectory(), folder, name);
+                result = File.ReadAllBytes(path);
+            }
+            catch
+            {
+            }
+
+            return result;
+        }
     }
 }
