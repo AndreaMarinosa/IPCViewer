@@ -72,13 +72,13 @@
                         Placeholder="Longitude..."
                         Text="{Binding Longitude}" />
 
-                    <Button
+                    <ImageButton
                         Grid.Row="4"
                         Grid.Column="0"
                         Grid.ColumnSpan="2"
+                        Source="ic_putLocation"
                         Command="{Binding AddLocationCommand}"
                         HorizontalOptions="Center"
-                        Text="Location"
                         VerticalOptions="Center" />
 
                     <ActivityIndicator

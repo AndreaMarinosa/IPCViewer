@@ -78,7 +78,7 @@
                 var folder = "wwwroot\\images\\cameras";
                 var fullPath = $"{file}";
                 var response = FilesHelper.UploadPhoto(stream, folder, file);
-                
+
                 // todo: eliminar imagen anterior
 
                 // si puede subir la imagen
@@ -87,9 +87,10 @@
                     imageUrl = fullPath;
                 }
             }
-            // si la imagen es null pero tiene url
             else
-                imageUrl = camera.ImageUrl ?? string.Empty;
+            {
+                imageUrl = camera.ImageUrl;
+            }
 
             oldCamera.ImageUrl = imageUrl;
             oldCamera.Comments = camera.Comments;

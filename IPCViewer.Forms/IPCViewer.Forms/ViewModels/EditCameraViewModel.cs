@@ -25,7 +25,6 @@ namespace IPCViewer.Forms.ViewModels
         private ImageSource imageSource;
         private byte[] _imageByte;
         private string _urlCamera;
-        private bool isVisible;
 
         public string Latitude
         {
@@ -63,12 +62,6 @@ namespace IPCViewer.Forms.ViewModels
             set { SetProperty(ref _urlCamera, value); }
         }
 
-        public bool IsVisible
-        {
-            get { return isVisible; }
-            set { SetProperty(ref isVisible, value); }
-        }
-
         public Camera Camera { get; set; }
 
         public ICommand AddLocationCommand
@@ -91,7 +84,7 @@ namespace IPCViewer.Forms.ViewModels
             get { return new RelayCommand(ChangeImage); }
         }
 
-        public ICommand DisplayCommand
+        public ICommand DisplayCameraCommand
         {
             get { return new RelayCommand(DisplayCameraAsync); }
         }
@@ -106,7 +99,7 @@ namespace IPCViewer.Forms.ViewModels
             IsEnabled = true;
             Longitude = Camera.Longitude.ToString();
             Latitude = Camera.Latitude.ToString();
-            UrlCamera = camera.ImageFullPath;
+            ImageSource = camera.ImageFullPath;
         }
 
 
@@ -156,7 +149,7 @@ namespace IPCViewer.Forms.ViewModels
                 return;
             }
 
-            if ( City == null )
+            if ( Camera.City == null )
             {
                 await Application.Current.MainPage.DisplayAlert("Error", "You must select a city.", "Accept");
                 return;
@@ -314,7 +307,6 @@ namespace IPCViewer.Forms.ViewModels
         {
             if ( !string.IsNullOrEmpty(Camera.ImageUrl) )
             {
-                IsVisible = true;
                 UrlCamera = urlCamera;
             }
         }

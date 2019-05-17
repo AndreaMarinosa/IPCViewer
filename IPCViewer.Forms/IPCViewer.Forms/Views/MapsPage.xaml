@@ -16,9 +16,8 @@
 
         <forms:Grid
             IsVisible="{Binding IsVisible}"
-            Padding="10"
             BackgroundColor="{StaticResource Primary}"
-            ColumnSpacing="10"
+            ColumnSpacing="20"
             RowSpacing="10">
 
             <forms:Grid.ColumnDefinitions>
@@ -65,7 +64,6 @@
                     <bindings:BindingPinsBehavior Value="{Binding Pins}" />
                     <bindings:UpdateRegionBehavior Region="{Binding Region}" />
                     <bindings:SelectedPinChangedToCommandBehavior Command="{Binding SelectedPinChangedCommand}" />
-                    <bindings:MapClickedToCommandBehavior Command="{Binding MapClickedCommand}" />
                 </maps:Map.Behaviors>
             </maps:Map>
         </forms:StackLayout>

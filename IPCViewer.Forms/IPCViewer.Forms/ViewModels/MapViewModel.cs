@@ -162,6 +162,7 @@ namespace IPCViewer.Forms.ViewModels
                             ImageSource = _myCameras.FirstOrDefault(c =>
                                 c.Latitude == args.SelectedPin.Position.Latitude &&
                                 c.Longitude == args.SelectedPin.Position.Longitude).ImageFullPath;
+                            Pin.Icon = BitmapDescriptorFactory.FromBundle("type" + 1);
                         }
                         else
                         {

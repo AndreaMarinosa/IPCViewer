@@ -89,6 +89,7 @@
 
             <Style TargetType="ImageButton">
                 <Setter Property="BackgroundColor" Value="Transparent" />
+                <Setter Property="HeightRequest" Value="35" />
             </Style>
             <!--  Entry styles  -->
             <Style TargetType="Entry">

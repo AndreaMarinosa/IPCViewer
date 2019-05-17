@@ -9,15 +9,19 @@
         <ScrollView BindingContext="{Binding EditCamera}">
             <StackLayout Padding="10">
 
-                <StackLayout Orientation="Vertical">
+                <StackLayout 
+                        HorizontalOptions="Center"
+                        Orientation="Horizontal">
                     <ImageButton
-                        Source="" Command="{Binding DisplayCommand}"/>
-                    
-                    <ImageButton/>
+                        Command="{Binding DisplayCameraCommand}"
+                        Source="ic_seeCamera" />
+                    <ImageButton
+                        Command="{Binding DisplayCameraCommand}"
+                        Source="ic_pinList" />
 
                 </StackLayout>
 
-                <Image HeightRequest="250" Source="{Binding UrlCamera}">
+                <Image HeightRequest="250" Source="{Binding ImageSource}">
                     <Image.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding TapCommand}" />
                     </Image.GestureRecognizers>
@@ -85,8 +89,7 @@
                         Grid.Column="0"
                         BackgroundColor="Transparent"
                         Command="{Binding AddLocationCommand}"
-                        HeightRequest="20"
-                        Source="ic_pinList" />
+                        Source="ic_putLocation" />
 
                     <!--<Button
                         Grid.Row="2"
