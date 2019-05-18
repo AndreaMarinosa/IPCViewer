@@ -36,7 +36,11 @@
                 forms:Grid.RowSpan="3"
                 Aspect="Fill"
                 Source="{Binding ImageSource}"
-                WidthRequest="100" />
+                WidthRequest="100">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding SelectCameraCommand}" />
+                </Image.GestureRecognizers>
+            </Image>
 
             <forms:StackLayout
                 Grid.ColumnSpan="2"

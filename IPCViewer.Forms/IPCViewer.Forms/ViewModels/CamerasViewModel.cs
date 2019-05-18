@@ -143,7 +143,6 @@ namespace IPCViewer.Forms.ViewModels
 
         #endregion
 
-
         private void RefreshCamerasList ()
         {
 
@@ -164,8 +163,6 @@ namespace IPCViewer.Forms.ViewModels
                     ImageFullPath =  !string.IsNullOrEmpty(c.ImageUrl ) ? c.ImageFullPath : "noImage" //c.ImageFullPath
                 }).ToList());
         }
-
-       
     }
 
     /**

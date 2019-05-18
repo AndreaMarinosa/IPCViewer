@@ -1,10 +1,12 @@
-﻿using IPCViewer.Common.Models;
+﻿using GalaSoft.MvvmLight.Command;
+using IPCViewer.Common.Models;
 using IPCViewer.Common.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.GoogleMaps;
@@ -34,6 +36,8 @@ namespace IPCViewer.Forms.ViewModels
 
         public Location UserLocation { get; set; }
         public ObservableCollection<Pin> Pins { get; set; }
+
+        public Camera Camera { get; set; }
 
         public ImageSource ImageSource
         {
@@ -73,6 +77,12 @@ namespace IPCViewer.Forms.ViewModels
             LoadCamerasAsync();
             LoadLocationCameraAsync(camera);
 
+        }
+
+        public ICommand SelectCameraCommand => new RelayCommand(SelectCamera);
+        void SelectCamera ()
+        {
+            Helpers.Extensions.SelectCamera(Camera, 1);
         }
 
         private async void LoadLocationCameraAsync (Camera camera)
@@ -160,10 +170,13 @@ namespace IPCViewer.Forms.ViewModels
 
                         if ( Pin != null && Pin.Label != "Your position" )
                         {
+                            Camera = _myCameras.FirstOrDefault(c => c.Latitude == Pin.Position.Latitude &&
+                                c.Longitude == Pin.Position.Longitude);
+
                             IsVisible = true;
                             ImageSource = _myCameras.FirstOrDefault(c =>
-                                c.Latitude == args.SelectedPin.Position.Latitude &&
-                                c.Longitude == args.SelectedPin.Position.Longitude).ImageFullPath;
+                                c.Latitude == Pin.Position.Latitude &&
+                                c.Longitude == Pin.Position.Longitude).ImageFullPath;
                             Pin.Icon = BitmapDescriptorFactory.FromBundle("type" + 1);
                         }
                         else

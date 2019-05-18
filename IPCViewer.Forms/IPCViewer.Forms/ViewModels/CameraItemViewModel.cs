@@ -7,6 +7,7 @@ namespace IPCViewer.Forms.ViewModels
     using System.Windows.Input;
     using Views;
     using Xamarin.Forms;
+    using Helpers;
 
     /**
      * Clase para meter un comando en el modelo 'Camera'
@@ -30,40 +31,9 @@ namespace IPCViewer.Forms.ViewModels
             await App.Navigator.PushAsync(new DisplayCameraPage(), true);
         }
 
-        private async void SelectCameraEdit ()
+        void SelectCamera ()
         {
-            MainViewModel.GetInstance().EditCamera = new EditCameraViewModel(this);
-            await App.Navigator.PushAsync(new EditCameraPage());
-        }
-        async void SelectCamera ()
-        {
-            var source = await Application.Current.MainPage.DisplayActionSheet(
-                this.Name, "Cancel", null,
-                "Edit camera", "View Camera", "View Maps");
-
-            switch ( source )
-            {
-                case "Cancel":
-                    {
-                        return;
-                    }
-                case "Edit camera":
-                    {
-                        SelectCameraEdit();
-                        break;
-                    }
-                case "View Camera":
-                    {
-                        SelectCameraImage();
-                        break;
-                    }
-                case "View Maps":
-                    {
-                        MainViewModel.GetInstance().Maps = new MapViewModel(this);
-                        await App.Navigator.PushAsync(new MapsPage());
-                        break;
-                    }
-            }
+            Extensions.SelectCamera(this, 0);
         }
     }
 }
