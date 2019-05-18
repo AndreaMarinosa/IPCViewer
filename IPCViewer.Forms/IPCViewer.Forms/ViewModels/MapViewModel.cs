@@ -77,7 +77,7 @@ namespace IPCViewer.Forms.ViewModels
 
         private async void LoadLocationCameraAsync (Camera camera)
         {
-            bool success =  await RequestLocation();
+            bool success = await RequestLocation();
 
             if ( success )
             {
@@ -86,7 +86,7 @@ namespace IPCViewer.Forms.ViewModels
                 Distance.FromKilometers(2));
             }
         }
-       
+
         private async void LoadLocation ()
         {
             bool success = await RequestLocation();
@@ -156,7 +156,9 @@ namespace IPCViewer.Forms.ViewModels
                 return new Command<SelectedPinChangedEventArgs>(
                     args =>
                     {
-                        if ( args.SelectedPin != null && args.SelectedPin.Label != "Your position" )
+                        Pin = args.SelectedPin;
+
+                        if ( Pin != null && Pin.Label != "Your position" )
                         {
                             IsVisible = true;
                             ImageSource = _myCameras.FirstOrDefault(c =>
@@ -166,10 +168,17 @@ namespace IPCViewer.Forms.ViewModels
                         }
                         else
                         {
+                            foreach (var pin in Pins )
+                            {
+                                if (pin.Label != "Your position" )
+                                {
+                                    pin.Icon = BitmapDescriptorFactory.FromBundle("type" + 2);
+
+                                }
+                            }
                             IsVisible = false;
                             ImageSource = string.Empty;
                         }
-                        Pin = args.SelectedPin;
                     });
             }
         }

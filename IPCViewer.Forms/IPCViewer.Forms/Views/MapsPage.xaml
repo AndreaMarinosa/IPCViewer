@@ -1,23 +1,21 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<forms:ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:maps="clr-namespace:Xamarin.Forms.GoogleMaps;assembly=Xamarin.Forms.GoogleMaps"
-             xmlns:bindings="clr-namespace:Xamarin.Forms.GoogleMaps.Bindings;assembly=Xamarin.Forms.GoogleMaps.Bindings"
-             xmlns:forms="clr-namespace:Xamarin.Forms;assembly=Xamarin.Forms.Core"
-             x:Class="IPCViewer.Forms.Views.MapsPage"
-             Title="Map"
-             BackgroundColor="{StaticResource Primary}"
-             BindingContext="{Binding Main, Source={StaticResource Locator}}"
-             >
+<forms:ContentPage
+    x:Class="IPCViewer.Forms.Views.MapsPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:bindings="clr-namespace:Xamarin.Forms.GoogleMaps.Bindings;assembly=Xamarin.Forms.GoogleMaps.Bindings"
+    xmlns:forms="clr-namespace:Xamarin.Forms;assembly=Xamarin.Forms.Core"
+    xmlns:maps="clr-namespace:Xamarin.Forms.GoogleMaps;assembly=Xamarin.Forms.GoogleMaps"
+    Title="Map"
+    BackgroundColor="{StaticResource Primary}"
+    BindingContext="{Binding Main, Source={StaticResource Locator}}">
 
-    <forms:StackLayout
-        BindingContext="{Binding Maps}"
-        Margin="10,20">
+    <forms:StackLayout Margin="10,20" BindingContext="{Binding Maps}">
 
         <forms:Grid
-            IsVisible="{Binding IsVisible}"
             BackgroundColor="{StaticResource Primary}"
             ColumnSpacing="20"
+            IsVisible="{Binding IsVisible}"
             RowSpacing="10">
 
             <forms:Grid.ColumnDefinitions>
@@ -33,31 +31,51 @@
             </forms:Grid.RowDefinitions>
 
             <Image
-                Aspect="Fill"
-                WidthRequest="100"
                 forms:Grid.Column="0"
                 forms:Grid.Row="0"
                 forms:Grid.RowSpan="3"
-                Source="{Binding ImageSource}" />
+                Aspect="Fill"
+                Source="{Binding ImageSource}"
+                WidthRequest="100" />
 
-            <forms:StackLayout Grid.ColumnSpan="2" forms:Grid.Column="1" forms:Grid.Row="0" Orientation="Horizontal">
-                <Label Text="Name:" TextColor="{StaticResource PrimaryFontColor}"/>
-                <Label Text="{Binding Pin.Label}" TextColor="{StaticResource PrimaryFontColor}" FontSize="Medium"/>
+            <forms:StackLayout
+                Grid.ColumnSpan="2"
+                forms:Grid.Column="1"
+                forms:Grid.Row="0"
+                Orientation="Horizontal">
+                <Label Text="Name:" TextColor="{StaticResource PrimaryFontColor}" />
+                <Label
+                    FontSize="Medium"
+                    Text="{Binding Pin.Label}"
+                    TextColor="{StaticResource PrimaryFontColor}" />
             </forms:StackLayout>
 
-            <forms:StackLayout Grid.ColumnSpan="2" forms:Grid.Column="1" forms:Grid.Row="1" Orientation="Horizontal">
+            <forms:StackLayout
+                Grid.ColumnSpan="2"
+                forms:Grid.Column="1"
+                forms:Grid.Row="1"
+                Orientation="Horizontal">
                 <Label Text="Latitude:" TextColor="{StaticResource PrimaryFontColor}" />
-                <Label Text="{Binding Pin.Position.Latitude}" TextColor="{StaticResource PrimaryFontColor}" FontSize="Medium"/>
+                <Label
+                    FontSize="Medium"
+                    Text="{Binding Pin.Position.Latitude}"
+                    TextColor="{StaticResource PrimaryFontColor}" />
             </forms:StackLayout>
 
-            <forms:StackLayout Grid.ColumnSpan="2" forms:Grid.Column="1" forms:Grid.Row="2" Orientation="Horizontal">
-                <Label Text="Longitude:" TextColor="{StaticResource PrimaryFontColor}"/>
-                <Label Text="{Binding Pin.Position.Longitude}" TextColor="{StaticResource PrimaryFontColor}" FontSize="Medium"/>
+            <forms:StackLayout
+                Grid.ColumnSpan="2"
+                forms:Grid.Column="1"
+                forms:Grid.Row="2"
+                Orientation="Horizontal">
+                <Label Text="Longitude:" TextColor="{StaticResource PrimaryFontColor}" />
+                <Label
+                    FontSize="Medium"
+                    Text="{Binding Pin.Position.Longitude}"
+                    TextColor="{StaticResource PrimaryFontColor}" />
             </forms:StackLayout>
         </forms:Grid>
 
-        <forms:StackLayout
-            VerticalOptions="FillAndExpand">
+        <forms:StackLayout VerticalOptions="FillAndExpand">
             <maps:Map>
 
                 <maps:Map.Behaviors>

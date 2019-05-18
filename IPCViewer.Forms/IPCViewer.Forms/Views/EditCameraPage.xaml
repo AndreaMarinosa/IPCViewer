@@ -16,7 +16,7 @@
                         Command="{Binding DisplayCameraCommand}"
                         Source="ic_seeCamera" />
                     <ImageButton
-                        Command="{Binding DisplayCameraCommand}"
+                        Command="{Binding ViewMapCameraCommand}"
                         Source="ic_pinList" />
 
                 </StackLayout>
@@ -29,6 +29,7 @@
                 </Image>
 
                 <Label
+                    VerticalOptions="StartAndExpand"
                     FontSize="Small"
                     HorizontalOptions="Center"
                     Text="{Binding UrlCamera}" />

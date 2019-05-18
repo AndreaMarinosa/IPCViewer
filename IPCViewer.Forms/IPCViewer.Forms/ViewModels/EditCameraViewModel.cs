@@ -89,6 +89,17 @@ namespace IPCViewer.Forms.ViewModels
             get { return new RelayCommand(DisplayCameraAsync); }
         }
 
+        public ICommand ViewMapCameraCommand
+        {
+            get { return new RelayCommand(ViewMapCameraAsync); }
+        }
+
+        private async void ViewMapCameraAsync ()
+        {
+            MainViewModel.GetInstance().Maps = new MapViewModel(Camera);
+            await App.Navigator.PushAsync(new MapsPage());
+        }
+
         /**
          * La camara ligada a la MainViewModel es la que se pasa por parametro
          */
@@ -99,6 +110,7 @@ namespace IPCViewer.Forms.ViewModels
             IsEnabled = true;
             Longitude = Camera.Longitude.ToString();
             Latitude = Camera.Latitude.ToString();
+            UrlCamera = camera.ImageUrl;
             ImageSource = camera.ImageFullPath;
         }
 
