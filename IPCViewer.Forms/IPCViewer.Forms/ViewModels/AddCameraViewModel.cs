@@ -1,10 +1,10 @@
-﻿using IPCViewer.Forms.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.IO;
+﻿
 
 namespace IPCViewer.Forms.ViewModels
 {
+    using System;
+    using System.Collections.Generic;
+    using System.IO;
     using Common.Models;
     using Common.Services;
     using GalaSoft.MvvmLight.Command;
@@ -15,8 +15,7 @@ namespace IPCViewer.Forms.ViewModels
     using System.Collections.ObjectModel;
     using System.Windows.Input;
     using Xamarin.Forms;
-
-    //TODO: boton que compruebe la url (Muestre la imagen de esa url para ver si esta bien)
+    using IPCViewer.Forms.Interfaces;
     public class AddCameraViewModel : BaseViewModel, IClosePopup, ILocation
     {
         private bool isRunning;
@@ -285,6 +284,7 @@ namespace IPCViewer.Forms.ViewModels
         {
             if ( !string.IsNullOrEmpty(url) )
             {
+                ImageSource = url;
                 UrlCamera = url;
                 IsVisible = true;
             }

@@ -51,52 +51,15 @@
                     Grid.Row="2"
                     Grid.Column="0"
                     Grid.ColumnSpan="3"
-                    Margin="10,0,0,15"
+                    Margin="10,0,0,20"
                     FontAttributes="Bold"
                     FontSize="Medium"
                     Text="{Binding User.Email}"
                     TextColor="White"
                     VerticalOptions="Center" />
-                <!--    -->
-                <!--    -->
+
             </Grid>
-            <!--<RelativeLayout>
-                <Image
-                    Aspect="AspectFill"
-                    RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,
-                                                                          Property=Width}"
-                    Source="menuImg" />
-                <StackLayout>
-                    <Image
-                        Margin="200,6,0,0"
-                        HeightRequest="100"
-                        HorizontalOptions="End"
-                        Source="IconLigth"
-                        WidthRequest="100" />
 
-                    <StackLayout Margin="10,0" Orientation="Horizontal">
-                        <Label Text="Welcome, " TextColor="{StaticResource PrimaryFontColor}" />
-                        <Label
-                            HorizontalOptions="StartAndExpand"
-                            Text="Snuffy"
-                            TextColor="{StaticResource PrimaryFontColor}" />
-            -->
-            <!--  Text="{Binding User.UserName}"  -->
-            <!--
-
-                    </StackLayout>
-                    <Label
-                        Margin="10,0"
-                        FontAttributes="Bold"
-                        FontSize="Medium"
-                        Text="andreamarinosalopez@gmail.com"
-                        TextColor="White" />
-            -->
-            <!--  Text="{Binding User.Email}"  -->
-            <!--
-
-                </StackLayout>
-            </RelativeLayout>-->
             <ListView
                 HasUnevenRows="True"
                 ItemsSource="{Binding Menus}"

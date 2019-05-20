@@ -14,6 +14,7 @@
         <StackLayout Padding="5" BindingContext="{Binding Cameras}">
 
             <ListView
+                x:Name="list"
                 CachingStrategy="RecycleElement"
                 GroupDisplayBinding="{Binding Key}"
                 GroupShortNameBinding="{Binding Key}"
@@ -51,7 +52,9 @@
                                     FontSize="Large"
                                     Text="{Binding Key}"
                                     TextColor="White"
-                                    VerticalOptions="CenterAndExpand" />
+                                    VerticalOptions="Center" />
+                                <SearchBar Placeholder="Search Camera" Text="{Binding SearchText}" >
+                                </SearchBar>
                             </Grid>
                         </ViewCell>
                     </DataTemplate>
@@ -76,15 +79,13 @@
                                     <TapGestureRecognizer Command="{Binding SelectCameraCommand}" />
                                 </Grid.GestureRecognizers>
 
-                                <StackLayout
-                                   Grid.RowSpan="2"
-                                   Grid.Column="0">
+                                <StackLayout Grid.RowSpan="2" Grid.Column="0">
                                     <Image
-                                       HeightRequest="80"
-                                       WidthRequest="80"
-                                       HorizontalOptions="Fill"
-                                       Source="{Binding ImageFullPath}"
-                                       VerticalOptions="Fill">
+                                        HeightRequest="80"
+                                        HorizontalOptions="Fill"
+                                        Source="{Binding ImageFullPath}"
+                                        VerticalOptions="Fill"
+                                        WidthRequest="80">
                                         <Image.GestureRecognizers>
                                             <TapGestureRecognizer Command="{Binding SelectCameraImageCommand}" />
                                         </Image.GestureRecognizers>
@@ -92,19 +93,18 @@
                                 </StackLayout>
 
 
-                                <StackLayout Grid.Row="0" Grid.Column="1" >
+                                <StackLayout Grid.Row="0" Grid.Column="1">
                                     <Label
-                                    
-                                    FontAttributes="Bold"
-                                    FontSize="Medium"
-                                    Text="{Binding Name}"
-                                    TextColor="Black"
-                                    VerticalOptions="Center" />
+                                        FontAttributes="Bold"
+                                        FontSize="Medium"
+                                        Text="{Binding Name}"
+                                        TextColor="Black"
+                                        VerticalOptions="Center" />
                                     <Label
-                                    FontAttributes="Bold"
-                                    FontSize="Small"
-                                    Text="{Binding Comments}"
-                                    TextColor="{StaticResource SecondaryDark}" />
+                                        FontAttributes="Bold"
+                                        FontSize="Small"
+                                        Text="{Binding Comments}"
+                                        TextColor="{StaticResource SecondaryDark}" />
                                 </StackLayout>
 
                                 <Image

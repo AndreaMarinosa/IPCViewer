@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System;
+using System.Net;
 
 namespace IPCViewer.Forms.ViewModels
 {
@@ -22,6 +23,7 @@ namespace IPCViewer.Forms.ViewModels
         private bool isRefreshing;
         private City city;
         private ObservableCollection<Grouping<string, CameraItemViewModel>> camerasGrouped;
+        private ObservableCollection<Grouping<string, CameraItemViewModel>> camerasGroupedSearch;
 
         #endregion
 
@@ -35,10 +37,26 @@ namespace IPCViewer.Forms.ViewModels
             set => SetProperty(ref camerasGrouped, value);
         }
 
+        public ObservableCollection<Grouping<string, CameraItemViewModel>> CamerasGroupedSearch
+        {
+            get => camerasGroupedSearch;
+            set => SetProperty(ref camerasGroupedSearch, value);
+        }
+
         public ObservableCollection<CameraItemViewModel> Cameras
         {
             get => cameras;
             set => this.SetProperty(ref cameras, value);
+        }
+
+        private string _searchText;
+        public string SearchText
+        {
+            get { return _searchText; }
+            set
+            {
+                SetProperty(ref _searchText, value);
+            }
         }
 
         public bool IsRefreshing
@@ -49,7 +67,12 @@ namespace IPCViewer.Forms.ViewModels
 
         #endregion
 
+        #region Commands
+
+        public ICommand SearchCommand => new RelayCommand(this.PerformSearch);
         public ICommand RefreshCommand => new RelayCommand(this.LoadCamerasAsync);
+
+        #endregion
 
         #region ctor
 
@@ -160,9 +183,28 @@ namespace IPCViewer.Forms.ViewModels
                     Comments = c.Comments,
                     Name = c.Name,
                     User = c.User,
-                    ImageFullPath =  !string.IsNullOrEmpty(c.ImageUrl ) ? c.ImageFullPath : "noImage" //c.ImageFullPath
+                    ImageFullPath = !string.IsNullOrEmpty(c.ImageUrl) ? c.ImageFullPath : "noImage" //c.ImageFullPath
                 }).ToList());
         }
+        public void PerformSearch ()
+        {
+            if ( string.IsNullOrWhiteSpace(this._searchText) )
+                RefreshCamerasList();
+            else
+            {
+                var sorted =
+                from camera in Cameras
+                where camera.Name.Contains(_searchText)
+                orderby camera.City.Name
+                group camera by camera.NameSort into cameraGroup
+                select new Grouping<string, CameraItemViewModel>(cameraGroup.Key, cameraGroup);
+
+                //create a new collection of groups
+                CamerasGroupedSearch = new ObservableCollection<Grouping<string, CameraItemViewModel>>(sorted);
+            }
+        }
+
+
     }
 
     /**

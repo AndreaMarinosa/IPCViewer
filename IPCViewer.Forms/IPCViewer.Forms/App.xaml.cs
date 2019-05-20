@@ -45,7 +45,7 @@
                 }
             }
 
-            MainViewModel.GetInstance().ControlUsersPage = new ControlUsersPage();
+            //MainViewModel.GetInstance().ControlUsersViewModel = new ControlUsersViewModel();
             MainPage = /*new NavigationPage(*/new ControlUsersPage()/*)*/;
         }
 

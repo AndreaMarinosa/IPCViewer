@@ -1,7 +1,6 @@
 ﻿using IPCViewer.Common.Models;
 using System;
 using System.Threading.Tasks;
-using Org.BouncyCastle.Utilities;
 
 namespace IPCViewer.Forms.ViewModels
 {

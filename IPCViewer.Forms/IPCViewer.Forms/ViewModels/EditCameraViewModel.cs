@@ -84,22 +84,6 @@ namespace IPCViewer.Forms.ViewModels
             get { return new RelayCommand(ChangeImage); }
         }
 
-        public ICommand DisplayCameraCommand
-        {
-            get { return new RelayCommand(DisplayCameraAsync); }
-        }
-
-        public ICommand ViewMapCameraCommand
-        {
-            get { return new RelayCommand(ViewMapCameraAsync); }
-        }
-
-        private async void ViewMapCameraAsync ()
-        {
-            MainViewModel.GetInstance().Maps = new MapViewModel(Camera);
-            await App.Navigator.PushAsync(new MapsPage());
-        }
-
         /**
          * La camara ligada a la MainViewModel es la que se pasa por parametro
          */
@@ -145,12 +129,6 @@ namespace IPCViewer.Forms.ViewModels
 
             MainViewModel.GetInstance().Cameras.DeleteCamera(Camera.Id);
             await App.Navigator.PopAsync();
-        }
-
-        private async void DisplayCameraAsync ()
-        {
-            MainViewModel.GetInstance().DisplayCamera = new DisplayViewModel(Camera);
-            await App.Navigator.PushAsync(new DisplayCameraPage());
         }
 
         private async void Save ()

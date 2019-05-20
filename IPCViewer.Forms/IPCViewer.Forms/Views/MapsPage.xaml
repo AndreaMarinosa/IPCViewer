@@ -10,7 +10,7 @@
     BackgroundColor="{StaticResource Primary}"
     BindingContext="{Binding Main, Source={StaticResource Locator}}">
 
-    <forms:StackLayout Margin="10,20" BindingContext="{Binding Maps}">
+    <forms:StackLayout Margin="10,5" BindingContext="{Binding Maps}">
 
         <forms:Grid
             BackgroundColor="{StaticResource Primary}"

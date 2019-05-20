@@ -27,7 +27,7 @@
         public LoginViewModel Login { get; set; }
 
         public ControlUsersPage ControlUsersPage { get; set; }
-
+        
         public CamerasViewModel Cameras { get; set; }
 
         public AddCameraViewModel AddCamera { get; set; }

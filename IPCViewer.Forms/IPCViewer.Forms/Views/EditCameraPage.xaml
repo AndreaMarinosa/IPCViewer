@@ -9,7 +9,7 @@
         <ScrollView BindingContext="{Binding EditCamera}">
             <StackLayout Padding="10">
 
-                <StackLayout 
+                <!--<StackLayout 
                         HorizontalOptions="Center"
                         Orientation="Horizontal">
                     <ImageButton
@@ -19,7 +19,7 @@
                         Command="{Binding ViewMapCameraCommand}"
                         Source="ic_pinList" />
 
-                </StackLayout>
+                </StackLayout>-->
 
                 <Image HeightRequest="250" Source="{Binding ImageSource}">
                     <Image.GestureRecognizers>

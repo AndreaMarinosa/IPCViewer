@@ -24,11 +24,11 @@
                 <Grid VerticalOptions="CenterAndExpand">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
 
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="*" />
                         <RowDefinition Height="*" />
                         <RowDefinition Height="*" />
                         <RowDefinition Height="*" />
@@ -40,14 +40,14 @@
                     <Entry
                         Grid.Row="0"
                         Grid.Column="0"
-                        Grid.ColumnSpan="2"
+                        Grid.ColumnSpan="3"
                         Placeholder="Name..."
                         Text="{Binding Name}" />
 
                     <Entry
                         Grid.Row="1"
                         Grid.Column="0"
-                        Grid.ColumnSpan="2"
+                        Grid.ColumnSpan="3"
                         Placeholder="Comments..."
                         Text="{Binding Comments}" />
 
@@ -55,7 +55,7 @@
                         Title="Select a city..."
                         Grid.Row="2"
                         Grid.Column="0"
-                        Grid.ColumnSpan="2"
+                        Grid.ColumnSpan="3"
                         ItemDisplayBinding="{Binding Name}"
                         ItemsSource="{Binding Cities}"
                         SelectedItem="{Binding City}" />
@@ -68,30 +68,29 @@
 
                     <Entry
                         Grid.Row="3"
-                        Grid.Column="1"
+                        Grid.Column="2"
                         Placeholder="Longitude..."
                         Text="{Binding Longitude}" />
 
                     <ImageButton
-                        Grid.Row="4"
-                        Grid.Column="0"
-                        Grid.ColumnSpan="2"
+                        Grid.Row="3"
+                        Grid.Column="1"
                         Source="ic_putLocation"
                         Command="{Binding AddLocationCommand}"
                         HorizontalOptions="Center"
                         VerticalOptions="Center" />
 
                     <ActivityIndicator
-                        Grid.Row="5"
+                        Grid.Row="4"
                         Grid.Column="0"
                         Grid.ColumnSpan="2"
                         IsRunning="{Binding IsRunning}"
                         VerticalOptions="Center" />
 
                     <Button
-                        Grid.Row="6"
+                        Grid.Row="5"
                         Grid.Column="0"
-                        Grid.ColumnSpan="2"
+                        Grid.ColumnSpan="3"
                         BorderColor="Green"
                         Command="{Binding SaveCommand}"
                         IsEnabled="{Binding IsEnabled}"
