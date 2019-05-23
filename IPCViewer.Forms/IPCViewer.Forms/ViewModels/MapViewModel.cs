@@ -1,6 +1,7 @@
 ﻿using GalaSoft.MvvmLight.Command;
 using IPCViewer.Common.Models;
 using IPCViewer.Common.Services;
+using IPCViewer.Forms.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -125,9 +126,9 @@ namespace IPCViewer.Forms.ViewModels
             if ( !response.IsSuccess )
             {
                 await Application.Current.MainPage.DisplayAlert(
-                    "Error",
-                    response.Message,
-                    "Accept");
+                     Languages.Error,
+                     Languages.ErrorLoadCameras,
+                     Languages.Accept);
                 return;
             }
 
@@ -168,7 +169,7 @@ namespace IPCViewer.Forms.ViewModels
                     {
                         Pin = args.SelectedPin;
 
-                        if ( Pin != null && Pin.Label != "Your position" )
+                        if ( Pin != null && Pin.Label !=Languages.OwnLocation )
                         {
                             Camera = _myCameras.FirstOrDefault(c => c.Latitude == Pin.Position.Latitude &&
                                 c.Longitude == Pin.Position.Longitude);
@@ -183,7 +184,7 @@ namespace IPCViewer.Forms.ViewModels
                         {
                             foreach (var pin in Pins )
                             {
-                                if (pin.Label != "Your position" )
+                                if (pin.Label != Languages.OwnLocation )
                                 {
                                     pin.Icon = BitmapDescriptorFactory.FromBundle("type" + 2);
 
@@ -204,15 +205,15 @@ namespace IPCViewer.Forms.ViewModels
             if ( UserLocation == null )
             {
                 await Application.Current.MainPage.DisplayAlert(
-                    "Error",
-                    "Failure to receive the user's location",
-                    "Accept");
+                     Languages.Error,
+                     Languages.ErrorUserLocation,
+                     Languages.Accept);
                 return false;
             }
 
             Pins.Add(new Pin
             {
-                Label = "Your position",
+                Label = Languages.OwnLocation,
                 Position = new Position(UserLocation.Latitude, UserLocation.Longitude),
             });
 

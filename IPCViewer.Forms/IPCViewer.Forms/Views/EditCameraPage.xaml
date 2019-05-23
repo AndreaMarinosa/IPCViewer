@@ -3,13 +3,14 @@
     x:Class="IPCViewer.Forms.Views.EditCameraPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    Title="Edit camera"
+    xmlns:i18n="clr-namespace:IPCViewer.Forms.Helpers"
+    Title="{i18n:Translate EditCameraTitle}"
     BindingContext="{Binding Main, Source={StaticResource Locator}}">
     <ContentPage.Content>
         <ScrollView BindingContext="{Binding EditCamera}">
             <StackLayout Padding="10">
 
-                <!--<StackLayout 
+                <!--<StackLayout
                         HorizontalOptions="Center"
                         Orientation="Horizontal">
                     <ImageButton
@@ -29,10 +30,10 @@
                 </Image>
 
                 <Label
-                    VerticalOptions="StartAndExpand"
                     FontSize="Small"
                     HorizontalOptions="Center"
-                    Text="{Binding UrlCamera}" />
+                    Text="{Binding UrlCamera}"
+                    VerticalOptions="StartAndExpand" />
 
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -50,39 +51,39 @@
                     <Label
                         Grid.Row="0"
                         Grid.Column="0"
-                        Text="Name" />
+                        Text="{i18n:Translate NameCameraPlaceholder}" />
 
                     <Entry
                         Grid.Row="0"
                         Grid.Column="1"
                         Grid.ColumnSpan="2"
-                        Placeholder="Camera name"
+                        Placeholder="{i18n:Translate NameCameraPlaceholder}"
                         Text="{Binding Camera.Name}" />
 
                     <!--  Comments  -->
                     <Label
                         Grid.Row="1"
                         Grid.Column="0"
-                        Text="Comments" />
+                        Text="{i18n:Translate CommentsCameraPlaceholder}" />
                     <Entry
                         Grid.Row="1"
                         Grid.Column="1"
                         Grid.ColumnSpan="2"
-                        Placeholder="Comments"
+                        Placeholder="{i18n:Translate CommentsCameraPlaceholder}"
                         Text="{Binding Camera.Comments}" />
 
                     <!--  Latitude  -->
                     <Entry
                         Grid.Row="2"
                         Grid.Column="1"
-                        Placeholder="Latitude..."
+                        Placeholder="{i18n:Translate LatitudeCameraPlaceholder}"
                         Text="{Binding Latitude}" />
 
                     <!--  Longitude  -->
                     <Entry
                         Grid.Row="2"
                         Grid.Column="2"
-                        Placeholder="Longitude..."
+                        Placeholder="{i18n:Translate LongitudeCameraPlaceholder}"
                         Text="{Binding Longitude}" />
 
                     <ImageButton
@@ -109,7 +110,7 @@
                         Command="{Binding SaveCommand}"
                         HorizontalOptions="FillAndExpand"
                         IsEnabled="{Binding IsEnabled}"
-                        Text="Save"
+                        Text="{i18n:Translate SaveCamera}"
                         TextColor="DarkGreen" />
 
                     <Button
@@ -117,7 +118,7 @@
                         Command="{Binding DeleteCommand}"
                         HorizontalOptions="FillAndExpand"
                         IsEnabled="{Binding IsEnabled}"
-                        Text="Delete"
+                        Text="{i18n:Translate DeleteCamera}"
                         TextColor="Red" />
                 </StackLayout>
             </StackLayout>

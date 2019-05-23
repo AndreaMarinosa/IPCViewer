@@ -4,8 +4,7 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:i18n="clr-namespace:IPCViewer.Forms.Helpers"
-    BindingContext="{Binding Main, Source={StaticResource Locator}}"
-    NavigationPage.HasNavigationBar="false">
+    BindingContext="{Binding Main, Source={StaticResource Locator}}">
 
     <ContentPage.Content>
         <StackLayout Spacing="10">

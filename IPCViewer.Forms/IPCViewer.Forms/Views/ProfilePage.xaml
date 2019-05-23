@@ -4,7 +4,7 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:i18n="clr-namespace:IPCViewer.Forms.Helpers"
-    Title="Modify User"
+    Title="{i18n:Translate ProfileTitle}"
     BindingContext="{Binding Main, Source={StaticResource Locator}}">
     <ContentPage.Content>
         <ScrollView BindingContext="{Binding Profile}">
@@ -66,15 +66,15 @@
                     <Label
                         Grid.Row="3"
                         Grid.Column="0"
-                        Text="City"
+                        Text="{i18n:Translate CityLabel}"
                         VerticalOptions="Center" />
                     <Picker
+                        Title="{i18n:Translate CitySelect}"
                         Grid.Row="3"
                         Grid.Column="1"
-                    	    ItemDisplayBinding="{Binding Name}"
-                            ItemsSource="{Binding Cities}"
-                    	    SelectedItem="{Binding City}"
-                    	    Title="{i18n:Translate CitySelect}" />
+                        ItemDisplayBinding="{Binding Name}"
+                        ItemsSource="{Binding Cities}"
+                        SelectedItem="{Binding City}" />
 
                     <BoxView
                         Grid.Row="4"
@@ -87,35 +87,35 @@
                     <Label
                         Grid.Row="5"
                         Grid.Column="0"
-                        Text="Current password"
+                        Text="{i18n:Translate CurrentPassword}"
                         VerticalOptions="Center" />
                     <Entry
                         Grid.Row="5"
                         Grid.Column="1"
                         IsPassword="True"
-                        Placeholder="Enter your current password..."
+                        Placeholder="{i18n:Translate CurrentPasswordPlaceholder}"
                         Text="{Binding CurrentPassword}" />
                     <Label
                         Grid.Row="6"
                         Grid.Column="0"
-                        Text="New password"
+                        Text="{i18n:Translate NewPassword}"
                         VerticalOptions="Center" />
                     <Entry
                         Grid.Row="6"
                         Grid.Column="1"
                         IsPassword="True"
-                        Placeholder="Enter the new password..."
+                        Placeholder="{i18n:Translate NewPasswordPlaceholder}"
                         Text="{Binding NewPassword}" />
                     <Label
                         Grid.Row="7"
                         Grid.Column="0"
-                        Text="Confirm new password"
+                        Text="{i18n:Translate ConfirmPassword}"
                         VerticalOptions="Center" />
                     <Entry
                         Grid.Row="7"
                         Grid.Column="1"
                         IsPassword="True"
-                        Placeholder="Renter the new password..."
+                        Placeholder="{i18n:Translate ConfirmPasswordPlaceholder}"
                         Text="{Binding PasswordConfirm}" />
 
                 </Grid>
@@ -126,13 +126,13 @@
                         Command="{Binding SaveCommand}"
                         HorizontalOptions="FillAndExpand"
                         IsEnabled="{Binding IsEnabled}"
-                        Text="Save"
+                        Text="{i18n:Translate SaveCamera}"
                         TextColor="Green" />
                     <Button
                         Command="{Binding ChangePasswordCommand}"
                         HorizontalOptions="FillAndExpand"
                         IsEnabled="{Binding IsEnabled}"
-                        Text="Modify Password" />
+                        Text="{i18n:Translate ModifyPassword}" />
                 </StackLayout>
             </StackLayout>
         </ScrollView>

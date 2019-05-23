@@ -4,8 +4,9 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:bindings="clr-namespace:Xamarin.Forms.GoogleMaps.Bindings;assembly=Xamarin.Forms.GoogleMaps.Bindings"
+    xmlns:i18n="clr-namespace:IPCViewer.Forms.Helpers"
     xmlns:maps="clr-namespace:Xamarin.Forms.GoogleMaps;assembly=Xamarin.Forms.GoogleMaps"
-    Title="Add Location"
+    Title="{i18n:Translate AddLocationTitle}"
     BindingContext="{Binding Main, Source={StaticResource Locator}}">
 
     <StackLayout Margin="5,20" BindingContext="{Binding AddLocation}">
@@ -35,7 +36,7 @@
                 Grid.Row="0"
                 Grid.Column="0"
                 Orientation="Horizontal">
-                <Label Text="Latitude:" />
+                <Label Text="{i18n:Translate LatitudeLabel}" />
                 <Label Text="{Binding Pin.Position.Latitude}" />
             </StackLayout>
 
@@ -43,7 +44,7 @@
                 Grid.Row="1"
                 Grid.Column="0"
                 Orientation="Horizontal">
-                <Label Text="Longitude:" />
+                <Label Text="{i18n:Translate LongitudeLabel}" />
                 <Label Text="{Binding Pin.Position.Longitude}" />
             </StackLayout>
 
@@ -74,7 +75,7 @@
                 Command="{Binding HybridCommand}"
                 FontSize="Small"
                 HeightRequest="15"
-                Text="Hybrid"
+                Text="{i18n:Translate HybridView}"
                 TextColor="Black" />
 
             <Button
@@ -82,14 +83,14 @@
                 Command="{Binding GlobalCommand}"
                 FontSize="Small"
                 HeightRequest="15"
-                Text="Satellite"
+                Text="{i18n:Translate SatelliteView}"
                 TextColor="Black" />
 
             <Button
                 BorderColor="Green"
                 Command="{Binding SaveCommand}"
                 HorizontalOptions="EndAndExpand"
-                Text="Save"
+                Text="{i18n:Translate SaveCamera}"
                 TextColor="Green" />
         </StackLayout>
     </StackLayout>

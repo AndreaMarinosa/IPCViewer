@@ -1,11 +1,9 @@
-﻿using System;
-using System.Net;
-
-namespace IPCViewer.Forms.ViewModels
+﻿namespace IPCViewer.Forms.ViewModels
 {
     using Common.Models;
     using Common.Services;
     using GalaSoft.MvvmLight.Command;
+    using IPCViewer.Forms.Helpers;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Linq;
@@ -97,9 +95,9 @@ namespace IPCViewer.Forms.ViewModels
             if ( !response.IsSuccess )
             {
                 await Application.Current.MainPage.DisplayAlert(
-                    "Error",
-                    response.Message,
-                    "Accept");
+                    Languages.Error,
+                    Languages.ErrorLoadCameras,
+                    Languages.Accept);
                 return;
             }
 

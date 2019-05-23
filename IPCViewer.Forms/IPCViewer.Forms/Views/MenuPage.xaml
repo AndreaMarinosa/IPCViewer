@@ -4,6 +4,7 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     Title="Menu"
+    xmlns:i18n="clr-namespace:IPCViewer.Forms.Helpers"
     BindingContext="{Binding Main, Source={StaticResource Locator}}">
 
     <ContentPage.Content>
@@ -37,7 +38,7 @@
                     Grid.Row="1"
                     Grid.Column="0"
                     Margin="10,0,0,0"
-                    Text="Welcome, "
+                    Text="{i18n:Translate WelcomeMenu}"
                     TextColor="{StaticResource PrimaryFontColor}"
                     VerticalOptions="End" />
                 <Label

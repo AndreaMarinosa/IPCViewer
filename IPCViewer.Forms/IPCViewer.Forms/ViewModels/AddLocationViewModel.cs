@@ -101,7 +101,10 @@ namespace IPCViewer.Forms.ViewModels
         {
             if ( Pin == null )
             {
-                await Application.Current.MainPage.DisplayAlert("Error", "You select select a Pin", null, "Accept");
+                await Application.Current.MainPage.DisplayAlert(
+                    Languages.Error,
+                    Languages.ErrorSelectPin,
+                    Languages.Accept);
                 return;
             }
 
@@ -110,13 +113,20 @@ namespace IPCViewer.Forms.ViewModels
 
             if ( string.IsNullOrEmpty(_latitude) || string.IsNullOrEmpty(_longitude) )
             {
-                await Application.Current.MainPage.DisplayAlert("Error", "You must select the location.", "Accept");
+                await Application.Current.MainPage.DisplayAlert(
+                    Languages.Error,
+                    Languages.ErrorCameraLocation,
+                    Languages.Accept);
                 return;
             }
 
             if ( ImageSource != null )
             {
-                var source = await Application.Current.MainPage.DisplayAlert("Important", "Do you want to save the screenshot as the camera image ? ", "Accept", "Cancel");
+                var source = await Application.Current.MainPage.DisplayAlert(
+                    Languages.Alert,
+                    Languages.AlertEmptyImage,
+                    Languages.Accept,
+                    Languages.Cancel);
                 if ( !source )
                 {
                     ImageSource = string.Empty;
@@ -145,7 +155,7 @@ namespace IPCViewer.Forms.ViewModels
 
             Pins.Add(new Pin
             {
-                Label = "Your location",
+                Label = Languages.OwnLocation,
                 Position = new Position(location.Latitude, location.Longitude)
             });
         }

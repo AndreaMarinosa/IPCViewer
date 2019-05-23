@@ -6,7 +6,7 @@
     xmlns:i18n="clr-namespace:IPCViewer.Forms.Helpers"
     xmlns:views="clr-namespace:IPCViewer.Forms.Views">
 
-    <NavigationPage Title="Login">
+    <NavigationPage Title="{i18n:Translate Login}">
         <x:Arguments>
             <views:LoginPage />
         </x:Arguments>

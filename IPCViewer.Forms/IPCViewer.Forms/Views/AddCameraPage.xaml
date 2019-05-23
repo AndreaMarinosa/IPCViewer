@@ -3,7 +3,8 @@
     x:Class="IPCViewer.Forms.Views.AddCameraPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    Title="Add Camera"
+    xmlns:i18n="clr-namespace:IPCViewer.Forms.Helpers"
+    Title="{i18n:Translate AddCameraTitle}"
     BindingContext="{Binding Main, Source={StaticResource Locator}}">
 
     <ContentPage.Content>
@@ -41,18 +42,18 @@
                         Grid.Row="0"
                         Grid.Column="0"
                         Grid.ColumnSpan="3"
-                        Placeholder="Name..."
+                        Placeholder="{i18n:Translate NameCameraPlaceholder}"
                         Text="{Binding Name}" />
 
                     <Entry
                         Grid.Row="1"
                         Grid.Column="0"
                         Grid.ColumnSpan="3"
-                        Placeholder="Comments..."
+                        Placeholder="{i18n:Translate CommentsCameraPlaceholder}"
                         Text="{Binding Comments}" />
 
                     <Picker
-                        Title="Select a city..."
+                        Title="{i18n:Translate SelectCityCameraPlaceholder}"
                         Grid.Row="2"
                         Grid.Column="0"
                         Grid.ColumnSpan="3"
@@ -63,27 +64,27 @@
                     <Entry
                         Grid.Row="3"
                         Grid.Column="0"
-                        Placeholder="Latitude..."
+                        Placeholder="{i18n:Translate LatitudeCameraPlaceholder}"
                         Text="{Binding Latitude}" />
 
                     <Entry
                         Grid.Row="3"
                         Grid.Column="2"
-                        Placeholder="Longitude..."
+                        Placeholder="{i18n:Translate LongitudeCameraPlaceholder}"
                         Text="{Binding Longitude}" />
 
                     <ImageButton
                         Grid.Row="3"
                         Grid.Column="1"
-                        Source="ic_putLocation"
                         Command="{Binding AddLocationCommand}"
                         HorizontalOptions="Center"
+                        Source="ic_putLocation"
                         VerticalOptions="Center" />
 
                     <ActivityIndicator
                         Grid.Row="4"
                         Grid.Column="0"
-                        Grid.ColumnSpan="2"
+                        Grid.ColumnSpan="3"
                         IsRunning="{Binding IsRunning}"
                         VerticalOptions="Center" />
 
@@ -94,7 +95,7 @@
                         BorderColor="Green"
                         Command="{Binding SaveCommand}"
                         IsEnabled="{Binding IsEnabled}"
-                        Text="Save"
+                        Text="{i18n:Translate SaveCamera}"
                         TextColor="Green" />
                 </Grid>
             </StackLayout>

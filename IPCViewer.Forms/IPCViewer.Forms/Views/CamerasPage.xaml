@@ -3,7 +3,8 @@
     x:Class="IPCViewer.Forms.Views.CamerasPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    Title="Cameras"
+    xmlns:i18n="clr-namespace:IPCViewer.Forms.Helpers"
+    Title="{i18n:Translate CamerasTitle}"
     BindingContext="{Binding Main, Source={StaticResource Locator}}">
 
     <ContentPage.ToolbarItems>
@@ -31,9 +32,24 @@
                         Margin="0,0,0,10"
                         HorizontalOptions="StartAndExpand"
                         Orientation="Horizontal">
-                        <Label FontSize="Medium" Text="Nº Cameras:" />
-                        <Label FontSize="Medium" Text="{Binding Cameras.Count}" />
+
+                        <SearchBar
+                            HorizontalOptions="StartAndExpand"
+                            Placeholder="{i18n:Translate SearchCamera}"
+                            Text="{Binding SearchText}"
+                            VerticalOptions="Center" />
+
+                        <!--<Label
+                            FontSize="Medium"
+                            HorizontalOptions="StartAndExpand"
+                            Text="{i18n:Translate NumCameras}" />-->
+                        <Label
+                            FontSize="Medium"
+                            HorizontalOptions="StartAndExpand"
+                            Text="{Binding Cameras.Count}" />
+
                     </StackLayout>
+
                 </ListView.Header>
 
                 <ListView.GroupHeaderTemplate>
@@ -53,8 +69,7 @@
                                     Text="{Binding Key}"
                                     TextColor="White"
                                     VerticalOptions="Center" />
-                                <SearchBar Placeholder="Search Camera" Text="{Binding SearchText}" >
-                                </SearchBar>
+
                             </Grid>
                         </ViewCell>
                     </DataTemplate>

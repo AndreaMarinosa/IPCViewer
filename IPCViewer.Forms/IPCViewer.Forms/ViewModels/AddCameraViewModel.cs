@@ -1,6 +1,4 @@
-﻿
-
-namespace IPCViewer.Forms.ViewModels
+﻿namespace IPCViewer.Forms.ViewModels
 {
     using System;
     using System.Collections.Generic;
@@ -16,6 +14,8 @@ namespace IPCViewer.Forms.ViewModels
     using System.Windows.Input;
     using Xamarin.Forms;
     using IPCViewer.Forms.Interfaces;
+    using IPCViewer.Forms.Helpers;
+
     public class AddCameraViewModel : BaseViewModel, IClosePopup, ILocation
     {
         private bool isRunning;
@@ -99,9 +99,9 @@ namespace IPCViewer.Forms.ViewModels
             if ( !response.IsSuccess )
             {
                 await Application.Current.MainPage.DisplayAlert(
-                    "Error",
-                    response.Message,
-                    "Accept");
+                    Languages.Error,
+                    Languages.ErrorLoadCities,
+                    Languages.Accept);
                 return;
             }
 
@@ -113,37 +113,46 @@ namespace IPCViewer.Forms.ViewModels
         {
             if ( string.IsNullOrEmpty(Name) )
             {
-                await Application.Current.MainPage.DisplayAlert("Error", "You must enter a camera name.", "Accept");
+                await Application.Current.MainPage.DisplayAlert(
+                    Languages.Error,
+                    Languages.ErrorCameraName,
+                    Languages.Accept);
                 return;
             }
 
-              if ( City == null )
+            if ( City == null )
             {
-                await Application.Current.MainPage.DisplayAlert("Error", "You must select a city.", "Accept");
+                await Application.Current.MainPage.DisplayAlert(
+                     Languages.Error,
+                    Languages.ErrorCameraCity,
+                    Languages.Accept);
                 return;
             }
 
             if ( string.IsNullOrEmpty(Latitude) )
             {
-                await Application.Current.MainPage.DisplayAlert("Error", "You must enter a latitude.", "Accept");
+                await Application.Current.MainPage.DisplayAlert(
+                    Languages.Error,
+                    Languages.ErrorCameraLatitude,
+                    Languages.Accept);
                 return;
             }
 
             if ( string.IsNullOrEmpty(Longitude) )
             {
-                await Application.Current.MainPage.DisplayAlert("Error", "You must enter a longitude.", "Accept");
+                await Application.Current.MainPage.DisplayAlert(
+                    Languages.Error,
+                     Languages.ErrorCameraLongitude,
+                    Languages.Accept);
                 return;
             }
 
             var latitude = double.Parse(this.Latitude);
             var longitude = double.Parse(this.Longitude);
 
-            
-
             var camera = new Camera
             {
                 Name = this.Name,
-                //ImageArray = ImageSource,
                 Comments = this.Comments,
                 CityId = City.Id,
                 City = City,
@@ -169,14 +178,18 @@ namespace IPCViewer.Forms.ViewModels
                 camera.ImageUrl = UrlCamera;
             }
             // si el screenshot no es null
-            else if (this._imageByte != null)
+            else if ( this._imageByte != null )
             {
                 camera.ImageArray = _imageByte;
             }
             else
             {
-                var source = await Application.Current.MainPage.DisplayAlert("Alert", "Are you sure you want to save the camera without an image?", "Accept", "Cancel");
-                if ( source!= true )
+                var source = await Application.Current.MainPage.DisplayAlert(
+                    Languages.Alert,
+                    Languages.AlertImageCamera,
+                    Languages.Accept,
+                    Languages.Cancel);
+                if ( source != true )
                 {
                     return;
                 }
@@ -201,7 +214,10 @@ namespace IPCViewer.Forms.ViewModels
 
             if ( !response.IsSuccess )
             {
-                await Application.Current.MainPage.DisplayAlert("Error", response.Message, "Accept");
+                await Application.Current.MainPage.DisplayAlert(
+                    Languages.Error,
+                    Languages.ErrorCreateCamera,
+                    Languages.Accept);
 
                 this.IsRunning = false;
                 this.IsEnabled = true;
@@ -223,44 +239,38 @@ namespace IPCViewer.Forms.ViewModels
 
             // Dialogo para varias opciones
             var source = await Application.Current.MainPage.DisplayActionSheet(
-                "Where do you take the picture?",
-                "Cancel",
+                Languages.DisplayActionImage,
+                Languages.Cancel,
                 null,
-                "From Gallery",
-                "From Camera",
-                "From Url");
+                 Languages.FromGallery,
+                 Languages.FromCamera,
+                 Languages.FromUrl);
 
-            switch ( source )
+            if ( source.Equals(Languages.Cancel) )
             {
-                case "Cancel":
+                this.file = null;
+                return;
+            }
+            else if ( source.Equals(Languages.FromGallery) )
+            {
+                // le decimos que coja la foto de la camara
+                this.file = await CrossMedia.Current.TakePhotoAsync(
+                    new StoreCameraMediaOptions
                     {
-                        this.file = null;
-                        return;
+                        Directory = "Pictures",
+                        Name = "test.jpg",
+                        PhotoSize = PhotoSize.Small,
                     }
-                case "From Camera":
-                    {
-                        // le decimos que coja la foto de la camara
-                        this.file = await CrossMedia.Current.TakePhotoAsync(
-                            new StoreCameraMediaOptions
-                            {
-                                Directory = "Pictures",
-                                Name = "test.jpg",
-                                PhotoSize = PhotoSize.Small,
-                            }
-                        );
-                        break;
-                    }
-                case "From Gallery":
-                    {
-                        this.file = await CrossMedia.Current.PickPhotoAsync();
-                        break;
-                    }
-                case "From Url":
-                    {
-                        MainViewModel.GetInstance().AddUrl = new AddUrlViewModel(this);
-                        await App.Navigator.PushAsync(new AddUrlPage());
-                        break;
-                    }
+                );
+            }
+            else if ( source.Equals(Languages.FromCamera) )
+            {
+                this.file = await CrossMedia.Current.PickPhotoAsync();
+            }
+            else if ( source.Equals(Languages.FromUrl) )
+            {
+                MainViewModel.GetInstance().AddUrl = new AddUrlViewModel(this);
+                await App.Navigator.PushAsync(new AddUrlPage());
             }
 
             // Si han elegido una imagen
@@ -290,24 +300,16 @@ namespace IPCViewer.Forms.ViewModels
             }
         }
 
-        public void SetLocation(string latitude, string longitude, byte[] imageSource)
+        public void SetLocation (string latitude, string longitude, byte[] imageSource)
         {
             Latitude = latitude;
             Longitude = longitude;
-            if (imageSource != null && imageSource.Length > 0 )
+            if ( imageSource != null && imageSource.Length > 0 )
             {
                 _imageByte = imageSource;
                 ImageSource = ImageSource.FromStream(() => new MemoryStream(_imageByte));
 
             }
-
-            //this.ImageSource = ImageSource.FromStream(() =>
-            //{
-            //    var stream = new MemoryStream();
-            //    stream.Write(imageSource, 0, imageSource.Length);
-            //    return stream;
-            //});
-
         }
     }
 }

@@ -13,6 +13,7 @@ namespace IPCViewer.Forms.ViewModels
     using Plugin.Media;
     using Plugin.Media.Abstractions;
     using System.IO;
+    using IPCViewer.Forms.Helpers;
 
     public class EditCameraViewModel : BaseViewModel, ILocation, IClosePopup
     {
@@ -135,25 +136,37 @@ namespace IPCViewer.Forms.ViewModels
         {
             if ( string.IsNullOrEmpty(Camera.Name) )
             {
-                await Application.Current.MainPage.DisplayAlert("Error", "You must enter a camera name.", "Accept");
+                await Application.Current.MainPage.DisplayAlert(
+                    Languages.Error,
+                    Languages.ErrorCameraName,
+                    Languages.Accept);
                 return;
             }
 
             if ( Camera.City == null )
             {
-                await Application.Current.MainPage.DisplayAlert("Error", "You must select a city.", "Accept");
-                return;
-            }
-
-            if ( string.IsNullOrEmpty(Longitude) )
-            {
-                await Application.Current.MainPage.DisplayAlert("Error", "You must enter a longitude.", "Accept");
+                await Application.Current.MainPage.DisplayAlert(
+                     Languages.Error,
+                    Languages.ErrorCameraCity,
+                    Languages.Accept);
                 return;
             }
 
             if ( string.IsNullOrEmpty(Latitude) )
             {
-                await Application.Current.MainPage.DisplayAlert("Error", "You must enter a latitude.", "Accept");
+                await Application.Current.MainPage.DisplayAlert(
+                    Languages.Error,
+                    Languages.ErrorCameraLatitude,
+                    Languages.Accept);
+                return;
+            }
+
+            if ( string.IsNullOrEmpty(Longitude) )
+            {
+                await Application.Current.MainPage.DisplayAlert(
+                    Languages.Error,
+                     Languages.ErrorCameraLongitude,
+                    Languages.Accept);
                 return;
             }
 
@@ -176,7 +189,11 @@ namespace IPCViewer.Forms.ViewModels
             }
             else
             {
-                var source = await Application.Current.MainPage.DisplayAlert("Alert", "Are you sure you want to save the camera without an image?", "Accept", "Cancel");
+                var source = await Application.Current.MainPage.DisplayAlert(
+                   Languages.Alert,
+                   Languages.AlertImageCamera,
+                   Languages.Accept,
+                   Languages.Cancel);
                 if ( source != true )
                 {
                     return;
@@ -207,7 +224,10 @@ namespace IPCViewer.Forms.ViewModels
             IsEnabled = true;
             if ( !response.IsSuccess )
             {
-                await Application.Current.MainPage.DisplayAlert("Error", response.Message, "Accept");
+                await Application.Current.MainPage.DisplayAlert(
+                    Languages.Error,
+                    Languages.ErrorEditCamera,
+                    Languages.Accept);
                 return;
             }
 
@@ -223,44 +243,38 @@ namespace IPCViewer.Forms.ViewModels
 
             // Dialogo para varias opciones
             var source = await Application.Current.MainPage.DisplayActionSheet(
-                "Where do you take the picture?",
-                "Cancel",
+                Languages.DisplayActionImage,
+                Languages.Cancel,
                 null,
-                "From Gallery",
-                "From Camera",
-                "From Url");
+                 Languages.FromGallery,
+                 Languages.FromCamera,
+                 Languages.FromUrl);
 
-            switch ( source )
+            if ( source.Equals(Languages.Cancel) )
             {
-                case "Cancel":
+                this.file = null;
+                return;
+            }
+            else if ( source.Equals(Languages.FromGallery) )
+            {
+                // le decimos que coja la foto de la camara
+                this.file = await CrossMedia.Current.TakePhotoAsync(
+                    new StoreCameraMediaOptions
                     {
-                        file = null;
-                        return;
+                        Directory = "Pictures",
+                        Name = "test.jpg",
+                        PhotoSize = PhotoSize.Small,
                     }
-                case "From Camera":
-                    {
-                        // le decimos que coja la foto de la camara
-                        file = await CrossMedia.Current.TakePhotoAsync(
-                            new StoreCameraMediaOptions
-                            {
-                                Directory = "Pictures",
-                                Name = "test.jpg",
-                                PhotoSize = PhotoSize.Small,
-                            }
-                        );
-                        break;
-                    }
-                case "From Gallery":
-                    {
-                        file = await CrossMedia.Current.PickPhotoAsync();
-                        break;
-                    }
-                case "From Url":
-                    {
-                        MainViewModel.GetInstance().AddUrl = new AddUrlViewModel(this);
-                        await App.Navigator.PushAsync(new AddUrlPage());
-                        break;
-                    }
+                );
+            }
+            else if ( source.Equals(Languages.FromCamera) )
+            {
+                this.file = await CrossMedia.Current.PickPhotoAsync();
+            }
+            else if ( source.Equals(Languages.FromUrl) )
+            {
+                MainViewModel.GetInstance().AddUrl = new AddUrlViewModel(this);
+                await App.Navigator.PushAsync(new AddUrlPage());
             }
 
             // Si han elegido una imagen

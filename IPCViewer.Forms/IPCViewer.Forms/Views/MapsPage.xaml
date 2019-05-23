@@ -5,8 +5,9 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:bindings="clr-namespace:Xamarin.Forms.GoogleMaps.Bindings;assembly=Xamarin.Forms.GoogleMaps.Bindings"
     xmlns:forms="clr-namespace:Xamarin.Forms;assembly=Xamarin.Forms.Core"
+    xmlns:i18n="clr-namespace:IPCViewer.Forms.Helpers"
     xmlns:maps="clr-namespace:Xamarin.Forms.GoogleMaps;assembly=Xamarin.Forms.GoogleMaps"
-    Title="Map"
+    Title="{i18n:Translate MapsTitle}" 
     BackgroundColor="{StaticResource Primary}"
     BindingContext="{Binding Main, Source={StaticResource Locator}}">
 
@@ -47,7 +48,7 @@
                 forms:Grid.Column="1"
                 forms:Grid.Row="0"
                 Orientation="Horizontal">
-                <Label Text="Name:" TextColor="{StaticResource PrimaryFontColor}" />
+                <Label Text="{i18n:Translate NameLabel}" TextColor="{StaticResource PrimaryFontColor}" />
                 <Label
                     FontSize="Medium"
                     Text="{Binding Pin.Label}"
@@ -59,7 +60,7 @@
                 forms:Grid.Column="1"
                 forms:Grid.Row="1"
                 Orientation="Horizontal">
-                <Label Text="Latitude:" TextColor="{StaticResource PrimaryFontColor}" />
+                <Label Text="{i18n:Translate LatitudeLabel}" TextColor="{StaticResource PrimaryFontColor}" />
                 <Label
                     FontSize="Medium"
                     Text="{Binding Pin.Position.Latitude}"
@@ -71,7 +72,7 @@
                 forms:Grid.Column="1"
                 forms:Grid.Row="2"
                 Orientation="Horizontal">
-                <Label Text="Longitude:" TextColor="{StaticResource PrimaryFontColor}" />
+                <Label Text="{i18n:Translate LongitudeLabel}" TextColor="{StaticResource PrimaryFontColor}" />
                 <Label
                     FontSize="Medium"
                     Text="{Binding Pin.Position.Longitude}"

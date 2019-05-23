@@ -61,6 +61,24 @@ namespace IPCViewer.Forms.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to About.
+        /// </summary>
+        public static string About {
+            get {
+                return ResourceManager.GetString("About", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to About.
+        /// </summary>
+        public static string AboutTitle {
+            get {
+                return ResourceManager.GetString("AboutTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Accept.
         /// </summary>
         public static string Accept {
@@ -70,11 +88,200 @@ namespace IPCViewer.Forms.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add Camera.
+        /// </summary>
+        public static string AddCameraTitle {
+            get {
+                return ResourceManager.GetString("AddCameraTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add Location.
+        /// </summary>
+        public static string AddLocationTitle {
+            get {
+                return ResourceManager.GetString("AddLocationTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add User.
+        /// </summary>
+        public static string AddUserTitle {
+            get {
+                return ResourceManager.GetString("AddUserTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Alert.
+        /// </summary>
+        public static string Alert {
+            get {
+                return ResourceManager.GetString("Alert", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Do you want to save the screenshot as the camera image ? .
+        /// </summary>
+        public static string AlertEmptyImage {
+            get {
+                return ResourceManager.GetString("AlertEmptyImage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to save the camera without an image?.
+        /// </summary>
+        public static string AlertImageCamera {
+            get {
+                return ResourceManager.GetString("AlertImageCamera", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cameras.
+        /// </summary>
+        public static string CamerasTitle {
+            get {
+                return ResourceManager.GetString("CamerasTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Camera url....
+        /// </summary>
+        public static string CameraUrlPlaceholder {
+            get {
+                return ResourceManager.GetString("CameraUrlPlaceholder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        public static string Cancel {
+            get {
+                return ResourceManager.GetString("Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to City:.
+        /// </summary>
+        public static string CityLabel {
+            get {
+                return ResourceManager.GetString("CityLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select a city....
         /// </summary>
         public static string CitySelect {
             get {
                 return ResourceManager.GetString("CitySelect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Close session.
+        /// </summary>
+        public static string CloseSession {
+            get {
+                return ResourceManager.GetString("CloseSession", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Comments....
+        /// </summary>
+        public static string CommentsCameraPlaceholder {
+            get {
+                return ResourceManager.GetString("CommentsCameraPlaceholder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Confirm password:.
+        /// </summary>
+        public static string ConfirmPassword {
+            get {
+                return ResourceManager.GetString("ConfirmPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter the new password again....
+        /// </summary>
+        public static string ConfirmPasswordPlaceholder {
+            get {
+                return ResourceManager.GetString("ConfirmPasswordPlaceholder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Created by:.
+        /// </summary>
+        public static string CreatedByLabel {
+            get {
+                return ResourceManager.GetString("CreatedByLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Current password:.
+        /// </summary>
+        public static string CurrentPassword {
+            get {
+                return ResourceManager.GetString("CurrentPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter your current password....
+        /// </summary>
+        public static string CurrentPasswordPlaceholder {
+            get {
+                return ResourceManager.GetString("CurrentPasswordPlaceholder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Creation date:.
+        /// </summary>
+        public static string DateCreationLabel {
+            get {
+                return ResourceManager.GetString("DateCreationLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete.
+        /// </summary>
+        public static string DeleteCamera {
+            get {
+                return ResourceManager.GetString("DeleteCamera", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Where do you take the picture?.
+        /// </summary>
+        public static string DisplayActionImage {
+            get {
+                return ResourceManager.GetString("DisplayActionImage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit Camera.
+        /// </summary>
+        public static string EditCameraTitle {
+            get {
+                return ResourceManager.GetString("EditCameraTitle", resourceCulture);
             }
         }
         
@@ -97,6 +304,213 @@ namespace IPCViewer.Forms.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You must select a city..
+        /// </summary>
+        public static string ErrorCameraCity {
+            get {
+                return ResourceManager.GetString("ErrorCameraCity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You must enter a latitude..
+        /// </summary>
+        public static string ErrorCameraLatitude {
+            get {
+                return ResourceManager.GetString("ErrorCameraLatitude", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You must select the location..
+        /// </summary>
+        public static string ErrorCameraLocation {
+            get {
+                return ResourceManager.GetString("ErrorCameraLocation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You must enter a longitude..
+        /// </summary>
+        public static string ErrorCameraLongitude {
+            get {
+                return ResourceManager.GetString("ErrorCameraLongitude", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You must enter a camera name..
+        /// </summary>
+        public static string ErrorCameraName {
+            get {
+                return ResourceManager.GetString("ErrorCameraName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to We couldn&apos;t create the camera..
+        /// </summary>
+        public static string ErrorCreateCamera {
+            get {
+                return ResourceManager.GetString("ErrorCreateCamera", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You must enter the current password..
+        /// </summary>
+        public static string ErrorCurrentPassword {
+            get {
+                return ResourceManager.GetString("ErrorCurrentPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The current password is incorrect..
+        /// </summary>
+        public static string ErrorCurrentPasswordIncorrect {
+            get {
+                return ResourceManager.GetString("ErrorCurrentPasswordIncorrect", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to We couldn&apos;t edit the camera..
+        /// </summary>
+        public static string ErrorEditCamera {
+            get {
+                return ResourceManager.GetString("ErrorEditCamera", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You must enter a firstname.
+        /// </summary>
+        public static string ErrorEmptyFirstname {
+            get {
+                return ResourceManager.GetString("ErrorEmptyFirstname", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You must enter the password confirm..
+        /// </summary>
+        public static string ErrorEmptyPasswordConfirm {
+            get {
+                return ResourceManager.GetString("ErrorEmptyPasswordConfirm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You must enter an username.
+        /// </summary>
+        public static string ErrorEmptyUsername {
+            get {
+                return ResourceManager.GetString("ErrorEmptyUsername", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to We couldn&apos;t load the cameras..
+        /// </summary>
+        public static string ErrorLoadCameras {
+            get {
+                return ResourceManager.GetString("ErrorLoadCameras", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to We couldn&apos;t load the cities.
+        /// </summary>
+        public static string ErrorLoadCities {
+            get {
+                return ResourceManager.GetString("ErrorLoadCities", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to We couldn&apos;t change the password.
+        /// </summary>
+        public static string ErrorModifyPassword {
+            get {
+                return ResourceManager.GetString("ErrorModifyPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to We couldn&apos;t modify the user.
+        /// </summary>
+        public static string ErrorModifyUser {
+            get {
+                return ResourceManager.GetString("ErrorModifyUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You must enter the new password..
+        /// </summary>
+        public static string ErrorNewPassword {
+            get {
+                return ResourceManager.GetString("ErrorNewPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The password must have at least 6 characters length..
+        /// </summary>
+        public static string ErrorPasswordLength {
+            get {
+                return ResourceManager.GetString("ErrorPasswordLength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The password and confirm does not match..
+        /// </summary>
+        public static string ErrorPasswordsDoesntMatch {
+            get {
+                return ResourceManager.GetString("ErrorPasswordsDoesntMatch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New user could not be created.
+        /// </summary>
+        public static string ErrorRegister {
+            get {
+                return ResourceManager.GetString("ErrorRegister", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You must select select a Pin.
+        /// </summary>
+        public static string ErrorSelectPin {
+            get {
+                return ResourceManager.GetString("ErrorSelectPin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Failure to receive the user&apos;s location.
+        /// </summary>
+        public static string ErrorUserLocation {
+            get {
+                return ResourceManager.GetString("ErrorUserLocation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You must enter a valid email..
+        /// </summary>
+        public static string ErrorValidEmail {
+            get {
+                return ResourceManager.GetString("ErrorValidEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Firstname.
         /// </summary>
         public static string Firstname {
@@ -111,6 +525,60 @@ namespace IPCViewer.Forms.Resources {
         public static string FirstnamePlaceHolder {
             get {
                 return ResourceManager.GetString("FirstnamePlaceHolder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to From Camera.
+        /// </summary>
+        public static string FromCamera {
+            get {
+                return ResourceManager.GetString("FromCamera", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to From Gallery.
+        /// </summary>
+        public static string FromGallery {
+            get {
+                return ResourceManager.GetString("FromGallery", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to From Url.
+        /// </summary>
+        public static string FromUrl {
+            get {
+                return ResourceManager.GetString("FromUrl", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hybrid.
+        /// </summary>
+        public static string HybridView {
+            get {
+                return ResourceManager.GetString("HybridView", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Latitude....
+        /// </summary>
+        public static string LatitudeCameraPlaceholder {
+            get {
+                return ResourceManager.GetString("LatitudeCameraPlaceholder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Latitude:.
+        /// </summary>
+        public static string LatitudeLabel {
+            get {
+                return ResourceManager.GetString("LatitudeLabel", resourceCulture);
             }
         }
         
@@ -142,6 +610,141 @@ namespace IPCViewer.Forms.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Longitude....
+        /// </summary>
+        public static string LongitudeCameraPlaceholder {
+            get {
+                return ResourceManager.GetString("LongitudeCameraPlaceholder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Longitude:.
+        /// </summary>
+        public static string LongitudeLabel {
+            get {
+                return ResourceManager.GetString("LongitudeLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Maps.
+        /// </summary>
+        public static string Maps {
+            get {
+                return ResourceManager.GetString("Maps", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Maps.
+        /// </summary>
+        public static string MapsTitle {
+            get {
+                return ResourceManager.GetString("MapsTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Modify password:.
+        /// </summary>
+        public static string ModifyPassword {
+            get {
+                return ResourceManager.GetString("ModifyPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Password was successfully changed!.
+        /// </summary>
+        public static string ModifyPasswordSuccess {
+            get {
+                return ResourceManager.GetString("ModifyPasswordSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User updated!.
+        /// </summary>
+        public static string ModifySuccess {
+            get {
+                return ResourceManager.GetString("ModifySuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Modify User.
+        /// </summary>
+        public static string ModifyUser {
+            get {
+                return ResourceManager.GetString("ModifyUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Modify User.
+        /// </summary>
+        public static string ModifyUserTitle {
+            get {
+                return ResourceManager.GetString("ModifyUserTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name....
+        /// </summary>
+        public static string NameCameraPlaceholder {
+            get {
+                return ResourceManager.GetString("NameCameraPlaceholder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name:.
+        /// </summary>
+        public static string NameLabel {
+            get {
+                return ResourceManager.GetString("NameLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New password:.
+        /// </summary>
+        public static string NewPassword {
+            get {
+                return ResourceManager.GetString("NewPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enter the new password....
+        /// </summary>
+        public static string NewPasswordPlaceholder {
+            get {
+                return ResourceManager.GetString("NewPasswordPlaceholder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Num. Cameras: .
+        /// </summary>
+        public static string NumCameras {
+            get {
+                return ResourceManager.GetString("NumCameras", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your location.
+        /// </summary>
+        public static string OwnLocation {
+            get {
+                return ResourceManager.GetString("OwnLocation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to You must enter a password.
         /// </summary>
         public static string PasswordError {
@@ -160,11 +763,29 @@ namespace IPCViewer.Forms.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Profile.
+        /// </summary>
+        public static string ProfileTitle {
+            get {
+                return ResourceManager.GetString("ProfileTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Register new user.
         /// </summary>
         public static string Register {
             get {
                 return ResourceManager.GetString("Register", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The user was successfully created!.
+        /// </summary>
+        public static string RegisterSuccess {
+            get {
+                return ResourceManager.GetString("RegisterSuccess", resourceCulture);
             }
         }
         
@@ -187,6 +808,42 @@ namespace IPCViewer.Forms.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Satellite.
+        /// </summary>
+        public static string SatelliteView {
+            get {
+                return ResourceManager.GetString("SatelliteView", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save.
+        /// </summary>
+        public static string SaveCamera {
+            get {
+                return ResourceManager.GetString("SaveCamera", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Search camera....
+        /// </summary>
+        public static string SearchCamera {
+            get {
+                return ResourceManager.GetString("SearchCamera", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select a city....
+        /// </summary>
+        public static string SelectCityCameraPlaceholder {
+            get {
+                return ResourceManager.GetString("SelectCityCameraPlaceholder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Username.
         /// </summary>
         public static string Username {
@@ -196,11 +853,29 @@ namespace IPCViewer.Forms.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to View Camera.
+        /// </summary>
+        public static string ViewCameraTitle {
+            get {
+                return ResourceManager.GetString("ViewCameraTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Welcome to.
         /// </summary>
         public static string Welcome {
             get {
                 return ResourceManager.GetString("Welcome", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Welcome, .
+        /// </summary>
+        public static string WelcomeMenu {
+            get {
+                return ResourceManager.GetString("WelcomeMenu", resourceCulture);
             }
         }
     }

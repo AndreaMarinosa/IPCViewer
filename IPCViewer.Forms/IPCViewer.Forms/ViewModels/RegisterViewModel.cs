@@ -4,6 +4,7 @@
     using GalaSoft.MvvmLight.Command;
     using IPCViewer.Common.Helpers;
     using IPCViewer.Common.Services;
+    using IPCViewer.Forms.Helpers;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Windows.Input;
@@ -66,9 +67,9 @@
             if ( !response.IsSuccess || response == null )
             {
                 await Application.Current.MainPage.DisplayAlert(
-                    "Error",
-                    response.Message,
-                    "Accept");
+                   Languages.Error,
+                   Languages.ErrorLoadCities,
+                   Languages.Accept);
                 return;
             }
 
@@ -81,9 +82,6 @@
             this.apiService = new ApiService();
             this.IsEnabled = true;
             LoadCities();
-            FirstName = "Andrea2";
-            Email = "q@shitmail.me";
-            Password = "123456";
         }
 
         private async void Register ()
@@ -91,54 +89,54 @@
             if ( string.IsNullOrEmpty(this.FirstName) )
             {
                 await Application.Current.MainPage.DisplayAlert(
-                    "Error",
-                    "You must enter the first name.",
-                    "Accept");
+                     Languages.Error,
+                     Languages.ErrorEmptyFirstname,
+                     Languages.Accept);
                 return;
             }
 
             if ( string.IsNullOrEmpty(this.Email) )
             {
                 await Application.Current.MainPage.DisplayAlert(
-                    "Error",
-                    "You must enter an email.",
-                    "Accept");
+                    Languages.Error,
+                    Languages.EmailError,
+                    Languages.Accept);
                 return;
             }
 
             if ( !RegexHelper.IsValidEmail(this.Email) )
             {
                 await Application.Current.MainPage.DisplayAlert(
-                    "Error",
-                    "You must enter a valid email.",
-                    "Accept");
+                    Languages.Error,
+                    Languages.ErrorValidEmail,
+                    Languages.Accept);
                 return;
             }
 
-            if ( this.City == null )
+            if ( City == null )
             {
                 await Application.Current.MainPage.DisplayAlert(
-                    "Error",
-                    "You must select a city.",
-                    "Accept");
+                     Languages.Error,
+                    Languages.ErrorCameraCity,
+                    Languages.Accept);
                 return;
             }
 
             if ( string.IsNullOrEmpty(this.Password) )
             {
                 await Application.Current.MainPage.DisplayAlert(
-                    "Error",
-                    "You must enter a password.",
-                    "Accept");
+                   Languages.Error,
+                   Languages.PasswordError,
+                   Languages.Accept);
                 return;
             }
 
             if ( this.Password.Length < 6 )
             {
                 await Application.Current.MainPage.DisplayAlert(
-                    "Error",
-                    "You password must be at mimimun 6 characters.",
-                    "Accept");
+                    Languages.Error,
+                    Languages.ErrorPasswordLength,
+                    Languages.Accept);
                 return;
             }
 
@@ -154,7 +152,6 @@
                 UserName = this.Email
             };
 
-            //var url = Application.Current.Resources["UrlAPI"].ToString();
             var response = await this.apiService.RegisterUserAsync(
                 "https://ipcviewerapi.azurewebsites.net",
                 "/api",
@@ -167,16 +164,16 @@
             if ( !response.IsSuccess )
             {
                 await Application.Current.MainPage.DisplayAlert(
-                    "Error",
-                    response.Message,
-                    "Accept");
+                    Languages.Error,
+                    Languages.ErrorRegister,
+                    Languages.Accept);
                 return;
             }
 
             await Application.Current.MainPage.DisplayAlert(
                 "Ok",
-                response.Message,
-                "Accept");
+                    Languages.RegisterSuccess,
+                    Languages.Accept);
             await App.Navigator.PopAsync();
         }
     }

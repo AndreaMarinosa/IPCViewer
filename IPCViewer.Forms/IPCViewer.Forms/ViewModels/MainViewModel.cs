@@ -2,6 +2,7 @@
 {
     using GalaSoft.MvvmLight.Command;
     using IPCViewer.Common.Models;
+    using IPCViewer.Forms.Helpers;
     using IPCViewer.Forms.Views;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
@@ -75,28 +76,28 @@
                 {
                     Icon = "ic_mapPink",
                     PageName = "MapsPage",
-                    Title= "Maps"
+                    Title= Languages.Maps
                 },
 
                  new Menu
                 {
                     Icon = "ic_settingsPink",
                     PageName = "ProfilePage",
-                    Title = "Modify User"
+                    Title = Languages.ModifyUser
                 },
 
                 new Menu
                 {
                     Icon = "ic_aboutPink",
                     PageName = "AboutPage",
-                    Title = "About"
+                    Title = Languages.About
                 },
 
                 new Menu
                 {
                     Icon = "ic_logoutPink",
                     PageName = "LoginPage",
-                    Title = "Close session"
+                    Title = Languages.CloseSession
                 }
             };
 

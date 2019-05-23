@@ -118,276 +118,276 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Accept" xml:space="preserve">
-    <value>Aceptar</value>
+    <value>同意する</value>
   </data>
   <data name="EmailError" xml:space="preserve">
-    <value>Debes ingresar un correo electrónico.</value>
+    <value>メールアドレスを入力する必要があります</value>
   </data>
   <data name="Error" xml:space="preserve">
-    <value>Error</value>
+    <value>エラー</value>
   </data>
   <data name="PasswordError" xml:space="preserve">
-    <value>Debes introducir una contraseña</value>
+    <value>パスワードを入力する必要があります。</value>
   </data>
   <data name="LoginError" xml:space="preserve">
-    <value>Email o contraseña incorrectos</value>
+    <value>あなたの電子メールアドレスまたはパスワードが間違っています</value>
   </data>
   <data name="Welcome" xml:space="preserve">
-    <value>Bienvenido a</value>
+    <value>ようこそ</value>
   </data>
   <data name="PasswordPlaceHolder" xml:space="preserve">
-    <value>Contraseña...</value>
+    <value>!9ntdu!ゾPassword: ずゼ!</value>
   </data>
   <data name="Login" xml:space="preserve">
-    <value>¡Iniciar sesión!</value>
+    <value>ログイン</value>
   </data>
   <data name="RememberMe" xml:space="preserve">
-    <value>Recuérdame</value>
+    <value>このアカウントを記憶する</value>
   </data>
   <data name="RegisterTitle" xml:space="preserve">
-    <value>¡Regístrese!</value>
+    <value>登録</value>
   </data>
   <data name="FirstnamePlaceHolder" xml:space="preserve">
-    <value>Nombre...</value>
+    <value>名</value>
   </data>
   <data name="CitySelect" xml:space="preserve">
-    <value>Seleccione la ciudad...</value>
+    <value>都市を選択してください</value>
   </data>
   <data name="Register" xml:space="preserve">
-    <value>Registrarse como nuevo usuario</value>
+    <value>新規ユーザー登録</value>
   </data>
   <data name="LeadMeTo" xml:space="preserve">
-    <value>Llévame a ...</value>
+    <value>私を教えてください…！</value>
   </data>
   <data name="Firstname" xml:space="preserve">
-    <value>Nombre:</value>
+    <value>名</value>
   </data>
   <data name="Username" xml:space="preserve">
-    <value>Nombre de usuario:</value>
+    <value>ユーザー名</value>
   </data>
   <data name="NameCameraPlaceholder" xml:space="preserve">
-    <value>Nombre...</value>
+    <value>名前:</value>
   </data>
   <data name="CommentsCameraPlaceholder" xml:space="preserve">
-    <value>Comentarios...</value>
+    <value>コメント</value>
   </data>
   <data name="SelectCityCameraPlaceholder" xml:space="preserve">
-    <value>Seleccione la ciudad...</value>
+    <value>都市を選択してください</value>
   </data>
   <data name="LatitudeCameraPlaceholder" xml:space="preserve">
-    <value>Latitud...</value>
+    <value>緯度</value>
   </data>
   <data name="LongitudeCameraPlaceholder" xml:space="preserve">
-    <value>Longitud...</value>
+    <value>経度</value>
   </data>
   <data name="SaveCamera" xml:space="preserve">
-    <value>Guardar</value>
+    <value>保存</value>
   </data>
   <data name="HybridView" xml:space="preserve">
-    <value>Híbrido</value>
+    <value>ハイブリッド</value>
   </data>
   <data name="SatelliteView" xml:space="preserve">
-    <value>Satélite</value>
+    <value>衛星</value>
   </data>
   <data name="CameraUrlPlaceholder" xml:space="preserve">
-    <value>URL de la cámara...</value>
+    <value>カメラのURL</value>
   </data>
   <data name="LatitudeLabel" xml:space="preserve">
-    <value>Latitud:</value>
+    <value>緯度</value>
   </data>
   <data name="LongitudeLabel" xml:space="preserve">
-    <value>Longitud: </value>
+    <value>経度</value>
   </data>
   <data name="CityLabel" xml:space="preserve">
-    <value>Ciudad: </value>
+    <value>市区町村</value>
   </data>
   <data name="CreatedByLabel" xml:space="preserve">
-    <value>Creado por: </value>
+    <value>作成者</value>
   </data>
   <data name="DateCreationLabel" xml:space="preserve">
-    <value>Fecha de creación: </value>
+    <value>作成日</value>
   </data>
   <data name="DeleteCamera" xml:space="preserve">
-    <value>Eliminar</value>
+    <value>削除</value>
   </data>
   <data name="NameLabel" xml:space="preserve">
-    <value>Nombre: </value>
+    <value>名前:</value>
   </data>
   <data name="WelcomeMenu" xml:space="preserve">
-    <value>Bienvenido, </value>
-  </data>
-  <data name="About" xml:space="preserve">
-    <value>Sobre nosotros</value>
+    <value>ようこそ</value>
   </data>
   <data name="ModifyPassword" xml:space="preserve">
-    <value>Modificar contraseña</value>
+    <value>パスワードを変更する</value>
   </data>
   <data name="ConfirmPassword" xml:space="preserve">
-    <value>Confirmar contraseña:</value>
+    <value>パスワードの確認:</value>
   </data>
   <data name="NewPassword" xml:space="preserve">
-    <value>Nueva contraseña:</value>
+    <value>新しいパスワード</value>
   </data>
   <data name="CurrentPassword" xml:space="preserve">
-    <value>Contraseña actual:</value>
+    <value>現在のパスワード</value>
   </data>
   <data name="Maps" xml:space="preserve">
-    <value>Maps</value>
+    <value>地図</value>
   </data>
   <data name="ModifyUser" xml:space="preserve">
-    <value>Modificar usuario</value>
+    <value>ユーザーの変更</value>
+  </data>
+  <data name="About" xml:space="preserve">
+    <value>バージョン情報</value>
   </data>
   <data name="CloseSession" xml:space="preserve">
-    <value>Cerrar sesión</value>
+    <value>セッションを閉じる</value>
   </data>
   <data name="ConfirmPasswordPlaceholder" xml:space="preserve">
-    <value>Introduzca de nuevo su contraseña...</value>
+    <value>もう一度新しいパスワードを入力します</value>
   </data>
   <data name="NewPasswordPlaceholder" xml:space="preserve">
-    <value>Introduzca la nueva contraseña...</value>
+    <value>新しいパスワードを入力します</value>
   </data>
   <data name="CurrentPasswordPlaceholder" xml:space="preserve">
-    <value>Introduzca su contraseña actual</value>
+    <value>現在のパスワードを入力してください。</value>
   </data>
   <data name="NumCameras" xml:space="preserve">
-    <value>Num. Cámaras:</value>
+    <value>カメラ数</value>
   </data>
   <data name="SearchCamera" xml:space="preserve">
-    <value>Buscar cámara ...</value>
+    <value>検索カメラ...</value>
   </data>
   <data name="ErrorLoadCities" xml:space="preserve">
-    <value>No pudimos cargar las ciudades</value>
+    <value>都市を読み込めませんでした</value>
   </data>
   <data name="ErrorCameraName" xml:space="preserve">
-    <value>Debe introducir un nombre.</value>
+    <value>カメラ名を入力してください</value>
   </data>
   <data name="ErrorCameraLatitude" xml:space="preserve">
-    <value>Debes ingresar la latitud.</value>
+    <value>緯度を入力してください</value>
   </data>
   <data name="ErrorCameraLongitude" xml:space="preserve">
-    <value>Debes ingresar la longitud.</value>
+    <value>経度を入力してください</value>
   </data>
   <data name="ErrorCameraCity" xml:space="preserve">
-    <value>Debes seleccionar una ciudad.</value>
+    <value>都市を選択してください</value>
   </data>
   <data name="Cancel" xml:space="preserve">
-    <value>Cancelar</value>
+    <value>キャンセル</value>
   </data>
   <data name="Alert" xml:space="preserve">
-    <value>¡Importante!</value>
+    <value>アラート</value>
   </data>
   <data name="AlertImageCamera" xml:space="preserve">
-    <value>¿Estás seguro de que deseas guardar la cámara sin una imagen?</value>
+    <value>画像なしでカメラを保存してよろしいですか？</value>
   </data>
   <data name="ErrorCreateCamera" xml:space="preserve">
-    <value>No pudimos crear la cámara.</value>
+    <value>カメラを作成できませんでした。</value>
   </data>
   <data name="DisplayActionImage" xml:space="preserve">
-    <value>¿De dónde tomas la foto?</value>
+    <value>どこで写真を撮りますか？</value>
   </data>
   <data name="FromGallery" xml:space="preserve">
-    <value>Desde la galería</value>
+    <value>ギャラリーから</value>
   </data>
   <data name="FromCamera" xml:space="preserve">
-    <value>Desde la cámara</value>
+    <value>カメラ ロールから選択</value>
   </data>
   <data name="FromUrl" xml:space="preserve">
-    <value>A partir de una URL</value>
+    <value>URL からインポートする</value>
   </data>
   <data name="ErrorCameraLocation" xml:space="preserve">
-    <value>Debe seleccionar una ubicación.</value>
+    <value>あなたは場所を選ぶ必要があります。</value>
   </data>
   <data name="AlertEmptyImage" xml:space="preserve">
-    <value>¿Quieres guardar la captura de pantalla como la imagen de la cámara? </value>
+    <value>スクリーンショットをカメラ画像として保存しますか？</value>
   </data>
   <data name="OwnLocation" xml:space="preserve">
-    <value>Tu ubicación</value>
+    <value>場所の変更:</value>
   </data>
   <data name="ErrorSelectPin" xml:space="preserve">
-    <value>Debe seleccionar seleccionar un Pin</value>
+    <value>ピンを選択してください</value>
   </data>
   <data name="ErrorLoadCameras" xml:space="preserve">
-    <value>Las cámaras no pudieron cargarse.</value>
+    <value>カメラをロードできませんでした。</value>
   </data>
   <data name="ErrorEditCamera" xml:space="preserve">
-    <value>La cámara no pudo editarse.</value>
+    <value>カメラを編集できませんでした。</value>
   </data>
   <data name="ErrorUserLocation" xml:space="preserve">
-    <value>Fallo al recibir la ubicación del usuario</value>
+    <value>ユーザーの位置情報を受け取れなかった</value>
   </data>
   <data name="ErrorEmptyFirstname" xml:space="preserve">
-    <value>Debes ingresar un nombre</value>
+    <value>名前を入力してください</value>
   </data>
   <data name="ErrorEmptyUsername" xml:space="preserve">
-    <value>Debes ingresar un nombre de usuario!</value>
+    <value>ユーザー名を入力してください</value>
   </data>
   <data name="ErrorModifyUser" xml:space="preserve">
-    <value>No pudimos modificar al usuario</value>
+    <value>ユーザーを変更できませんでした</value>
   </data>
   <data name="ModifySuccess" xml:space="preserve">
-    <value>Usuario actualizado!</value>
+    <value>別のユーザーによってグループが更新されたため、要求された操作を実行できません。もう一度やり直してください。</value>
   </data>
   <data name="ErrorCurrentPassword" xml:space="preserve">
-    <value>Debe introducir su contraseña actual.</value>
+    <value>現在のパスワードを入力してください。</value>
   </data>
   <data name="ErrorCurrentPasswordIncorrect" xml:space="preserve">
-    <value>La contraseña actual es incorrecta</value>
+    <value>現在のパスワードが正しくないか、アカウントが管理者によって削除されています。</value>
   </data>
   <data name="ErrorNewPassword" xml:space="preserve">
-    <value>Debe ingresar la nueva contraseña.</value>
+    <value>新しいパスワードを入力してください。</value>
   </data>
   <data name="ErrorPasswordLength" xml:space="preserve">
-    <value>La contraseña debe tener al menos 6 caracteres.</value>
+    <value>パスワードは6文字以上にする必要があります。</value>
   </data>
   <data name="ErrorEmptyPasswordConfirm" xml:space="preserve">
-    <value>Debes introducir la confirmación de la contraseña.</value>
+    <value>確認のためにパスワードを入力する必要があります。</value>
   </data>
   <data name="ErrorPasswordsDoesntMatch" xml:space="preserve">
-    <value>La contraseña y la confirmación no coinciden.</value>
+    <value>パスワードと確認が一致しません。</value>
   </data>
   <data name="ErrorModifyPassword" xml:space="preserve">
-    <value>No se ha podido cambiar la contraseña</value>
+    <value>パスワードを変更できませんでした</value>
   </data>
   <data name="ModifyPasswordSuccess" xml:space="preserve">
-    <value>Contraseña cambiada con éxito</value>
+    <value>パスワードが正常に変更されました。</value>
   </data>
   <data name="ErrorValidEmail" xml:space="preserve">
-    <value>Debe introducir una dirección de correo válida.</value>
+    <value>有効な電子メール アドレスを入力してください。</value>
   </data>
   <data name="ErrorRegister" xml:space="preserve">
-    <value>El nuevo usuario no pudo ser creado</value>
+    <value>新しいユーザーを作成できませんでした</value>
   </data>
   <data name="RegisterSuccess" xml:space="preserve">
-    <value>El Usuario ha sido creado con éxito.</value>
+    <value>ユーザーは正しく作成されましたが、Users ローカル グループに\r\n追加できませんでした。\r\n</value>
   </data>
   <data name="ModifyUserTitle" xml:space="preserve">
-    <value>Modificar Usuario</value>
+    <value>ユーザーの変更</value>
   </data>
   <data name="AddUserTitle" xml:space="preserve">
-    <value>Añadir Usuario</value>
+    <value>ユーザーを追加する</value>
   </data>
   <data name="CamerasTitle" xml:space="preserve">
-    <value>Cáramas</value>
+    <value>カメラ</value>
   </data>
   <data name="MapsTitle" xml:space="preserve">
-    <value>Maps</value>
+    <value>地図</value>
   </data>
   <data name="AddLocationTitle" xml:space="preserve">
-    <value>Añadir Localización</value>
+    <value>場所を追加</value>
   </data>
   <data name="EditCameraTitle" xml:space="preserve">
-    <value>Editar Cámara</value>
+    <value>カメラを編集</value>
   </data>
   <data name="AboutTitle" xml:space="preserve">
-    <value>Sobre nosotros</value>
+    <value>バージョン情報</value>
   </data>
   <data name="ViewCameraTitle" xml:space="preserve">
-    <value>Ver Cámara</value>
+    <value>カメラを見る</value>
   </data>
   <data name="ProfileTitle" xml:space="preserve">
-    <value>Perfil</value>
+    <value>プロフィール</value>
   </data>
   <data name="AddCameraTitle" xml:space="preserve">
-    <value>Añadir Cámara</value>
+    <value>カメラを追加</value>
   </data>
 </root>

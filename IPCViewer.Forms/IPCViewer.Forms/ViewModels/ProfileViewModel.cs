@@ -4,6 +4,7 @@
     using Common.Services;
     using GalaSoft.MvvmLight.Command;
     using IPCViewer.Common.Helpers;
+    using IPCViewer.Forms.Helpers;
     using Newtonsoft.Json;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
@@ -87,9 +88,9 @@
             if ( !response.IsSuccess || response == null )
             {
                 await Application.Current.MainPage.DisplayAlert(
-                    "Error",
-                    response.Message,
-                    "Accept");
+                    Languages.Error,
+                    Languages.ErrorLoadCities,
+                    Languages.Accept);
                 return;
             }
 
@@ -114,27 +115,27 @@
             if ( string.IsNullOrEmpty(this.User.FirstName) )
             {
                 await Application.Current.MainPage.DisplayAlert(
-                    "Error",
-                    "You must enter the first name.",
-                    "Accept");
+                     Languages.Error,
+                    Languages.ErrorEmptyFirstname,
+                    Languages.Accept);
                 return;
             }
 
             if ( string.IsNullOrEmpty(this.User.UserName) )
             {
                 await Application.Current.MainPage.DisplayAlert(
-                    "Error",
-                    "You must enter the username.",
-                    "Accept");
+                     Languages.Error,
+                    Languages.ErrorEmptyUsername,
+                    Languages.Accept);
                 return;
             }
 
             if ( this.City == null )
             {
                 await Application.Current.MainPage.DisplayAlert(
-                    "Error",
-                    "You must select a city.",
-                    "Accept");
+                     Languages.Error,
+                    Languages.ErrorCameraCity,
+                    Languages.Accept);
                 return;
             }
 
@@ -155,9 +156,9 @@
             if ( !response.IsSuccess )
             {
                 await Application.Current.MainPage.DisplayAlert(
-                    "Error",
-                    response.Message,
-                    "Accept");
+                   Languages.Error,
+                   Languages.ErrorModifyUser,
+                   Languages.Accept);
                 return;
             }
 
@@ -166,8 +167,8 @@
 
             await Application.Current.MainPage.DisplayAlert(
                 "Ok",
-                "User updated!",
-                "Accept");
+               Languages.ModifySuccess,
+                   Languages.Accept);
             await App.Navigator.PopAsync();
         }
 
@@ -176,54 +177,54 @@
             if ( string.IsNullOrEmpty(this.CurrentPassword) )
             {
                 await Application.Current.MainPage.DisplayAlert(
-                    "Error",
-                    "You must enter the current password.",
-                    "Accept");
+                   Languages.Error,
+                   Languages.ErrorCurrentPassword,
+                   Languages.Accept);
                 return;
             }
 
             if ( !MainViewModel.GetInstance().UserPassword.Equals(this.CurrentPassword) )
             {
                 await Application.Current.MainPage.DisplayAlert(
-                    "Error",
-                    "The current password is incorrect.",
-                    "Accept");
+                   Languages.Error,
+                   Languages.ErrorCurrentPasswordIncorrect,
+                   Languages.Accept);
                 return;
             }
 
             if ( string.IsNullOrEmpty(this.NewPassword) )
             {
                 await Application.Current.MainPage.DisplayAlert(
-                    "Error",
-                    "You must enter the new password.",
-                    "Accept");
+                    Languages.Error,
+                   Languages.ErrorNewPassword,
+                   Languages.Accept);
                 return;
             }
 
             if ( this.NewPassword.Length < 6 )
             {
                 await Application.Current.MainPage.DisplayAlert(
-                    "Error",
-                    "The password must have at least 6 characters length.",
-                    "Accept");
+                   Languages.Error,
+                   Languages.ErrorPasswordLength,
+                   Languages.Accept);
                 return;
             }
 
             if ( string.IsNullOrEmpty(this.PasswordConfirm) )
             {
                 await Application.Current.MainPage.DisplayAlert(
-                    "Error",
-                    "You must enter the password confirm.",
-                    "Accept");
+                   Languages.Error,
+                   Languages.ErrorEmptyPasswordConfirm,
+                   Languages.Accept);
                 return;
             }
 
             if ( !this.NewPassword.Equals(this.PasswordConfirm) )
             {
                 await Application.Current.MainPage.DisplayAlert(
-                    "Error",
-                    "The password and confirm does not match.",
-                    "Accept");
+                   Languages.Error,
+                   Languages.ErrorPasswordsDoesntMatch,
+                   Languages.Accept);
                 return;
             }
 
@@ -251,9 +252,9 @@
             if ( !response.IsSuccess )
             {
                 await Application.Current.MainPage.DisplayAlert(
-                    "Error",
-                    response.Message,
-                    "Accept");
+                      Languages.Error,
+                   Languages.ErrorModifyPassword,
+                   Languages.Accept);
                 return;
             }
 
@@ -261,9 +262,9 @@
             Settings.UserPassword = this.NewPassword;
 
             await Application.Current.MainPage.DisplayAlert(
-                "Ok",
-                response.Message,
-                "Accept");
+                Languages.Error,
+                   Languages.ModifyPasswordSuccess,
+                   Languages.Accept);
 
             await App.Navigator.PopAsync();
         }

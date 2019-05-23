@@ -165,4 +165,229 @@
   <data name="Username" xml:space="preserve">
     <value>Nom d'utilisateur</value>
   </data>
+  <data name="NameCameraPlaceholder" xml:space="preserve">
+    <value>Nom:</value>
+  </data>
+  <data name="CommentsCameraPlaceholder" xml:space="preserve">
+    <value>Commentaires</value>
+  </data>
+  <data name="SelectCityCameraPlaceholder" xml:space="preserve">
+    <value>Sélectionner une ville</value>
+  </data>
+  <data name="LatitudeCameraPlaceholder" xml:space="preserve">
+    <value>Latitude</value>
+  </data>
+  <data name="LongitudeCameraPlaceholder" xml:space="preserve">
+    <value>Longitude</value>
+  </data>
+  <data name="SaveCamera" xml:space="preserve">
+    <value>Enregistrer</value>
+  </data>
+  <data name="HybridView" xml:space="preserve">
+    <value>Hybride</value>
+  </data>
+  <data name="SatelliteView" xml:space="preserve">
+    <value>Satellite</value>
+  </data>
+  <data name="CameraUrlPlaceholder" xml:space="preserve">
+    <value>URL de la caméra ...!</value>
+  </data>
+  <data name="LatitudeLabel" xml:space="preserve">
+    <value>Latitude</value>
+  </data>
+  <data name="LongitudeLabel" xml:space="preserve">
+    <value>Longitude</value>
+  </data>
+  <data name="CityLabel" xml:space="preserve">
+    <value>Ville</value>
+  </data>
+  <data name="CreatedByLabel" xml:space="preserve">
+    <value>Créé par</value>
+  </data>
+  <data name="DateCreationLabel" xml:space="preserve">
+    <value>Date de création</value>
+  </data>
+  <data name="DeleteCamera" xml:space="preserve">
+    <value>Supprimer</value>
+  </data>
+  <data name="NameLabel" xml:space="preserve">
+    <value>Nom:</value>
+  </data>
+  <data name="WelcomeMenu" xml:space="preserve">
+    <value>Bienvenue</value>
+  </data>
+  <data name="ModifyPassword" xml:space="preserve">
+    <value>Modifier le mot de passe</value>
+  </data>
+  <data name="ConfirmPassword" xml:space="preserve">
+    <value>Confirmer le mot de passe :</value>
+  </data>
+  <data name="NewPassword" xml:space="preserve">
+    <value>Nouveau mot de passe</value>
+  </data>
+  <data name="CurrentPassword" xml:space="preserve">
+    <value>Mot de passe actuel</value>
+  </data>
+  <data name="Maps" xml:space="preserve">
+    <value>Cartes</value>
+  </data>
+  <data name="ModifyUser" xml:space="preserve">
+    <value>Modifier l'utilisateur</value>
+  </data>
+  <data name="About" xml:space="preserve">
+    <value>À propos de</value>
+  </data>
+  <data name="CloseSession" xml:space="preserve">
+    <value>Fermer la session</value>
+  </data>
+  <data name="ConfirmPasswordPlaceholder" xml:space="preserve">
+    <value>Confirmez le nouveau mot de passe.</value>
+  </data>
+  <data name="NewPasswordPlaceholder" xml:space="preserve">
+    <value>Entrer le nouveau mot de passe</value>
+  </data>
+  <data name="CurrentPasswordPlaceholder" xml:space="preserve">
+    <value>Saisissez votre mot de passe actuel.</value>
+  </data>
+  <data name="NumCameras" xml:space="preserve">
+    <value>Num. Appareils photo: !</value>
+  </data>
+  <data name="SearchCamera" xml:space="preserve">
+    <value>Caméra de recherche ...</value>
+  </data>
+  <data name="ErrorLoadCities" xml:space="preserve">
+    <value>Nous ne pouvions pas charger les villes!</value>
+  </data>
+  <data name="ErrorCameraName" xml:space="preserve">
+    <value>Vous devez entrer un nom.</value>
+  </data>
+  <data name="ErrorCameraLatitude" xml:space="preserve">
+    <value>Vous devez entrer une latitude.!</value>
+  </data>
+  <data name="ErrorCameraLongitude" xml:space="preserve">
+    <value>Vous devez entrer une longitude.!</value>
+  </data>
+  <data name="ErrorCameraCity" xml:space="preserve">
+    <value>Vous devez sélectionner une affaire !</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Annuler !</value>
+  </data>
+  <data name="Alert" xml:space="preserve">
+    <value>Alerte!</value>
+  </data>
+  <data name="AlertImageCamera" xml:space="preserve">
+    <value>Êtes-vous sûr de vouloir supprimer l'image ?</value>
+  </data>
+  <data name="ErrorCreateCamera" xml:space="preserve">
+    <value>Impossible de créer la publication</value>
+  </data>
+  <data name="DisplayActionImage" xml:space="preserve">
+    <value>Où prenez-vous la photo?!</value>
+  </data>
+  <data name="FromGallery" xml:space="preserve">
+    <value>Galerie!</value>
+  </data>
+  <data name="FromCamera" xml:space="preserve">
+    <value>De l'appareil photo</value>
+  </data>
+  <data name="FromUrl" xml:space="preserve">
+    <value>URL accueil</value>
+  </data>
+  <data name="ErrorCameraLocation" xml:space="preserve">
+    <value>Sélectionnez l’emplacement;</value>
+  </data>
+  <data name="AlertEmptyImage" xml:space="preserve">
+    <value>voulez-vous enregistrer le fichier?</value>
+  </data>
+  <data name="OwnLocation" xml:space="preserve">
+    <value>Votre emplacement</value>
+  </data>
+  <data name="ErrorSelectPin" xml:space="preserve">
+    <value>Vous devez sélectionner un Pin!</value>
+  </data>
+  <data name="ErrorLoadCameras" xml:space="preserve">
+    <value>Nous n&amp;#39;avons pas pu charger les caméras!</value>
+  </data>
+  <data name="ErrorEditCamera" xml:space="preserve">
+    <value>Nous ne pouvions pas éditer la caméra!</value>
+  </data>
+  <data name="ErrorUserLocation" xml:space="preserve">
+    <value>Échec de la localisation de l&amp;#39;utilisateur!</value>
+  </data>
+  <data name="ErrorEmptyFirstname" xml:space="preserve">
+    <value>Vous devez renseigner votre prénom</value>
+  </data>
+  <data name="ErrorEmptyUsername" xml:space="preserve">
+    <value>Vous devez entrer un nom d'utilisateur</value>
+  </data>
+  <data name="ErrorModifyUser" xml:space="preserve">
+    <value>Nous n&amp;#39;avons pas pu modifier l&amp;#39;utilisateur!</value>
+  </data>
+  <data name="ModifySuccess" xml:space="preserve">
+    <value>Utilisateur mis à jour</value>
+  </data>
+  <data name="ErrorCurrentPassword" xml:space="preserve">
+    <value>Vous devez renseigner le mot de passe actuel</value>
+  </data>
+  <data name="ErrorCurrentPasswordIncorrect" xml:space="preserve">
+    <value>Le mot de passe actuel est incorrect</value>
+  </data>
+  <data name="ErrorNewPassword" xml:space="preserve">
+    <value>Vous devez saisir un nouveau mot de passe.</value>
+  </data>
+  <data name="ErrorPasswordLength" xml:space="preserve">
+    <value>Le mot de passe doit comporter au moins 6 caractères.</value>
+  </data>
+  <data name="ErrorEmptyPasswordConfirm" xml:space="preserve">
+    <value>Vous devez entrer le mot de passe confirmer.!</value>
+  </data>
+  <data name="ErrorPasswordsDoesntMatch" xml:space="preserve">
+    <value>Le mot de passe et sa confirmation ne coïncident pas.</value>
+  </data>
+  <data name="ErrorModifyPassword" xml:space="preserve">
+    <value>Impossible de modifier le mot de passe</value>
+  </data>
+  <data name="ModifyPasswordSuccess" xml:space="preserve">
+    <value>Votre mot de passe a été changé avec succès</value>
+  </data>
+  <data name="ErrorValidEmail" xml:space="preserve">
+    <value>Vous devez introduire une adresse électronique valide.</value>
+  </data>
+  <data name="ErrorRegister" xml:space="preserve">
+    <value>Nouvel utilisateur n&amp;#39;a pas pu être créé!</value>
+  </data>
+  <data name="RegisterSuccess" xml:space="preserve">
+    <value>L'utilisateur a été créé avec succès.</value>
+  </data>
+  <data name="ModifyUserTitle" xml:space="preserve">
+    <value>Modifier l'utilisateur</value>
+  </data>
+  <data name="MapsTitle" xml:space="preserve">
+    <value>Cartes</value>
+  </data>
+  <data name="AboutTitle" xml:space="preserve">
+    <value>À propos de</value>
+  </data>
+  <data name="AddUserTitle" xml:space="preserve">
+    <value>Ajouter un utilisateur  </value>
+  </data>
+  <data name="CamerasTitle" xml:space="preserve">
+    <value>Caméras</value>
+  </data>
+  <data name="AddLocationTitle" xml:space="preserve">
+    <value>Ajouter un emplacement  </value>
+  </data>
+  <data name="EditCameraTitle" xml:space="preserve">
+    <value>Modifier la caméra</value>
+  </data>
+  <data name="ViewCameraTitle" xml:space="preserve">
+    <value>Voir la caméra</value>
+  </data>
+  <data name="ProfileTitle" xml:space="preserve">
+    <value>Profil</value>
+  </data>
+  <data name="AddCameraTitle" xml:space="preserve">
+    <value>Ajouter une caméra</value>
+  </data>
 </root>
