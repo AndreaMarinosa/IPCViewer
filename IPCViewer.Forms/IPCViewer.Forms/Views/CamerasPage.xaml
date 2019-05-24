@@ -15,7 +15,6 @@
         <StackLayout Padding="5" BindingContext="{Binding Cameras}">
 
             <ListView
-                x:Name="list"
                 CachingStrategy="RecycleElement"
                 GroupDisplayBinding="{Binding Key}"
                 GroupShortNameBinding="{Binding Key}"
@@ -37,6 +36,8 @@
                             HorizontalOptions="StartAndExpand"
                             Placeholder="{i18n:Translate SearchCamera}"
                             Text="{Binding SearchText}"
+                            CancelButtonColor="Accent"
+                            SearchCommand="{Binding SearchCommand}"
                             VerticalOptions="Center" />
 
                         <!--<Label
@@ -123,6 +124,7 @@
                                 </StackLayout>
 
                                 <Image
+                                    Grid.Row="0"
                                     Grid.RowSpan="2"
                                     Grid.Column="2"
                                     HeightRequest="20"
@@ -133,6 +135,7 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
+            <Label TextColor="Accent" FontSize="Large" Text="No se encontraron cámaras :(" IsVisible="{Binding NoCamerasVisible}"></Label>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

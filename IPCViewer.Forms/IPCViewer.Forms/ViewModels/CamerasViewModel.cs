@@ -1,4 +1,6 @@
-﻿namespace IPCViewer.Forms.ViewModels
+﻿using Xamarin.Forms.Internals;
+
+namespace IPCViewer.Forms.ViewModels
 {
     using Common.Models;
     using Common.Services;
@@ -14,53 +16,57 @@
     {
         #region Private properties
 
-        private readonly ApiService apiService;
-        private List<Camera> myCameras; // La lista original del API
+        private readonly ApiService _apiService;
+        private List<Camera> _myCameras; // La lista original del API
 
-        private ObservableCollection<CameraItemViewModel> cameras;
-        private bool isRefreshing;
-        private City city;
-        private ObservableCollection<Grouping<string, CameraItemViewModel>> camerasGrouped;
-        private ObservableCollection<Grouping<string, CameraItemViewModel>> camerasGroupedSearch;
+        private ObservableCollection<CameraItemViewModel> _cameras;
+        private bool _isRefreshing;
+        private bool _noCamerasVisible;
+        private City _city;
+        private ObservableCollection<Grouping<string, CameraItemViewModel>> _camerasGrouped;
+        private ObservableCollection<Grouping<string, CameraItemViewModel>> _camerasGroupedSearch;
+        private string _searchText;
 
         #endregion
 
         #region Public properties
 
-        public City City { get => this.city; set => this.SetProperty(ref this.city, value); }
+        public City City { get => this._city; set => this.SetProperty(ref this._city, value); }
 
         public ObservableCollection<Grouping<string, CameraItemViewModel>> CamerasGrouped
         {
-            get => camerasGrouped;
-            set => SetProperty(ref camerasGrouped, value);
+            get => _camerasGrouped;
+            set => SetProperty(ref _camerasGrouped, value);
         }
 
         public ObservableCollection<Grouping<string, CameraItemViewModel>> CamerasGroupedSearch
         {
-            get => camerasGroupedSearch;
-            set => SetProperty(ref camerasGroupedSearch, value);
+            get => _camerasGroupedSearch;
+            set => SetProperty(ref _camerasGroupedSearch, value);
         }
 
         public ObservableCollection<CameraItemViewModel> Cameras
         {
-            get => cameras;
-            set => this.SetProperty(ref cameras, value);
+            get => _cameras;
+            set => this.SetProperty(ref _cameras, value);
         }
 
-        private string _searchText;
         public string SearchText
         {
-            get { return _searchText; }
-            set
-            {
-                SetProperty(ref _searchText, value);
-            }
+            get => _searchText;
+            set => SetProperty(ref _searchText, value);
         }
 
         public bool IsRefreshing
         {
-            get => this.isRefreshing;
-            set => this.SetProperty(ref this.isRefreshing, value);
+            get => this._isRefreshing;
+            set => this.SetProperty(ref this._isRefreshing, value);
+        }
+
+        public bool NoCamerasVisible
+        {
+            get => this._noCamerasVisible;
+            set => this.SetProperty(ref this._noCamerasVisible, value);
         }
 
         #endregion
@@ -76,7 +82,7 @@
 
         public CamerasViewModel ()
         {
-            this.apiService = new ApiService();
+            this._apiService = new ApiService();
             LoadCamerasAsync();
         }
 
@@ -85,7 +91,7 @@
         #region Loads
         private async void LoadCamerasAsync ()
         {
-            var response = await this.apiService.GetListAsync<Camera>(
+            var response = await this._apiService.GetListAsync<Camera>(
                 "https://ipcviewerapi.azurewebsites.net",
                 "/api",
                 "/Cameras",
@@ -101,31 +107,21 @@
                 return;
             }
 
-            this.myCameras = (List<Camera>) response.Result;
+            this._myCameras = (List<Camera>) response.Result;
             RefreshCamerasList();
             IsRefreshing = false;
+            SortCamerasList();
 
-            //Use linq to sorty our cameras by name and then group them by the new name sort property
-            var sorted =
-                from camera in Cameras
-                orderby camera.City.Name
-                group camera by camera.NameSort into cameraGroup
-                select new Grouping<string, CameraItemViewModel>(cameraGroup.Key, cameraGroup);
-
-            //create a new collection of groups
-            CamerasGrouped = new ObservableCollection<Grouping<string, CameraItemViewModel>>(sorted);
-
+            NoCamerasVisible = CheckCountCameras(CamerasGrouped.Count);
         }
 
         #endregion
 
-
         #region Camera Functions
-
         public void AddCamera (Camera camera)
         {
-            this.myCameras.Add(camera);
-            RefreshCamerasList();
+            this._myCameras.Add(camera);
+            SortCamerasList();
         }
 
         /**
@@ -134,17 +130,17 @@
 
         public void UpdateCamera (Camera camera)
         {
-            var oldCamera = myCameras.FirstOrDefault(c => c.Id == camera.Id);
+            var oldCamera = _myCameras.FirstOrDefault(c => c.Id == camera.Id);
 
             // Eliminamos la antigua camara
             if ( oldCamera != null )
             {
-                myCameras.Remove(oldCamera);
+                _myCameras.Remove(oldCamera);
             }
 
             // Aniadimos la nueva
-            myCameras.Add(camera);
-            RefreshCamerasList();
+            _myCameras.Add(camera);
+            SortCamerasList();
         }
 
         /**
@@ -154,22 +150,23 @@
 
         public void DeleteCamera (int id)
         {
-            var oldCamera = myCameras.FirstOrDefault(c => c.Id == id);
+            var oldCamera = _myCameras.FirstOrDefault(c => c.Id == id);
             if ( oldCamera != null )
             {
-                myCameras.Remove(oldCamera);
+                _myCameras.Remove(oldCamera);
             }
-            RefreshCamerasList();
+            SortCamerasList();
         }
 
         #endregion
 
+        #region Secondary Camera Functions
         private void RefreshCamerasList ()
         {
 
             // ObservableCollection de la Clase CameraItemViewModel -> (Camera + Comando)
             Cameras = new ObservableCollection<CameraItemViewModel>(
-                myCameras.Select(c => new CameraItemViewModel // Por cada camera se creara una nueva instancia de CameraItemViewModel
+                _myCameras.Select(c => new CameraItemViewModel // Por cada camera se creara una nueva instancia de CameraItemViewModel
                 {
                     Id = c.Id,
                     ImageUrl = c.ImageUrl,
@@ -184,24 +181,54 @@
                     ImageFullPath = !string.IsNullOrEmpty(c.ImageUrl) ? c.ImageFullPath : "noImage" //c.ImageFullPath
                 }).ToList());
         }
-        public void PerformSearch ()
+
+        private void SortCamerasList ()
         {
-            if ( string.IsNullOrWhiteSpace(this._searchText) )
-                RefreshCamerasList();
-            else
-            {
-                var sorted =
+            //Use linq to sorty our cameras by name and then group them by the new name sort property
+            var sorted =
                 from camera in Cameras
-                where camera.Name.Contains(_searchText)
                 orderby camera.City.Name
                 group camera by camera.NameSort into cameraGroup
                 select new Grouping<string, CameraItemViewModel>(cameraGroup.Key, cameraGroup);
 
-                //create a new collection of groups
-                CamerasGroupedSearch = new ObservableCollection<Grouping<string, CameraItemViewModel>>(sorted);
-            }
+            //create a new collection of groups
+            CamerasGrouped = new ObservableCollection<Grouping<string, CameraItemViewModel>>(sorted);
         }
 
+        public void PerformSearch ()
+        {
+
+            if ( !string.IsNullOrWhiteSpace(this.SearchText) || SearchText != "" || !string.IsNullOrEmpty(SearchText))
+            {
+                SearchText = SearchText.ToLower();
+
+                var sorted =
+                    from camera in Cameras
+                    where camera.Name.ToLower().Contains(SearchText)
+                    orderby camera.City.Name
+                    group camera by camera.NameSort into cameraGroup
+                    select new Grouping<string, CameraItemViewModel>(cameraGroup.Key, cameraGroup);
+
+                //create a new collection of groups
+                CamerasGrouped = new ObservableCollection<Grouping<string, CameraItemViewModel>>(sorted);
+            }
+            else
+            {
+                SortCamerasList();
+            }
+
+            NoCamerasVisible = CheckCountCameras(CamerasGrouped.Count);
+        }
+
+        private bool CheckCountCameras (int count)
+        {
+            if ( count == 0 )
+            {
+                return true;
+            }
+            return false;
+        }
+        #endregion
 
     }
 
@@ -210,7 +237,7 @@
      */
     public class Grouping<TK, T> : ObservableCollection<T>
     {
-        public TK Key { get; private set; }
+        public TK Key { get; set; }
 
         public Grouping (TK key, IEnumerable<T> items)
         {

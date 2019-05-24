@@ -5,6 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:i18n="clr-namespace:IPCViewer.Forms.Helpers"
     BindingContext="{Binding Main, Source={StaticResource Locator}}"
+    NavigationPage.HasNavigationBar="false"
     >
 
     <ContentPage.Content>
