@@ -10,9 +10,7 @@
     BindingContext="{Binding Main, Source={StaticResource Locator}}">
 
     <StackLayout Margin="5,20" BindingContext="{Binding AddLocation}">
-
         <Grid>
-
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
