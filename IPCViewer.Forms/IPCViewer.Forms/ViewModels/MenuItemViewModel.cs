@@ -38,6 +38,7 @@
                     Settings.Token = string.Empty;
                     Settings.UserEmail = string.Empty;
                     Settings.UserPassword = string.Empty;
+                    Settings.IsDarkMode = false;
 
                     //MainViewModel.GetInstance().ControlUsersViewModel = new ControlUsersViewModel();
                     Application.Current.MainPage = new ControlUsersPage();

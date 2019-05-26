@@ -390,4 +390,7 @@
   <data name="AddCameraTitle" xml:space="preserve">
     <value>Ajouter une caméra</value>
   </data>
+  <data name="DarkMode" xml:space="preserve">
+    <value>Mode sombre:</value>
+  </data>
 </root>

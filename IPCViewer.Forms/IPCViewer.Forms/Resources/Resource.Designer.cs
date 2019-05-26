@@ -250,6 +250,15 @@ namespace IPCViewer.Forms.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Dark mode:.
+        /// </summary>
+        public static string DarkMode {
+            get {
+                return ResourceManager.GetString("DarkMode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Creation date:.
         /// </summary>
         public static string DateCreationLabel {

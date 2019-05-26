@@ -25,6 +25,17 @@
             // Cargamos primero los settings del usuario
             if ( Settings.IsRemember )
             {
+                //if ( !Settings.IsDarkMode )
+                //{
+                //    Resources["ContentPageStyle"] = Resources["DarkMode"];
+                //    Console.WriteLine("Funciona");
+                //}
+                //else
+                //{
+                //    Console.WriteLine("NO Funciona");
+                //    Resources["ContentPageStyle"] = Resources["LightMode"];
+                //}
+
                 // Como esta guardado como un string, lo deserilizamos como un objeto
                 var token = JsonConvert.DeserializeObject<TokenResponse>(Settings.Token);
 
@@ -40,10 +51,13 @@
                     mainViewModel.UserEmail = Settings.UserEmail;
                     mainViewModel.UserPassword = Settings.UserPassword;
                     mainViewModel.Cameras = new CamerasViewModel();
+                    mainViewModel.IsDarkMode = Settings.IsDarkMode;
                     this.MainPage = new MasterPage();
                     return;
                 }
             }
+
+           
 
             //MainViewModel.GetInstance().ControlUsersViewModel = new ControlUsersViewModel();
             MainPage = /*new NavigationPage(*/new ControlUsersPage()/*)*/;

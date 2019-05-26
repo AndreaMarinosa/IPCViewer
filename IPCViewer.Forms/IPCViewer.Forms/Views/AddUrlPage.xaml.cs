@@ -11,6 +11,10 @@ namespace IPCViewer.Forms.Views
             InitializeComponent();
         }
 
+        // API: STAR WAR
+
+        // frameworks: PRIMS AND MVVMCROSS
+
         //Invoked when background is clicked
         protected override bool OnBackgroundClicked ()
         {

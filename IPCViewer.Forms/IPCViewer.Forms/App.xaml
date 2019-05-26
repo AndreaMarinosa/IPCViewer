@@ -51,10 +51,12 @@
                 <Setter Property="BarBackgroundColor" Value="{StaticResource PrimaryDark}" />
             </Style>
 
-            <!--  Content page styles  -->
-            <Style TargetType="ContentPage">
-                <!--<Setter Property="" Value="White" />-->
+            <!--<Style x:Key="LightMode" TargetType="ContentPage">
+                <Setter Property="BackgroundColor" Value="Transparent" />
             </Style>
+            <Style x:Key="DarkMode" TargetType="ContentPage">
+                <Setter Property="BackgroundColor" Value="{StaticResource PrimaryLight}" />
+            </Style>-->
 
             <!--  Tabbed Page styles  -->
             <Style TargetType="TabbedPage">
@@ -71,7 +73,7 @@
             <Style TargetType="Button">
                 <Setter Property="BorderColor" Value="{StaticResource Secondary}" />
                 <Setter Property="BorderWidth" Value="2" />
-                <Setter Property="BackgroundColor" Value="WhiteSmoke" />
+                <Setter Property="BackgroundColor" Value="Transparent" />
                 <Setter Property="TextColor" Value="{StaticResource Secondary}" />
                 <Setter Property="CornerRadius" Value="23" />
                 <Setter Property="HeightRequest" Value="46" />
@@ -106,6 +108,7 @@
             <Style TargetType="Picker">
                 <Setter Property="FontFamily" Value="{StaticResource LightFont}" />
             </Style>
+
         </ResourceDictionary>
     </Application.Resources>
 </Application>

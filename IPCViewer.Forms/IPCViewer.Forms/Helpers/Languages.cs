@@ -88,7 +88,9 @@
         public static string HybridView => Resource.HybridView;
 
         public static string SatelliteView => Resource.SatelliteView;
+        
         public static string ErrorCameraLocation => Resource.ErrorCameraLocation;
+
         public static string AlertEmptyImage => Resource.AlertEmptyImage;
 
         public static string OwnLocation => Resource.OwnLocation;
@@ -120,6 +122,8 @@
         public static string ErrorUserLocation => Resource.ErrorUserLocation;
 
         // ------------------ PROFILE PAGE
+
+        public static string DarkMode => Resource.DarkMode;
 
         public static string ConfirmPasswordPlaceholder => Resource.ConfirmPasswordPlaceholder;
 
