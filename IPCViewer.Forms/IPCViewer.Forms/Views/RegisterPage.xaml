@@ -129,7 +129,7 @@
                             Title="{i18n:Translate CitySelect}"
                             Grid.Row="3"
                             Grid.Column="1"
-                            ItemDisplayBinding="{Binding City.Name}"
+                            ItemDisplayBinding="{Binding Name}"
                             ItemsSource="{Binding Cities}"
                             SelectedItem="{Binding City}" />
                     </Grid>

@@ -67,14 +67,15 @@
             if ( !response.IsSuccess || response == null )
             {
                 await Application.Current.MainPage.DisplayAlert(
-                   Languages.Error,
-                   Languages.ErrorLoadCities,
-                   Languages.Accept);
+                    Languages.Error,
+                    Languages.ErrorLoadCities,
+                    Languages.Accept);
                 return;
             }
 
             var myCities = (List<City>) response.Result;
             this.Cities = new ObservableCollection<City>(myCities);
+
         }
 
         public RegisterViewModel ()
