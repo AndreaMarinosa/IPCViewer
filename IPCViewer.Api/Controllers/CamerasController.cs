@@ -79,8 +79,6 @@
                 var fullPath = $"{file}";
                 var response = FilesHelper.UploadPhoto(stream, folder, file);
 
-                // todo: eliminar imagen anterior
-
                 // si puede subir la imagen
                 if ( response )
                 {

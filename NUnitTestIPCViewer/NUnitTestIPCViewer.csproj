@@ -7,13 +7,17 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="nunit" Version="3.11.0" />
-    <PackageReference Include="NUnit3TestAdapter" Version="3.11.0" />
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.9.0" />
+    <PackageReference Include="nunit" Version="3.12.0" />
+    <PackageReference Include="NUnit3TestAdapter" Version="3.13.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.1.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\IPCViewer.Api\IPCViewer.Api.csproj" />
+    <ProjectReference Include="..\IPCViewer.Common\IPCViewer.Common.csproj" />
+    <ProjectReference Include="..\IPCViewer.Forms\IPCViewer.Forms.Android\IPCViewer.Forms.Android.csproj" />
+    <ProjectReference Include="..\IPCViewer.Forms\IPCViewer.Forms.iOS\IPCViewer.Forms.iOS.csproj" />
+    <ProjectReference Include="..\IPCViewer.Forms\IPCViewer.Forms\IPCViewer.Forms.csproj" />
   </ItemGroup>
 
   <ItemGroup>
