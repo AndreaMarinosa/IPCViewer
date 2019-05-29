@@ -20,6 +20,7 @@
         private ObservableCollection<City> cities;
         private City city;
         private User user;
+        private bool isDarkMode;
 
         public ICommand SaveCommand => new RelayCommand(this.Save);
 
@@ -45,6 +46,11 @@
             get => this.user;
             set => this.SetProperty(ref this.user, value);
         }
+        public bool IsDarkMode
+        {
+            get => this.isDarkMode;
+            set => this.SetProperty(ref this.isDarkMode, value);
+        }
 
         public ObservableCollection<City> Cities
         {
@@ -69,6 +75,7 @@
             this.apiService = new ApiService();
             this.User = MainViewModel.GetInstance().User;
             this.IsEnabled = true;
+            this.IsDarkMode = MainViewModel.GetInstance().IsDarkMode;
             LoadCities();
         }
 
@@ -164,6 +171,9 @@
 
             MainViewModel.GetInstance().User = this.User;
             Settings.User = JsonConvert.SerializeObject(this.User);
+
+            MainViewModel.GetInstance().IsDarkMode = this.IsDarkMode;
+            Settings.IsDarkMode = this.IsDarkMode;
 
             await Application.Current.MainPage.DisplayAlert(
                 "Ok",

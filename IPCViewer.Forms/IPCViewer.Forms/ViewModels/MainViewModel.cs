@@ -8,7 +8,7 @@
     using System.Collections.ObjectModel;
     using System.Linq;
     using System.Windows.Input;
-    using Menu = IPCViewer.Common.Models.Menu;
+    using Menu = Common.Models.Menu;
 
     public class MainViewModel : BaseViewModel
     {
@@ -16,13 +16,14 @@
 
         private static MainViewModel _instance;
         private User user;
+        private bool isDarkMode;
 
         public RegisterViewModel Register { get; set; }
 
         public string UserEmail { get; set; }
 
         public string UserPassword { get; set; }
-
+        
         public TokenResponse Token { get; set; }
 
         public LoginViewModel Login { get; set; }
@@ -52,6 +53,12 @@
         {
             get => this.user;
             set => this.SetProperty(ref this.user, value);
+        }
+
+        public bool IsDarkMode
+        {
+            get => this.isDarkMode;
+            set => this.SetProperty(ref this.isDarkMode, value);
         }
 
         private void GoAddCamera ()

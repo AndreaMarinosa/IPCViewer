@@ -6,6 +6,7 @@ namespace IPCViewer.Forms.ViewModels
     using Common.Services;
     using GalaSoft.MvvmLight.Command;
     using IPCViewer.Forms.Helpers;
+    using IPCViewer.Forms.Views;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Linq;

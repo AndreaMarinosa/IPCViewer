@@ -13,9 +13,10 @@
         private const string userPassword = "userPassword";
         private const string isRemember = "isRemember";
         private const string user = "user";
+        private const string darkmode = "isDarkMode";
 
         private static readonly string stringDefault = string.Empty; // Defino los valores por defecto. Por defecto esta vacio
-        private static readonly bool boolDefault = false;
+        private static readonly bool boolDefault = false; // Por defecto el isDarkMode y el isRemember esta desactivado
         private static ISettings AppSettings => CrossSettings.Current;
 
         // Por cada constante, se define una propiedad publica y estatica
@@ -48,6 +49,11 @@
         {
             get => AppSettings.GetValueOrDefault(user, stringDefault);
             set => AppSettings.AddOrUpdateValue(user, value);
+        }
+        public static bool IsDarkMode
+        {
+            get => AppSettings.GetValueOrDefault(darkmode, boolDefault);
+            set => AppSettings.AddOrUpdateValue(darkmode, value);
         }
     }
 }

@@ -25,7 +25,8 @@ namespace IPCViewer.Forms.Droid
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
 
             Syncfusion.XForms.Android.PopupLayout.SfPopupLayoutRenderer.Init();
-
+            Rg.Plugins.Popup.Popup.Init(this, savedInstanceState);
+            
             var platformConfig = new PlatformConfig
             {
                 BitmapDescriptorFactory = new AccessNativeBitmapConfig()

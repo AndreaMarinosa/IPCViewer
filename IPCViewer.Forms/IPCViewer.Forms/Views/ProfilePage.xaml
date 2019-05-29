@@ -5,7 +5,27 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:i18n="clr-namespace:IPCViewer.Forms.Helpers"
     Title="{i18n:Translate ProfileTitle}"
-    BindingContext="{Binding Main, Source={StaticResource Locator}}">
+    BindingContext="{Binding Main, Source={StaticResource Locator}}"
+    Style="{DynamicResource ContentPageStyle}">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <!--  Dark Content page styles  -->
+            <Style x:Key="DarkBcMode" TargetType="ContentPage">
+                <Setter Property="BackgroundColor" Value="{StaticResource PrimaryLight}" />
+            </Style>
+            <Style x:Key="DarkLabelMode" TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource PrimaryFontColor}" />
+            </Style>
+            <Style x:Key="DarkEntryMode" TargetType="Entry">
+                <Setter Property="TextColor" Value="{StaticResource PrimaryFontColor}" />
+            </Style>
+            <Style x:Key="DarkPickerMode" TargetType="Picker">
+                <Setter Property="TextColor" Value="{StaticResource PrimaryFontColor}" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
     <ContentPage.Content>
         <ScrollView BindingContext="{Binding Profile}">
             <StackLayout Padding="20">
@@ -25,47 +45,51 @@
                         <RowDefinition Height="*" />
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
-                    <!--  Email  -->
+
+                    <!--  DarkMode  -->
                     <Label
-                        Grid.Row="0"
                         Grid.Column="0"
-                        Grid.ColumnSpan="2"
-                        Margin="0,10"
-                        FontAttributes="Bold"
-                        FontSize="Large"
-                        HorizontalOptions="Center"
-                        Text="{Binding User.Email}"
-                        TextColor="{StaticResource Secondary}"
-                        VerticalOptions="Center" />
+                        Style="{DynamicResource LabelStyle}"
+                        Text="{i18n:Translate DarkMode}" />
+                    <Switch
+                        x:Name="switch_dark"
+                        Grid.Column="1"
+                        HorizontalOptions="End"
+                        IsToggled="{Binding IsDarkMode}" />
 
                     <!--  Firstname  -->
                     <Label
                         Grid.Row="1"
                         Grid.Column="0"
+                        Style="{DynamicResource LabelStyle}"
                         Text="{i18n:Translate Firstname}"
                         VerticalOptions="Center" />
                     <Entry
                         Grid.Row="1"
                         Grid.Column="1"
                         Placeholder="{i18n:Translate FirstnamePlaceHolder}"
+                        Style="{DynamicResource EntryStyle}"
                         Text="{Binding User.FirstName}" />
 
                     <!--  Username  -->
                     <Label
                         Grid.Row="2"
                         Grid.Column="0"
+                        Style="{DynamicResource LabelStyle}"
                         Text="{i18n:Translate Username}"
                         VerticalOptions="Center" />
                     <Entry
                         Grid.Row="2"
                         Grid.Column="1"
                         Placeholder="{i18n:Translate Username}"
+                        Style="{DynamicResource EntryStyle}"
                         Text="{Binding User.UserName}" />
 
                     <!--  City  -->
                     <Label
                         Grid.Row="3"
                         Grid.Column="0"
+                        Style="{DynamicResource LabelStyle}"
                         Text="{i18n:Translate CityLabel}"
                         VerticalOptions="Center" />
                     <Picker
@@ -74,7 +98,8 @@
                         Grid.Column="1"
                         ItemDisplayBinding="{Binding Name}"
                         ItemsSource="{Binding Cities}"
-                        SelectedItem="{Binding City}" />
+                        SelectedItem="{Binding City}"
+                        Style="{DynamicResource PickerStyle}" />
 
                     <BoxView
                         Grid.Row="4"
@@ -87,6 +112,7 @@
                     <Label
                         Grid.Row="5"
                         Grid.Column="0"
+                        Style="{DynamicResource LabelStyle}"
                         Text="{i18n:Translate CurrentPassword}"
                         VerticalOptions="Center" />
                     <Entry
@@ -94,10 +120,12 @@
                         Grid.Column="1"
                         IsPassword="True"
                         Placeholder="{i18n:Translate CurrentPasswordPlaceholder}"
+                        Style="{DynamicResource EntryStyle}"
                         Text="{Binding CurrentPassword}" />
                     <Label
                         Grid.Row="6"
                         Grid.Column="0"
+                        Style="{DynamicResource LabelStyle}"
                         Text="{i18n:Translate NewPassword}"
                         VerticalOptions="Center" />
                     <Entry
@@ -105,10 +133,12 @@
                         Grid.Column="1"
                         IsPassword="True"
                         Placeholder="{i18n:Translate NewPasswordPlaceholder}"
+                        Style="{DynamicResource EntryStyle}"
                         Text="{Binding NewPassword}" />
                     <Label
                         Grid.Row="7"
                         Grid.Column="0"
+                        Style="{DynamicResource LabelStyle}"
                         Text="{i18n:Translate ConfirmPassword}"
                         VerticalOptions="Center" />
                     <Entry
@@ -116,6 +146,7 @@
                         Grid.Column="1"
                         IsPassword="True"
                         Placeholder="{i18n:Translate ConfirmPasswordPlaceholder}"
+                        Style="{DynamicResource EntryStyle}"
                         Text="{Binding PasswordConfirm}" />
 
                 </Grid>

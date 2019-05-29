@@ -390,4 +390,7 @@
   <data name="AddCameraTitle" xml:space="preserve">
     <value>Aggiungi fotocamera</value>
   </data>
+  <data name="DarkMode" xml:space="preserve">
+    <value>Modalità incognito:</value>
+  </data>
 </root>

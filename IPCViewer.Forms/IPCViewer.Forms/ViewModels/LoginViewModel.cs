@@ -117,6 +117,7 @@
             mainViewModel.Cameras = new CamerasViewModel();
             mainViewModel.UserEmail = this.Email;
             mainViewModel.UserPassword = this.Password;
+            mainViewModel.IsDarkMode = Settings.IsDarkMode;
 
             // Guardamos los datos en persistencia (El email, la password, y el remember)
             Settings.IsRemember = IsRemember;
@@ -124,6 +125,7 @@
             Settings.UserPassword = Password;
             Settings.Token = JsonConvert.SerializeObject(token); // coge el token y lo guarda en un string
             Settings.User = JsonConvert.SerializeObject(user); // coge el user y lo guarda en un string
+            
 
             Application.Current.MainPage = new /*NavigationPage(new */MasterPage()/*)*/;
         }
