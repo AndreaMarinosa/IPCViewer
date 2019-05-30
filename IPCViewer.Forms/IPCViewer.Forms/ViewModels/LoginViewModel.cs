@@ -47,7 +47,9 @@
         {
             apiService = new ApiService();
             IsEnabled = true;
-
+            Email = "andreamarinosalopez@gmail.com";
+            Password = "123456";
+            IsRemember = true;
         }
 
         private async void Login ()

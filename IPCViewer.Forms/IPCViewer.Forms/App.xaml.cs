@@ -25,14 +25,24 @@
             // Cargamos primero los settings del usuario
             if ( Settings.IsRemember )
             {
+                //if ( !Settings.IsDarkMode )
+                //{
+                //    Resources["ContentPageStyle"] = Resources["DarkMode"];
+                //    Console.WriteLine("Funciona");
+                //}
+                //else
+                //{
+                //    Console.WriteLine("NO Funciona");
+                //    Resources["ContentPageStyle"] = Resources["LightMode"];
+                //}
 
-                //    // Como esta guardado como un string, lo deserilizamos como un objeto
+                // Como esta guardado como un string, lo deserilizamos como un objeto
                 var token = JsonConvert.DeserializeObject<TokenResponse>(Settings.Token);
 
-                //    // Si el usuario esta recordado, lo deserializamos para volverlo objeto
+                // Si el usuario esta recordado, lo deserializamos para volverlo objeto
                 var user = JsonConvert.DeserializeObject<User>(Settings.User);
 
-                //    // Si el token no es valido (Porque ha pasado el tiempo), lo devolvemos al login
+                // Si el token no es valido (Porque ha pasado el tiempo), lo devolvemos al login
                 if ( token.Expiration > DateTime.Now )
                 {
                     var mainViewModel = MainViewModel.GetInstance();
@@ -47,7 +57,7 @@
                 }
             }
 
-
+           
 
             //MainViewModel.GetInstance().ControlUsersViewModel = new ControlUsersViewModel();
             MainPage = /*new NavigationPage(*/new ControlUsersPage()/*)*/;
