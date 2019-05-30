@@ -22,10 +22,9 @@ namespace IPCViewer.Api.Data
         public Task<Camera> GetCamera (int id)
         {
             var camera = context.Cameras
-                .Where(c => c.Id == id)
                 .Include(c => c.User)
                 .Include(c => c.City)
-                .FirstOrDefaultAsync();
+                .FirstOrDefaultAsync(c => c.Id == id);
 
             if ( camera == null )
             {
