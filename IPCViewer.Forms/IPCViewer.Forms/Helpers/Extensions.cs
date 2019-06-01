@@ -18,52 +18,5 @@ namespace IPCViewer.Forms.Helpers
             return buffer;
         }
 
-        public async static void SelectCamera (Camera Camera, int type)
-        {
-            var source = "";
-
-            if (type == 0 )
-            {
-                source = await Application.Current.MainPage.DisplayActionSheet(
-                    Camera.Name, "Cancel", null,
-                    "Edit camera", "View Camera", "View Maps");
-            } 
-            else if (type == 1 )
-            {
-                source = await Application.Current.MainPage.DisplayActionSheet(
-                Camera.Name, "Cancel", null,
-                "Edit camera", "View Camera");
-            }
-
-            switch ( source )
-            {
-                case "Cancel":
-                    {
-                        return;
-                    }
-                case "Edit camera":
-                    {
-                        MainViewModel.GetInstance().EditCamera = new EditCameraViewModel(Camera);
-                        await App.Navigator.PushAsync(new EditCameraPage());
-                        break;
-                    }
-                case "View Camera":
-                    {
-                        MainViewModel.GetInstance().DisplayCamera = new DisplayViewModel(Camera);
-                        await App.Navigator.PushAsync(new DisplayCameraPage(), true);
-                        break;
-                    }
-                case "View Maps":
-                    {
-                        MainViewModel.GetInstance().Maps = new MapViewModel(Camera);
-                        await App.Navigator.PushAsync(new MapsPage());
-                        break;
-                    }
-                default:
-                    {
-                        return;
-                    }
-            }
-        }
     }
 }

@@ -180,5 +180,10 @@
         public static string MapsTitle => Resource.MapsTitle;
         public static string AddLocationTitle => Resource.AddLocationTitle;
 
+        // ------------------ POP UP CAMERA
+        public static string ViewCamera => Resource.ViewCamera;
+        public static string ViewMaps => Resource.ViewMaps;
+        public static string EditCamera => Resource.EditCamera;
+
     }
 }

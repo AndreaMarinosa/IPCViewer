@@ -2,6 +2,7 @@
 using IPCViewer.Common.Models;
 using IPCViewer.Common.Services;
 using IPCViewer.Forms.Helpers;
+using IPCViewer.Forms.Views;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -81,9 +82,28 @@ namespace IPCViewer.Forms.ViewModels
         }
 
         public ICommand SelectCameraCommand => new RelayCommand(SelectCamera);
-        void SelectCamera ()
+        async void SelectCamera ()
         {
-            Helpers.Extensions.SelectCamera(Camera, 1);
+
+            var source = await Application.Current.MainPage.DisplayActionSheet(
+            Camera.Name, Languages.Cancel, null,
+           Languages.EditCamera, Languages.ViewCamera);
+            if ( source.Equals(Languages.ViewCamera) )
+            {
+                MainViewModel.GetInstance().DisplayCamera = new DisplayViewModel(Camera);
+                await App.Navigator.PushAsync(new DisplayCameraPage(), true);
+                return;
+            }
+            else if ( source.Equals(Languages.EditCamera) )
+            {
+                MainViewModel.GetInstance().EditCamera = new EditCameraViewModel(Camera);
+                await App.Navigator.PushAsync(new EditCameraPage());
+                return;
+            }
+            else
+            {
+                return;
+            }
         }
 
         private async void LoadLocationCameraAsync (Camera camera)
@@ -169,7 +189,7 @@ namespace IPCViewer.Forms.ViewModels
                     {
                         Pin = args.SelectedPin;
 
-                        if ( Pin != null && Pin.Label !=Languages.OwnLocation )
+                        if ( Pin != null && Pin.Label != Languages.OwnLocation )
                         {
                             Camera = _myCameras.FirstOrDefault(c => c.Latitude == Pin.Position.Latitude &&
                                 c.Longitude == Pin.Position.Longitude);
@@ -182,9 +202,9 @@ namespace IPCViewer.Forms.ViewModels
                         }
                         else
                         {
-                            foreach (var pin in Pins )
+                            foreach ( var pin in Pins )
                             {
-                                if (pin.Label != Languages.OwnLocation )
+                                if ( pin.Label != Languages.OwnLocation )
                                 {
                                     pin.Icon = BitmapDescriptorFactory.FromBundle("type" + 2);
 

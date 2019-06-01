@@ -288,6 +288,15 @@ namespace IPCViewer.Forms.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Edit Camera.
         /// </summary>
+        public static string EditCamera {
+            get {
+                return ResourceManager.GetString("EditCamera", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit Camera.
+        /// </summary>
         public static string EditCameraTitle {
             get {
                 return ResourceManager.GetString("EditCameraTitle", resourceCulture);
@@ -864,9 +873,27 @@ namespace IPCViewer.Forms.Resources {
         /// <summary>
         ///   Looks up a localized string similar to View Camera.
         /// </summary>
+        public static string ViewCamera {
+            get {
+                return ResourceManager.GetString("ViewCamera", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to View Camera.
+        /// </summary>
         public static string ViewCameraTitle {
             get {
                 return ResourceManager.GetString("ViewCameraTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to View in Map.
+        /// </summary>
+        public static string ViewMaps {
+            get {
+                return ResourceManager.GetString("ViewMaps", resourceCulture);
             }
         }
         

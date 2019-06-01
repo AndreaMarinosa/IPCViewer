@@ -246,12 +246,18 @@
                  Languages.FromCamera,
                  Languages.FromUrl);
 
+            // Si no elige nada, que no haga ninguna comprobación
+            if ( string.IsNullOrEmpty(source) )
+            {
+                return;
+            }
+
             if ( source.Equals(Languages.Cancel) )
             {
                 this.file = null;
                 return;
             }
-            else if ( source.Equals(Languages.FromGallery) )
+            else if ( source.Equals(Languages.FromCamera) )
             {
                 // le decimos que coja la foto de la camara
                 this.file = await CrossMedia.Current.TakePhotoAsync(
@@ -263,7 +269,7 @@
                     }
                 );
             }
-            else if ( source.Equals(Languages.FromCamera) )
+            else if ( source.Equals(Languages.FromGallery) )
             {
                 this.file = await CrossMedia.Current.PickPhotoAsync();
             }
@@ -271,6 +277,10 @@
             {
                 MainViewModel.GetInstance().AddUrl = new AddUrlViewModel(this);
                 await App.Navigator.PushAsync(new AddUrlPage());
+            }
+            else
+            {
+                return;
             }
 
             // Si han elegido una imagen

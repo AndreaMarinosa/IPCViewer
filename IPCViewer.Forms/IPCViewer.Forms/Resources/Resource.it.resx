@@ -393,4 +393,13 @@
   <data name="DarkMode" xml:space="preserve">
     <value>Modalità incognito:</value>
   </data>
+  <data name="ViewMaps" xml:space="preserve">
+    <value>Visualizza in</value>
+  </data>
+  <data name="ViewCamera" xml:space="preserve">
+    <value>Accedi a OneDrive per visualizzare le impostazioni di caricamento da fotocamera.</value>
+  </data>
+  <data name="EditCamera" xml:space="preserve">
+    <value>Modifica telecamera</value>
+  </data>
 </root>

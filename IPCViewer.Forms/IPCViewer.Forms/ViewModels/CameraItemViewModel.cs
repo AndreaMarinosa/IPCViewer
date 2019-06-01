@@ -31,9 +31,35 @@ namespace IPCViewer.Forms.ViewModels
             await App.Navigator.PushAsync(new DisplayCameraPage(), true);
         }
 
-        void SelectCamera ()
+        async void SelectCamera ()
         {
-            Extensions.SelectCamera(this, 0);
+
+            var source = await Application.Current.MainPage.DisplayActionSheet(
+                this.Name, Languages.Cancel, null,
+                Languages.EditCamera, Languages.ViewCamera, Languages.ViewMaps);
+
+            if ( source.Equals(Languages.ViewCamera))
+            {
+                MainViewModel.GetInstance().DisplayCamera = new DisplayViewModel(this);
+                await App.Navigator.PushAsync(new DisplayCameraPage(), true);
+                return;
+            }
+            else if ( source.Equals(Languages.EditCamera))
+            {
+                MainViewModel.GetInstance().EditCamera = new EditCameraViewModel(this);
+                await App.Navigator.PushAsync(new EditCameraPage());
+                return;
+            }
+            else if ( source.Equals(Languages.ViewMaps))
+            {
+                MainViewModel.GetInstance().Maps = new MapViewModel(this);
+                await App.Navigator.PushAsync(new MapsPage());
+                return;
+            }
+            else
+            {
+                return;
+            }
         }
     }
 }

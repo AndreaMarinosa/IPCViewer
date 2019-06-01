@@ -393,4 +393,13 @@
   <data name="DarkMode" xml:space="preserve">
     <value>¿Modo oscuro?</value>
   </data>
+  <data name="ViewMaps" xml:space="preserve">
+    <value>Ver en Maps</value>
+  </data>
+  <data name="ViewCamera" xml:space="preserve">
+    <value>Ver Cámara</value>
+  </data>
+  <data name="EditCamera" xml:space="preserve">
+    <value>Editar Cámara</value>
+  </data>
 </root>
