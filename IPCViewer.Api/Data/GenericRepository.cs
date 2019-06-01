@@ -34,9 +34,9 @@
          * Busca y devuelve el el objeto con el id pasado por parametro
          */
 
-        public async Task<T> GetByIdAsync (int id)
+        public  Task<T> GetByIdAsync (int id)
         {
-            return await this.context.Set<T>()
+            return  this.context.Set<T>()
                 .AsNoTracking()
                 .FirstOrDefaultAsync(e => e.Id == id);
         }
@@ -86,7 +86,8 @@
 
         public async Task<bool> SaveAllAsync ()
         {
-            return await this.context.SaveChangesAsync() > 0;
+             var a = await this.context.SaveChangesAsync() > 0;
+             return a;
         }
     }
 }
